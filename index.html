@@ -361,13 +361,16 @@ const hotLeadsB2B=[
 ];
 
 const competitorAlerts=[
-  {urgency:'critical',competitor:'庞洛 Ponant',event:'与众信旅游签署3年包船战略合作',time:'2025-04',detail:'南冠号/星辉号4-5航次，2026-2028'},
-  {urgency:'high',competitor:'66度探险邮轮',event:'新船"东方极地号"正式下水',time:'2025-09',detail:'首艘中国品牌极地探险邮轮，全中文服务'},
-  {urgency:'high',competitor:'庞洛 Ponant',event:'中国市场预订率超95%(25-26季)，85%(26-27季)',time:'2025末',detail:'提前18-24个月满舱趋势加剧'},
-  {urgency:'medium',competitor:'Antarctica21',event:'飞南极航线新增中文服务',time:'2025-Q3',detail:'海空联航中文领队比例提升至1:8'},
-  {urgency:'medium',competitor:'银海 Silversea',event:'Silver Endeavour新增中国区代理',time:'2025-Q4',detail:'超奢华管家服务进一步渗透中国'},
-  {urgency:'medium',competitor:'海达路德 Hurtigruten',event:'推出"中国科学家同行"科考主题航线',time:'2025-Q3',detail:'科考旅游细分赛道竞争加剧'},
-  {urgency:'medium',competitor:'众信旅游集团',event:'25-26季累计输送极地游客超1800名',time:'2026-04',detail:'中国最大极地运营商地位巩固'},
+  {urgency:'critical',competitor:'66度探险邮轮',event:'海神号2026首航圆满→发布2026-2028全球50+航次布局',time:'2026-05-07',detail:'中国首个极地邮轮品牌进入全航季运营。50+探险航次覆盖南北极/北欧/西非，20余种线路。全中文服务+中医理疗+纯正中餐+极地公民科学计划。抗冰1A Super级可进南极圈。Quark中文服务优势被直接挑战。'},
+  {urgency:'critical',competitor:'庞洛 Ponant',event:'庞洛2027-2028南极季航线正式启售',time:'2026-06-11',detail:'六大核心旅程：威德尔海帝企鹅/南极圈秘境/南极三岛生态博览。提前2年开售，进一步挤压Quark舱位获取空间。2028全环南极62天航线已开始预售。'},
+  {urgency:'high',competitor:'恒众国际 x 中国国家地理',event:'联合包船首推2027北极四岛独家连航',time:'2026-06-02',detail:'串联斯瓦尔巴/东格陵兰/法罗群岛/冰岛四大秘境，21天。国家地理品牌背书+极地摄影大师同行。中国国家地理号曾9.98万南极产品上线即售罄。高端内容品牌跨界极地，对Quark专业探险定位形成差异化竞争。'},
+  {urgency:'high',competitor:'众信旅游 x 庞洛',event:'2025-26南极季1400+人→2026-27季目标继续增长20%',time:'2026-04',detail:'庞洛包船协议逐年增量。庞洛夏古号2026年2月29天航线豪爵套房单人超100万元。众信已成中国最大极地运营商，渠道掌控力持续增强。'},
+  {urgency:'high',competitor:'66度探险邮轮',event:'海神号2026年4月横跨大西洋→专攻"女性旅行焦虑"治愈营销',time:'2026-04',detail:'推出女性友好极地产品，强调安全/舒适/不吃苦。中医理疗体系+中式餐饮。差异化定位：东方视角+治愈系极地，直击中国女性高净值客群痛点。'},
+  {urgency:'medium',competitor:'南极尾单价格战',event:'2026年3月南极尾单不到4万RMB即可出发',time:'2026-03',detail:'go2antarctica等平台推广南极尾单。但行业分析指出尾单比例仅3-5%，选择空间大幅缩减。5万裸票+自购机票≠5万总花费。价格混乱影响消费者对极地产品定价认知。'},
+  {urgency:'medium',competitor:'G Adventures',event:'极地探险版图扩张：北极复航，船队翻倍，推出全新航线',time:'2026',detail:'国际巨头加速极地布局。船队规模翻倍+新航线开发，全球极地供给增加，竞争格局变化。'},
+  {urgency:'medium',competitor:'庞洛 Ponant',event:'庞洛中国市场预订率95%+，2026-27季85%+',time:'2026',detail:'供不应求，提前18-24个月满舱。庞洛中国市场份额40%+。舱位资源被大量锁定，Quark需差异化而非正面抢舱位。'},
+  {urgency:'medium',competitor:'飞猪 x 南北极联盟',event:'飞猪再次大手笔包船，要把极地游做透',time:'2026',detail:'OTA平台加速极地布局。中国游客增长25%超越澳大利亚成第二大客源国。平台流量优势+规模化采购压低价格，对传统旅行社和船公司直营形成挤压。'},
+  {urgency:'medium',competitor:'银海 Silversea',event:'银海奋进号南极持续运营+中国市场代理扩展',time:'2026',detail:'超奢华管家式服务持续渗透高净值客群。1:1管家服务+全套房配置，与Quark探险定位形成互补竞争。'},
 ];
 
 const tier1Partners=[
@@ -741,12 +744,13 @@ window.addEventListener('load',()=>{
   // Industry signals render (tab-competitor)
   const sigEl=document.getElementById('industrySignals');
   if(sigEl)sigEl.innerHTML=[
-    {title:'《南极活动与环境保护法(草案)》首审',impact:'positive',summary:'2025.12 全国人大常委会首审——南极旅游纳入行政许可，推动行业正规化'},
-    {title:'中国南极游客首次突破万人',impact:'positive',summary:'IAATO 2024-25季数据：中国11705人次，全球第二，+25% YoY'},
-    {title:'庞洛中国市场预订率超95%',impact:'neutral',summary:'供不应求信号——中国市场需求远超供给，Quark有巨大增长空间'},
-    {title:'极地旅游价格下行趋势',impact:'negative',summary:'尾单¥2-3万可能破坏品牌价格认知——需要差异化定位而非价格战'},
-    {title:'格陵兰中国游客翻倍增长',impact:'positive',summary:'北极新增长极——Quark格陵兰航线优势突出'},
-  ].map(s=>`<div class="obj-card" style="border-left-color:${s.impact==='positive'?'var(--accent3)':s.impact==='negative'?'var(--red)':'var(--accent)'}"><div class="obj-q" style="color:${s.impact==='positive'?'var(--accent3)':s.impact==='negative'?'var(--red)':'var(--accent)'}">${s.impact==='positive'?'🟢':s.impact==='negative'?'🔴':'🔵'} ${s.title}</div><div class="obj-r">${s.summary}</div></div>`).join('');
+    {title:'66度探险邮轮海神号2026首航 + 50+航次发布',impact:'critical',summary:'2026年5月：中资极地邮轮正式进入全航季。全中文+中医理疗+中式餐饮→直接挑战Quark中文服务差异化优势。2026-2028布局50+个探险航次覆盖全球。'},
+    {title:'恒众国际×中国国家地理 2027北极四岛联合包船',impact:'high',summary:'2026年6月官宣：斯瓦尔巴/东格陵兰/法罗群岛/冰岛21天连航。国家地理品牌+摄影大师，"高端内容品牌跨界极地"新模式。'},
+    {title:'庞洛2027-2028南极季航线提前2年启售',impact:'high',summary:'2026年6月：六大核心旅程正式开售，2028全环南极62天已预售。庞洛中国份额40%+，供不应求持续。'},
+    {title:'南极尾单价降至4万以下',impact:'negative',summary:'2026年3月：南极季末尾单不到4万RMB。但行业数据：尾单仅占3-5%。价格混乱影响消费者定价认知，需教育"5万≠5万总花费"。'},
+    {title:'中国游客102% YoY增长，全球第二大客源国',impact:'positive',summary:'IAATO数据：中国南极游客从9384→11705(+25%)。2026-27预计14500+。市场需求远超供给，Quark增长空间巨大。'},
+    {title:'众信旅游1400+人南极季收官→2026-27增长20%',impact:'neutral',summary:'2026年4月：中国最大极地运营商地位巩固。庞洛包船逐年增20%。渠道集中度提高→Quark需差异化渠道策略。'},
+  ].map(s=>`<div class="obj-card" style="border-left-color:${s.impact==='critical'?'var(--red)':s.impact==='high'?'var(--orange)':s.impact==='positive'?'var(--accent3)':s.impact==='negative'?'var(--red)':'var(--accent)'}"><div class="obj-q" style="color:${s.impact==='critical'?'var(--red)':s.impact==='high'?'var(--orange)':s.impact==='positive'?'var(--accent3)':s.impact==='negative'?'var(--red)':'var(--accent)'}">${s.impact==='critical'?'🔴':s.impact==='high'?'🟡':s.impact==='positive'?'🟢':s.impact==='negative'?'🔴':'🔵'} ${s.title}</div><div class="obj-r">${s.summary}</div></div>`).join('');
 });
 </script>
 </body>
