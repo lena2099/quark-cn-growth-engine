@@ -1,0 +1,77 @@
+version: "3.9"
+
+services:
+  # ── 主引擎 ──────────────────────────────────────────
+  engine:
+    build: .
+    container_name: quark-growth-engine
+    restart: unless-stopped
+    environment:
+      - TZ=Asia/Shanghai
+      - DATABASE_URL=postgresql+asyncpg://quark:${DB_PASSWORD}@postgres:5432/quark_cn
+      - REDIS_URL=redis://redis:6379/0
+      - PYTHONUNBUFFERED=1
+    env_file:
+      - .env
+    volumes:
+      - ./config:/app/config:ro
+      - ./data:/app/data
+      - ./logs:/app/logs
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    command: python scheduler.py
+
+  # ── 数据看板 ────────────────────────────────────────
+  dashboard:
+    build: .
+    container_name: quark-dashboard
+    restart: unless-stopped
+    ports:
+      - "8501:8501"
+    environment:
+      - TZ=Asia/Shanghai
+      - DATABASE_URL=postgresql+asyncpg://quark:${DB_PASSWORD}@postgres:5432/quark_cn
+    env_file:
+      - .env
+    volumes:
+      - ./config:/app/config:ro
+    depends_on:
+      - postgres
+    command: streamlit run dashboard/app.py --server.port=8501 --server.address=0.0.0.0
+
+  # ── PostgreSQL ──────────────────────────────────────
+  postgres:
+    image: postgres:16-alpine
+    container_name: quark-postgres
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=quark
+      - POSTGRES_PASSWORD=${DB_PASSWORD:-changeme}
+      - POSTGRES_DB=quark_cn
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U quark -d quark_cn"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ── Redis ───────────────────────────────────────────
+  redis:
+    image: redis:7-alpine
+    container_name: quark-redis
+    restart: unless-stopped
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
+  redis_data:

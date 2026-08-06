@@ -1,0 +1,137 @@
+# Quark CN Growth Engine — 全局配置
+# 所有敏感信息通过环境变量注入，此处仅定义业务参数
+
+# ── 调度配置 ──────────────────────────────────────────
+scheduler:
+  timezone: "Asia/Shanghai"
+  jobs:
+    channel_discovery:         { cron: "0 6 * * *" }       # 每日06:00
+    linkedin_scan:             { cron: "0 5,13,21 * * *" } # 每日三轮
+    competitor_monitor:        { cron: "0 */6 * * *" }     # 每6小时
+    industry_radar:            { cron: "0 8 * * *" }       # 每日08:00
+    content_distribution:      { cron: "0 9,15,21 * * *" }# 每日三轮
+    lead_report_generation:    { cron: "0 7 * * *" }       # 每日07:00日报
+    weekly_report:             { cron: "0 9 * * 1" }       # 每周一09:00
+
+# ── 采集器配置 ──────────────────────────────────────────
+collectors:
+  request_delay_seconds: 3        # 请求最小间隔
+  max_retries: 3
+  timeout_seconds: 30
+  user_agent_rotation: true       # 启用UA轮换
+  proxy_enabled: false            # 代理（可选）
+  proxy_list: []
+
+  # 网页抓取目标
+  web_sources:
+    travel_news:
+      - url: "https://www.traveldaily.cn"
+        category: "旅游行业媒体"
+      - url: "https://www.ttgchina.com"
+        category: "B2B旅游媒体"
+      - url: "https://www.tripolers.com"
+        category: "极地旅行垂直"
+    company_registry:
+      - source: "tianyancha"      # 天眼查（需API key）
+        enabled: false
+      - source: "qichacha"        # 企查查（需API key）
+        enabled: false
+
+  # 社交媒体监听关键词
+  social_keywords:
+    high_priority:
+      - "极地旅游代理"
+      - "南极旅行社推荐"
+      - "北极邮轮哪家好"
+      - "Quark Expeditions"
+      - "夸克探险"
+      - "庞洛邮轮"
+      - "极地包船"
+    medium_priority:
+      - "高端定制旅行"
+      - "南极旅游攻略"
+      - "北极光旅行"
+      - "高净值旅行"
+      - "奢华邮轮推荐"
+    discovery:
+      - "IAATO会员"
+      - "AECO认证"
+      - "极地邮轮代理"
+      - "南北极专家"
+
+  # 竞品品牌监控列表
+  competitor_brands:
+    primary:
+      - { name: "庞洛 Ponant", cn_name: "庞洛邮轮", website: "ponant.com" }
+      - { name: "银海 Silversea", cn_name: "银海邮轮", website: "silversea.com" }
+      - { name: "66度探险邮轮", cn_name: "66度", website: "" }
+      - { name: "海达路德 Hurtigruten", cn_name: "海达路德", website: "hurtigruten.com" }
+    secondary:
+      - { name: "Antarctica21", cn_name: "A21", website: "antarctica21.com" }
+      - { name: "Lindblad/National Geographic", cn_name: "国家地理", website: "expeditions.com" }
+      - { name: "Atlas Ocean Voyages", cn_name: "Atlas", website: "atlasoceanvoyages.com" }
+      - { name: "Oceanwide Expeditions", cn_name: "Oceanwide", website: "oceanwide-expeditions.com" }
+
+# ── NLP 配置 ────────────────────────────────────────────
+nlp:
+  entity_types:
+    company: ["ORG", "公司", "企业", "旅行社", "机构"]
+    person:  ["PER", "创始人", "CEO", "总经理", "总监"]
+    title:   ["职位", "职称", "Title"]
+    contact: ["邮箱", "电话", "微信", "手机"]
+  lead_scoring:
+    weights:
+      is_iaato_member:     30
+      is_aeco_member:      20
+      has_polar_products:  20
+      annual_polar_volume: 15
+      mentions_quark:      15
+    thresholds:
+      hot:  70
+      warm: 40
+      cold: 0
+
+# ── 触达配置 ──────────────────────────────────────────
+outreach:
+  linkedin:
+    connection_note_template: |
+      Hi {first_name}, I came across your profile as {company}'s {title}.
+      I represent Quark Expeditions — the only polar operator with twin helicopters.
+      Would be great to connect and explore potential collaboration. - {sender}
+    daily_connection_limit: 25
+    daily_message_limit: 15
+
+  maimai:
+    daily_connection_limit: 15
+    daily_message_limit: 10
+
+  email:
+    from_address: ""           # 环境变量 QUARK_EMAIL
+    from_name: "Quark Expeditions China"
+    smtp_host: ""              # 环境变量 SMTP_HOST
+    smtp_port: 587
+    daily_limit: 50
+
+# ── 通知配置 ──────────────────────────────────────────
+notifications:
+  wechat_work_webhook: ""      # 环境变量 WECHAT_WEBHOOK
+  feishu_webhook: ""           # 环境变量 FEISHU_WEBHOOK
+  alert_rules:
+    high_score_lead:
+      condition: "lead_score >= 70"
+      action: "push_now"
+      channel: "wechat_work"
+    competitor_alert:
+      condition: "competitor_action in ['new_product', 'price_change', 'new_partnership']"
+      action: "push_now"
+      channel: "wechat_work"
+    daily_digest:
+      condition: "time == '08:00'"
+      action: "push_at"
+      channel: "wechat_work"
+
+# ── 数据库配置 ──────────────────────────────────────────
+database:
+  postgres_url: ""             # 环境变量 DATABASE_URL
+  redis_url: ""                # 环境变量 REDIS_URL
+  connection_pool_size: 10

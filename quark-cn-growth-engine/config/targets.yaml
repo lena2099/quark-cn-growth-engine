@@ -1,0 +1,314 @@
+# 目标渠道合作伙伴清单
+# 按优先级排列，用于领英/脉脉自动搜索和线索评分
+# 最后更新: 2026-08-07
+
+partners:
+  # ═══ Tier 1 — 战略级（P0: 两周内接触, P1: 一月内接触）═══
+  - id: "ZS-001"
+    name: "众信旅游集团"
+    name_en: "UTour Group"
+    type: "上市旅行社"
+    tier: 1
+    priority: "P0"
+    iaato: true
+    aeco: true
+    annual_polar_volume: 1800
+    existing_relation: false
+    notes: "已与庞洛签3年包船，需差异化提案切入"
+    search_roles:
+      - "极地邮轮中心负责人"
+      - "商务副总裁"
+      - "邮轮产品总监"
+
+  - id: "HH-002"
+    name: "鸿鹄逸游"
+    name_en: "HHtravel"
+    type: "高端定制(携程系)"
+    tier: 1
+    priority: "P0"
+    iaato: false
+    aeco: false
+    annual_polar_volume: 500
+    existing_relation: false
+    notes: "携程高端用户池入口，客群精准匹配"
+    search_roles:
+      - "总经理"
+      - "产品总监"
+      - "采购经理"
+      - "高端旅行事业部负责人"
+
+  - id: "JZ-003"
+    name: "极至旅行"
+    name_en: "3Polar"
+    type: "极地专营"
+    tier: 1
+    priority: "P0"
+    iaato: true
+    aeco: true
+    annual_polar_volume: 800
+    existing_relation: false
+    notes: "19年极地经验，IAATO/AECO双认证，创始人极地专家"
+    website: "3polar.com"
+    search_roles:
+      - "创始人/总经理"
+      - "运营总监"
+      - "极地产品经理"
+
+  - id: "JZM-004"
+    name: "极之美"
+    name_en: "tripolers"
+    type: "极地专营"
+    tier: 1
+    priority: "P1"
+    iaato: true
+    aeco: true
+    annual_polar_volume: 1000
+    existing_relation: false
+    notes: "AECO理事会成员，唯一中国代表参会，行业话语权强"
+    website: "tripolers.com"
+    search_roles:
+      - "创始人"
+      - "商务总监"
+      - "航线采购负责人"
+
+  - id: "BC-005"
+    name: "北京船客国际旅行社"
+    name_en: "Beijing Chuanke"
+    type: "极地专营"
+    tier: 1
+    priority: "P1"
+    iaato: true
+    aeco: true
+    annual_polar_volume: 2000
+    existing_relation: false
+    notes: "国内最大极地客量之一，CLIA大陆首家会员，投诉率<0.3%"
+    search_roles:
+      - "总经理"
+      - "商务总监"
+      - "南极产品经理"
+
+  # ═══ Tier 2 — 高端定制渠道 ═══
+  - id: "BDZ-006"
+    name: "八大洲旅游"
+    name_en: "Badazhou Travel"
+    type: "高端定制"
+    tier: 2
+    priority: "P1"
+    iaato: false
+    aeco: false
+    annual_polar_volume: 300
+    existing_relation: false
+    notes: "银海/庞洛合作经验，可补充Quark差异化品牌"
+    search_roles:
+      - "高端定制事业部负责人"
+      - "邮轮产品采购"
+      - "销售总监"
+
+  - id: "BS-007"
+    name: "碧山旅行"
+    name_en: "Beshan Travel"
+    type: "高端定制"
+    tier: 2
+    priority: "P2"
+    iaato: false
+    aeco: false
+    annual_polar_volume: 200
+    existing_relation: false
+    notes: "A&K中国合作方，探险主题高度契合"
+    search_roles:
+      - "创始人"
+      - "探险旅行产品总监"
+      - "商务合作负责人"
+
+  - id: "ZND-008"
+    name: "赞那度"
+    name_en: "Zanadu"
+    type: "高端旅行媒体+定制"
+    tier: 2
+    priority: "P2"
+    iaato: false
+    aeco: false
+    annual_polar_volume: 100
+    existing_relation: false
+    notes: "内容+交易闭环，可做内容共创"
+    search_roles:
+      - "COO"
+      - "内容总监"
+      - "商务合作负责人"
+
+  - id: "AK-009"
+    name: "Abercrombie & Kent中国"
+    name_en: "A&K China"
+    type: "超高端定制"
+    tier: 2
+    priority: "P2"
+    iaato: false
+    aeco: false
+    annual_polar_volume: 50
+    existing_relation: false
+    notes: "$15万+客单价客户群，直升机体验是核心卖点"
+    search_roles:
+      - "中国区总经理"
+      - "产品总监"
+      - "私人旅行顾问团队负责人"
+
+  - id: "YY-010"
+    name: "耀悦"
+    name_en: "Sparkle Tour"
+    type: "高端定制(中青旅系)"
+    tier: 2
+    priority: "P2"
+    iaato: false
+    aeco: false
+    annual_polar_volume: 100
+    existing_relation: false
+    search_roles:
+      - "高端定制事业部负责人"
+      - "产品经理"
+
+  - id: "YR-011"
+    name: "引睿旅行"
+    name_en: "Intriq Journey"
+    type: "高端定制"
+    tier: 2
+    priority: "P2"
+    iaato: false
+    aeco: false
+    annual_polar_volume: 50
+    existing_relation: true
+    notes: "已在官网列出Quark，深化已有合作关系"
+    search_roles:
+      - "总经理"
+      - "产品采购"
+
+  - id: "YXK-012"
+    name: "游侠客"
+    name_en: "Youxiake"
+    type: "主题旅行平台"
+    tier: 2
+    priority: "P2"
+    iaato: false
+    aeco: false
+    annual_polar_volume: 50
+    existing_relation: false
+    notes: "摄影/户外主题社群精准，极地摄影团联合开发"
+    search_roles:
+      - "COO"
+      - "高端/出境产品总监"
+
+  # ═══ Tier 3 — OTA/平台渠道 ═══
+  - id: "XC-013"
+    name: "携程邮轮"
+    name_en: "Ctrip Cruise"
+    type: "OTA"
+    tier: 3
+    priority: "P2"
+    iaato: false
+    aeco: false
+    annual_polar_volume: 2000
+    existing_relation: false
+    notes: "中国最大OTA邮轮频道，旗舰店模式"
+    search_roles:
+      - "邮轮事业部商务总监"
+      - "奢华邮轮品类经理"
+
+  - id: "FZ-014"
+    name: "飞猪旅行"
+    name_en: "Fliggy"
+    type: "OTA"
+    tier: 3
+    priority: "P2"
+    iaato: false
+    aeco: false
+    annual_polar_volume: 800
+    existing_relation: false
+    notes: "阿里生态联动，年轻化客群入口"
+    search_roles:
+      - "度假事业部高端旅行负责人"
+      - "邮轮/极地品类运营"
+
+  # ═══ Tier 5 — 跨界渠道 ═══
+  - id: "CMB-015"
+    name: "招商银行私人银行"
+    name_en: "CMB Private Banking"
+    type: "私人银行"
+    tier: 5
+    priority: "P2"
+    iaato: false
+    aeco: false
+    annual_polar_volume: 0
+    existing_relation: false
+    notes: "中国最大私行，高净值客户密度最高"
+    search_roles:
+      - "私行部高端客户活动负责人"
+      - "生活方式/旅行权益合作负责人"
+
+  - id: "PA-016"
+    name: "平安银行私人银行"
+    name_en: "Ping An Private Banking"
+    type: "私人银行"
+    tier: 5
+    priority: "P2"
+    iaato: false
+    aeco: false
+    annual_polar_volume: 0
+    existing_relation: false
+    search_roles:
+      - "私行客户权益/活动负责人"
+
+  - id: "BOC-017"
+    name: "中国银行私人银行"
+    name_en: "BOC Private Banking"
+    type: "私人银行"
+    tier: 5
+    priority: "P2"
+    iaato: false
+    aeco: false
+    annual_polar_volume: 0
+    existing_relation: false
+    search_roles:
+      - "私行客户活动策划负责人"
+
+  - id: "CEIBS-018"
+    name: "中欧国际工商学院"
+    name_en: "CEIBS"
+    type: "商学院"
+    tier: 5
+    priority: "P3"
+    iaato: false
+    aeco: false
+    annual_polar_volume: 0
+    existing_relation: false
+    notes: "EMBA校友高净值密度极高"
+    search_roles:
+      - "校友关系/活动负责人"
+      - "EMBA项目主任"
+
+  - id: "CKGSB-019"
+    name: "长江商学院"
+    name_en: "CKGSB"
+    type: "商学院"
+    tier: 5
+    priority: "P3"
+    iaato: false
+    aeco: false
+    annual_polar_volume: 0
+    existing_relation: false
+    search_roles:
+      - "校友事务负责人"
+      - "EMBA/MBA项目活动负责人"
+
+  - id: "DJI-020"
+    name: "大疆创新"
+    name_en: "DJI"
+    type: "户外/摄影品牌"
+    tier: 5
+    priority: "P3"
+    iaato: false
+    aeco: false
+    annual_polar_volume: 0
+    existing_relation: false
+    notes: "联合营销：极地航拍/摄影大赛"
+    search_roles:
+      - "品牌合作/BD负责人"
+      - "市场部"
