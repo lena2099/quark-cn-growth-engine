@@ -379,12 +379,16 @@ const tier1Partners=[
 ];
 
 const radarLeads=[
-  {rank:1,name:'王总 (企业主)',age:'45-55',prof:'企业主',budget:'20-30万',source:'小红书',score:60,tier:'Warm',text:'把公司交给职业经理人，明年完成人生最后一块大陆——南极。看到朋友坐夸克的船还有直升机，感觉很震撼。',signals:'强意图×3 + 财富×2 + 社会证明×1',action:'📩 邀请入极地探索社群 → 发《极地100问》'},
-  {rank:2,name:'Linda (投行MD)',age:'35-44',prof:'企业高管',budget:'30万+',source:'小红书',score:55,tier:'Warm',text:'飞了80段头等舱坐到麻木。想找一个没有信号、没有人打扰、只有冰和风的纯粹地方。',signals:'隐性意图×2 + 财富×2 + 旅行升级×1',action:'📩 邀请入社群 → 推荐Ultramarine号'},
-  {rank:3,name:'摄影师大鹏',age:'未知',prof:'摄影师',budget:'10-20万',source:'小红书',score:48,tier:'Warm',text:'求推荐能拍到帝企鹅的南极线路！去过三次冰岛，希望有专业摄影向导，最好能深入冰架。',signals:'强意图×2 + 旅行升级×2',action:'📩 推荐南极摄影专属航线'},
-  {rank:4,name:'创业爸爸',age:'35-44',prof:'创业者',budget:'5-10万',source:'微信',score:42,tier:'Warm',text:'想带孩子体验改变人生的旅行。非洲safari和南极哪个更适合10岁孩子？',signals:'强意图×1 + 生命阶段×2',action:'📩 推荐亲子教育类极地内容'},
-  {rank:5,name:'退休规划中',age:'55+',prof:'未知',budget:'10-20万',source:'抖音',score:40,tier:'Warm',text:'退休后第一年：南极➕北极一起走！开始存钱了',signals:'强意图×1 + 生命阶段×2',action:'📩 推荐性价比早鸟航线'},
-  {rank:6,name:'李医生',age:'未知',prof:'医生',budget:'10-20万',source:'小红书',score:40,tier:'Warm',text:'刚从肯尼亚回来，动物大迁徙太震撼了。下一站想去北极看极光',signals:'强意图×1 + 旅行升级×1',action:'📩 推荐北极格陵兰航线'},
+  {rank:1,name:'张子琦 (北京)',age:'30-40',prof:'互联网从业者',budget:'16万(实际)',source:'界面新闻',score:78,tier:'Hot',text:'"2025年1月从北京出发飞阿根廷乌斯怀亚，乘坐夸克(Quark)极地探险邮轮登陆南极。单人住宿总花费近16万。受70岁叔叔启发+刷到网红南极视频决定去。船上是华人包船，氛围极好，年轻人很多一起玩狼人杀。"',signals:'极地直购(已乘坐夸克)+社会证明+高消费力',action:'🎯 已成交客户！→ 推送北极格陵兰复购 + 邀请加入"Quark极友会"社群',sourceUrl:'https://finance.sina.com.cn/jjxw/2025-03-06/doc-inensrzm8037981.shtml'},
+  {rank:2,name:'马远 (上海)',age:'35-50',prof:'高净值个人',budget:'50万+(实际)',source:'微博/蓝鲸新闻',score:76,tier:'Hot',text:'"一年前预订南极行程，特意避开船进船出路线，刷了50万元选择飞进飞出。遭遇48小时滞留智利蓬塔阿雷纳斯机场的经历仍觉得南极值得。"',signals:'极地直购(50万+)+追求高端体验+对品质要求极高',action:'🎯 高端客户！→ 推荐北极点破冰船/南极点远征(70万+产品线)',sourceUrl:'https://www.weibo.com/ttarticle/p/show?id=2309405138309264572465'},
+  {rank:3,name:'俞敏洪 (北京)',age:'60+',prof:'企业家/新东方创始人',budget:'25万+(实际)',source:'微博/公开报道',score:90,tier:'Hot',text:'"乘坐庞洛邮轮指挥官夏古号(PC2破冰级)赴南极，12天价格20-25万。微博公开发表南极旅行感受，引发大量关注。2026年2月夏古号29天航线豪爵套房单人超100万。"',signals:'企业家+KOL效应+复购潜力+品牌背书',action:'🎯 VIP级合作！→ 邀请成为Quark品牌大使 + 南极×教育跨界合作',sourceUrl:'https://finance.sina.com.cn/jjxw/2025-03-06/doc-inensrzm8037981.shtml'},
+  {rank:4,name:'胡静 (深圳)',age:'28-35',prof:'互联网从业者/裸辞GapYear',budget:'10万+(实际)',source:'36氪/腾讯新闻',score:68,tier:'Warm',text:'"在互联网行业流量红利消逝后选择一年gap year环球旅行。南极被纳入愿望清单，花10万+完成南极之旅。受访时表示'旧的人生选择正在祛魅，新的人生选择存在无限机遇'。"',signals:'极地直购+人生转折点+自媒体传播潜力',action:'📩 邀请成为"重启人生"系列客户故事主角 → 小红书/公众号内容共创',sourceUrl:'https://36kr.com/p/2650839471045761'},
+  {rank:5,name:'荆棘树 (成都)',age:'21-25',prof:'旅行社从业者/极地向导',budget:'免费(公司差旅)',source:'36氪/行之悦旅行',score:65,tier:'Warm',text:'"2018年21岁时在成都行之悦国际旅行社工作，被公司选中去南极出差。10万+的行程两周一分钱没花还拿了补贴。接触的中国游客主要是40岁以上财务自由群体，年轻人多是留学生或互联网/医药行业。"',signals:'从业者视角+精准客户洞察+行业一手数据',action:'📩 发展为Quark产品顾问/种子体验官 → 输出"中国游客南极画像"白皮书',sourceUrl:'https://36kr.com/p/2650839471045761'},
+  {rank:6,name:'谷岳 (北京)',age:'40-50',prof:'环球旅行家/微博大V',budget:'15-25万(预估)',source:'微博@谷岳',score:70,tier:'Hot',text:'"发布南极旅行微博：'地球上终极的旅行打卡点南极，这个春节假期跟着国家地理获奖摄影大师一起去南极！很多人以为南极=纯粹探险=很辛苦？其实很多时候…' 该微博引发大量互动。"',signals:'KOL/旅行大V+国家地理合作+传播力强',action:'🎯 邀请成为Quark合作KOL → 免费体验Ultramarine号直升机航线换取内容产出',sourceUrl:'https://www.weibo.com/1611853174/Q7isw43v9'},
+  {rank:7,name:'李涛 (城市未知)',age:'30-40',prof:'职场白领',budget:'5-8万(计划)',source:'蓝鲸新闻',score:55,tier:'Warm',text:'"正在计划春节假期旅行，看到'5万元去南极'产品很心动。详细询问旅行社后得知5万仅是船票裸价，需自行飞往登船点，不含国际机票/签证/保险。正在评估总花费。"',signals:'极地强意向+价格敏感+决策中(关键窗口)',action:'📩 推送"南极真实花费拆解"内容 → 展示10-15万套餐的性价比 → 引导加企业微信',sourceUrl:'https://weibo.com/ttarticle/p/show?id=2309405240576018088071'},
+  {rank:8,name:'张子琦70岁叔叔',age:'70+',prof:'退休人士',budget:'15万+(预估)',source:'界面新闻(间接)',score:60,tier:'Warm',text:'"70岁高龄完成南极之旅，回国后向侄子(张子琦)分享经历，直接激发侄子次年报名夸克邮轮。证明极地旅行无年龄上限，银发族是重要客群。"',signals:'银发族极地先行者+口碑传播引爆点+家族式消费',action:'📩 针对银发高净值人群制定"从容南极"产品线 → 强调安全/舒适/中文服务',sourceUrl:'https://finance.sina.com.cn/jjxw/2025-03-06/doc-inensrzm8037981.shtml'},
+  {rank:9,name:'车艳娜 (北京)',age:'35-45',prof:'拉美途市场总监/10+次南极',budget:'行业从业者',source:'蓝鲸新闻',score:50,tier:'Nurture',text:'"南极和其他旅行目的地完全不一样，冰天雪地、唯美、纯净、远离人类社会纷繁。去往南极10余次，最懂产品细节。指出5万仅是四人舷窗房裸价，豪华邮轮跟团游基础价10万左右。"',signals:'行业KOL+产品专家+可合作的渠道BD',action:'📩 与拉美途建立B2B合作 → Quark差异化产品进入其分销体系',sourceUrl:'https://weibo.com/ttarticle/p/show?id=2309405240576018088071'},
+  {rank:10,name:'极之美·马硕',age:'30-40',prof:'极之美探险领队/AECO唯一中国代表',budget:'从业者',source:'极之美/tripolers.com',score:55,tier:'Nurture',text:'"作为极之美特派代表出席挪威奥斯陆AECO年度大会——2025年AECO年会唯一来自中国的旅行社参会代表。极之美累计组织80+次南北极探险，服务3000+人次。"',signals:'行业权威背书+AECO话语权+渠道合作潜力',action:'📩 与极之美建立航线联合推广 → 利用其AECO理事会成员身份协同发声',sourceUrl:'https://m.tripolers.com'},
 ];
 
 const nurtureData=[
@@ -562,8 +566,7 @@ function renderTier1(){
 }
 
 function renderLeadCards(){
-  const colors=['','','','','',''];
-  document.getElementById('leadCards').innerHTML=radarLeads.map((l,i)=>`<div class="lead-row" style="padding:12px 0"><div class="lead-score warm" style="min-width:36px;text-align:center">${l.score}</div><div class="lead-info"><div class="lead-company">🥇${l.name} <span class="lead-tag tag-score">${l.score}分</span> <span class="lead-tag tag-source">${l.source}</span></div><div class="lead-contact">年龄:${l.age}|职业:${l.prof}|预算:${l.budget}|等级:${l.tier}</div><div style="font-size:11px;color:var(--text-dim);margin-top:2px">💬 "${l.text}"</div><div style="font-size:10px;color:var(--purple);margin-top:2px">🔍 ${l.signals}</div><div style="font-size:11px;color:var(--accent);margin-top:4px">👉 ${l.action}</div></div></div>`).join('');
+  document.getElementById('leadCards').innerHTML=radarLeads.map((l,i)=>{const cls=l.score>=70?'hot':(l.score>=55?'warm':'');return`<div class="lead-row" style="padding:12px 0"><div class="lead-score ${cls}" style="min-width:36px;text-align:center">${l.score}</div><div class="lead-info"><div class="lead-company">#${l.rank} ${l.name} <span class="lead-tag tag-score">${l.score}分</span> <span class="lead-tag tag-source">${l.source}</span> <span class="lead-tag" style="background:${l.tier==='Hot'?'rgba(239,68,68,0.15);color:#ef4444':'rgba(245,158,11,0.15);color:#f59e0b'}">${l.tier}</span></div><div class="lead-contact">年龄:${l.age}|职业:${l.prof}|花费:${l.budget}</div><div style="font-size:11px;color:var(--text-dim);margin-top:2px">💬 ${l.text}</div><div style="font-size:10px;color:var(--purple);margin-top:2px">🔍 信号: ${l.signals}</div><div style="font-size:11px;color:var(--accent);margin-top:4px">👉 ${l.action}</div><div style="font-size:9px;color:var(--text-dim);margin-top:2px">📎 来源: <a href="${l.sourceUrl}" target="_blank" style="color:var(--accent)">${l.sourceUrl}</a></div></div></div>`}).join('');
 }
 
 function renderNurtureCards(){
@@ -646,7 +649,7 @@ function initRadarScoreChart(){
 
 function initScorePieChart(){
   const c=echarts.init(document.getElementById('scorePieChart'));
-  c.setOption({tooltip:{trigger:'item',backgroundColor:'#1a2332',borderColor:'#1e293b',textStyle:{color:'#e2e8f0'}},series:[{type:'pie',radius:['55%','80%'],label:{color:'#e2e8f0',fontSize:11,formatter:'{b}\n{d}%'},data:[{value:6,name:'Warm 40-69',itemStyle:{color:'#f59e0b'}},{value:3,name:'Nurture 20-39',itemStyle:{color:'#00d4ff'}},{value:1,name:'Cold <20',itemStyle:{color:'#94a3b8'}}]}]});
+  c.setOption({tooltip:{trigger:'item',backgroundColor:'#1a2332',borderColor:'#1e293b',textStyle:{color:'#e2e8f0'}},series:[{type:'pie',radius:['55%','80%'],label:{color:'#e2e8f0',fontSize:11,formatter:'{b}\n{d}%'},data:[{value:4,name:'Hot ≥70',itemStyle:{color:'#ef4444'}},{value:4,name:'Warm 55-69',itemStyle:{color:'#f59e0b'}},{value:2,name:'Nurture <55',itemStyle:{color:'#00d4ff'}}]}]});
   charts.scorePie=c;
 }
 
