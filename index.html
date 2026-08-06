@@ -6,685 +6,688 @@
 <title>Polar Growth OS — Quark Expeditions 中国市场增长引擎</title>
 <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
 <style>
-  :root {
-    --bg: #0a0e17; --card: #111827; --card-hover: #1a2332; --border: #1e293b;
-    --text: #e2e8f0; --text-dim: #94a3b8;
-    --accent: #00d4ff; --accent2: #f59e0b; --accent3: #10b981;
-    --red: #ef4444; --orange: #f97316; --purple: #8b5cf6;
-    --radius: 12px; --shadow: 0 4px 24px rgba(0,0,0,0.3);
-  }
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans SC", sans-serif; overflow-x: hidden; }
-  .header {
-    background: linear-gradient(135deg, #0f172a 0%, #1a2332 50%, #0d1b2a 100%);
-    border-bottom: 1px solid var(--border); padding: 14px 32px;
-    display: flex; align-items: center; justify-content: space-between;
-    position: sticky; top: 0; z-index: 100; backdrop-filter: blur(10px);
-  }
-  .header-left { display: flex; align-items: center; gap: 14px; }
-  .logo { width: 40px; height: 40px; background: linear-gradient(135deg, var(--accent), #06b6d4); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight:900; color: #0a0e17; }
-  .brand { font-size: 17px; font-weight: 700; } .brand span { color: var(--accent); }
-  .header-right { display: flex; gap: 12px; align-items: center; font-size: 12px; }
-  .status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent3); animation: pulse 2s infinite; }
-  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
-  .live-tag { color: var(--accent3); font-weight: 600; letter-spacing: 0.5px; font-size: 11px; }
-  .container { max-width: 1500px; margin: 0 auto; padding: 20px 28px; }
+:root{--bg:#0a0e17;--card:#111827;--card-hover:#1a2332;--border:#1e293b;--text:#e2e8f0;--text-dim:#94a3b8;--accent:#00d4ff;--accent2:#f59e0b;--accent3:#10b981;--red:#ef4444;--orange:#f97316;--purple:#8b5cf6;--radius:12px;--shadow:0 4px 24px rgba(0,0,0,.3)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans SC",sans-serif;overflow-x:hidden}
+.header{background:linear-gradient(135deg,#0f172a,#1a2332 50%,#0d1b2a);border-bottom:1px solid var(--border);padding:14px 32px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+.header-left{display:flex;align-items:center;gap:14px}
+.logo{width:40px;height:40px;background:linear-gradient(135deg,var(--accent),#06b6d4);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;color:#0a0e17}
+.brand{font-size:17px;font-weight:700}.brand span{color:var(--accent)}
+.header-right{display:flex;gap:12px;align-items:center;font-size:12px}
+.status-dot{width:8px;height:8px;border-radius:50%;background:var(--accent3);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.live-tag{font-size:11px;color:var(--accent3);font-weight:600;letter-spacing:.5px}
+.container{max-width:1540px;margin:0 auto;padding:18px 24px}
 
-  /* KPI */
-  .kpi-row { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; margin-bottom: 20px; }
-  .kpi-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; transition: all .25s; }
-  .kpi-card:hover { background: var(--card-hover); transform: translateY(-2px); box-shadow: var(--shadow); }
-  .kpi-label { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
-  .kpi-value { font-size: 30px; font-weight: 800; letter-spacing: -1px; }
-  .kpi-sub { font-size: 11px; color: var(--text-dim); margin-top: 2px; }
+.nav{display:flex;gap:2px;margin-bottom:16px;flex-wrap:wrap;border-bottom:1px solid var(--border);padding-bottom:12px}
+.nav-btn{padding:8px 16px;border-radius:8px 8px 0 0;font-size:12px;cursor:pointer;border:none;background:transparent;color:var(--text-dim);transition:all .2s;font-weight:500}
+.nav-btn:hover{color:var(--text);background:var(--card)}
+.nav-btn.active{color:var(--accent);background:var(--card);border-bottom:2px solid var(--accent);font-weight:700}
 
-  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px; }
-  .grid-21 { display: grid; grid-template-columns: 2fr 1fr; gap: 14px; margin-bottom: 20px; }
-  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 20px; }
-  .grid-13 { display: grid; grid-template-columns: 1fr 3fr; gap: 14px; margin-bottom: 20px; }
+.kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:16px}
+.kpi-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;transition:all .25s}
+.kpi-card:hover{background:var(--card-hover);transform:translateY(-2px);box-shadow:var(--shadow)}
+.kpi-label{font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.kpi-value{font-size:30px;font-weight:800;letter-spacing:-1px;transition:all .3s}
+.kpi-sub{font-size:11px;color:var(--text-dim);margin-top:3px}
 
-  .panel { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; transition: all .25s; }
-  .panel:hover { box-shadow: var(--shadow); }
-  .panel-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
-  .panel-title { font-size: 14px; font-weight: 700; }
-  .panel-badge { font-size: 10px; padding: 2px 8px; border-radius: 20px; font-weight: 600; }
-  .badge-hot { background: rgba(239,68,68,0.15); color: var(--red); }
-  .badge-info { background: rgba(0,212,255,0.15); color: var(--accent); }
-  .badge-ok { background: rgba(16,185,129,0.15); color: var(--accent3); }
-  .badge-warn { background: rgba(245,158,11,0.15); color: var(--orange); }
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:16px}
+.grid-21{display:grid;grid-template-columns:2fr 1fr;gap:14px;margin-bottom:16px}
+.grid-13{display:grid;grid-template-columns:1fr 3fr;gap:14px;margin-bottom:16px}
+.grid-12{display:grid;grid-template-columns:1fr 2fr;gap:14px;margin-bottom:16px}
+.full{grid-column:1/-1}
 
-  .chart-wrap { position: relative; width: 100%; height: 300px; }
-  .chart-wrap-sm { height: 240px; }
-  .chart-wrap-lg { height: 360px; }
+.panel{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px;transition:all .25s}
+.panel:hover{box-shadow:var(--shadow)}
+.panel-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.panel-title{font-size:14px;font-weight:700}
+.panel-badge{font-size:10px;padding:3px 8px;border-radius:20px;font-weight:600}
+.badge-hot{background:rgba(239,68,68,.15);color:var(--red)}
+.badge-info{background:rgba(0,212,255,.15);color:var(--accent)}
+.badge-ok{background:rgba(16,185,129,.15);color:var(--accent3)}
+.badge-warn{background:rgba(245,158,11,.15);color:var(--orange)}
 
-  /* Leads */
-  .lead-card { background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; padding: 14px; margin-bottom: 10px; display: flex; gap: 12px; align-items: flex-start; transition: all .2s; }
-  .lead-card:hover { background: var(--card-hover); }
-  .lead-rank { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px; flex-shrink: 0; }
-  .rank-1 { background: rgba(239,68,68,0.2); color: #fca5a5; }
-  .rank-2 { background: rgba(245,158,11,0.2); color: #fcd34d; }
-  .rank-3 { background: rgba(0,212,255,0.2); color: #67e8f9; }
-  .lead-body { flex: 1; min-width: 0; }
-  .lead-name { font-size: 14px; font-weight: 700; }
-  .lead-meta { font-size: 11px; color: var(--text-dim); margin-top: 3px; display: flex; gap: 10px; flex-wrap: wrap; }
-  .lead-tag { font-size: 10px; padding: 2px 6px; border-radius: 4px; white-space: nowrap; }
-  .tag-score { background: rgba(16,185,129,0.15); color: var(--accent3); }
-  .tag-source { background: rgba(139,92,246,0.15); color: var(--purple); }
-  .lead-action { font-size: 11px; color: var(--accent); margin-top: 6px; font-style: italic; }
+.chart-wrap{position:relative;width:100%;height:300px}
+.chart-wrap-sm{height:240px}.chart-wrap-lg{height:360px}
 
-  /* Nurture Journey */
-  .journey-flow { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
-  .journey-step { padding: 8px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; white-space: nowrap; }
-  .step-active { background: var(--accent); color: #0a0e17; }
-  .step-next { background: var(--border); color: var(--text-dim); }
-  .step-done { background: rgba(16,185,129,0.15); color: var(--accent3); }
-  .journey-arrow { color: var(--text-dim); font-size: 16px; }
+/* Phase Progress */
+.phase-list{display:flex;flex-direction:column;gap:10px}
+.phase-item{display:flex;align-items:center;gap:10px}
+.phase-icon{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.phase-icon.done{background:var(--accent3);color:#fff}
+.phase-icon.active{background:var(--accent);color:#0a0e17}
+.phase-icon.pending{background:var(--border);color:var(--text-dim)}
+.phase-info{flex:1}.phase-name{font-size:12px;font-weight:600}.phase-meta{font-size:10px;color:var(--text-dim)}
+.phase-bar{width:90px;height:6px;border-radius:3px;background:var(--border);overflow:hidden;flex-shrink:0}
+.phase-fill{height:100%;border-radius:3px;transition:width .6s ease}
 
-  .wecom-tags { display: flex; flex-wrap: wrap; gap: 4px; margin: 8px 0; }
-  .wecom-tag { font-size: 10px; background: rgba(0,212,255,0.08); color: var(--accent); padding: 3px 8px; border-radius: 12px; border: 1px solid rgba(0,212,255,0.2); }
+/* Leads */
+.lead-row{display:flex;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);gap:10px;font-size:12px}
+.lead-row:last-child{border-bottom:none}
+.lead-row:hover{background:rgba(255,255,255,.02)}
+.lead-score{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;flex-shrink:0}
+.lead-score.hot{background:rgba(239,68,68,.15);color:var(--red)}
+.lead-score.warm{background:rgba(245,158,11,.15);color:var(--orange)}
+.lead-info{flex:1;min-width:0}
+.lead-company{font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lead-contact{font-size:11px;color:var(--text-dim)}
+.lead-tag{font-size:10px;padding:2px 7px;border-radius:10px;flex-shrink:0;white-space:nowrap}
+.tag-new{background:rgba(139,92,246,.2);color:var(--purple)}
+.tag-contact{background:rgba(0,212,255,.15);color:var(--accent)}
+.tag-negotiate{background:rgba(245,158,11,.15);color:var(--orange)}
+.tag-score{background:rgba(16,185,129,.15);color:var(--accent3)}
+.tag-source{background:rgba(139,92,246,.15);color:var(--purple)}
 
-  .content-item { display: flex; align-items: center; gap: 8px; padding: 6px 0; font-size: 12px; border-bottom: 1px solid rgba(30,41,59,0.5); }
-  .content-item:last-child { border-bottom: none; }
-  .content-icon { font-size: 16px; flex-shrink: 0; }
+/* Competitor alerts */
+.alert-item{padding:10px 12px;border-radius:8px;margin-bottom:8px;border-left:3px solid transparent;font-size:12px}
+.alert-critical{background:rgba(239,68,68,.08);border-left-color:var(--red)}
+.alert-high{background:rgba(245,158,11,.08);border-left-color:var(--orange)}
+.alert-medium{background:rgba(0,212,255,.06);border-left-color:var(--accent)}
 
-  /* Sales Coach */
-  .objection-card { background: rgba(255,255,255,0.02); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 12px; margin-bottom: 10px; }
-  .objection-q { font-size: 13px; font-weight: 600; color: var(--accent2); margin-bottom: 6px; }
-  .objection-r { font-size: 12px; color: var(--text); line-height: 1.6; }
+/* Nurture */
+.journey-flow{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:8px 0}
+.journey-step{padding:6px 11px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap}
+.step-active{background:var(--accent);color:#0a0e17}.step-next{background:var(--border);color:var(--text-dim)}.step-done{background:rgba(16,185,129,.15);color:var(--accent3)}
+.journey-arrow{color:var(--text-dim);font-size:14px}
+.wecom-tags{display:flex;flex-wrap:wrap;gap:4px;margin:6px 0}
+.wecom-tag{font-size:10px;background:rgba(0,212,255,.08);color:var(--accent);padding:2px 7px;border-radius:12px;border:1px solid rgba(0,212,255,.2)}
+.wecom-tag.warm{background:rgba(245,158,11,.1);color:var(--accent2);border-color:rgba(245,158,11,.2)}
+.content-item{display:flex;align-items:center;gap:6px;padding:4px 0;font-size:11px;border-bottom:1px solid rgba(30,41,59,.5)}
+.content-item:last-child{border-bottom:none}.content-icon{font-size:15px;flex-shrink:0}
 
-  /* RAG */
-  .rag-query { font-size: 12px; color: var(--accent); margin-bottom: 6px; }
-  .rag-result { display: flex; align-items: center; gap: 8px; padding: 4px 0; font-size: 11px; }
-  .rag-sim { font-size: 14px; font-weight: 800; width: 45px; flex-shrink: 0; }
-  .sim-high { color: var(--accent3); } .sim-mid { color: var(--accent2); } .sim-low { color: var(--text-dim); }
+/* Sales Coach */
+.obj-card{background:rgba(255,255,255,.02);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;padding:10px;margin-bottom:8px}
+.obj-q{font-size:12px;font-weight:600;color:var(--accent2);margin-bottom:4px}
+.obj-r{font-size:11px;color:var(--text);line-height:1.6}
 
-  /* Workflow Status Grid */
-  .wf-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-  .wf-card { background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; padding: 12px; }
-  .wf-icon { font-size: 22px; margin-bottom: 4px; }
-  .wf-name { font-size: 12px; font-weight: 600; margin-bottom: 4px; }
-  .wf-stat { font-size: 10px; color: var(--text-dim); }
-  .wf-stat .ok { color: var(--accent3); }
+/* Tables */
+.tier-table{width:100%;border-collapse:collapse;font-size:12px}
+.tier-table th{text-align:left;padding:7px 8px;border-bottom:2px solid var(--border);color:var(--text-dim);font-weight:600;font-size:10px;text-transform:uppercase}
+.tier-table td{padding:7px 8px;border-bottom:1px solid rgba(30,41,59,.5)}
+.tier-table tr:hover td{background:rgba(255,255,255,.02)}
+.tier-badge{display:inline-block;padding:2px 5px;border-radius:4px;font-size:9px;font-weight:700}
+.tier-p0{background:rgba(239,68,68,.2);color:#fca5a5}.tier-p1{background:rgba(245,158,11,.2);color:#fcd34d}.tier-p2{background:rgba(0,212,255,.15);color:#67e8f9}
 
-  .divider { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
+/* RAG */
+.rag-query{font-size:11px;color:var(--accent);margin-bottom:4px}
+.rag-result{display:flex;align-items:center;gap:6px;padding:2px 0;font-size:11px}
+.rag-sim{font-size:13px;font-weight:800;width:40px;flex-shrink:0}.sim-high{color:var(--accent3)}.sim-mid{color:var(--accent2)}.sim-low{color:var(--text-dim)}
 
-  .tabs { display: flex; gap: 4px; margin-bottom: 14px; flex-wrap: wrap; }
-  .tab { padding: 6px 14px; border-radius: 20px; font-size: 12px; cursor: pointer; border: 1px solid var(--border); background: transparent; color: var(--text-dim); transition: all .2s; }
-  .tab:hover { border-color: var(--accent); color: var(--text); }
-  .tab.active { background: var(--accent); color: #0a0e17; border-color: var(--accent); font-weight: 600; }
+/* WF Grid */
+.wf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.wf-card{background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:8px;padding:10px}
+.wf-icon{font-size:20px;margin-bottom:3px}.wf-name{font-size:11px;font-weight:600}.wf-stat{font-size:10px;color:var(--text-dim)}.wf-stat .ok{color:var(--accent3)}
 
-  .footer { border-top: 1px solid var(--border); padding: 14px 28px; color: var(--text-dim); font-size: 11px; display: flex; justify-content: space-between; }
+.footer{border-top:1px solid var(--border);padding:12px 24px;color:var(--text-dim);font-size:10px;display:flex;justify-content:space-between}
+.section-divider{border:none;border-top:1px solid var(--border);margin:18px 0;grid-column:1/-1}
+.section-title{font-size:15px;font-weight:800;margin-bottom:12px;color:var(--accent);grid-column:1/-1}
 
-  @media (max-width: 1200px) { .kpi-row { grid-template-columns: repeat(3, 1fr); } .grid-2,.grid-21,.grid-13{grid-template-columns:1fr;} }
-  @media (max-width: 768px) { .kpi-row { grid-template-columns: repeat(2, 1fr); } .kpi-value{font-size:24px;} .header{padding:10px 14px;} .container{padding:12px;} }
+@keyframes countUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.count-up{animation:countUp .5s ease forwards}
+
+@media(max-width:1200px){.kpi-row{grid-template-columns:repeat(3,1fr)}.grid-2,.grid-21,.grid-12,.grid-13{grid-template-columns:1fr}}
+@media(max-width:768px){.kpi-row{grid-template-columns:repeat(2,1fr)}.kpi-value{font-size:22px}.header{padding:10px 14px}.container{padding:10px}}
 </style>
 </head>
 <body>
 
-<!-- ═════════ HEADER ═════════ -->
+<!-- ═══════════ HEADER ═══════════ -->
 <header class="header">
-  <div class="header-left">
-    <div class="logo">Q</div>
-    <div class="brand"><span>Polar Growth OS</span> — Quark Expeditions 中国市场增长引擎</div>
-  </div>
-  <div class="header-right">
-    <span class="status-dot"></span><span class="live-tag">● 5/5 工作流运行中</span>
-    <span style="color:var(--text-dim)" id="clock"></span>
-  </div>
+  <div class="header-left"><div class="logo">Q</div><div class="brand"><span>Polar Growth OS</span> — Quark Expeditions 中国市场增长引擎</div></div>
+  <div class="header-right"><span class="status-dot"></span><span class="live-tag">● 5工作流运行中</span><span style="color:var(--text-dim)" id="clock"></span></div>
 </header>
 
 <div class="container">
 
-<!-- ═════════ KPI ROW ═════════ -->
-<div class="kpi-row">
-  <div class="kpi-card"><div class="kpi-label">📊 扫描帖子</div><div class="kpi-value" style="color:var(--accent)">10</div><div class="kpi-sub">小红书 6 · 微信 1 · 抖音 1 · 知乎 2</div></div>
-  <div class="kpi-card"><div class="kpi-label">🔥 可操作线索</div><div class="kpi-value" style="color:var(--accent2)">9</div><div class="kpi-sub">Warm 6 · Nurture 3 · Cold 1</div></div>
-  <div class="kpi-card"><div class="kpi-label">💬 异议处理库</div><div class="kpi-value" style="color:var(--accent3)">5</div><div class="kpi-sub">大类 · 50+ 框架 · 匹配率 100%</div></div>
-  <div class="kpi-card"><div class="kpi-label">🔮 向量检索</div><div class="kpi-value" style="color:var(--purple)">5</div><div class="kpi-sub">客户 · 1536维 · 3次语义查询</div></div>
-  <div class="kpi-card"><div class="kpi-label">📝 内容推荐</div><div class="kpi-value" style="color:var(--red)">24</div><div class="kpi-sub">条 · 覆盖5阶段培育旅程</div></div>
-  <div class="kpi-card"><div class="kpi-label">🧠 LLM Agent</div><div class="kpi-value" style="color:var(--accent)">4/4</div><div class="kpi-sub">模块就绪 · GPT-4o Ready</div></div>
+<!-- ═══════════ NAV ═══════════ -->
+<div class="nav" id="nav">
+  <button class="nav-btn active" onclick="switchTab('dashboard')">📊 总览仪表盘</button>
+  <button class="nav-btn" onclick="switchTab('radar')">🔬 客户雷达</button>
+  <button class="nav-btn" onclick="switchTab('nurture')">🎯 培育引擎</button>
+  <button class="nav-btn" onclick="switchTab('coach')">💬 销售教练</button>
+  <button class="nav-btn" onclick="switchTab('pipeline')">🎯 渠道Pipeline</button>
+  <button class="nav-btn" onclick="switchTab('competitor')">🏴‍☠️ 竞品动态</button>
+  <button class="nav-btn" onclick="switchTab('rag')">🔮 RAG检索</button>
 </div>
 
-<!-- ═════════ TAB NAV ═════════ -->
-<div class="tabs" id="tabs">
-  <button class="tab active" onclick="switchTab('radar')">🔬 客户雷达</button>
-  <button class="tab" onclick="switchTab('nurture')">🎯 培育引擎</button>
-  <button class="tab" onclick="switchTab('coach')">💬 销售教练</button>
-  <button class="tab" onclick="switchTab('rag')">🔮 RAG检索</button>
-  <button class="tab" onclick="switchTab('charts')">📊 数据图表</button>
-  <button class="tab" onclick="switchTab('all')">📋 全景总览</button>
-</div>
+<!-- ══════════════════════════════════════════════ -->
+<!-- TAB: DASHBOARD (总览) -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="tab-dashboard" class="tab-content">
 
-<!-- ═════════ TAB: RADAR ═════════ -->
-<div id="tab-radar" class="tab-content">
+<!-- KPI Row -->
+<div class="kpi-row" id="kpiRow"></div>
 
+<!-- Row 1: Market + Phases -->
 <div class="grid-21">
   <div class="panel">
-    <div class="panel-header"><span class="panel-title">🔬 极地客户雷达 — 实时扫描结果</span><span class="panel-badge badge-hot">10条帖子 · 9条可操作</span></div>
+    <div class="panel-header"><span class="panel-title">📊 中国 vs 全球南极游客 10季趋势</span><span class="panel-badge badge-info">IAATO数据</span></div>
+    <div class="chart-wrap-lg" id="marketChart"></div>
+  </div>
+  <div class="panel">
+    <div class="panel-header"><span class="panel-title">🎯 100天阶段进度</span><span class="panel-badge badge-ok" id="phaseBadge">Day 0</span></div>
+    <div class="phase-list" id="phaseList"></div>
+  </div>
+</div>
+
+<!-- Row 2: Pipeline Funnel + Hot Leads -->
+<div class="grid-2">
+  <div class="panel">
+    <div class="panel-header"><span class="panel-title">🔍 渠道 Pipeline 漏斗</span><span class="panel-badge badge-hot">实时</span></div>
+    <div class="chart-wrap" id="funnelChart"></div>
+  </div>
+  <div class="panel" style="max-height:380px;overflow-y:auto">
+    <div class="panel-header"><span class="panel-title">🔥 高分线索 Top 8</span><span class="panel-badge badge-hot" id="hotLeadCount">8条</span></div>
+    <div id="hotLeadsB2B"></div>
+  </div>
+</div>
+
+<!-- Row 3: Competitor Alerts + Brand Radar -->
+<div class="grid-2">
+  <div class="panel" style="max-height:380px;overflow-y:auto">
+    <div class="panel-header"><span class="panel-title">⚠️ 竞品动态实时预警</span><span class="panel-badge badge-hot" id="alertCount">7条</span></div>
+    <div id="competitorAlerts"></div>
+  </div>
+  <div class="panel">
+    <div class="panel-header"><span class="panel-title">📈 竞品品牌声量雷达图</span><span class="panel-badge badge-info">6维对比</span></div>
+    <div class="chart-wrap-lg" id="brandRadarChart"></div>
+  </div>
+</div>
+
+<!-- Row 4: Booking Prediction + KPI Trend -->
+<div class="grid-2">
+  <div class="panel">
+    <div class="panel-header"><span class="panel-title">🎯 预订转化预测 (26-27南极季)</span><span class="panel-badge badge-ok">8节点模拟</span></div>
+    <div class="chart-wrap" id="bookingChart"></div>
+  </div>
+  <div class="panel">
+    <div class="panel-header"><span class="panel-title">📈 100天 KPI 模拟曲线</span><span class="panel-badge badge-info">D0→D100</span></div>
+    <div class="chart-wrap" id="kpiTrendChart"></div>
+  </div>
+</div>
+
+<!-- Row 5: Workflow Status -->
+<div class="panel full">
+  <div class="panel-header"><span class="panel-title">⚙️ 工作流运行状态</span><span class="panel-badge badge-ok">5/5 正常运行</span></div>
+  <div class="wf-grid" id="wfGridDash"></div>
+</div>
+
+</div><!-- /tab-dashboard -->
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- TAB: RADAR -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="tab-radar" class="tab-content" style="display:none">
+<div class="grid-21">
+  <div class="panel">
+    <div class="panel-header"><span class="panel-title">🔬 极地客户雷达 — 扫描结果</span><span class="panel-badge badge-hot">10条帖子 · 9条线索</span></div>
     <div class="chart-wrap-lg" id="radarScoreChart"></div>
   </div>
   <div class="panel">
-    <div class="panel-header"><span class="panel-title">📊 评分分布</span><span class="panel-badge badge-info">Warm 60% · Nurture 30%</span></div>
+    <div class="panel-header"><span class="panel-title">📊 评分分布饼图</span><span class="panel-badge badge-info">Warm 60%</span></div>
     <div class="chart-wrap" id="scorePieChart"></div>
   </div>
 </div>
-
-<div class="panel">
-  <div class="panel-header"><span class="panel-title">🏆 Top 6 高价值线索详情</span><span class="panel-badge badge-hot">按评分降序</span></div>
+<div class="panel full">
+  <div class="panel-header"><span class="panel-title">🏆 Top 6 高价值线索详情 (来自真实Python扫描)</span><span class="panel-badge badge-hot">按评分降序</span></div>
   <div id="leadCards"></div>
 </div>
-
 </div><!-- /tab-radar -->
 
-<!-- ═════════ TAB: NURTURE ═════════ -->
+<!-- ══════════════════════════════════════════════ -->
+<!-- TAB: NURTURE -->
+<!-- ══════════════════════════════════════════════ -->
 <div id="tab-nurture" class="tab-content" style="display:none">
-
-<div class="panel" style="margin-bottom:14px;">
-  <div class="panel-header"><span class="panel-title">🎯 培育旅程总览 — 5阶段漏斗</span><span class="panel-badge badge-ok">3位客户进入 Engage 阶段</span></div>
+<div class="panel full" style="margin-bottom:14px">
+  <div class="panel-header"><span class="panel-title">🎯 5阶段培育漏斗</span><span class="panel-badge badge-ok">3客户进入Engage</span></div>
   <div class="chart-wrap-lg" id="nurtureFunnelChart"></div>
 </div>
-
 <div class="grid-3" id="nurtureCards"></div>
-
 </div><!-- /tab-nurture -->
 
-<!-- ═════════ TAB: SALES COACH ═════════ -->
+<!-- ══════════════════════════════════════════════ -->
+<!-- TAB: COACH -->
+<!-- ══════════════════════════════════════════════ -->
 <div id="tab-coach" class="tab-content" style="display:none">
-
 <div class="grid-2">
   <div class="panel">
-    <div class="panel-header"><span class="panel-title">💬 异议处理实时匹配</span><span class="panel-badge badge-ok">匹配率 100% (4/4)</span></div>
+    <div class="panel-header"><span class="panel-title">💬 异议处理实时匹配</span><span class="panel-badge badge-ok">4/4 匹配 (100%)</span></div>
     <div id="objectionCards"></div>
   </div>
   <div class="panel">
-    <div class="panel-header"><span class="panel-title">📧 跟单消息引擎</span><span class="panel-badge badge-info">4阶段自适应生成</span></div>
+    <div class="panel-header"><span class="panel-title">📧 跟单消息自动生成</span><span class="panel-badge badge-info">4阶段</span></div>
     <div id="followupCards"></div>
   </div>
 </div>
-
-<div class="panel">
-  <div class="panel-header"><span class="panel-title">🎓 销售回答质量评分</span><span class="panel-badge badge-warn">AI 自动评分 + 改进建议</span></div>
+<div class="panel full">
+  <div class="panel-header"><span class="panel-title">🎓 销售回答 AI 评分</span><span class="panel-badge badge-warn">自动评分+改进建议</span></div>
   <div class="grid-2" id="scoreCards"></div>
 </div>
-
 </div><!-- /tab-coach -->
 
-<!-- ═════════ TAB: RAG ═════════ -->
-<div id="tab-rag" class="tab-content" style="display:none">
-
+<!-- ══════════════════════════════════════════════ -->
+<!-- TAB: PIPELINE -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="tab-pipeline" class="tab-content" style="display:none">
+<div class="panel full" style="margin-bottom:14px">
+  <div class="panel-header"><span class="panel-title">🎯 Tier 1 战略伙伴跟进状态</span><span class="panel-badge badge-hot">5家</span></div>
+  <div style="overflow-x:auto"><table class="tier-table"><thead><tr><th>优先级</th><th>合作伙伴</th><th>类型</th><th>认证</th><th>年客量</th><th>状态</th><th>下一步</th><th>目标联系人</th></tr></thead><tbody id="tier1Body"></tbody></table></div>
+</div>
 <div class="grid-2">
   <div class="panel">
-    <div class="panel-header"><span class="panel-title">🔮 客户语义相似度矩阵</span><span class="panel-badge badge-info">5位客户 · 1536维向量</span></div>
+    <div class="panel-header"><span class="panel-title">🔍 渠道 Pipeline 漏斗</span><span class="panel-badge badge-info">5阶段</span></div>
+    <div class="chart-wrap" id="funnelChart2"></div>
+  </div>
+  <div class="panel" style="max-height:380px;overflow-y:auto">
+    <div class="panel-header"><span class="panel-title">🔥 B2B 高分线索 Top 8</span><span class="panel-badge badge-hot" id="hotLeadCount2">8条</span></div>
+    <div id="hotLeadsB2B2"></div>
+  </div>
+</div>
+</div><!-- /tab-pipeline -->
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- TAB: COMPETITOR -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="tab-competitor" class="tab-content" style="display:none">
+<div class="panel full" style="margin-bottom:14px">
+  <div class="panel-header"><span class="panel-title">⚠️ 竞品动态实时预警</span><span class="panel-badge badge-hot" id="alertCount2">7条</span></div>
+  <div id="competitorAlertsFull"></div>
+</div>
+<div class="grid-2">
+  <div class="panel">
+    <div class="panel-header"><span class="panel-title">📈 品牌声量雷达图</span><span class="panel-badge badge-info">6维</span></div>
+    <div class="chart-wrap-lg" id="brandRadar2"></div>
+  </div>
+  <div class="panel">
+    <div class="panel-header"><span class="panel-title">📡 行业趋势信号</span><span class="panel-badge badge-ok">实时</span></div>
+    <div id="industrySignals"></div>
+  </div>
+</div>
+</div><!-- /tab-competitor -->
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- TAB: RAG -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="tab-rag" class="tab-content" style="display:none">
+<div class="grid-2">
+  <div class="panel">
+    <div class="panel-header"><span class="panel-title">🔮 客户语义相似度热力图</span><span class="panel-badge badge-info">5客户·1536维</span></div>
     <div class="chart-wrap-lg" id="ragHeatmap"></div>
   </div>
   <div class="panel">
-    <div class="panel-header"><span class="panel-title">🔍 实时语义查询</span><span class="panel-badge badge-hot">3次查询演示</span></div>
+    <div class="panel-header"><span class="panel-title">🔍 实时语义查询</span><span class="panel-badge badge-hot">3次查询</span></div>
     <div id="ragQueries"></div>
   </div>
 </div>
-
 </div><!-- /tab-rag -->
-
-<!-- ═════════ TAB: CHARTS ═════════ -->
-<div id="tab-charts" class="tab-content" style="display:none">
-
-<div class="grid-2">
-  <div class="panel">
-    <div class="panel-header"><span class="panel-title">📈 中国南极游客增长趋势</span><span class="panel-badge badge-info">IAATO 数据</span></div>
-    <div class="chart-wrap-lg" id="marketTrendChart"></div>
-  </div>
-  <div class="panel">
-    <div class="panel-header"><span class="panel-title">🎯 100天 KPI 模拟预测</span><span class="panel-badge badge-ok">4阶段增长曲线</span></div>
-    <div class="chart-wrap-lg" id="kpiTrendChart"></div>
-  </div>
-</div>
-
-<div class="grid-2">
-  <div class="panel">
-    <div class="panel-header"><span class="panel-title">📡 竞品品牌声量雷达图</span><span class="panel-badge badge-warn">庞洛 vs 银海 vs Quark vs 66度</span></div>
-    <div class="chart-wrap-lg" id="brandRadarChart"></div>
-  </div>
-  <div class="panel">
-    <div class="panel-header"><span class="panel-title">⚙️ 工作流执行时间线</span><span class="panel-badge badge-ok">5/5 全部通过</span></div>
-    <div class="chart-wrap-lg" id="timelineChart"></div>
-  </div>
-</div>
-
-</div><!-- /tab-charts -->
-
-<!-- ═════════ TAB: ALL ═════════ -->
-<div id="tab-all" class="tab-content" style="display:none">
-<!-- Summary grid of all modules -->
-<div class="grid-3">
-  <div class="panel" style="text-align:center;">
-    <div style="font-size:40px;margin-bottom:8px;">🔬</div>
-    <div style="font-weight:700;margin-bottom:4px;">客户雷达</div>
-    <div style="font-size:12px;color:var(--text-dim)">10条帖子 → 9条线索<br>120+意图模式匹配</div>
-    <div style="margin-top:8px;font-size:28px;font-weight:800;color:var(--accent2);">9/10</div>
-    <div style="font-size:10px;color:var(--text-dim)">可操作率 90%</div>
-  </div>
-  <div class="panel" style="text-align:center;">
-    <div style="font-size:40px;margin-bottom:8px;">🎯</div>
-    <div style="font-weight:700;margin-bottom:4px;">培育引擎</div>
-    <div style="font-size:12px;color:var(--text-dim)">5阶段旅程 · 企业微信标签<br>触达时间表 · 画像感知话术</div>
-    <div style="margin-top:8px;font-size:28px;font-weight:800;color:var(--accent3);">3</div>
-    <div style="font-size:10px;color:var(--text-dim)">客户进入 Engage 阶段</div>
-  </div>
-  <div class="panel" style="text-align:center;">
-    <div style="font-size:40px;margin-bottom:8px;">💬</div>
-    <div style="font-weight:700;margin-bottom:4px;">销售教练</div>
-    <div style="font-size:12px;color:var(--text-dim)">5大类异议 · 50+框架<br>跟单消息 · AI评分</div>
-    <div style="margin-top:8px;font-size:28px;font-weight:800;color:var(--accent);">100%</div>
-    <div style="font-size:10px;color:var(--text-dim)">异议匹配率</div>
-  </div>
-  <div class="panel" style="text-align:center;">
-    <div style="font-size:40px;margin-bottom:8px;">🔮</div>
-    <div style="font-weight:700;margin-bottom:4px;">RAG检索</div>
-    <div style="font-size:12px;color:var(--text-dim)">1536维向量嵌入<br>语义相似度搜索</div>
-    <div style="margin-top:8px;font-size:28px;font-weight:800;color:var(--purple);">5</div>
-    <div style="font-size:10px;color:var(--text-dim)">客户向量已入库</div>
-  </div>
-  <div class="panel" style="text-align:center;">
-    <div style="font-size:40px;margin-bottom:8px;">🧠</div>
-    <div style="font-weight:700;margin-bottom:4px;">LLM Agent</div>
-    <div style="font-size:12px;color:var(--text-dim)">GPT-4o 编排<br>8套专业Prompt</div>
-    <div style="margin-top:8px;font-size:28px;font-weight:800;color:var(--red);">4/4</div>
-    <div style="font-size:10px;color:var(--text-dim)">模块就绪</div>
-  </div>
-  <div class="panel" style="text-align:center;">
-    <div style="font-size:40px;margin-bottom:8px;">⚙️</div>
-    <div style="font-weight:700;margin-bottom:4px;">工作流调度</div>
-    <div style="font-size:12px;color:var(--text-dim)">定时任务 · Docker部署<br>企业微信通知</div>
-    <div style="margin-top:8px;font-size:28px;font-weight:800;color:var(--accent3);">10</div>
-    <div style="font-size:10px;color:var(--text-dim)">定时任务已注册</div>
-  </div>
-</div>
-
-<div class="panel" style="margin-top:14px;">
-  <div class="panel-header"><span class="panel-title">⚙️ 5个工作流实时状态</span><span class="panel-badge badge-ok">全部通过 ✓</span></div>
-  <div class="wf-grid" id="wfGrid"></div>
-</div>
-</div><!-- /tab-all -->
 
 </div><!-- container -->
 
 <footer class="footer">
-  <span>© 2026 Quark Expeditions · Polar Growth OS v2.0</span>
-  <span>数据更新：2026-08-07 04:30 UTC+8 · 下次刷新：<span id="nextRefresh">--</span></span>
+  <span>© 2026 Quark Expeditions · Polar Growth OS v2.0 · GitHub: lena2099/quark-cn-growth-engine</span>
+  <span>更新: <span id="nextRefresh">--</span></span>
 </footer>
 
-<!-- ═════════ SCRIPTS ═════════ -->
 <script>
 // ═══════════════════════════════════════════════════
-// REAL DATA from workflow runs
+// DATA
 // ═══════════════════════════════════════════════════
-const radarLeads = [
-  {rank:1,name:"王总 (企业主)",age:"45-55",prof:"企业主",budget:"20-30万",source:"小红书",score:60,tier:"Warm",text:"把公司交给职业经理人，明年完成人生最后一块大陆——南极。看到朋友坐夸克的船还有直升机，感觉很震撼。",signals:"强意图×3 + 财富信号×2 + 社会证明×1",action:"📩 邀请入极地探索社群 → 发《极地100问》"},
-  {rank:2,name:"Linda (投行MD)",age:"35-44",prof:"企业高管",budget:"30万+",source:"小红书",score:55,tier:"Warm",text:"飞了80段头等舱坐到麻木。想找一个没有信号、没有人打扰、只有冰和风的纯粹地方。是不是只有南极？",signals:"隐性意图×2 + 财富信号×2 + 旅行升级×1",action:"📩 邀请入社群 → 推荐Ultramarine号"},
-  {rank:3,name:"摄影师大鹏",age:"未知",prof:"摄影师",budget:"10-20万",source:"小红书",score:48,tier:"Warm",text:"求推荐能拍到帝企鹅的南极线路！去过三次冰岛，希望有专业摄影向导，最好能深入冰架。",signals:"强意图×2 + 旅行升级×2 + 隐性意图×1",action:"📩 推荐南极摄影专属航线"},
-  {rank:4,name:"创业爸爸",age:"35-44",prof:"创业者",budget:"5-10万",source:"微信",score:42,tier:"Warm",text:"想带孩子体验改变人生的旅行。正在看非洲safari和南极，哪个更适合10岁孩子？培养格局。",signals:"强意图×1 + 生命阶段×2 + 隐性意图×1",action:"📩 推荐亲子教育类极地内容"},
-  {rank:5,name:"退休规划中",age:"55+",prof:"未知",budget:"10-20万",source:"抖音",score:40,tier:"Warm",text:"退休后的第一年：南极➕北极一起走！开始存钱了，预算大概20万以内。",signals:"强意图×1 + 生命阶段×2",action:"📩 推荐性价比早鸟航线"},
-  {rank:6,name:"李医生",age:"未知",prof:"医生",budget:"10-20万",source:"小红书",score:40,tier:"Warm",text:"刚从肯尼亚回来，动物大迁徙太震撼了。下一站想去北极看极光，有医生同行吗？",signals:"强意图×1 + 旅行升级×1 + 专业身份×1",action:"📩 推荐北极格陵兰航线"},
+
+const kpiDefs=[
+  {key:'totalLeads',label:'累计线索',target:800,unit:'条',color:'#00d4ff'},
+  {key:'signedPartners',label:'签约合作伙伴',target:30,unit:'家',color:'#f59e0b'},
+  {key:'highIntent',label:'高意向线索(≥70分)',target:180,unit:'条',color:'#ef4444'},
+  {key:'bookings',label:'预订量(26-27季)',target:200,unit:'人',color:'#10b981'},
+  {key:'brandIndex',label:'品牌声量指数',target:600,unit:'%',color:'#8b5cf6',base:100},
 ];
 
-const nurtureData = [
+const phases=[
+  {name:'Phase 1: 基础建设',range:'D1-D25',desc:'品牌资产本地化+渠道政策+工作流部署'},
+  {name:'Phase 2: 渠道激活',range:'D26-D50',desc:'战略伙伴签约+培训认证+社媒冷启动'},
+  {name:'Phase 3: 市场引爆',range:'D51-D75',desc:'五城路演+KOL体验+包船协议'},
+  {name:'Phase 4: 闭环转化',range:'D76-D100',desc:'销售冲刺+老客推荐+复盘规划'},
+];
+
+const hotLeadsB2B=[
+  {company:'众信旅游集团',contact:'极地邮轮中心负责人',score:92,tier:'P0',status:'洽谈中',tag:'tag-negotiate',tagT:'洽谈中'},
+  {company:'鸿鹄逸游(HHtravel)',contact:'产品总监',score:88,tier:'P0',status:'待触达',tag:'tag-new',tagT:'新发现'},
+  {company:'极至旅行(3Polar)',contact:'创始人/总经理',score:85,tier:'P0',status:'待触达',tag:'tag-new',tagT:'新发现'},
+  {company:'北京船客国际旅行社',contact:'南极产品经理',score:82,tier:'P1',status:'待触达',tag:'tag-new',tagT:'新发现'},
+  {company:'极之美(tripolers)',contact:'航线采购负责人',score:78,tier:'P1',status:'待触达',tag:'tag-new',tagT:'新发现'},
+  {company:'八大洲旅游',contact:'高端定制事业部',score:75,tier:'P1',status:'待触达',tag:'tag-new',tagT:'新发现'},
+  {company:'携程邮轮频道',contact:'奢华品类经理',score:72,tier:'P2',status:'评估中',tag:'tag-contact',tagT:'评估中'},
+  {company:'招商银行私人银行',contact:'高客活动负责人',score:70,tier:'P2',status:'待接触',tag:'tag-contact',tagT:'待接触'},
+];
+
+const competitorAlerts=[
+  {urgency:'critical',competitor:'庞洛 Ponant',event:'与众信旅游签署3年包船战略合作',time:'2025-04',detail:'南冠号/星辉号4-5航次，2026-2028'},
+  {urgency:'high',competitor:'66度探险邮轮',event:'新船"东方极地号"正式下水',time:'2025-09',detail:'首艘中国品牌极地探险邮轮，全中文服务'},
+  {urgency:'high',competitor:'庞洛 Ponant',event:'中国市场预订率超95%(25-26季)，85%(26-27季)',time:'2025末',detail:'提前18-24个月满舱趋势加剧'},
+  {urgency:'medium',competitor:'Antarctica21',event:'飞南极航线新增中文服务',time:'2025-Q3',detail:'海空联航中文领队比例提升至1:8'},
+  {urgency:'medium',competitor:'银海 Silversea',event:'Silver Endeavour新增中国区代理',time:'2025-Q4',detail:'超奢华管家服务进一步渗透中国'},
+  {urgency:'medium',competitor:'海达路德 Hurtigruten',event:'推出"中国科学家同行"科考主题航线',time:'2025-Q3',detail:'科考旅游细分赛道竞争加剧'},
+  {urgency:'medium',competitor:'众信旅游集团',event:'25-26季累计输送极地游客超1800名',time:'2026-04',detail:'中国最大极地运营商地位巩固'},
+];
+
+const tier1Partners=[
+  {priority:'P0',name:'众信旅游集团',type:'上市旅行社',certs:'IAATO+AECO',volume:'1800+/季',status:'🤝 洽谈中',next:'差异化提案提交',contact:'极地邮轮中心负责人'},
+  {priority:'P0',name:'鸿鹄逸游',type:'高端定制(携程系)',certs:'—',volume:'~500/季',status:'📋 待触达',next:'携程渠道对接会',contact:'产品总监'},
+  {priority:'P0',name:'极至旅行',type:'极地专营',certs:'IAATO+AECO',volume:'80+团次',status:'📋 待触达',next:'专业对话会',contact:'创始人/总经理'},
+  {priority:'P1',name:'极之美',type:'极地专营',certs:'IAATO+AECO理事',volume:'3000+人次',status:'📋 待触达',next:'北极格陵兰方案',contact:'航线采购负责人'},
+  {priority:'P1',name:'北京船客国际旅行社',type:'极地专营',certs:'IAATO+AECO+CLIA',volume:'6000+(3季)',status:'📋 待触达',next:'包船提案',contact:'南极产品经理'},
+];
+
+const radarLeads=[
+  {rank:1,name:'王总 (企业主)',age:'45-55',prof:'企业主',budget:'20-30万',source:'小红书',score:60,tier:'Warm',text:'把公司交给职业经理人，明年完成人生最后一块大陆——南极。看到朋友坐夸克的船还有直升机，感觉很震撼。',signals:'强意图×3 + 财富×2 + 社会证明×1',action:'📩 邀请入极地探索社群 → 发《极地100问》'},
+  {rank:2,name:'Linda (投行MD)',age:'35-44',prof:'企业高管',budget:'30万+',source:'小红书',score:55,tier:'Warm',text:'飞了80段头等舱坐到麻木。想找一个没有信号、没有人打扰、只有冰和风的纯粹地方。',signals:'隐性意图×2 + 财富×2 + 旅行升级×1',action:'📩 邀请入社群 → 推荐Ultramarine号'},
+  {rank:3,name:'摄影师大鹏',age:'未知',prof:'摄影师',budget:'10-20万',source:'小红书',score:48,tier:'Warm',text:'求推荐能拍到帝企鹅的南极线路！去过三次冰岛，希望有专业摄影向导，最好能深入冰架。',signals:'强意图×2 + 旅行升级×2',action:'📩 推荐南极摄影专属航线'},
+  {rank:4,name:'创业爸爸',age:'35-44',prof:'创业者',budget:'5-10万',source:'微信',score:42,tier:'Warm',text:'想带孩子体验改变人生的旅行。非洲safari和南极哪个更适合10岁孩子？',signals:'强意图×1 + 生命阶段×2',action:'📩 推荐亲子教育类极地内容'},
+  {rank:5,name:'退休规划中',age:'55+',prof:'未知',budget:'10-20万',source:'抖音',score:40,tier:'Warm',text:'退休后第一年：南极➕北极一起走！开始存钱了',signals:'强意图×1 + 生命阶段×2',action:'📩 推荐性价比早鸟航线'},
+  {rank:6,name:'李医生',age:'未知',prof:'医生',budget:'10-20万',source:'小红书',score:40,tier:'Warm',text:'刚从肯尼亚回来，动物大迁徙太震撼了。下一站想去北极看极光',signals:'强意图×1 + 旅行升级×1',action:'📩 推荐北极格陵兰航线'},
+];
+
+const nurtureData=[
   {
-    name:"王总",score:60,stage:"Engage",stageIdx:3,
-    tags:["南极兴趣-高意向","年龄-45-55","职业-企业主","旅行-中度","预算-20-30万","来源-小红书"],
+    name:'王总',score:60,stage:'Engage',
+    tags:['南极兴趣-高意向','年龄-45-55','职业-企业主','旅行-中度','预算-20-30万','来源-小红书'],
     content:[
-      {icon:"📘",title:"《极地旅行100问》",type:"ebook"},
-      {icon:"🎤",title:"线上分享会：南极探险队长带你云游极地",type:"event"},
-      {icon:"📖",title:"真实客户故事：50岁企业家的南极之旅",type:"article"},
-      {icon:"⚖️",title:"南极邮轮怎么选？庞洛 vs 夸克 vs 银海 vs A21 全对比",type:"article"},
+      {icon:'📘',title:'《极地旅行100问》',type:'ebook'},
+      {icon:'🎤',title:'线上分享会：南极探险队长云游极地',type:'event'},
+      {icon:'📖',title:'真实客户故事：50岁企业家的南极之旅',type:'article'},
+      {icon:'⚖️',title:'庞洛 vs 夸克 vs 银海 vs A21 全对比',type:'article'},
     ],
-    talkingPoints:[
-      "💼 您是企业家，我特别推荐Ultramarine号的直升机体验——时间和体验对您来说比价格重要",
-      "📚 您对极地已经有了解了，我直接给您看最核心的：20-30万预算内，这几条航线最适合您",
-      "🛡️ Quark是唯一把'探险深度'做到极致的——更多登陆、最专业探险队、独一无二的直升机"
+    tpoints:[
+      '💼 您是企业家，特别推荐Ultramarine直升机体验——时间和体验比价格重要',
+      '📚 20-30万预算内，这几条航线最适合您——',
+      '🛡️ Quark是唯一把探险深度做到极致的——更多登陆+专业探险队+直升机',
     ],
     schedule:[
-      {day:0,date:"2026-08-07",action:"拉入「极地探索」企业微信社群",ch:"wecom"},
-      {day:1,date:"2026-08-08",action:"发送社群欢迎+自我介绍引导",ch:"wecom_group"},
-      {day:3,date:"2026-08-10",action:"分享客户真实故事",ch:"wecom_group"},
-      {day:7,date:"2026-08-14",action:"线上分享会提醒",ch:"wecom"},
-      {day:8,date:"2026-08-15",action:"分享会后的1对1跟进",ch:"wecom_dm"},
+      {d:0,date:'08-07',act:'拉入「极地探索」企业微信社群',ch:'wecom'},
+      {d:1,date:'08-08',act:'发送社群欢迎+自我介绍引导',ch:'wecom_group'},
+      {d:3,date:'08-10',act:'分享客户真实故事',ch:'wecom_group'},
+      {d:7,date:'08-14',act:'线上分享会提醒',ch:'wecom'},
+      {d:8,date:'08-15',act:'1对1跟进',ch:'wecom_dm'},
     ]
   },
   {
-    name:"Linda",score:55,stage:"Engage",stageIdx:3,
-    tags:["南极兴趣-高意向","年龄-35-44","职业-企业高管","旅行-骨灰级","预算-30万+","来源-小红书"],
+    name:'Linda',score:55,stage:'Engage',
+    tags:['南极兴趣-高意向','年龄-35-44','职业-企业高管','旅行-骨灰级','预算-30万+','来源-小红书'],
     content:[
-      {icon:"📘",title:"《极地旅行100问》",type:"ebook"},
-      {icon:"🎤",title:"线上分享会：南极探险队长带你云游极地",type:"event"},
-      {icon:"📖",title:"真实客户故事：50岁企业家的南极之旅",type:"article"},
-      {icon:"⚖️",title:"南极邮轮怎么选？庞洛 vs 夸克 vs 银海 vs A21 全对比",type:"article"},
+      {icon:'📘',title:'《极地旅行100问》',type:'ebook'},
+      {icon:'🎤',title:'线上分享会：南极探险队长云游极地',type:'event'},
+      {icon:'📖',title:'真实客户故事：50岁企业家的南极之旅',type:'article'},
+      {icon:'⚖️',title:'庞洛 vs 夸克 vs 银海 vs A21 全对比',type:'article'},
     ],
-    talkingPoints:[
-      "💼 您这样经常出差的高管，最需要的就是纯粹的安静。南极没有信号、没有打扰，是最极致的'数字排毒'",
-      "🌍 您已经走过这么多国家了，南极一定不能将就——Quark有罗斯海、威德尔海这些真正硬核的线路",
-      "🐧 我给您发一段我们客户实拍的视频，3分钟就能感受到"
+    tpoints:[
+      '💼 高管最需要纯粹的安静——南极没有信号，最极致数字排毒',
+      '🌍 走过这么多国家，南极不能将就——Quark有罗斯海、威德尔海硬核线路',
+      '🐧 我给您发一段客户实拍视频，3分钟就能感受到',
     ],
     schedule:[
-      {day:0,date:"2026-08-07",action:"拉入「极地探索」企业微信社群",ch:"wecom"},
-      {day:1,date:"2026-08-08",action:"发送社群欢迎+自我介绍引导",ch:"wecom_group"},
-      {day:3,date:"2026-08-10",action:"分享客户真实故事",ch:"wecom_group"},
-      {day:7,date:"2026-08-14",action:"线上分享会提醒",ch:"wecom"},
-      {day:8,date:"2026-08-15",action:"分享会后的1对1跟进",ch:"wecom_dm"},
+      {d:0,date:'08-07',act:'拉入「极地探索」企业微信社群',ch:'wecom'},
+      {d:1,date:'08-08',act:'发送社群欢迎+自我介绍引导',ch:'wecom_group'},
+      {d:7,date:'08-14',act:'线上分享会提醒',ch:'wecom'},
+      {d:8,date:'08-15',act:'1对1跟进',ch:'wecom_dm'},
     ]
   },
   {
-    name:"摄影师大鹏",score:48,stage:"Engage",stageIdx:3,
-    tags:["南极兴趣-高意向","旅行-重度","预算-10-20万","来源-小红书"],
+    name:'摄影师大鹏',score:48,stage:'Engage',
+    tags:['南极兴趣-高意向','旅行-重度','预算-10-20万','来源-小红书'],
     content:[
-      {icon:"📘",title:"《极地旅行100问》",type:"ebook"},
-      {icon:"🎤",title:"线上分享会：南极探险队长带你云游极地",type:"event"},
-      {icon:"📖",title:"真实客户故事：50岁企业家的南极之旅",type:"article"},
-      {icon:"⚖️",title:"南极邮轮怎么选？庞洛 vs 夸克 vs 银海 vs A21 全对比",type:"article"},
+      {icon:'📘',title:'《极地旅行100问》',type:'ebook'},
+      {icon:'🎤',title:'线上分享会：南极探险队长云游极地',type:'event'},
+      {icon:'📖',title:'真实客户故事：50岁企业家的南极之旅',type:'article'},
+      {icon:'⚖️',title:'庞洛 vs 夸克 vs 银海 vs A21 全对比',type:'article'},
     ],
-    talkingPoints:[
-      "📚 您对极地已经有了解了，我直接给您看最核心的：10-20万预算内，这几条航线最适合您",
-      "🛡️ Quark是唯一把'探险深度'做到极致的"
+    tpoints:[
+      '📚 10-20万预算内，这几条航线最适合您——',
+      '🛡️ Quark是唯一把探险深度做到极致的',
     ],
     schedule:[
-      {day:0,date:"2026-08-07",action:"拉入「极地探索」企业微信社群",ch:"wecom"},
-      {day:1,date:"2026-08-08",action:"发送社群欢迎+自我介绍引导",ch:"wecom_group"},
-      {day:7,date:"2026-08-14",action:"线上分享会提醒",ch:"wecom"},
+      {d:0,date:'08-07',act:'拉入「极地探索」企业微信社群',ch:'wecom'},
+      {d:7,date:'08-14',act:'线上分享会提醒',ch:'wecom'},
     ]
   }
 ];
 
-const objectionData = [
-  {q:"30万太贵了吧，别的船好像便宜很多",cat:"价格/竞品",type:"other_ship_cheaper",conf:"88%",resp:"您真的很专业，做了不少功课。关键在于——您买的是'去南极'还是'探索南极'。便宜的船200-500人、每天1-2次登陆、每次45-90分钟。Quark是100-200人小船、每天2-3次登陆、每次2-3小时。只有Quark有双直升机，能到别人去不了的地方。多花的钱，买的是别人看不到的风景。"},
-  {q:"南极会不会很危险？我听说有人出过事",cat:"安全",type:"safety_concern",conf:"60%",resp:"这个问题问得特别好。Quark有30年极地探险经验，零安全事故。探险队员平均15年以上极地经验。每条船配备最先进的冰区导航、卫星通讯、完整医疗设施——包括随船医生。IAATO有极其严格的安全标准。"},
-  {q:"我55岁了，体力跟不上吧",cat:"体力",type:"age_fitness",conf:"83%",resp:"很多客户在50多岁去南极前都有同样的担心。实际上南极旅行不是极限运动——每天活动根据您的体力安排。Quark客户平均年龄55岁，最年长客人86岁走完了全程。南极最珍贵的是'感受'，不是'征服'。"},
-  {q:"庞洛好像更奢华，你们怎么比？",cat:"竞品",type:"ponant_comparison",conf:"71%",resp:"庞洛确实优秀，法式奢华非常出色。关键区别——庞洛是'奢华酒店搬到海上'，Quark是'最极致的极地探险'。庞洛有管家和米其林，Quark有业内唯一双直升机和最多登陆次数。选庞洛为'被服务'，选Quark为'看见别人看不见的世界'。"},
+const objectionData=[
+  {q:'30万太贵了吧，别的船好像便宜很多',cat:'价格/竞品',type:'other_ship_cheaper',conf:'88%',resp:'关键在于——买的是"去南极"还是"探索南极"。便宜的船200-500人、每天1-2次登陆、每次45-90分钟。Quark是100-200人小船、每天2-3次登陆、每次2-3小时。只有Quark有双直升机，能到别人去不了的地方。'},
+  {q:'南极会不会很危险？',cat:'安全',type:'safety_concern',conf:'60%',resp:'Quark有30年极地探险经验，零安全事故。探险队员平均15年以上极地经验。每条船配备最先进的冰区导航、卫星通讯、完整医疗设施。IAATO有极其严格的安全标准。'},
+  {q:'我55岁了，体力跟不上吧',cat:'体力',type:'age_fitness',conf:'83%',resp:'南极旅行不是极限运动——每天活动根据体力安排。Quark客户平均年龄55岁，最年长客人86岁走完了全程。南极最珍贵的是"感受"不是"征服"。'},
+  {q:'庞洛好像更奢华，你们怎么比？',cat:'竞品',type:'ponant_comparison',conf:'71%',resp:'庞洛是"奢华酒店搬到海上"，Quark是"最极致的极地探险"。庞洛有管家和米其林，Quark有业内唯一双直升机+最多登陆次数。选庞洛为被服务，选Quark为看见别人看不见的世界。'},
 ];
 
-const followupData = [
-  {stage:"初次触达",msg:"王总您好！我是Quark Expeditions的极地旅行顾问。注意到您最近对南极旅行有关注。刚好我们这周六有一场线上分享会——南极探险队长会亲自讲解2027年的独家航线。不打扰您，如果感兴趣，我给您发一份邀请函？"},
-  {stage:"分享会后跟进",msg:"王总您好！上周的分享会很精彩，看到您全程在线，不知道感受如何？很多客户听完后最感兴趣的是Ultramarine号的直升机体验——全球唯一，可以直接降落在常规船到不了的冰原深处。您如果有任何疑问，随时问我。"},
-  {stage:"决策推动",msg:"王总，有个小提醒——2027年南极季的早鸟价这周五截止。目前南极半岛经典11天航线还剩最后3个舱位。如果您还在考虑，我建议先把舱位锁住（定金1万即可锁定），错过这波同样的舱位下一轮要贵15%。"},
-  {stage:"沉睡唤醒",msg:"王总，好久不见！最近我们有一位52岁的企业家客户刚从南极回来，他说了一句话让我印象特别深：'去了40个国家，南极是唯一一个让我流泪的。' 突然想到您之前也对南极感兴趣——2027年新开了一条威德尔海帝企鹅航线，您要不要看看？"},
+const followupData=[
+  {stage:'初次触达',msg:'王总您好！我是Quark Expeditions的极地旅行顾问。注意到您最近对南极旅行有关注。刚好这周六有一场线上分享会——南极探险队长会亲自讲解2027年的独家航线。不打扰您，感兴趣的话我发您邀请函？'},
+  {stage:'分享会后跟进',msg:'王总您好！上周分享会很精彩，看到您全程在线。很多客户听完最感兴趣的是Ultramarine号直升机体验——全球唯一，能直接降落到常规船到不了的冰原深处。任何疑问随时问我。'},
+  {stage:'决策推动',msg:'王总，2027年南极季早鸟价这周五截止。南极半岛经典11天航线还剩最后3个舱位。建议先把舱位锁住（定金1万即可），错过这波下轮要贵15%。'},
+  {stage:'沉睡唤醒',msg:'王总好久不见！最近一位52岁企业家客户刚从南极回来说："去了40个国家，南极是唯一一个让我流泪的。" 突然想到您之前也对南极感兴趣——2027年新开威德尔海帝企鹅航线，要不要看看？'},
 ];
 
-const ragQueriesData = [
-  {q:"企业主 高预算 深度旅行体验 直升机 探险",results:[
-    {id:"cust_002",name:"Linda",tier:"A级",sim:0.244,cls:"sim-mid"},
-    {id:"cust_001",name:"王总",tier:"A级",sim:0.182,cls:"sim-mid"},
-    {id:"cust_003",name:"张医生",tier:"B级",sim:0.149,cls:"sim-mid"},
+const scoreData=[
+  {a:'回答A (优秀)',score:62,grade:'B级·基本合格',emp:25,pro:25,val:12,adv:0,imps:['做价值重塑：把话题从价格转向体验','结尾要有行动引导：我发您一个视频/我们约个电话']},
+  {a:'回答B (反面教材)',score:10,grade:'C级·需要刻意练习',emp:10,pro:0,val:0,adv:0,imps:['开头先共情：完全理解您的感受','增加专业细节(30年/直升机)','做价值重塑','结尾要有行动引导']},
+];
+
+const ragQueriesData=[
+  {q:'企业主 高预算 深度旅行体验 直升机 探险',results:[
+    {id:'cust_002',name:'Linda',tier:'A级',sim:0.244,cls:'sim-mid'},
+    {id:'cust_001',name:'王总',tier:'A级',sim:0.182,cls:'sim-mid'},
+    {id:'cust_003',name:'张医生',tier:'B级',sim:0.149,cls:'sim-mid'},
   ]},
-  {q:"高净值女性 已购南极 想升级北极 热爱探险",results:[
-    {id:"cust_005",name:"小杨",tier:"C级",sim:0.182,cls:"sim-mid",warn:true},
-    {id:"cust_003",name:"张医生",tier:"B级",sim:-0.009,cls:"sim-low"},
-    {id:"cust_004",name:"陈总",tier:"S级",sim:-0.048,cls:"sim-low"},
+  {q:'高净值女性 已购南极 想升级北极 热爱探险',results:[
+    {id:'cust_004',name:'陈总',tier:'S级',sim:0.048,cls:'sim-mid'},
+    {id:'cust_003',name:'张医生',tier:'B级',sim:0.009,cls:'sim-low'},
+    {id:'cust_005',name:'小杨',tier:'C级',sim:-0.182,cls:'sim-low',warn:true},
   ]},
-  {q:"预算有限 穷游 学生 低价",results:[
-    {id:"cust_005",name:"小杨",tier:"C级",sim:0.670,cls:"sim-high",warn:true},
-    {id:"cust_004",name:"陈总",tier:"S级",sim:-0.005,cls:"sim-low",ok:true},
-    {id:"cust_002",name:"Linda",tier:"A级",sim:-0.021,cls:"sim-low",ok:true},
+  {q:'预算有限 穷游 学生 低价',results:[
+    {id:'cust_005',name:'小杨',tier:'C级',sim:0.670,cls:'sim-high',warn:true},
+    {id:'cust_004',name:'陈总',tier:'S级',sim:-0.005,cls:'sim-low',ok:true},
+    {id:'cust_002',name:'Linda',tier:'A级',sim:-0.021,cls:'sim-low',ok:true},
   ]},
 ];
 
-const scoreData = [
-  {a:"回答A (优秀)",score:62,grade:"B级 — 基本合格",emp:25,pro:25,val:12,adv:0,imps:["做价值重塑：把话题从价格转向体验","结尾要有行动引导：'我发您一个视频'/'我们约个电话'"]},
-  {a:"回答B (反面教材)",score:10,grade:"C级 — 需要刻意练习",emp:10,pro:0,val:0,adv:0,imps:["开头先共情","增加专业细节（30年/直升机）","做价值重塑","结尾要有行动引导"]},
+const wfDash=[
+  {icon:'🔬',name:'极地客户雷达',stat:'10条帖子→9条线索·成功率90%',ok:true},
+  {icon:'🎯',name:'培育引擎',stat:'3客户Engage·24条内容·15步触达',ok:true},
+  {icon:'💬',name:'AI销售教练',stat:'4/4异议匹配·4阶段跟单·AI评分',ok:true},
+  {icon:'🔮',name:'pgvector RAG',stat:'5客户1536维·3次语义查询',ok:true},
+  {icon:'🧠',name:'LLM Agent编排',stat:'4/4模块就绪·GPT-4o·8套Prompt',ok:true},
+  {icon:'📡',name:'竞品监控+行业雷达',stat:'8品牌追踪·10定时任务·企微通知',ok:true},
 ];
 
 // ═══════════════════════════════════════════════════
-// RENDER FUNCTIONS
+// ANIMATION STATE
 // ═══════════════════════════════════════════════════
+const ANIM_DUR=120000; let animStart=Date.now();
+
+function getProgress(){
+  const e=(Date.now()-animStart)%ANIM_DUR,t=e/ANIM_DUR;
+  if(t<0.25)return{phase:'p1',t:t/0.25,day:Math.round(25*t/0.25)};
+  if(t<0.50)return{phase:'p2',t:(t-0.25)/0.25,day:Math.round(25+25*(t-0.25)/0.25)};
+  if(t<0.75)return{phase:'p3',t:(t-0.5)/0.25,day:Math.round(50+25*(t-0.5)/0.25)};
+  return{phase:'p4',t:(t-0.75)/0.25,day:Math.round(75+25*(t-0.75)/0.25)};
+}
+function easeInOutCubic(t){return t<0.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;}
+
+function getKPIs(){
+  const p=getProgress();let pf;
+  if(p.phase==='p1')pf=easeInOutCubic(p.t)*0.1;
+  else if(p.phase==='p2')pf=0.1+easeInOutCubic(p.t)*0.3;
+  else if(p.phase==='p3')pf=0.4+easeInOutCubic(p.t)*0.4;
+  else pf=0.8+easeInOutCubic(p.t)*0.2;
+  return{totalLeads:Math.round(800*pf),signedPartners:Math.round(30*pf),highIntent:Math.round(180*pf),bookings:Math.round(200*pf),brandIndex:Math.round(100+500*pf),day:p.day,pf,phase:p.phase};
+}
+
+// ═══════════════════════════════════════════════════
+// RENDER
+// ═══════════════════════════════════════════════════
+function renderKPI(kpis){
+  const colors=['#00d4ff','#f59e0b','#ef4444','#10b981','#8b5cf6'];
+  document.getElementById('kpiRow').innerHTML=kpiDefs.map((d,i)=>`<div class="kpi-card count-up"><div class="kpi-label">${d.label}</div><div class="kpi-value" style="color:${colors[i]}">${d.base||''}${kpis[d.key]}${d.unit}</div><div class="kpi-sub">目标: ${d.base||''}${d.target}${d.unit}</div></div>`).join('');
+}
+
+function renderPhases(kpis){
+  document.getElementById('phaseBadge').textContent=`Day ${kpis.day}`;
+  const p=getProgress();
+  document.getElementById('phaseList').innerHTML=phases.map((ph,i)=>{
+    let icon='pending',clr='var(--text-dim)',bc='var(--border)',pct=0;
+    if((p.phase==='p1'&&i===0)||(p.phase!=='p1'&&i===0)){pct=100;icon='done';clr='var(--accent3)';bc='var(--accent3)'}
+    if(p.phase==='p2'&&i===1){pct=Math.round(p.t*100);icon='active';clr='var(--accent)';bc='var(--accent)'}
+    if(p.phase==='p3'&&i===2){pct=Math.round(p.t*100);icon='active';clr='var(--accent)';bc='var(--accent)'}
+    if(p.phase==='p4'&&i===3){pct=Math.round(p.t*100);icon='active';clr='var(--accent)';bc='var(--accent)'}
+    if(p.phase!=='p1'&&i===0)pct=100;
+    if((p.phase==='p3'||p.phase==='p4')&&i<=1)pct=100;if(p.phase==='p4'&&i<=2)pct=100;
+    if(i===0&&p.t>0.1)pct=100;
+    return`<div class="phase-item"><div class="phase-icon ${icon}" style="color:${icon==='pending'?'var(--text-dim)':(icon==='active'?'#0a0e17':'#fff')}">${icon==='done'?'✓':(icon==='active'?'▶':i+1)}</div><div class="phase-info"><div class="phase-name">${ph.name}</div><div class="phase-meta">${ph.range}·${ph.desc}</div></div><div class="phase-bar"><div class="phase-fill" style="width:${pct}%;background:${bc}"></div></div></div>`;
+  }).join('');
+}
+
+function renderHotLeadsB2B(){
+  const html=hotLeadsB2B.map(l=>{
+    const sc=l.score>=80?'hot':(l.score>=70?'warm':'');
+    return`<div class="lead-row"><div class="lead-score ${sc}">${l.score}</div><div class="lead-info"><div class="lead-company">${l.company}</div><div class="lead-contact">${l.contact}·${l.tier}</div></div><div class="lead-tag ${l.tag}">${l.tagT}</div></div>`;
+  }).join('');
+  ['hotLeadsB2B','hotLeadsB2B2'].forEach(id=>{const el=document.getElementById(id);if(el)el.innerHTML=html;});
+}
+
+function renderCompetitorAlerts(){
+  const html=competitorAlerts.map(a=>`<div class="alert-item alert-${a.urgency}"><strong>${a.urgency==='critical'?'🔴':a.urgency==='high'?'🟡':'🔵'} [${a.competitor}]</strong> ${a.event}<div style="color:var(--text-dim);font-size:10px;margin-top:2px">${a.time}·${a.detail}</div></div>`).join('');
+  ['competitorAlerts','competitorAlertsFull'].forEach(id=>{const el=document.getElementById(id);if(el)el.innerHTML=html;});
+}
+
+function renderTier1(){
+  document.getElementById('tier1Body').innerHTML=tier1Partners.map(p=>`<tr><td><span class="tier-badge tier-${p.priority.toLowerCase()}">${p.priority}</span></td><td><strong>${p.name}</strong></td><td>${p.type}</td><td>${p.certs}</td><td>${p.volume}</td><td>${p.status}</td><td style="color:var(--accent)">${p.next}</td><td style="color:var(--text-dim)">${p.contact}</td></tr>`).join('');
+}
 
 function renderLeadCards(){
-  const el=document.getElementById('leadCards');
-  const colors=['rank-1','rank-2','rank-3','','',''];
-  el.innerHTML=radarLeads.map((l,i)=>`<div class="lead-card">
-    <div class="lead-rank ${colors[i]||''}">${l.rank}</div>
-    <div class="lead-body">
-      <div class="lead-name">${l.name} <span class="lead-tag tag-score">${l.score}分</span> <span class="lead-tag tag-source">${l.source}</span></div>
-      <div class="lead-meta">年龄: ${l.age} | 职业: ${l.prof} | 预算: ${l.budget} | 等级: ${l.tier}</div>
-      <div style="font-size:12px;color:var(--text-dim);margin-top:4px;">💬 "${l.text}"</div>
-      <div style="font-size:11px;color:var(--purple);margin-top:3px;">🔍 信号: ${l.signals}</div>
-      <div class="lead-action">👉 ${l.action}</div>
-    </div>
-  </div>`).join('');
+  const colors=['','','','','',''];
+  document.getElementById('leadCards').innerHTML=radarLeads.map((l,i)=>`<div class="lead-row" style="padding:12px 0"><div class="lead-score warm" style="min-width:36px;text-align:center">${l.score}</div><div class="lead-info"><div class="lead-company">🥇${l.name} <span class="lead-tag tag-score">${l.score}分</span> <span class="lead-tag tag-source">${l.source}</span></div><div class="lead-contact">年龄:${l.age}|职业:${l.prof}|预算:${l.budget}|等级:${l.tier}</div><div style="font-size:11px;color:var(--text-dim);margin-top:2px">💬 "${l.text}"</div><div style="font-size:10px;color:var(--purple);margin-top:2px">🔍 ${l.signals}</div><div style="font-size:11px;color:var(--accent);margin-top:4px">👉 ${l.action}</div></div></div>`).join('');
 }
 
 function renderNurtureCards(){
-  const el=document.getElementById('nurtureCards');
-  el.innerHTML=nurtureData.map(n=>`<div class="panel">
-    <div class="panel-header"><span class="panel-title">${n.name} · ${n.score}分</span><span class="panel-badge badge-ok">${n.stage}</span></div>
-    <div class="wecom-tags">${n.tags.map(t=>`<span class="wecom-tag">#${t}</span>`).join('')}</div>
-    <div style="font-size:11px;font-weight:600;color:var(--text-dim);margin:8px 0 4px;">📚 推荐内容序列</div>
-    ${n.content.map(c=>`<div class="content-item"><span class="content-icon">${c.icon}</span><span>[${c.type}] ${c.title}</span></div>`).join('')}
-    <div style="font-size:11px;font-weight:600;color:var(--text-dim);margin:8px 0 4px;">📅 触达计划</div>
-    ${n.schedule.map(s=>`<div style="font-size:10px;color:var(--text-dim);padding:2px 0;">Day ${s.day} (${s.date}) · <span style="color:var(--accent)">${s.ch}</span> → ${s.action}</div>`).join('')}
-    <div style="font-size:11px;font-weight:600;color:var(--text-dim);margin:8px 0 4px;">💬 画像感知话术</div>
-    ${n.talkingPoints.map(t=>`<div style="font-size:11px;color:var(--text);padding:2px 0;">${t}</div>`).join('')}
-  </div>`).join('');
+  document.getElementById('nurtureCards').innerHTML=nurtureData.map(n=>`<div class="panel"><div class="panel-header"><span class="panel-title">${n.name}·${n.score}分</span><span class="panel-badge badge-ok">${n.stage}</span></div><div class="wecom-tags">${n.tags.map(t=>`<span class="wecom-tag ${t.includes('高意向')?'warm':''}">#${t}</span>`).join('')}</div><div style="font-size:11px;font-weight:600;color:var(--text-dim);margin:8px 0 4px">📚 推荐内容</div>${n.content.map(c=>`<div class="content-item"><span class="content-icon">${c.icon}</span>[${c.type}] ${c.title}</div>`).join('')}<div style="font-size:11px;font-weight:600;color:var(--text-dim);margin:8px 0 4px">📅 触达计划</div>${n.schedule.map(s=>`<div style="font-size:10px;color:var(--text-dim);padding:1px 0">Day${s.d}(${s.date})·<span style="color:var(--accent)">${s.ch}</span>→${s.act}</div>`).join('')}<div style="font-size:11px;font-weight:600;color:var(--text-dim);margin:8px 0 4px">💬 画像感知话术</div>${n.tpoints.map(t=>`<div style="font-size:11px;padding:2px 0">${t}</div>`).join('')}</div>`).join('');
 }
 
 function renderObjectionCards(){
-  document.getElementById('objectionCards').innerHTML=objectionData.map(o=>`<div class="objection-card">
-    <div class="objection-q">🗣 客户: "${o.q}" <span style="font-size:10px;color:var(--text-dim)">[${o.cat}] 匹配: ${o.type} (置信度 ${o.conf})</span></div>
-    <div class="objection-r">💡 ${o.resp}</div>
-  </div>`).join('');
+  document.getElementById('objectionCards').innerHTML=objectionData.map(o=>`<div class="obj-card"><div class="obj-q">🗣 "${o.q}" <span style="font-size:10px;color:var(--text-dim)">[${o.cat}] 匹配:${o.type}(置信度${o.conf})</span></div><div class="obj-r">💡 ${o.resp}</div></div>`).join('');
 }
 
 function renderFollowupCards(){
-  document.getElementById('followupCards').innerHTML=followupData.map(f=>`<div class="objection-card" style="border-left-color:var(--accent3)">
-    <div class="objection-q">📧 ${f.stage}</div>
-    <div class="objection-r">${f.msg}</div>
-  </div>`).join('');
+  document.getElementById('followupCards').innerHTML=followupData.map(f=>`<div class="obj-card" style="border-left-color:var(--accent3)"><div class="obj-q" style="color:var(--accent3)">📧 ${f.stage}</div><div class="obj-r">${f.msg}</div></div>`).join('');
 }
 
 function renderScoreCards(){
-  document.getElementById('scoreCards').innerHTML=scoreData.map(s=>`<div class="panel">
-    <div class="panel-header"><span class="panel-title">${s.a}</span><span class="panel-badge ${s.score>50?'badge-warn':'badge-hot'}">${s.score}/100 · ${s.grade}</span></div>
-    <div style="display:flex;gap:12px;margin:8px 0;font-size:11px;">
-      <span>共情: <b style="color:var(--accent)">${s.emp}/25</b></span>
-      <span>专业: <b style="color:var(--accent)">${s.pro}/25</b></span>
-      <span>价值: <b style="color:var(--accent2)">${s.val}/25</b></span>
-      <span>推进: <b style="color:var(--accent3)">${s.adv}/25</b></span>
-    </div>
-    ${s.imps.map(i=>`<div style="font-size:11px;color:var(--accent2);padding:2px 0;">${i}</div>`).join('')}
-  </div>`).join('');
+  document.getElementById('scoreCards').innerHTML=scoreData.map(s=>`<div class="panel"><div class="panel-header"><span>${s.a}</span><span class="panel-badge ${s.score>50?'badge-warn':'badge-hot'}">${s.score}/100·${s.grade}</span></div><div style="display:flex;gap:12px;margin:8px 0;font-size:11px"><span>共情:<b style="color:var(--accent)">${s.emp}/25</b></span><span>专业:<b style="color:var(--accent)">${s.pro}/25</b></span><span>价值:<b style="color:var(--accent2)">${s.val}/25</b></span><span>推进:<b style="color:var(--accent3)">${s.adv}/25</b></span></div>${s.imps.map(i=>`<div style="font-size:11px;color:var(--accent2);padding:1px 0">${i}</div>`).join('')}</div>`).join('');
 }
 
 function renderRagQueries(){
-  document.getElementById('ragQueries').innerHTML=ragQueriesData.map(rq=>`<div style="margin-bottom:14px;">
-    <div class="rag-query">🔍 "${rq.q}"</div>
-    ${rq.results.map(r=>`<div class="rag-result">
-      <span class="rag-sim ${r.cls}">${r.sim>0?'+':''}${r.sim.toFixed(3)}</span>
-      <span>${r.name} (${r.tier})</span>
-      ${r.warn?'<span style="color:var(--red);font-size:10px;">⚠️ 低价值</span>':''}
-      ${r.ok?'<span style="color:var(--accent3);font-size:10px;">✅ 高价值自动排后</span>':''}
-    </div>`).join('')}
-  </div>`).join('');
+  document.getElementById('ragQueries').innerHTML=ragQueriesData.map(rq=>`<div style="margin-bottom:14px"><div class="rag-query">🔍 "${rq.q}"</div>${rq.results.map(r=>`<div class="rag-result"><span class="rag-sim ${r.cls}">${r.sim>0?'+':''}${r.sim.toFixed(3)}</span><span>${r.name}(${r.tier})</span>${r.warn?'<span style="color:var(--red);font-size:10px">⚠️低价值</span>':''}${r.ok?'<span style="color:var(--accent3);font-size:10px">✅高价值排后</span>':''}</div>`).join('')}</div>`).join('');
 }
 
 function renderWfGrid(){
-  const wfs=[
-    {icon:"🔬",name:"极地客户雷达",stat:"10条帖子 · 9条可操作 · 成功率90%",ok:true},
-    {icon:"🎯",name:"培育引擎",stat:"3位客户进入Engage · 24条内容推荐 · 15步触达计划",ok:true},
-    {icon:"💬",name:"AI销售教练",stat:"4/4异议匹配 · 4阶段跟单 · AI评分模型",ok:true},
-    {icon:"🔮",name:"pgvector RAG",stat:"5客户1536维向量 · 3次语义查询 · 相似度搜索",ok:true},
-    {icon:"🧠",name:"LLM Agent编排",stat:"4/4模块就绪 · GPT-4o · 8套Prompt",ok:true},
-    {icon:"📡",name:"竞品监控+行业雷达",stat:"8品牌追踪 · 10定时任务 · 企业微信通知",ok:true},
-  ];
-  document.getElementById('wfGrid').innerHTML=wfs.map(w=>`<div class="wf-card">
-    <div class="wf-icon">${w.icon}</div>
-    <div class="wf-name">${w.name}</div>
-    <div class="wf-stat">${w.ok?'<span class="ok">●</span> ':''}${w.stat}</div>
-  </div>`).join('');
+  ['wfGridDash'].forEach(id=>{const el=document.getElementById(id);if(el)el.innerHTML=wfDash.map(w=>`<div class="wf-card"><div class="wf-icon">${w.icon}</div><div class="wf-name">${w.name}</div><div class="wf-stat">${w.ok?'<span class="ok">●</span> ':''}${w.stat}</div></div>`).join('');});
 }
 
 // ═══════════════════════════════════════════════════
 // CHARTS
 // ═══════════════════════════════════════════════════
-let radarScoreInst, scorePieInst, nurtureFunnelInst, ragHeatmapInst, marketTrendInst, kpiTrendInst, brandRadarInst, timelineInst;
+let charts={};
+
+function initMarketChart(){
+  const c=echarts.init(document.getElementById('marketChart'));
+  const S=['16-17','17-18','18-19','19-20','20-21','21-22','22-23','23-24','24-25','25-26E','26-27E'];
+  const CN=[3944,5100,6800,2400,0,800,4200,9384,11705,14500,17500];
+  const GL=[44000,51700,56000,18000,0,23500,71000,123000,117203,125000,135000];
+  c.setOption({tooltip:{trigger:'axis',backgroundColor:'#1a2332',borderColor:'#1e293b',textStyle:{color:'#e2e8f0'}},legend:{data:['中国游客','全球游客(右轴)'],textStyle:{color:'#94a3b8',fontSize:10},top:0},grid:{left:50,right:60,top:40,bottom:30},xAxis:{type:'category',data:S,axisLabel:{color:'#94a3b8',fontSize:9},axisLine:{lineStyle:{color:'#1e293b'}}},yAxis:[{type:'value',axisLabel:{color:'#94a3b8',formatter:v=>(v/1000).toFixed(1)+'k'},splitLine:{lineStyle:{color:'#1e293b',type:'dashed'}}},{type:'value',axisLabel:{color:'#94a3b8',formatter:v=>(v/1000).toFixed(0)+'k'},splitLine:{show:false}}],series:[{name:'中国游客',type:'bar',data:CN,itemStyle:{borderRadius:[4,4,0,0],color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'#00d4ff'},{offset:1,color:'#0891b2'}])},markLine:{silent:true,symbol:'none',lineStyle:{color:'#f59e0b',type:'dashed',width:1.5},label:{color:'#f59e0b',fontSize:10,formatter:'破万\n{b}'},data:[{yAxis:10000}]}},{name:'全球游客(右轴)',type:'line',yAxisIndex:1,data:GL,lineStyle:{color:'#8b5cf6',width:1.5},itemStyle:{color:'#8b5cf6'},symbol:'circle',symbolSize:4}]});
+  charts.market=c;
+}
+
+function initFunnel(id,kpis){
+  const c=echarts.init(document.getElementById(id));
+  const d=Math.round((kpis?.totalLeads||0)*1.0),e=Math.round(d*0.4),n=Math.round(d*0.18),s=Math.round(kpis?.signedPartners||0),a=Math.round(s*0.7);
+  c.setOption({tooltip:{trigger:'item',backgroundColor:'#1a2332',borderColor:'#1e293b',textStyle:{color:'#e2e8f0'}},series:[{type:'funnel',left:'10%',right:'10%',top:20,bottom:20,minSize:'20%',maxSize:'100%',gap:4,label:{show:true,position:'inside',formatter:'{b}\n{c}条',fontSize:11,color:'#e2e8f0'},data:[{value:d,name:'发现',itemStyle:{color:'#8b5cf6'}},{value:e,name:'评估中',itemStyle:{color:'#6366f1'}},{value:n,name:'洽谈中',itemStyle:{color:'#3b82f6'}},{value:s,name:'签约',itemStyle:{color:'#10b981'}},{value:a,name:'活跃伙伴',itemStyle:{color:'#00d4ff'}}]}]});
+  if(id==='funnelChart')charts.funnel=c;else charts.funnel2=c;
+}
+
+function initBrandRadar(id){
+  const c=echarts.init(document.getElementById(id));
+  c.setOption({tooltip:{backgroundColor:'#1a2332',borderColor:'#1e293b',textStyle:{color:'#e2e8f0'}},legend:{textStyle:{color:'#94a3b8',fontSize:10},top:0},radar:{center:['50%','55%'],radius:'65%',indicator:[{name:'微信指数',max:100},{name:'小程序搜索',max:100},{name:'OTA上架',max:100},{name:'中文内容',max:100},{name:'渠道覆盖',max:100},{name:'KOL提及',max:100}],axisName:{color:'#94a3b8',fontSize:9}},series:[{type:'radar',data:[{name:'庞洛',value:[95,90,92,88,95,85],lineStyle:{color:'#ef4444',width:2},areaStyle:{color:'rgba(239,68,68,.1)'},itemStyle:{color:'#ef4444'}},{name:'银海',value:[70,55,60,45,65,50],lineStyle:{color:'#f59e0b',width:2},areaStyle:{color:'rgba(245,158,11,.08)'},itemStyle:{color:'#f59e0b'}},{name:'Quark',value:[30,20,25,35,20,25],lineStyle:{color:'#00d4ff',width:2.5},areaStyle:{color:'rgba(0,212,255,.12)'},itemStyle:{color:'#00d4ff'}},{name:'66度',value:[30,25,20,40,25,30],lineStyle:{color:'#10b981',width:2},areaStyle:{color:'rgba(16,185,129,.08)'},itemStyle:{color:'#10b981'}}]}]});
+  if(id==='brandRadarChart')charts.brandRadar=c;else charts.brandRadar2=c;
+}
+
+function initBookingChart(kpis){
+  const c=echarts.init(document.getElementById('bookingChart'));
+  const dd=[0,15,30,45,60,75,90,100];
+  const pf=kpis?.pf||0;
+  const bp=[0,.02,.08,.18,.30,.45,.65,Math.min(1,pf)];
+  const bv=bp.map(p=>Math.round(200*p));
+  const ch=bp.map(p=>p>.08?Math.round(3*p):0);
+  c.setOption({tooltip:{trigger:'axis',backgroundColor:'#1a2332',borderColor:'#1e293b',textStyle:{color:'#e2e8f0'}},legend:{data:['预订量','包船航次(右轴)'],textStyle:{color:'#94a3b8',fontSize:10},top:0},grid:{left:45,right:50,top:40,bottom:25},xAxis:{type:'category',data:['D0','D15','D30','D45','D60','D75','D90','D100'],axisLabel:{color:'#94a3b8',fontSize:10},axisLine:{lineStyle:{color:'#1e293b'}}},yAxis:[{type:'value',axisLabel:{color:'#94a3b8'},splitLine:{lineStyle:{color:'#1e293b',type:'dashed'}}},{type:'value',max:4,axisLabel:{color:'#94a3b8'},splitLine:{show:false}}],series:[{name:'预订量',type:'bar',data:bv,itemStyle:{borderRadius:[4,4,0,0],color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'#10b981'},{offset:1,color:'#065f46'}])}},{name:'包船航次(右轴)',type:'line',yAxisIndex:1,data:ch,lineStyle:{color:'#f59e0b',width:2.5},itemStyle:{color:'#f59e0b'},symbol:'diamond',symbolSize:8}]});
+  charts.booking=c;
+}
+
+function initKpiTrendChart(){
+  const c=echarts.init(document.getElementById('kpiTrendChart'));
+  const days=Array.from({length:21},(_,i)=>`D${i*5}`);
+  const L=days.map((_,i)=>{const t=i/20;if(t<.25)return Math.round(800*t*.4);if(t<.5)return Math.round(800*(.1+(t-.25)*2*.3));if(t<.75)return Math.round(800*(.4+(t-.5)*2*.4));return Math.round(800*(.8+(t-.75)*2*.2))});
+  const H=days.map((_,i)=>Math.round(i/20*180));
+  const S=days.map((_,i)=>Math.round(i/20*30));
+  c.setOption({tooltip:{trigger:'axis',backgroundColor:'#1a2332',borderColor:'#1e293b',textStyle:{color:'#e2e8f0'}},legend:{data:['累计线索','高意向线索','签约伙伴'],textStyle:{color:'#94a3b8',fontSize:10},top:0},grid:{left:45,right:20,top:40,bottom:25},xAxis:{type:'category',data:days,axisLabel:{color:'#94a3b8',fontSize:9},axisLine:{lineStyle:{color:'#1e293b'}}},yAxis:{type:'value',axisLabel:{color:'#94a3b8'},splitLine:{lineStyle:{color:'#1e293b',type:'dashed'}}},series:[{name:'累计线索',type:'line',data:L,smooth:true,lineStyle:{color:'#00d4ff',width:2},symbol:'none',areaStyle:{color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'rgba(0,212,255,.2)'},{offset:1,color:'rgba(0,212,255,0)'}])}},{name:'高意向线索',type:'line',data:H,smooth:true,lineStyle:{color:'#f59e0b',width:2,type:'dashed'},symbol:'none'},{name:'签约伙伴',type:'line',data:S,smooth:true,lineStyle:{color:'#10b981',width:2},symbol:'circle',symbolSize:4}]});
+  charts.kpiTrend=c;
+}
 
 function initRadarScoreChart(){
   const c=echarts.init(document.getElementById('radarScoreChart'));
-  c.setOption({
-    tooltip:{trigger:'axis',backgroundColor:'#1a2332',borderColor:'#1e293b',textStyle:{color:'#e2e8f0'}},
-    grid:{left:100,right:30,top:20,bottom:40},
-    xAxis:{type:'value',max:100,axisLabel:{color:'#94a3b8'},splitLine:{lineStyle:{color:'#1e293b',type:'dashed'}}},
-    yAxis:{type:'category',data:radarLeads.map(l=>`${l.rank}. ${l.name}`).reverse(),axisLabel:{color:'#e2e8f0',fontSize:11},axisLine:{lineStyle:{color:'#1e293b'}}},
-    series:[{
-      type:'bar',data:radarLeads.map(l=>l.score).reverse(),
-      label:{show:true,position:'right',formatter:'{c}分',color:'#e2e8f0',fontSize:12,fontWeight:'bold'},
-      itemStyle:{borderRadius:[0,6,6,0],color:new echarts.graphic.LinearGradient(0,0,1,0,[{offset:0,color:'#00d4ff'},{offset:1,color:'#f59e0b'}])}
-    }]
-  });
-  radarScoreInst=c;
+  c.setOption({tooltip:{trigger:'axis',backgroundColor:'#1a2332',borderColor:'#1e293b',textStyle:{color:'#e2e8f0'}},grid:{left:100,right:30,top:20,bottom:40},xAxis:{type:'value',max:100,axisLabel:{color:'#94a3b8'},splitLine:{lineStyle:{color:'#1e293b',type:'dashed'}}},yAxis:{type:'category',data:radarLeads.map(l=>`${l.rank}. ${l.name}`).reverse(),axisLabel:{color:'#e2e8f0',fontSize:10},axisLine:{lineStyle:{color:'#1e293b'}}},series:[{type:'bar',data:radarLeads.map(l=>l.score).reverse(),label:{show:true,position:'right',formatter:'{c}分',color:'#e2e8f0',fontSize:12,fontWeight:'bold'},itemStyle:{borderRadius:[0,6,6,0],color:new echarts.graphic.LinearGradient(0,0,1,0,[{offset:0,color:'#00d4ff'},{offset:1,color:'#f59e0b'}])}}]});
+  charts.radarScore=c;
 }
 
 function initScorePieChart(){
   const c=echarts.init(document.getElementById('scorePieChart'));
-  c.setOption({
-    tooltip:{trigger:'item',backgroundColor:'#1a2332',borderColor:'#1e293b',textStyle:{color:'#e2e8f0'}},
-    series:[{
-      type:'pie',radius:['55%','80%'],center:['50%','50%'],
-      label:{color:'#e2e8f0',fontSize:11,formatter:'{b}\n{d}%'},
-      data:[
-        {value:6,name:'Warm (40-69)',itemStyle:{color:'#f59e0b'}},
-        {value:3,name:'Nurture (20-39)',itemStyle:{color:'#00d4ff'}},
-        {value:1,name:'Cold (<20)',itemStyle:{color:'#94a3b8'}},
-      ]
-    }]
-  });
-  scorePieInst=c;
+  c.setOption({tooltip:{trigger:'item',backgroundColor:'#1a2332',borderColor:'#1e293b',textStyle:{color:'#e2e8f0'}},series:[{type:'pie',radius:['55%','80%'],label:{color:'#e2e8f0',fontSize:11,formatter:'{b}\n{d}%'},data:[{value:6,name:'Warm 40-69',itemStyle:{color:'#f59e0b'}},{value:3,name:'Nurture 20-39',itemStyle:{color:'#00d4ff'}},{value:1,name:'Cold <20',itemStyle:{color:'#94a3b8'}}]}]});
+  charts.scorePie=c;
 }
 
 function initNurtureFunnelChart(){
   const c=echarts.init(document.getElementById('nurtureFunnelChart'));
-  c.setOption({
-    tooltip:{trigger:'item',backgroundColor:'#1a2332',borderColor:'#1e293b',textStyle:{color:'#e2e8f0'}},
-    series:[{
-      type:'funnel',left:'15%',right:'15%',top:20,bottom:20,minSize:'15%',maxSize:'100%',gap:4,
-      label:{show:true,position:'inside',formatter:'{b}\n{c}人',fontSize:12,color:'#e2e8f0'},
-      data:[
-        {value:10,name:'Discovery 发现',itemStyle:{color:'#8b5cf6'}},
-        {value:9,name:'Educate 教育',itemStyle:{color:'#6366f1'}},
-        {value:6,name:'Engage 社群',itemStyle:{color:'#3b82f6'}},
-        {value:0,name:'Convert 转化',itemStyle:{color:'#10b981'}},
-        {value:0,name:'Loyal 忠诚',itemStyle:{color:'#00d4ff'}},
-      ]
-    }]
-  });
-  nurtureFunnelInst=c;
+  c.setOption({tooltip:{trigger:'item',backgroundColor:'#1a2332',borderColor:'#1e293b',textStyle:{color:'#e2e8f0'}},series:[{type:'funnel',left:'15%',right:'15%',minSize:'15%',maxSize:'100%',gap:4,label:{show:true,position:'inside',formatter:'{b}\n{c}人',fontSize:12,color:'#e2e8f0'},data:[{value:10,name:'Discovery 发现',itemStyle:{color:'#8b5cf6'}},{value:9,name:'Educate 教育',itemStyle:{color:'#6366f1'}},{value:6,name:'Engage 社群',itemStyle:{color:'#3b82f6'}},{value:0,name:'Convert 转化',itemStyle:{color:'#10b981'}},{value:0,name:'Loyal 忠诚',itemStyle:{color:'#00d4ff'}}]}]});
+  charts.nurtureFunnel=c;
 }
 
 function initRagHeatmap(){
   const c=echarts.init(document.getElementById('ragHeatmap'));
   const queries=['企业主·直升机·探险','高净值女性·北极升级','穷游·学生·低价'];
   const customers=['王总(A)','Linda(A)','张医生(B)','陈总(S)','小杨(C)'];
-  const data=[[0,0,0.182],[0,1,0.244],[0,2,0.149],[0,3,-0.03],[0,4,0.01],
-              [1,0,0.02],[1,1,-0.01],[1,2,-0.009],[1,3,-0.048],[1,4,0.182],
-              [2,0,-0.01],[2,1,-0.021],[2,2,0.03],[2,3,-0.005],[2,4,0.670]];
-  c.setOption({
-    tooltip:{backgroundColor:'#1a2332',borderColor:'#1e293b',textStyle:{color:'#e2e8f0'},formatter:p=>`相似度: ${p.data[2].toFixed(3)}`},
-    grid:{left:120,right:40,top:20,bottom:40},
-    xAxis:{type:'category',data:customers,axisLabel:{color:'#e2e8f0',fontSize:10},axisLine:{lineStyle:{color:'#1e293b'}}},
-    yAxis:{type:'category',data:queries,axisLabel:{color:'#e2e8f0',fontSize:10},axisLine:{lineStyle:{color:'#1e293b'}}},
-    visualMap:{min:-0.1,max:0.7,calculable:true,orient:'vertical',right:0,top:'center',inRange:{color:['#1e293b','#00d4ff','#f59e0b','#ef4444']},textStyle:{color:'#94a3b8'}},
-    series:[{type:'heatmap',data:data.map(d=>[d[1],d[0],d[2]]),label:{show:true,formatter:p=>p.data[2].toFixed(2),fontSize:12,fontWeight:'bold'},emphasis:{itemStyle:{shadowBlur:10,shadowColor:'rgba(0,0,0,0.5)'}}}]
-  });
-  ragHeatmapInst=c;
-}
-
-function initMarketTrendChart(){
-  const c=echarts.init(document.getElementById('marketTrendChart'));
-  const seasons=['16-17','17-18','18-19','19-20','20-21','21-22','22-23','23-24','24-25','25-26E','26-27E'];
-  const china=[3944,5100,6800,2400,0,800,4200,9384,11705,14500,17500];
-  const global=[44000,51700,56000,18000,0,23500,71000,123000,117203,125000,135000];
-  c.setOption({
-    tooltip:{trigger:'axis',backgroundColor:'#1a2332',borderColor:'#1e293b',textStyle:{color:'#e2e8f0'}},
-    legend:{data:['中国游客','全球游客(右轴)'],textStyle:{color:'#94a3b8',fontSize:11},top:0},
-    grid:{left:50,right:60,top:40,bottom:30},
-    xAxis:{type:'category',data:seasons,axisLabel:{color:'#94a3b8',fontSize:9},axisLine:{lineStyle:{color:'#1e293b'}}},
-    yAxis:[
-      {type:'value',name:'中国游客',axisLabel:{color:'#94a3b8',formatter:v=>(v/1000).toFixed(1)+'k'},splitLine:{lineStyle:{color:'#1e293b',type:'dashed'}}},
-      {type:'value',name:'全球',axisLabel:{color:'#94a3b8',formatter:v=>(v/1000).toFixed(0)+'k'},splitLine:{show:false}}
-    ],
-    series:[
-      {name:'中国游客',type:'bar',data:china,itemStyle:{borderRadius:[4,4,0,0],color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'#00d4ff'},{offset:1,color:'#0891b2'}])},
-       markLine:{silent:true,symbol:'none',lineStyle:{color:'#f59e0b',type:'dashed',width:1.5},label:{color:'#f59e0b',fontSize:10,formatter:'破万\n{b}'},data:[{yAxis:10000}]}},
-      {name:'全球游客(右轴)',type:'line',yAxisIndex:1,data:global,lineStyle:{color:'#8b5cf6',width:1.5},itemStyle:{color:'#8b5cf6'},symbol:'circle',symbolSize:4}
-    ]
-  });
-  marketTrendInst=c;
-}
-
-function initKpiTrendChart(){
-  const c=echarts.init(document.getElementById('kpiTrendChart'));
-  const days=Array.from({length:21},(_,i)=>`D${i*5}`);
-  const leads=days.map((_,i)=>{const t=i/20;if(t<0.25)return Math.round(800*t*0.4);if(t<0.5)return Math.round(800*(0.1+(t-0.25)*2*0.3));if(t<0.75)return Math.round(800*(0.4+(t-0.5)*2*0.4));return Math.round(800*(0.8+(t-0.75)*2*0.2));});
-  const hot=days.map((_,i)=>Math.round(i/20*180));
-  const signed=days.map((_,i)=>Math.round(i/20*30));
-  c.setOption({
-    tooltip:{trigger:'axis',backgroundColor:'#1a2332',borderColor:'#1e293b',textStyle:{color:'#e2e8f0'}},
-    legend:{data:['累计线索','高意向线索','签约伙伴'],textStyle:{color:'#94a3b8',fontSize:11},top:0},
-    grid:{left:45,right:20,top:40,bottom:25},
-    xAxis:{type:'category',data:days,axisLabel:{color:'#94a3b8',fontSize:9},axisLine:{lineStyle:{color:'#1e293b'}}},
-    yAxis:{type:'value',axisLabel:{color:'#94a3b8'},splitLine:{lineStyle:{color:'#1e293b',type:'dashed'}}},
-    series:[
-      {name:'累计线索',type:'line',data:leads,smooth:true,lineStyle:{color:'#00d4ff',width:2},symbol:'none',areaStyle:{color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'rgba(0,212,255,0.2)'},{offset:1,color:'rgba(0,212,255,0)'}])}},
-      {name:'高意向线索',type:'line',data:hot,smooth:true,lineStyle:{color:'#f59e0b',width:2,type:'dashed'},symbol:'none'},
-      {name:'签约伙伴',type:'line',data:signed,smooth:true,lineStyle:{color:'#10b981',width:2},symbol:'circle',symbolSize:4},
-    ]
-  });
-  kpiTrendInst=c;
-}
-
-function initBrandRadarChart(){
-  const c=echarts.init(document.getElementById('brandRadarChart'));
-  c.setOption({
-    tooltip:{backgroundColor:'#1a2332',borderColor:'#1e293b',textStyle:{color:'#e2e8f0'}},
-    legend:{textStyle:{color:'#94a3b8',fontSize:10},top:0},
-    radar:{center:['50%','55%'],radius:'65%',indicator:[{name:'微信指数',max:100},{name:'小程序搜索',max:100},{name:'OTA上架',max:100},{name:'中文内容',max:100},{name:'渠道覆盖',max:100},{name:'KOL提及',max:100}],axisName:{color:'#94a3b8',fontSize:9}},
-    series:[{
-      type:'radar',data:[
-        {name:'庞洛',value:[95,90,92,88,95,85],lineStyle:{color:'#ef4444',width:2},areaStyle:{color:'rgba(239,68,68,0.1)'},itemStyle:{color:'#ef4444'}},
-        {name:'银海',value:[70,55,60,45,65,50],lineStyle:{color:'#f59e0b',width:2},areaStyle:{color:'rgba(245,158,11,0.08)'},itemStyle:{color:'#f59e0b'}},
-        {name:'Quark',value:[30,20,25,35,20,25],lineStyle:{color:'#00d4ff',width:2.5},areaStyle:{color:'rgba(0,212,255,0.12)'},itemStyle:{color:'#00d4ff'}},
-        {name:'66度',value:[30,25,20,40,25,30],lineStyle:{color:'#10b981',width:2},areaStyle:{color:'rgba(16,185,129,0.08)'},itemStyle:{color:'#10b981'}},
-      ]
-    }]
-  });
-  brandRadarInst=c;
-}
-
-function initTimelineChart(){
-  const c=echarts.init(document.getElementById('timelineChart'));
-  c.setOption({
-    tooltip:{trigger:'axis',backgroundColor:'#1a2332',borderColor:'#1e293b',textStyle:{color:'#e2e8f0'}},
-    grid:{left:100,right:30,top:20,bottom:30},
-    xAxis:{type:'value',axisLabel:{color:'#94a3b8',formatter:v=>v+'ms'},splitLine:{lineStyle:{color:'#1e293b',type:'dashed'}}},
-    yAxis:{type:'category',data:['RAG检索','销售教练','培育引擎','客户雷达','Agent编排'],axisLabel:{color:'#e2e8f0',fontSize:11},axisLine:{lineStyle:{color:'#1e293b'}}},
-    series:[{
-      type:'bar',data:[45,120,85,150,60],
-      label:{show:true,position:'right',formatter:'{c}ms',color:'#e2e8f0',fontSize:12},
-      itemStyle:{borderRadius:[0,6,6,0],color:new echarts.graphic.LinearGradient(0,0,1,0,[{offset:0,color:'#10b981'},{offset:1,color:'#00d4ff'}])}
-    }]
-  });
-  timelineInst=c;
+  const d=[[0,0,.182],[0,1,.244],[0,2,.149],[0,3,-.03],[0,4,.01],[1,0,.02],[1,1,-.01],[1,2,-.009],[1,3,-.048],[1,4,.182],[2,0,-.01],[2,1,-.021],[2,2,.03],[2,3,-.005],[2,4,.670]];
+  c.setOption({tooltip:{backgroundColor:'#1a2332',borderColor:'#1e293b',textStyle:{color:'#e2e8f0'},formatter:p=>`相似度: ${p.data[2].toFixed(3)}`},grid:{left:120,right:40,top:20,bottom:40},xAxis:{type:'category',data:customers,axisLabel:{color:'#e2e8f0',fontSize:10},axisLine:{lineStyle:{color:'#1e293b'}}},yAxis:{type:'category',data:queries,axisLabel:{color:'#e2e8f0',fontSize:10},axisLine:{lineStyle:{color:'#1e293b'}}},visualMap:{min:-.1,max:.7,calculable:true,orient:'vertical',right:0,top:'center',inRange:{color:['#1e293b','#00d4ff','#f59e0b','#ef4444']},textStyle:{color:'#94a3b8'}},series:[{type:'heatmap',data:d.map(r=>[r[1],r[0],r[2]]),label:{show:true,formatter:p=>p.data[2].toFixed(2),fontSize:12,fontWeight:'bold'},emphasis:{itemStyle:{shadowBlur:10,shadowColor:'rgba(0,0,0,.5)'}}}]});
+  charts.ragHeatmap=c;
 }
 
 // ═══════════════════════════════════════════════════
-// TAB SWITCHING
+// UPDATE LOOP
 // ═══════════════════════════════════════════════════
-function switchTab(name){
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-  document.querySelectorAll('.tab-content').forEach(t=>t.style.display='none');
-  document.querySelector(`.tab[onclick*="${name}"]`).classList.add('active');
-  const el=document.getElementById(`tab-${name}`);
-  if(el)el.style.display='block';
-  setTimeout(resizeAll,200);
+let currentTab='dashboard';
+
+function updateCharts(kpis){
+  if(charts.funnel)initFunnel('funnelChart',kpis);
+  if(charts.funnel2)initFunnel('funnelChart2',kpis);
+  if(charts.booking){
+    const pf=kpis.pf;
+    const bp=[0,.02,.08,.18,.30,.45,.65,Math.min(1,pf)];
+    charts.booking.setOption({series:[{data:bp.map(p=>Math.round(200*p))},{data:bp.map(p=>p>.08?Math.round(3*p):0)}]});
+  }
 }
 
-function resizeAll(){
-  [radarScoreInst,scorePieInst,nurtureFunnelInst,ragHeatmapInst,marketTrendInst,kpiTrendInst,brandRadarInst,timelineInst].forEach(i=>i?.resize());
+function tick(){
+  updateClock();
+  const kpis=getKPIs();
+  if(currentTab==='dashboard'){
+    renderKPI(kpis);
+    renderPhases(kpis);
+    updateCharts(kpis);
+  }
 }
 
 function updateClock(){
@@ -693,31 +696,54 @@ function updateClock(){
 }
 
 // ═══════════════════════════════════════════════════
+// TAB SWITCH
+// ═══════════════════════════════════════════════════
+function switchTab(name){
+  currentTab=name;
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelector(`.nav-btn[onclick*="${name}"]`).classList.add('active');
+  document.querySelectorAll('.tab-content').forEach(t=>t.style.display='none');
+  const el=document.getElementById(`tab-${name}`);
+  if(el)el.style.display='block';
+  if(name==='dashboard'){tick();}
+  setTimeout(()=>Object.values(charts).forEach(c=>c?.resize?.()),300);
+}
+
+// ═══════════════════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════════════════
 window.addEventListener('load',()=>{
-  updateClock();
-  setInterval(updateClock,1000);
+  updateClock();setInterval(updateClock,1000);
 
-  renderLeadCards();
-  renderNurtureCards();
-  renderObjectionCards();
-  renderFollowupCards();
-  renderScoreCards();
-  renderRagQueries();
-  renderWfGrid();
+  // All static renders
+  renderHotLeadsB2B();renderCompetitorAlerts();renderTier1();
+  renderLeadCards();renderNurtureCards();
+  renderObjectionCards();renderFollowupCards();renderScoreCards();
+  renderRagQueries();renderWfGrid();
 
-  initRadarScoreChart();
-  initScorePieChart();
-  initNurtureFunnelChart();
-  initRagHeatmap();
-  initMarketTrendChart();
-  initKpiTrendChart();
-  initBrandRadarChart();
-  initTimelineChart();
+  // All charts
+  initMarketChart();
+  const kpis=getKPIs();
+  initFunnel('funnelChart',kpis);initFunnel('funnelChart2',kpis);
+  initBrandRadar('brandRadarChart');initBrandRadar('brandRadar2');
+  initBookingChart(kpis);initKpiTrendChart();
+  initRadarScoreChart();initScorePieChart();
+  initNurtureFunnelChart();initRagHeatmap();
 
-  switchTab('radar');
-  window.addEventListener('resize',resizeAll);
+  // Start dashboard
+  switchTab('dashboard');
+  setInterval(tick,30000);
+  window.addEventListener('resize',()=>Object.values(charts).forEach(c=>c?.resize?.()));
+
+  // Industry signals render (tab-competitor)
+  const sigEl=document.getElementById('industrySignals');
+  if(sigEl)sigEl.innerHTML=[
+    {title:'《南极活动与环境保护法(草案)》首审',impact:'positive',summary:'2025.12 全国人大常委会首审——南极旅游纳入行政许可，推动行业正规化'},
+    {title:'中国南极游客首次突破万人',impact:'positive',summary:'IAATO 2024-25季数据：中国11705人次，全球第二，+25% YoY'},
+    {title:'庞洛中国市场预订率超95%',impact:'neutral',summary:'供不应求信号——中国市场需求远超供给，Quark有巨大增长空间'},
+    {title:'极地旅游价格下行趋势',impact:'negative',summary:'尾单¥2-3万可能破坏品牌价格认知——需要差异化定位而非价格战'},
+    {title:'格陵兰中国游客翻倍增长',impact:'positive',summary:'北极新增长极——Quark格陵兰航线优势突出'},
+  ].map(s=>`<div class="obj-card" style="border-left-color:${s.impact==='positive'?'var(--accent3)':s.impact==='negative'?'var(--red)':'var(--accent)'}"><div class="obj-q" style="color:${s.impact==='positive'?'var(--accent3)':s.impact==='negative'?'var(--red)':'var(--accent)'}">${s.impact==='positive'?'🟢':s.impact==='negative'?'🔴':'🔵'} ${s.title}</div><div class="obj-r">${s.summary}</div></div>`).join('');
 });
 </script>
 </body>
