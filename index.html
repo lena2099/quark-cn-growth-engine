@@ -4,23 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Polar Growth OS — Quark Expeditions 中国市场增长引擎</title>
-<script>
-// ECharts: try multiple CDNs
-(function(){
-  var s=document.createElement('script');
-  s.src='https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js';
-  s.onerror=function(){
-    var s2=document.createElement('script');
-    s2.src='https://unpkg.com/echarts@5.5.0/dist/echarts.min.js';
-    s2.onerror=function(){
-      console.warn('All ECharts CDNs failed. Charts will not render.');
-      window.echarts=null;
-    };
-    document.head.appendChild(s2);
-  };
-  document.head.appendChild(s);
-})();
-</script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
 <style>
 :root{--bg:#0a0e17;--card:#111827;--card-hover:#1a2332;--border:#1e293b;--text:#e2e8f0;--text-dim:#94a3b8;--accent:#00d4ff;--accent2:#f59e0b;--accent3:#10b981;--red:#ef4444;--orange:#f97316;--purple:#8b5cf6;--radius:12px;--shadow:0 4px 24px rgba(0,0,0,.3)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -739,26 +723,13 @@ function switchTab(name){
 }
 
 // ═══════════════════════════════════════════════════
-// INIT — wait for echarts to be available
+// INIT
 // ═══════════════════════════════════════════════════
-function boot(){
-  // Poll until echarts is ready or 10s timeout
-  var attempts=0;
-  function tryInit(){
-    attempts++;
-    if(typeof echarts!=='undefined'&&echarts.init){
-      doInit();
-    }else if(attempts<50){
-      setTimeout(tryInit,200);
-    }else{
-      // Fallback: show text-only content
-      document.getElementById('loadingOverlay').innerHTML='<div style="font-size:48px">⚠️</div><div style="color:var(--accent2);font-size:16px">图表库加载失败</div><div style="color:var(--text-dim);font-size:12px">请检查网络连接后刷新</div>';
-    }
-  }
-  tryInit();
-}
+window.addEventListener('load',function(){
 
-function doInit(){
+  // Remove loading overlay
+  var o=document.getElementById('loadingOverlay');if(o)o.remove();
+
   updateClock();setInterval(updateClock,1000);
 
   // All static renders
@@ -785,19 +756,21 @@ function doInit(){
   setTimeout(()=>{const o=document.getElementById('loadingOverlay');if(o){o.style.transition='opacity .3s';o.style.opacity='0';setTimeout(()=>o.remove(),300);}},600);
 
   // Industry signals render (tab-competitor)
-  const sigEl=document.getElementById('industrySignals');
-  if(sigEl)sigEl.innerHTML=[
+  var sigEl=document.getElementById('industrySignals');
+  var industrySignals=[
     {title:'66度探险邮轮海神号2026首航 + 50+航次发布',impact:'critical',summary:'2026年5月：中资极地邮轮正式进入全航季。全中文+中医理疗+中式餐饮→直接挑战Quark中文服务差异化优势。2026-2028布局50+个探险航次覆盖全球。'},
     {title:'恒众国际×中国国家地理 2027北极四岛联合包船',impact:'high',summary:'2026年6月官宣：斯瓦尔巴/东格陵兰/法罗群岛/冰岛21天连航。国家地理品牌+摄影大师，"高端内容品牌跨界极地"新模式。'},
     {title:'庞洛2027-2028南极季航线提前2年启售',impact:'high',summary:'2026年6月：六大核心旅程正式开售，2028全环南极62天已预售。庞洛中国份额40%+，供不应求持续。'},
     {title:'南极尾单价降至4万以下',impact:'negative',summary:'2026年3月：南极季末尾单不到4万RMB。但行业数据：尾单仅占3-5%。价格混乱影响消费者定价认知，需教育"5万≠5万总花费"。'},
     {title:'中国游客102% YoY增长，全球第二大客源国',impact:'positive',summary:'IAATO数据：中国南极游客从9384→11705(+25%)。2026-27预计14500+。市场需求远超供给，Quark增长空间巨大。'},
     {title:'众信旅游1400+人南极季收官→2026-27增长20%',impact:'neutral',summary:'2026年4月：中国最大极地运营商地位巩固。庞洛包船逐年增20%。渠道集中度提高→Quark需差异化渠道策略。'},
-  ].map(s=>`<div class="obj-card" style="border-left-color:${s.impact==='critical'?'var(--red)':s.impact==='high'?'var(--orange)':s.impact==='positive'?'var(--accent3)':s.impact==='negative'?'var(--red)':'var(--accent)'}"><div class="obj-q" style="color:${s.impact==='critical'?'var(--red)':s.impact==='high'?'var(--orange)':s.impact==='positive'?'var(--accent3)':s.impact==='negative'?'var(--red)':'var(--accent)'}">${s.impact==='critical'?'🔴':s.impact==='high'?'🟡':s.impact==='positive'?'🟢':s.impact==='negative'?'🔴':'🔵'} ${s.title}</div><div class="obj-r">${s.summary}</div></div>`).join('');
-  }
-
-// Boot when DOM is ready
-if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',boot);}else{boot();}
+  ];
+  if(sigEl)sigEl.innerHTML=industrySignals.map(function(s){
+    var c=s.impact==='critical'?'var(--red)':s.impact==='high'?'var(--orange)':s.impact==='positive'?'var(--accent3)':s.impact==='negative'?'var(--red)':'var(--accent)';
+    var e=s.impact==='critical'?'🔴':s.impact==='high'?'🟡':s.impact==='positive'?'🟢':s.impact==='negative'?'🔴':'🔵';
+    return '<div class="obj-card" style="border-left-color:'+c+'"><div class="obj-q" style="color:'+c+'">'+e+' '+s.title+'</div><div class="obj-r">'+s.summary+'</div></div>';
+  }).join('');
+});
 </script>
 </body>
 </html>
