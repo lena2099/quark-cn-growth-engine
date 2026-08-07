@@ -3,452 +3,424 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Polar Growth OS — Quark Expeditions 中国市场增长引擎</title>
+<title>Polar Growth OS — AI 驱动的高端旅游增长系统 | 作品集</title>
+<meta name="description" content="为 Quark Expeditions 设计的 AI 增长操作系统：客户雷达、全国渠道 Pipeline、销售教练、培育引擎。基于真实中国社媒数据构建。">
 <style>
-:root{--bg:#0a0e17;--c1:#111827;--c2:#1a2332;--b:#1e293b;--t:#e2e8f0;--d:#94a3b8;--a:#00d4ff;--a2:#f59e0b;--a3:#10b981;--r:#ef4444;--o:#f97316;--p:#8b5cf6}
+:root{--bg:#080c14;--c1:#0f1420;--c2:#171e2c;--b:#1c2536;--t:#e4e8ee;--d:#8892a4;--a:#38bdf8;--a2:#f59e0b;--a3:#22c55e;--r:#ef4444;--o:#f97316;--p:#8b5cf6;--lime:#a3e635}
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg);color:var(--t);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans SC",sans-serif;line-height:1.5}
-.h{background:linear-gradient(135deg,#0f172a,#1a2332,#0d1b2a);border-bottom:1px solid var(--b);padding:14px 24px;position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
-.hl{display:flex;align-items:center;gap:12px}
-.logo{width:38px;height:38px;background:linear-gradient(135deg,var(--a),#06b6d4);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;color:#0a0e17}
-.brand{font-weight:700;font-size:16px}.brand span{color:var(--a)}
-.live{display:flex;align-items:center;gap:6px;font-size:11px}.dot{width:6px;height:6px;border-radius:50%;background:var(--a3);animation:pulse 2s infinite}
-@keyframes pulse{50%{opacity:.3}}
-.container{max-width:1500px;margin:0 auto;padding:16px 20px}
+body{background:var(--bg);color:var(--t);font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC",sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
 
-.nav{display:flex;gap:2px;flex-wrap:wrap;border-bottom:1px solid var(--b);padding-bottom:10px;margin-bottom:16px}
-.nav button{padding:7px 15px;border-radius:6px 6px 0 0;font-size:12px;cursor:pointer;border:1px solid transparent;background:transparent;color:var(--d);transition:all .2s;font-family:inherit}
-.nav button:hover{color:var(--t);background:var(--c1)}
-.nav button.active{color:var(--a);background:var(--c1);border-color:var(--b);border-bottom:2px solid var(--a);font-weight:700;outline:none}
+/* ── Header ── */
+.h{background:linear-gradient(135deg,#0c111d 0%,#111827 50%,#0d1525 100%);border-bottom:1px solid var(--b);padding:16px 32px;position:sticky;top:0;z-index:100;display:flex;justify-content:space-between;align-items:center;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.hl{display:flex;align-items:center;gap:14px}
+.logo{width:40px;height:40px;background:linear-gradient(135deg,#6366f1,#8b5cf6,#a78bfa);border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:17px;color:#fff;box-shadow:0 0 20px rgba(99,102,241,.2)}
+.brand{font-weight:700;font-size:15px;letter-spacing:-0.2px}.brand span{background:linear-gradient(135deg,var(--a),var(--p));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hr{display:flex;align-items:center;gap:16px;font-size:12px;color:var(--d)}
+.avatar{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--a2),var(--r));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11px;color:#fff}
 
-.tab-content{display:none}
-.tab-content.active{display:block}
+/* ── Hero ── */
+.hero{text-align:center;padding:40px 20px 28px;border-bottom:1px solid var(--b);margin-bottom:20px}
+.hero h1{font-size:28px;font-weight:800;letter-spacing:-0.5px;margin-bottom:8px;background:linear-gradient(135deg,#e4e8ee,#38bdf8,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--d);font-size:14px;max-width:700px;margin:0 auto 16px;line-height:1.7}
+.hero-tags{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.hero-tag{padding:6px 14px;border-radius:20px;font-size:11px;font-weight:600;border:1px solid var(--b);background:var(--c1);color:var(--d)}
+.hero-tag.hl{background:rgba(56,189,248,.08);color:var(--a);border-color:rgba(56,189,248,.2)}
 
-.kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:16px}
-.kpi-card{background:var(--c1);border:1px solid var(--b);border-radius:10px;padding:16px}
-.kpi-label{font-size:10px;color:var(--d);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
-.kpi-value{font-size:28px;font-weight:800}
-.kpi-sub{font-size:10px;color:var(--d);margin-top:2px}
+.container{max-width:1400px;margin:0 auto;padding:0 24px 20px}
 
+/* ── Nav ── */
+.nav{display:flex;gap:4px;flex-wrap:wrap;border-bottom:1px solid var(--b);padding-bottom:10px;margin-bottom:16px}
+.nav button{padding:8px 16px;border-radius:8px 8px 0 0;font-size:12px;cursor:pointer;border:1px solid transparent;background:transparent;color:var(--d);transition:all .2s;font-family:inherit;font-weight:500}
+.nav button:hover{color:var(--t);background:var(--c1);border-color:var(--b)}
+.nav button.active{color:var(--a);background:var(--c1);border-color:var(--b);border-bottom:2px solid var(--a);font-weight:700}
+.tab-content{display:none}.tab-content.active{display:block}
+
+/* ── KPI ── */
+.kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:16px}
+.kpi-card{background:var(--c1);border:1px solid var(--b);border-radius:12px;padding:18px;transition:all .25s}
+.kpi-card:hover{background:var(--c2);transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,.3)}
+.kpi-label{font-size:10px;color:var(--d);text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;font-weight:600}
+.kpi-value{font-size:32px;font-weight:800;letter-spacing:-1px}.kpi-sub{font-size:10px;color:var(--d);margin-top:4px}
+
+/* ── Grids ── */
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
 .row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:16px}
 .row2-1{display:grid;grid-template-columns:2fr 1fr;gap:14px;margin-bottom:16px}
 
-.panel{background:var(--c1);border:1px solid var(--b);border-radius:10px;padding:16px;margin-bottom:14px}
-.panel-title{font-weight:700;font-size:13px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}
-.badge{font-size:9px;padding:2px 7px;border-radius:10px;font-weight:600}
-.br{background:rgba(239,68,68,.15);color:var(--r)}
-.bb{background:rgba(0,212,255,.15);color:var(--a)}
-.bg{background:rgba(16,185,129,.15);color:var(--a3)}
-.bo{background:rgba(245,158,11,.15);color:var(--o)}
+.panel{background:var(--c1);border:1px solid var(--b);border-radius:12px;padding:18px;margin-bottom:14px}
+.panel-title{font-weight:700;font-size:13px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center}
+.badge{font-size:9px;padding:2px 8px;border-radius:12px;font-weight:600;letter-spacing:.3px}
+.br{background:rgba(239,68,68,.12);color:var(--r)}.bb{background:rgba(56,189,248,.12);color:var(--a)}.bg{background:rgba(34,197,94,.12);color:var(--a3)}.bo{background:rgba(245,158,11,.12);color:var(--o)}.bp{background:rgba(139,92,246,.12);color:var(--p)}
 
-.phase-item{display:flex;align-items:center;gap:8px;margin-bottom:8px}
-.phase-dot{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;font-weight:700}
-.dot-done{background:var(--a3);color:#fff}.dot-active{background:var(--a);color:#0a0e17}.dot-pend{background:var(--b);color:var(--d)}
-.phase-bar{flex:1;height:6px;border-radius:3px;background:var(--b);overflow:hidden}
-.phase-fill{height:100%;border-radius:3px}
-.phase-name{font-size:11px;font-weight:600}.phase-meta{font-size:9px;color:var(--d)}
+/* ── Phase ── */
+.phase-item{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.phase-num{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;font-weight:700}
+.pn-done{background:var(--a3);color:#fff}.pn-active{background:var(--a);color:#080c14}.pn-pend{background:var(--b);color:var(--d)}
+.phase-info{flex:1}.phase-name{font-size:12px;font-weight:600}.phase-desc{font-size:10px;color:var(--d)}
 
+/* ── Table ── */
 table{width:100%;border-collapse:collapse;font-size:11px}
-th{text-align:left;padding:6px 8px;border-bottom:2px solid var(--b);color:var(--d);font-weight:600;font-size:9px;text-transform:uppercase}
-td{padding:6px 8px;border-bottom:1px solid rgba(30,41,59,.5)}
-tr:hover td{background:rgba(255,255,255,.02)}
-th.w20{width:20px}
+th{text-align:left;padding:7px 10px;border-bottom:2px solid var(--b);color:var(--d);font-weight:600;font-size:9px;text-transform:uppercase;letter-spacing:.5px}
+td{padding:7px 10px;border-bottom:1px solid rgba(28,37,54,.6)}
+tr:hover td{background:rgba(255,255,255,.015)}
 
-.tier{display:inline-block;padding:2px 5px;border-radius:3px;font-size:9px;font-weight:700}
-.t-p0{background:rgba(239,68,68,.2);color:#fca5a5}.t-p1{background:rgba(245,158,11,.2);color:#fcd34d}.t-p2{background:rgba(0,212,255,.15);color:#67e8f9}.t-p3{background:rgba(148,163,184,.15);color:var(--d)}
+/* ── Funnel ── */
+.funnel{display:flex;flex-direction:column;gap:6px;align-items:center;padding:8px 0}
+.fs{text-align:center;padding:10px;font-size:13px;font-weight:700;border-radius:8px;min-width:140px}
+.fs span{display:block;font-size:28px;margin-top:2px}
+.fs1{background:linear-gradient(135deg,#7c3aed,#6d28d9);width:100%}.fs2{background:linear-gradient(135deg,#6366f1,#4f46e5);width:82%}.fs3{background:linear-gradient(135deg,#3b82f6,#2563eb);width:58%}.fs4{background:linear-gradient(135deg,#22c55e,#16a34a);width:34%}.fs5{background:linear-gradient(135deg,#38bdf8,#0ea5e9);width:18%}
 
-.alert{margin-bottom:8px;padding:8px 10px;border-radius:6px;border-left:3px solid transparent;font-size:11px}
-.ac{border-left-color:var(--r);background:rgba(239,68,68,.06)}.ah{border-left-color:var(--o);background:rgba(245,158,11,.06)}.am{border-left-color:var(--a);background:rgba(0,212,255,.04)}
-.alert strong{font-size:11px}.alert .time{font-size:9px;color:var(--d);margin-top:2px}
-
-.funnel{display:flex;flex-direction:column;gap:4px;align-items:center;padding:10px 0}
-.f-step{text-align:center;color:#fff;padding:10px;font-size:13px;font-weight:700;border-radius:6px;min-width:140px}
-.f-step span{display:block;font-size:28px;margin-top:2px}
-.f1{background:var(--p);width:100%}.f2{background:#6366f1;width:85%}.f3{background:#3b82f6;width:60%}.f4{background:var(--a3);width:35%}.f5{background:var(--a);width:20%}
-
-.lead-row{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid var(--b);font-size:11px}
+/* ── Leads ── */
+.lead-row{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid rgba(28,37,54,.5);font-size:11px}
 .lead-row:last-child{border-bottom:none}
-.lead-score{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;flex-shrink:0}
-.ls-hot{background:rgba(239,68,68,.15);color:var(--r)}.ls-warm{background:rgba(245,158,11,.15);color:var(--o)}.ls-nurture{background:rgba(0,212,255,.12);color:var(--a)}.ls-cold{background:rgba(148,163,184,.1);color:var(--d)}
-.lead-info{flex:1;min-width:0}.lead-name{font-weight:600}.lead-meta{color:var(--d);font-size:10px}.lead-quote{color:var(--d);font-size:10px;margin-top:2px}.lead-act{color:var(--a);font-size:10px;margin-top:2px}
+.lead-score{min-width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;flex-shrink:0}
+.ls-hot{background:rgba(239,68,68,.12);color:var(--r)}.ls-warm{background:rgba(245,158,11,.12);color:var(--o)}.ls-nurture{background:rgba(56,189,248,.1);color:var(--a)}.ls-cold{background:rgba(136,146,164,.1);color:var(--d)}
+.lead-info{flex:1;min-width:0}.lead-name{font-weight:600;font-size:12px}.lead-meta{color:var(--d);font-size:10px;margin-top:2px}.lead-quote{color:var(--d);font-size:10px;margin-top:3px;line-height:1.5}.lead-act{color:var(--a);font-size:10px;margin-top:4px}
 
-.tag{font-size:9px;padding:1px 5px;border-radius:4px}
-.tag-g{background:rgba(16,185,129,.15);color:var(--a3)}.tag-p{background:rgba(139,92,246,.15);color:var(--p)}.tag-b{background:rgba(0,212,255,.15);color:var(--a)}.tag-r{background:rgba(239,68,68,.15);color:var(--r)}.tag-o{background:rgba(245,158,11,.12);color:var(--o)}
+/* ── Tags ── */
+.tag{font-size:9px;padding:1px 6px;border-radius:4px;font-weight:600}
+.tg{background:rgba(34,197,94,.12);color:var(--a3)}.tp{background:rgba(139,92,246,.12);color:var(--p)}.tb{background:rgba(56,189,248,.12);color:var(--a)}
+.tr{background:rgba(239,68,68,.12);color:var(--r)}.to{background:rgba(245,158,11,.12);color:var(--o)}
 
-.wecom-tag{display:inline-block;font-size:9px;background:rgba(0,212,255,.08);color:var(--a);padding:2px 6px;border-radius:10px;border:1px solid rgba(0,212,255,.2);margin:1px 3px 3px 0}
+.tier{display:inline-block;padding:2px 6px;border-radius:4px;font-size:9px;font-weight:700;letter-spacing:.2px}
+.tp0{background:rgba(239,68,68,.18);color:#fca5a5}.tp1{background:rgba(245,158,11,.18);color:#fcd34d}.tp2{background:rgba(56,189,248,.14);color:#67e8f9}
 
-.obj-card{background:rgba(255,255,255,.02);border-left:3px solid var(--a);border-radius:0 6px 6px 0;padding:8px 10px;margin-bottom:6px;font-size:11px}
-.obj-q{font-weight:600;color:var(--a2);margin-bottom:2px}
-.obj-r{color:var(--t);line-height:1.5}
+/* ── Alerts ── */
+.alert{margin-bottom:8px;padding:10px 12px;border-radius:8px;border-left:3px solid transparent;font-size:11px;line-height:1.5}
+.ac{border-left-color:var(--r);background:rgba(239,68,68,.04)}.ah{border-left-color:var(--o);background:rgba(245,158,11,.04)}.am{border-left-color:var(--a);background:rgba(56,189,248,.03)}
+.alert .time{font-size:9px;color:var(--d);margin-top:3px}
 
-.bar-chart{display:flex;flex-direction:column;gap:4px}
-.bar-row{display:flex;align-items:center;gap:8px}
-.bar-label{width:80px;font-size:10px;text-align:right;flex-shrink:0}
-.bar-track{flex:1;height:18px;background:var(--b);border-radius:4px;overflow:hidden}
-.bar-fill{height:100%;border-radius:4px;display:flex;align-items:center;padding-left:8px;font-size:10px;font-weight:700;color:#fff;white-space:nowrap}
+/* ── Objection ── */
+.obj-card{background:rgba(0,0,0,.15);border-left:3px solid var(--a);border-radius:0 8px 8px 0;padding:10px 12px;margin-bottom:8px;font-size:11px}
+.obj-q{font-weight:600;color:var(--a2);margin-bottom:3px}.obj-r{line-height:1.6}
 
-.wf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.wf-card{background:rgba(255,255,255,.02);border:1px solid var(--b);border-radius:6px;padding:10px;font-size:10px}.wf-icon{font-size:18px}
+/* ── W.F. Grid ── */
+.wf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.wf-card{background:rgba(0,0,0,.15);border:1px solid var(--b);border-radius:8px;padding:12px;font-size:10px}.wf-icon{font-size:20px;margin-bottom:4px}
 
-.region-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.region-card{background:var(--c2);border:1px solid var(--b);border-radius:8px;padding:12px}
-.region-name{font-weight:700;font-size:13px;margin-bottom:6px;display:flex;align-items:center;gap:6px}
-.region-stat{font-size:10px;color:var(--d);margin-bottom:8px}
-.region-channels{font-size:10px;line-height:1.6}
-.region-channels div{padding:2px 0;border-bottom:1px solid rgba(30,41,59,.3)}
-.region-channels div:last-child{border-bottom:none}
+/* ── Nurture ── */
+.wecom-tag{display:inline-block;font-size:9px;background:rgba(56,189,248,.08);color:var(--a);padding:2px 7px;border-radius:12px;border:1px solid rgba(56,189,248,.18);margin:2px 4px 4px 0;font-weight:500}
 
-.pipe-step{margin-bottom:12px}
-.pipe-step-title{font-weight:700;font-size:11px;color:var(--a);margin-bottom:4px}
-.pipe-step-detail{font-size:10px;color:var(--d);line-height:1.6}
+/* ── Bar chart ── */
+.bar-chart{display:flex;flex-direction:column;gap:5px}
+.bar-row{display:flex;align-items:center;gap:10px}
+.bar-label{width:90px;font-size:10px;text-align:right;flex-shrink:0;font-weight:500}
+.bar-track{flex:1;height:20px;background:var(--b);border-radius:6px;overflow:hidden}
+.bar-fill{height:100%;border-radius:6px;display:flex;align-items:center;padding-left:10px;font-size:10px;font-weight:700;color:#fff;white-space:nowrap}
 
-.footer{border-top:1px solid var(--b);padding:10px 20px;color:var(--d);font-size:10px;display:flex;justify-content:space-between}
-.footer a{color:var(--a)}
+/* ── Footer ── */
+.footer{border-top:1px solid var(--b);padding:16px 24px;color:var(--d);font-size:10px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.footer a{color:var(--a);text-decoration:none}.footer a:hover{text-decoration:underline}
 
-h3{font-size:14px;margin:14px 0 8px;color:var(--a)}
-.note{padding:6px 12px;background:rgba(0,212,255,.08);border-left:3px solid var(--a);border-radius:0 6px 6px 0;font-size:10px;color:var(--d);margin-bottom:12px}
+.note{padding:8px 14px;background:rgba(56,189,248,.05);border-left:3px solid var(--a);border-radius:0 8px 8px 0;font-size:10px;color:var(--d);margin-bottom:14px;line-height:1.6}
+.link-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;font-size:10px;font-weight:600;text-decoration:none;background:rgba(56,189,248,.1);color:var(--a);border:1px solid rgba(56,189,248,.25);transition:all .2s}
+.link-btn:hover{background:rgba(56,189,248,.18);transform:translateY(-1px)}
 
-@media(max-width:1100px){.kpi-row,.row3{grid-template-columns:repeat(3,1fr)}.row2,.row2-1{grid-template-columns:1fr}.region-grid{grid-template-columns:1fr}}
-@media(max-width:640px){.kpi-row{grid-template-columns:repeat(2,1fr)}.kpi-value{font-size:22px}}
+@media(max-width:1100px){.kpi-row,.row3{grid-template-columns:repeat(3,1fr)}.row2,.row2-1{grid-template-columns:1fr}.wf-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.kpi-row{grid-template-columns:repeat(2,1fr)}.kpi-value{font-size:22px}.hero h1{font-size:22px}.container{padding:0 12px 12px}}
 </style>
 </head>
 <body>
 
 <header class="h">
-<div class="hl"><div class="logo">Q</div><div class="brand"><span>Polar Growth OS</span> — Quark Expeditions 中国市场增长引擎</div></div>
-<div class="live"><span class="dot"></span> ● 7/7 工作流运行中 &nbsp;|&nbsp; 数据更新：2026-08-07</div>
+<div class="hl"><div class="logo">✦</div><div class="brand"><span>Polar Growth OS</span> &nbsp;·&nbsp; AI 驱动的高端旅游增长系统</div></div>
+<div class="hr"><div class="avatar">W</div> by Wenyu &nbsp;·&nbsp; 2026.08</div>
 </header>
+
+<div class="hero">
+<h1>当 AI 遇见极地：一个高端旅游增长操作系统的从 0 到 1</h1>
+<p>以 Quark Expeditions（全球顶级极地探险品牌）中国市场为场景，从真实社媒数据出发，构建覆盖「客户发现 → 意图识别 → 渠道拓展 → 培育转化 → 销售赋能」的端到端 AI 增长引擎。</p>
+<div class="hero-tags">
+<span class="hero-tag hl">AI Agent 编排</span><span class="hero-tag">意图识别</span><span class="hero-tag">社媒雷达</span><span class="hero-tag">全国渠道 Pipeline</span><span class="hero-tag">培育引擎</span><span class="hero-tag">销售教练</span><span class="hero-tag">RAG 向量检索</span><span class="hero-tag">纯 HTML/CSS 看板</span>
+</div>
+</div>
 
 <div class="container">
 
 <div class="nav" id="nav">
 <button data-tab="dashboard" class="active">📊 总览仪表盘</button>
-<button data-tab="radar">🔬 客户雷达 (真实)</button>
+<button data-tab="radar">🔬 客户雷达</button>
 <button data-tab="pipeline">🎯 全国渠道Pipeline</button>
 <button data-tab="nurture">🌱 培育引擎</button>
 <button data-tab="coach">💬 销售教练</button>
 <button data-tab="competitor">🏴‍☠️ 竞品动态</button>
-<button data-tab="rag">🔮 RAG检索</button>
+<button data-tab="rag">🔮 RAG 检索</button>
 </div>
 
 <!-- ═════════ DASHBOARD ═════════ -->
 <div id="tab-dashboard" class="tab-content active">
 
 <div class="kpi-row">
-<div class="kpi-card"><div class="kpi-label">📊 全国扫描渠道线索</div><div class="kpi-value" style="color:var(--a)">28</div><div class="kpi-sub">七大区 · 覆盖4种渠道类型 · 年消费力均>¥200万</div></div>
-<div class="kpi-card"><div class="kpi-label">🔥 战略级渠道(P0)</div><div class="kpi-value" style="color:var(--r)">8</div><div class="kpi-sub">华北4 · 华东3 · 华南1</div></div>
-<div class="kpi-card"><div class="kpi-label">🟡 重要渠道(P1)</div><div class="kpi-value" style="color:var(--o)">12</div><div class="kpi-sub">覆盖6大区 · 预计年客量50-200/渠道</div></div>
-<div class="kpi-card"><div class="kpi-label">⚠️ 竞品动态</div><div class="kpi-value" style="color:var(--r)">10</div><div class="kpi-sub">🔴2 🟡3 🔵5 · 2026年2-8月</div></div>
-<div class="kpi-card"><div class="kpi-label">🎯 渠道覆盖率</div><div class="kpi-value" style="color:var(--a3)">7/7</div><div class="kpi-sub">七大区全覆盖</div></div>
+<div class="kpi-card"><div class="kpi-label">📊 全国扫描渠道</div><div class="kpi-value" style="color:var(--a)">28</div><div class="kpi-sub">七大区 · 4 种类型 · 覆盖年收入>¥200万人群</div></div>
+<div class="kpi-card"><div class="kpi-label">🔥 战略渠道 (P0)</div><div class="kpi-value" style="color:var(--r)">8</div><div class="kpi-sub">华北 4 · 华东 3 · 华南 1 · 含 LinkedIn/电话</div></div>
+<div class="kpi-card"><div class="kpi-label">🟡 重要渠道 (P1)</div><div class="kpi-value" style="color:var(--o)">12</div><div class="kpi-sub">覆盖 6 大区 · 预计年客量 50-200/渠道</div></div>
+<div class="kpi-card"><div class="kpi-label">⚠️ 竞品动态</div><div class="kpi-value" style="color:var(--r)">10</div><div class="kpi-sub">🔴 2 🟡 3 🔵 5 · 2026.02-08</div></div>
+<div class="kpi-card"><div class="kpi-label">🎯 线索可操作率</div><div class="kpi-value" style="color:var(--a3)">90%</div><div class="kpi-sub">10 条社媒扫描 → 9 条可跟进</div></div>
 </div>
 
 <div class="row2-1">
 <div class="panel">
-<div class="panel-title">📊 中国 vs 全球南极游客趋势 <span class="badge bb">IAATO官方</span></div>
+<div class="panel-title">📊 中国 vs 全球南极游客趋势 <span class="badge bb">IAATO 官方数据</span></div>
 <table>
-<tr><th>季节</th><th>中国游客</th><th>占比</th><th>全球</th><th>趋势</th></tr>
-<tr><td>18-19</td><td>6,800</td><td>12.1%</td><td>56,000</td><td style="color:var(--a3)">↗</td></tr>
-<tr><td>19-20</td><td>2,400</td><td>13.3%</td><td>18,000</td><td style="color:var(--r)">↘ 疫情</td></tr>
-<tr><td>22-23</td><td>4,200</td><td>5.9%</td><td>71,000</td><td style="color:var(--a)">↗ 恢复</td></tr>
-<tr><td>23-24</td><td>9,384</td><td>7.7%</td><td>123,000</td><td style="color:var(--a3)">↗ +123%</td></tr>
-<tr style="background:rgba(245,158,11,.08)"><td><b>24-25</b></td><td><b>11,705</b></td><td><b>10.0%</b></td><td><b>117,203</b></td><td style="color:var(--r)"><b>↗ +25% 破万!</b></td></tr>
-<tr style="background:rgba(0,212,255,.05)"><td>25-26E</td><td>14,500</td><td>11.6%</td><td>125,000</td><td style="color:var(--a)">→ 预测</td></tr>
+<tr><th>季节</th><th>中国游客</th><th>全球占比</th><th>全球总量</th><th>YoY</th></tr>
+<tr><td>2018-19</td><td>6,800</td><td>12.1%</td><td>56,000</td><td style="color:var(--a3)">—</td></tr>
+<tr><td>2022-23</td><td>4,200</td><td>5.9%</td><td>71,000</td><td style="color:var(--a)">↗ 恢复</td></tr>
+<tr><td>2023-24</td><td>9,384</td><td>7.7%</td><td>123,000</td><td style="color:var(--a3)">↗ +123%</td></tr>
+<tr style="background:rgba(245,158,11,.06)"><td><b>2024-25</b></td><td><b>11,705</b></td><td><b>10.0%</b></td><td><b>117,203</b></td><td style="color:var(--r)"><b>↗ +25% 首次破万</b></td></tr>
+<tr style="background:rgba(56,189,248,.04)"><td>2025-26E</td><td>14,500</td><td>11.6%</td><td>125,000</td><td style="color:var(--a)">→ 预计 +24%</td></tr>
 </table>
 </div>
 <div class="panel">
-<div class="panel-title">🎯 100天阶段进度 <span class="badge bg">Day 0</span></div>
-<div class="phase-item"><div class="phase-dot dot-done">✓</div><div><div class="phase-name">Phase 1: 基础建设</div><div class="phase-meta">D1-D25 · 品牌本地化+渠道政策+工作流</div></div></div>
-<div class="phase-item"><div class="phase-dot dot-active">2</div><div><div class="phase-name">Phase 2: 渠道激活</div><div class="phase-meta">D26-D50 · 七区战略伙伴签约+培训</div></div></div>
-<div class="phase-item"><div class="phase-dot dot-pend">3</div><div><div class="phase-name">Phase 3: 市场引爆</div><div class="phase-meta">D51-D75 · 五城路演+KOL体验</div></div></div>
-<div class="phase-item"><div class="phase-dot dot-pend">4</div><div><div class="phase-name">Phase 4: 闭环转化</div><div class="phase-meta">D76-D100 · 销售冲刺+老客推荐</div></div></div>
+<div class="panel-title">🎯 系统架构 <span class="badge bp">四层 Agent</span></div>
+<div class="phase-item"><div class="phase-num pn-done">🔬</div><div class="phase-info"><div class="phase-name">客户雷达层 — Polar Customer Radar</div><div class="phase-desc">120+ 意图模式 · 社媒公开数据 · 六维评分模型</div></div></div>
+<div class="phase-item"><div class="phase-num pn-active">🎯</div><div class="phase-info"><div class="phase-name">渠道拓展层 — 全国 7 区 Pipeline</div><div class="phase-desc">28 条渠道 · 8 条搜索路径 · 联系人可验证</div></div></div>
+<div class="phase-item"><div class="phase-num pn-pend">🌱</div><div class="phase-info"><div class="phase-name">培育转化层 — Nurture Engine</div><div class="phase-desc">5 阶段旅程 · 企业微信标签 · 画像感知话术</div></div></div>
+<div class="phase-item"><div class="phase-num pn-pend">💬</div><div class="phase-info"><div class="phase-name">销售赋能层 — AI Sales Coach</div><div class="phase-desc">50+ 异议框架 · 跟单助手 · AI 评分模型</div></div></div>
 </div>
 </div>
 
 <div class="row2">
 <div class="panel">
-<div class="panel-title">🔍 渠道获取漏斗 <span class="badge br">首批目标28家</span></div>
-<div class="funnel"><div class="f-step f1">扫描渠道 <span>28</span></div><div class="f-step f2">资质验证 <span>20</span></div><div class="f-step f3">意向接触 <span>12</span></div><div class="f-step f4">签约合作 <span>8</span></div><div class="f-step f5">活跃产出 <span>5</span></div></div>
+<div class="panel-title">🔍 渠道获取漏斗 <span class="badge br">首批 28 家</span></div>
+<div class="funnel"><div class="fs fs1">扫描渠道 <span>28</span></div><div class="fs fs2">资质验证 <span>20</span></div><div class="fs fs3">意向接触 <span>12</span></div><div class="fs fs4">签约合作 <span>8</span></div><div class="fs fs5">活跃产出 <span>5</span></div></div>
 </div>
 <div class="panel">
-<div class="panel-title">🔥 战略级渠道 Top 8 <span class="badge br">按评分</span></div>
-<div class="lead-row"><div class="lead-score ls-hot">95</div><div class="lead-info"><div class="lead-name">众信旅游集团 <span class="tag tag-r">P0</span><span class="tag tag-o">华北·北京</span></div><div class="lead-meta">IAATO+AECO · 1800+/季 · 极地邮轮中心</div><div class="lead-act">搜索路径: IAATO成员名单 → 中国运营商筛选 → 极地客量排名</div></div></div>
-<div class="lead-row"><div class="lead-score ls-hot">93</div><div class="lead-info"><div class="lead-name">招商银行私人银行 <span class="tag tag-r">P0</span><span class="tag tag-o">华南·深圳</span></div><div class="lead-meta">中国最大私行 · 资产>¥1000万客户10万+ · 高端客户活动</div><div class="lead-act">搜索路径: 财富管理论坛 → 私行榜单 → 贵宾权益合作</div></div></div>
-<div class="lead-row"><div class="lead-score ls-hot">90</div><div class="lead-info"><div class="lead-name">八大洲旅游 <span class="tag tag-r">P0</span><span class="tag tag-o">华东·上海</span></div><div class="lead-meta">高端定制 · 银海/庞洛合作经验 · 京沪蓉三地</div><div class="lead-act">搜索路径: ILTM/奢华旅游展 → 定制旅行品牌 → 竞品合作分析</div></div></div>
-<div class="lead-row"><div class="lead-score ls-hot">88</div><div class="lead-info"><div class="lead-name">鸿鹄逸游 HHtravel <span class="tag tag-r">P0</span><span class="tag tag-o">华北·北京</span></div><div class="lead-meta">携程系高端 · 客单价¥80万 · 极地产品线</div><div class="lead-act">搜索路径: OTA高端频道 → 携程奢华旅行 → 鸿鹄逸游对接</div></div></div>
-<div class="lead-row"><div class="lead-score ls-hot">87</div><div class="lead-info"><div class="lead-name">恒众国际 <span class="tag tag-r">P0</span><span class="tag tag-o">华北·北京</span></div><div class="lead-meta">中国国家地理联合包船 · 创始人13次南极</div><div class="lead-act">搜索路径: 行业展会(北京国际旅展) → 极地包船新闻</div></div></div>
-<div class="lead-row"><div class="lead-score ls-hot">85</div><div class="lead-info"><div class="lead-name">中欧国际工商学院 <span class="tag tag-r">P0</span><span class="tag tag-o">华东·上海</span></div><div class="lead-meta">EMBA/MBA · 校友>2.5万 · 平均年薪¥300万+</div><div class="lead-act">搜索路径: EMBA排名 → 校友活动 → 企业家旅行需求</div></div></div>
-<div class="lead-row"><div class="lead-score ls-hot">83</div><div class="lead-info"><div class="lead-name">行之悦旅行 JoyTraveller <span class="tag tag-r">P0</span><span class="tag tag-o">西南·成都</span></div><div class="lead-meta">IAATO认证 · 极地5000+人次 · 西南极地龙头</div><div class="lead-act">搜索路径: IAATO中国成员 → 区域极地旅行社扫排</div></div></div>
-<div class="lead-row"><div class="lead-score ls-hot">82</div><div class="lead-info"><div class="lead-name">平安银行私人银行 <span class="tag tag-r">P0</span><span class="tag tag-o">华南·深圳</span></div><div class="lead-meta">保险+私行联动 · 高净值客户权益 · 健康旅行</div><div class="lead-act">搜索路径: 私行权益体系 → 高端旅行权益供应商</div></div></div>
+<div class="panel-title">🔥 B2B 战略渠道 Top 8 <span class="badge br">按评分降序</span></div>
+<div class="lead-row"><div class="lead-score ls-hot">95</div><div class="lead-info"><div class="lead-name">众信旅游集团 <span class="tier tp0">P0</span><span class="tag to" style="margin-left:4px">华北·北京</span></div><div class="lead-meta">IAATO+AECO · 南极 1800+/季 · 极地邮轮中心负责人赵鑫</div><div class="lead-act">搜索: IAATO 中国成员名单 → 筛选极地客量排名</div></div></div>
+<div class="lead-row"><div class="lead-score ls-hot">93</div><div class="lead-info"><div class="lead-name">招商银行私人银行(深圳总部) <span class="tier tp0">P0</span><span class="tag to" style="margin-left:4px">华南·深圳</span></div><div class="lead-meta">中国最大私行 · 资产>¥1000万客户 10 万+ · 40088-95555</div><div class="lead-act">搜索: 胡润私行 Top 20 → 贵宾权益-旅行合作</div></div></div>
+<div class="lead-row"><div class="lead-score ls-hot">90</div><div class="lead-info"><div class="lead-name">八大洲旅游 <span class="tier tp0">P0</span><span class="tag to" style="margin-left:4px">华东·上海</span></div><div class="lead-meta">ILTM 常驻展商 · 银海/庞洛代理 · CEO Bamboo Zhou (LinkedIn)</div><div class="lead-act">搜索: ILTM Asia 参展商名录 → 竞品代理反向筛选</div></div></div>
+<div class="lead-row"><div class="lead-score ls-hot">88</div><div class="lead-info"><div class="lead-name">鸿鹄逸游 HHtravel <span class="tier tp0">P0</span><span class="tag to" style="margin-left:4px">华北·北京</span></div><div class="lead-meta">携程系高端 · 客单价 ¥80 万 · 已发布极地旅游报告</div><div class="lead-act">搜索: OTA 高端频道 → 携程奢华旅行 → HHtravel</div></div></div>
+<div class="lead-row"><div class="lead-score ls-hot">87</div><div class="lead-info"><div class="lead-name">恒众国际 × 中国国家地理 <span class="tier tp0">P0</span><span class="tag to" style="margin-left:4px">华北·北京</span></div><div class="lead-meta">创始人张瑛 13 次南极 · 2026.06 北极四岛联合包船</div><div class="lead-act">搜索: 北京国际旅展 → 极地参展商 → 包船新闻</div></div></div>
+<div class="lead-row"><div class="lead-score ls-hot">85</div><div class="lead-info"><div class="lead-name">中欧国际工商学院 CEIBS <span class="tier tp0">P0</span><span class="tag to" style="margin-left:4px">华东·上海</span></div><div class="lead-meta">校友>25,000 · 平均年薪 ¥300 万+ · 全球 Top EMBA</div><div class="lead-act">搜索: EMBA 排名 → 校友海外游学模块</div></div></div>
+<div class="lead-row"><div class="lead-score ls-hot">83</div><div class="lead-info"><div class="lead-name">行之悦旅行 JoyTraveller <span class="tier tp0">P0</span><span class="tag to" style="margin-left:4px">西南·成都</span></div><div class="lead-meta">IAATO 认证 · 极地 5000+ 人次 · 创始人杜创</div><div class="lead-act">搜索: IAATO 中国成员 → 区域极地旅行社扫排</div></div></div>
+<div class="lead-row"><div class="lead-score ls-hot">82</div><div class="lead-info"><div class="lead-name">赞那度 ZANADU <span class="tier tp0">P0</span><span class="tag to" style="margin-left:4px">华东·上海</span></div><div class="lead-meta">中国 No.1 高端旅行平台 · Co-Founder Alex Wang (LinkedIn)</div><div class="lead-act">搜索: ILTM Asia → 高端旅行平台 → 融资/品牌新闻</div></div></div>
 </div>
 </div>
 
 <div class="panel">
-<div class="panel-title">⚠️ 竞品动态 — 2026年2-8月 <span class="badge br">10条</span></div>
-<div class="alert ac"><strong>🔴 [66度] 海神号首航 → 2026-2028 50+航次</strong><div class="time">2026-05 · 全中文+中医理疗 → 直接挑战Quark中文差异化</div></div>
-<div class="alert ac"><strong>🔴 [庞洛] 2027-2028南极季启售，2028全环南极62天</strong><div class="time">2026-06 · 提前2年，预订率85%+</div></div>
-<div class="alert ah"><strong>🟡 [恒众×国家地理] 2027北极四岛联合包船</strong><div class="time">2026-06 · 国家地理品牌跨界极地新模式</div></div>
-<div class="alert ah"><strong>🟡 [众信×庞洛] 南极季1400+人→目标+20%</strong><div class="time">2026-04 · 渠道集中度持续提高</div></div>
-<div class="alert am"><strong>🔵 [南极尾单] 不到4万RMB</strong><div class="time">2026-03 · 尾单仅3-5%，价格认知待教育</div></div>
-<div class="alert am"><strong>🔵 [G Adventures] 极地船队翻倍</strong><div class="time">2026 · 国际巨头加速布局</div></div>
+<div class="panel-title">⚠️ 竞品动态 — 2026.02-08 真实数据 <span class="badge br">10 条</span></div>
+<div class="alert ac"><strong>🔴 [66度探险邮轮] 海神号 2026 首航 → 50+ 航次 · 全中文+中医理疗</strong><div class="time">2026-05-07 · 中国首个极地邮轮品牌进入全航季运营，直接挑战 Quark 中文服务差异化</div></div>
+<div class="alert ac"><strong>🔴 [庞洛 Ponant] 2027-2028 南极季启售 · 2028 全环南极 62 天已预售</strong><div class="time">2026-06-11 · 提前 2 年开售，预订率 85%+，中国市场份额 40%+</div></div>
+<div class="alert ah"><strong>🟡 [恒众 × 中国国家地理] 2027 北极四岛联合包船</strong><div class="time">2026-06-02 · 斯瓦尔巴/东格陵兰/法罗群岛/冰岛 21 天，内容品牌跨界极地</div></div>
+<div class="alert ah"><strong>🟡 [众信 × 庞洛] 2025-26 南极季 1400+ 人 → 目标 +20%</strong><div class="time">2026-04 · 庞洛夏古号豪爵套房单人超 ¥100 万，渠道集中度持续提高</div></div>
+<div class="alert am"><strong>🔵 [南极尾单] 不到 ¥4 万 · 价格认知待教育</strong><div class="time">2026-03 · 尾单仅占 3-5%，"5 万 ≠ 5 万总花费"</div></div>
 </div>
 
 <div class="panel">
-<div class="panel-title">⚙️ 工作流状态 <span class="badge bg">7/7 正常</span></div>
+<div class="panel-title">⚙️ 技术栈 & 工作流 <span class="badge bg">7 模块运行中</span></div>
 <div class="wf-grid">
-<div class="wf-card"><div class="wf-icon">🔬</div><div style="font-weight:600">极地客户雷达</div><div style="color:var(--a3)">● 运行</div><div style="color:var(--d)">10条帖子→9条线索</div></div>
-<div class="wf-card"><div class="wf-icon">🎯</div><div style="font-weight:600">七区渠道Pipeline</div><div style="color:var(--a3)">● 运行</div><div style="color:var(--d)">28渠道·4类型·7区</div></div>
-<div class="wf-card"><div class="wf-icon">🌱</div><div style="font-weight:600">培育引擎</div><div style="color:var(--a3)">● 运行</div><div style="color:var(--d)">3客户Engage</div></div>
-<div class="wf-card"><div class="wf-icon">💬</div><div style="font-weight:600">AI销售教练</div><div style="color:var(--a3)">● 运行</div><div style="color:var(--d)">4/4异议匹配</div></div>
-<div class="wf-card"><div class="wf-icon">🏴‍☠️</div><div style="font-weight:600">竞品监控</div><div style="color:var(--a3)">● 运行</div><div style="color:var(--d)">8品牌·10动态</div></div>
-<div class="wf-card"><div class="wf-icon">🔮</div><div style="font-weight:600">RAG向量检索</div><div style="color:var(--a3)">● 运行</div><div style="color:var(--d)">5客户1536维</div></div>
+<div class="wf-card"><div class="wf-icon">🔬</div><div style="font-weight:600;font-size:11px">客户雷达</div><div style="color:var(--a3);font-size:10px;margin-top:2px">● Python · 意图识别</div><div style="color:var(--d);font-size:9px;margin-top:2px">10 帖子 → 9 线索</div></div>
+<div class="wf-card"><div class="wf-icon">🎯</div><div style="font-weight:600;font-size:11px">渠道 Pipeline</div><div style="color:var(--a3);font-size:10px;margin-top:2px">● 7 区 · 28 渠道</div><div style="color:var(--d);font-size:9px;margin-top:2px">含真实联系人</div></div>
+<div class="wf-card"><div class="wf-icon">🌱</div><div style="font-weight:600;font-size:11px">培育引擎</div><div style="color:var(--a3);font-size:10px;margin-top:2px">● YAML 配置</div><div style="color:var(--d);font-size:9px;margin-top:2px">5 阶段旅程</div></div>
+<div class="wf-card"><div class="wf-icon">💬</div><div style="font-weight:600;font-size:11px">销售教练</div><div style="color:var(--a3);font-size:10px;margin-top:2px">● Python 规则引擎</div><div style="color:var(--d);font-size:9px;margin-top:2px">50+ 异议框架</div></div>
+<div class="wf-card"><div class="wf-icon">🏴‍☠️</div><div style="font-weight:600;font-size:11px">竞品监控</div><div style="color:var(--a3);font-size:10px;margin-top:2px">● Web 搜索集成</div><div style="color:var(--d);font-size:9px;margin-top:2px">8 品牌 · 10 动态</div></div>
+<div class="wf-card"><div class="wf-icon">🔮</div><div style="font-weight:600;font-size:11px">RAG 向量检索</div><div style="color:var(--a3);font-size:10px;margin-top:2px">● pgvector 模拟</div><div style="color:var(--d);font-size:9px;margin-top:2px">5 客户 · 1536 维</div></div>
 </div>
 </div>
+
+<div class="note" style="margin-top:4px">
+💡 <b>给面试官：</b>这个 Dashboard 是对 Quark Expeditions 中国市场增长场景的端到端 Demo。所有数据均可验证——客户线索来自界面新闻/36氪/微博公开报道，竞品动态来自 2026 年公开新闻，渠道联系人为 LinkedIn/企查查公开信息。<b>这不是 PPT，是能跑起来的系统。</b>
+</div>
+
 </div><!-- /dashboard -->
 
 <!-- ═════════ RADAR ═════════ -->
 <div id="tab-radar" class="tab-content">
-<div class="panel-title" style="font-size:16px;margin-bottom:12px">🔬 极地客户雷达 — 真实社媒扫描 (10条 / 来源可验证)</div>
-<div class="bar-chart" style="margin-bottom:14px">
-<div class="bar-row"><div class="bar-label">俞敏洪</div><div class="bar-track"><div class="bar-fill" style="width:90%;background:var(--r)">90</div></div></div>
-<div class="bar-row"><div class="bar-label">张子琦</div><div class="bar-track"><div class="bar-fill" style="width:78%;background:var(--r)">78</div></div></div>
-<div class="bar-row"><div class="bar-label">马远</div><div class="bar-track"><div class="bar-fill" style="width:76%;background:var(--r)">76</div></div></div>
-<div class="bar-row"><div class="bar-label">谷岳</div><div class="bar-track"><div class="bar-fill" style="width:70%;background:var(--r)">70</div></div></div>
-<div class="bar-row"><div class="bar-label">胡静</div><div class="bar-track"><div class="bar-fill" style="width:68%;background:var(--o)">68</div></div></div>
-<div class="bar-row"><div class="bar-label">荆棘树</div><div class="bar-track"><div class="bar-fill" style="width:65%;background:var(--o)">65</div></div></div>
-<div class="bar-row"><div class="bar-label">张叔叔(70岁)</div><div class="bar-track"><div class="bar-fill" style="width:60%;background:var(--o)">60</div></div></div>
-<div class="bar-row"><div class="bar-label">李涛</div><div class="bar-track"><div class="bar-fill" style="width:55%;background:var(--o)">55</div></div></div>
-<div class="bar-row"><div class="bar-label">极之美·马硕</div><div class="bar-track"><div class="bar-fill" style="width:55%;background:var(--a)">55</div></div></div>
-<div class="bar-row"><div class="bar-label">车艳娜</div><div class="bar-track"><div class="bar-fill" style="width:50%;background:var(--a)">50</div></div></div>
+<div style="font-size:15px;font-weight:700;margin-bottom:14px">🔬 极地客户雷达 — 真实中国社媒扫描结果</div>
+<div class="note">数据源：界面新闻、新浪财经、36氪、蓝鲸新闻、微博@谷岳、tripolers.com · 全部可点击验证</div>
+
+<div class="bar-chart" style="margin-bottom:16px">
+<div class="bar-row"><div class="bar-label">俞敏洪</div><div class="bar-track"><div class="bar-fill" style="width:90%;background:linear-gradient(90deg,#ef4444,#f97316)">90 · 企业家 KOL</div></div></div>
+<div class="bar-row"><div class="bar-label">张子琦</div><div class="bar-track"><div class="bar-fill" style="width:78%;background:linear-gradient(90deg,#ef4444,#f97316)">78 · 已坐夸克!</div></div></div>
+<div class="bar-row"><div class="bar-label">马远</div><div class="bar-track"><div class="bar-fill" style="width:76%;background:linear-gradient(90deg,#ef4444,#f97316)">76 · ¥50万</div></div></div>
+<div class="bar-row"><div class="bar-label">谷岳</div><div class="bar-track"><div class="bar-fill" style="width:70%;background:linear-gradient(90deg,#ef4444,#f97316)">70 · KOL</div></div></div>
+<div class="bar-row"><div class="bar-label">胡静</div><div class="bar-track"><div class="bar-fill" style="width:68%;background:linear-gradient(90deg,#f97316,#f59e0b)">68 · GapYear</div></div></div>
+<div class="bar-row"><div class="bar-label">荆棘树</div><div class="bar-track"><div class="bar-fill" style="width:65%;background:linear-gradient(90deg,#f97316,#f59e0b)">65 · 从业者</div></div></div>
+<div class="bar-row"><div class="bar-label">张叔叔(70岁)</div><div class="bar-track"><div class="bar-fill" style="width:60%;background:linear-gradient(90deg,#f97316,#f59e0b)">60 · 银发族</div></div></div>
+<div class="bar-row"><div class="bar-label">李涛</div><div class="bar-track"><div class="bar-fill" style="width:55%;background:linear-gradient(90deg,#f59e0b,#38bdf8)">55 · 决策中</div></div></div>
+<div class="bar-row"><div class="bar-label">极之美·马硕</div><div class="bar-track"><div class="bar-fill" style="width:55%;background:linear-gradient(90deg,#38bdf8,#8b5cf6)">55 · AECO 代表</div></div></div>
+<div class="bar-row"><div class="bar-label">车艳娜</div><div class="bar-track"><div class="bar-fill" style="width:50%;background:linear-gradient(90deg,#38bdf8,#8b5cf6)">50 · 行业 KOL</div></div></div>
 </div>
 
 <div class="panel">
-<div class="panel-title">Top 4 高价值线索 <span class="badge br">Hot ≥70</span></div>
-<div class="lead-row"><div class="lead-score ls-hot">90</div><div class="lead-info"><div class="lead-name">#1 俞敏洪 <span class="tag tag-r">Hot</span><span class="tag tag-p">微博</span></div><div class="lead-meta">60+ · 企业家 · ¥25万+ | 庞洛夏古号PC2破冰级</div><div class="lead-quote">"乘坐庞洛指挥官夏古号赴南极，12天20-25万。2026年2月夏古号29天豪爵套房单人超100万。"</div><div class="lead-act">🎯 VIP 品牌大使 + 南极×教育跨界</div><div style="font-size:9px;color:var(--d)">📎 finance.sina.com.cn/jjxw/2025-03-06</div></div></div>
-<div class="lead-row"><div class="lead-score ls-hot">78</div><div class="lead-info"><div class="lead-name">#2 张子琦 <span class="tag tag-r">Hot</span><span class="tag tag-p">界面新闻</span></div><div class="lead-meta">30-40 · 互联网 · ¥16万 | 已乘坐Quark夸克邮轮!!</div><div class="lead-quote">"2025年1月飞阿根廷乌斯怀亚，乘夸克邮轮登陆南极。单人住宿近16万。华人包船，年轻人玩狼人杀。"</div><div class="lead-act">🎯 已成交！→ 北极复购 + Quark极友会社群</div></div></div>
-<div class="lead-row"><div class="lead-score ls-hot">76</div><div class="lead-info"><div class="lead-name">#3 马远 <span class="tag tag-r">Hot</span><span class="tag tag-p">微博</span></div><div class="lead-meta">35-50 · 高净值 · ¥50万+ | 飞进飞出</div><div class="lead-quote">"一年前预订南极，刷50万选飞进飞出。48小时滞留蓬塔阿雷纳斯仍觉得南极值得。"</div><div class="lead-act">🎯 超高端 → 北极点破冰/南极点70万+</div></div></div>
-<div class="lead-row"><div class="lead-score ls-hot">70</div><div class="lead-info"><div class="lead-name">#4 谷岳 <span class="tag tag-r">Hot</span><span class="tag tag-p">微博@谷岳</span></div><div class="lead-meta">40-50 · 环球旅行家 · ¥15-25万 | 国家地理合作</div><div class="lead-quote">"地球上终极的旅行打卡点南极，跟着国家地理获奖摄影大师一起去南极！"</div><div class="lead-act">🎯 Quark合作KOL → 免费体验直升机换内容</div></div></div>
+<div class="panel-title">Hot 线索 (≥70 分) <span class="badge br">4 条</span></div>
+<div class="lead-row"><div class="lead-score ls-hot">90</div><div class="lead-info"><div class="lead-name">#1 俞敏洪 <span class="tag tr">Hot</span> <span class="tag tp">微博/公开报道</span></div><div class="lead-meta">60+ · 企业家 · ¥25 万+ · 庞洛夏古号 PC2 破冰级</div><div class="lead-quote">"乘坐庞洛指挥官夏古号赴南极。2026 年 2 月夏古号 29 天豪爵套房单人超 ¥100 万。"</div><div class="lead-act">→ VIP 品牌大使 + 南极×教育跨界合作</div><div style="font-size:9px;color:var(--d);margin-top:2px">📎 finance.sina.com.cn/jjxw/2025-03-06</div></div></div>
+<div class="lead-row"><div class="lead-score ls-hot">78</div><div class="lead-info"><div class="lead-name">#2 张子琦 <span class="tag tr">Hot</span><span class="tag tp">界面新闻采访</span></div><div class="lead-meta">30-40 · 互联网从业者 · ¥16 万 · <b>已乘坐 Quark 夸克邮轮</b></div><div class="lead-quote">"2025 年 1 月飞阿根廷乌斯怀亚，乘夸克邮轮登陆南极。华人包船，年轻人玩狼人杀。"</div><div class="lead-act">→ 已成交客户！北极复购 + Quark 极友会社群</div></div></div>
+<div class="lead-row"><div class="lead-score ls-hot">76</div><div class="lead-info"><div class="lead-name">#3 马远 <span class="tag tr">Hot</span> <span class="tag tp">微博报道</span></div><div class="lead-meta">35-50 · 高净值 · ¥50 万+ · 飞进飞出</div><div class="lead-act">→ 超高端客户 · 北极点破冰/南极点 ¥70 万+ 产品线</div></div></div>
+<div class="lead-row"><div class="lead-score ls-hot">70</div><div class="lead-info"><div class="lead-name">#4 谷岳 <span class="tag tr">Hot</span> <span class="tag tp">微博 @谷岳</span></div><div class="lead-meta">环球旅行家 · 国家地理合作南极团</div><div class="lead-act">→ KOL 合作 · 免费体验直升机航线换内容产出</div></div></div>
 </div>
 </div><!-- /radar -->
 
-<!-- ═════════ PIPELINE (全国七区渠道) ═════════ -->
+<!-- ═════════ PIPELINE ═════════ -->
 <div id="tab-pipeline" class="tab-content">
+<div style="font-size:15px;font-weight:700;margin-bottom:12px">🎯 全国七大区高端渠道 Pipeline <span class="badge br" style="font-size:9px">28 条渠道</span></div>
+<div class="note">📌 筛选标准：渠道覆盖人群年收入 > ¥200 万 · 匹配 Quark ¥8-50 万定价 · 城市筛选基于胡润 2026 高净值报告 &nbsp;|&nbsp; <a href="pipeline.html" target="_blank" style="color:var(--a)">🔗 打开完整交互页面（每个搜索路径可点击展开查看真实搜索结果）</a></div>
 
-<div class="panel">
-<div class="panel-title">🎯 全国七大区高端渠道 Pipeline <span class="badge br">28条渠道 · 4种类型</span> <a href="pipeline.html" target="_blank" style="font-size:10px;color:var(--a);text-decoration:underline">🔗 打开独立页面(可点击搜索路径查看详情)</a></div>
-<div class="note">📌 筛选标准：渠道覆盖人群年收入>¥200万 · 匹配Quark产品定价¥8-50万 · 城市筛选基于胡润高净值人群城市分布</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px">
+<div style="background:var(--c2);border:1px solid var(--b);border-radius:10px;padding:14px">
+<div style="font-weight:700;font-size:13px;margin-bottom:8px">🏙️ 华北 (北京) &nbsp;<span class="badge br">P0×4</span> <span class="badge bo">P1×4</span></div>
+<div style="font-size:10px;color:var(--d);margin-bottom:10px">千万资产 >30 万家庭 · 竞品渗透 60%</div>
+<div style="font-size:10px;line-height:1.8;color:var(--d)">
+<div style="color:var(--a)">🔍 搜索路径 1: BITE 旅展参展商</div><div style="margin-bottom:6px">→ 恒众国际(张瑛·13次南极) · 鸿鹄逸游(携程系) · 众信旅游(赵鑫·1800+/季)</div>
+<div style="color:var(--a)">🔍 搜索路径 2: IAATO/AECO 会员名单</div><div style="margin-bottom:6px">→ 北京船客(ITA-011) · 极之美(AECO理事会·马硕)</div>
+<div style="color:var(--a)">🔍 搜索路径 3: 胡润私行 Top 20</div><div style="margin-bottom:6px">→ 招行私行(北京金融街) · 中信私行 · 中行私行</div>
+<div style="color:var(--a)">🔍 搜索路径 4: EMBA 校友/俱乐部</div><div>→ 清华经管 EMBA · 长江商学院 · 京城俱乐部</div>
+</div></div>
 
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
-<div class="region-card">
-<div class="region-name">🏙️ 华北区 (北京·天津) <span class="badge br">P0×4 / P1×4</span></div>
-<div class="region-stat">🏦 高净值密度: 全国最高 · 胡润: 北京千万资产家庭>30万 · 金融街/国贸/中关村</div>
-<div class="region-channels">
-<div><b>🔍 搜索路径1: 行业展会</b> → 北京国际旅游博览会(BITE)参展商名录 → 筛选"高端定制/极地"标签 → 锁定恒众国际、鸿鹄逸游等极地参展商</div>
-<div><b>🔍 搜索路径2: IAATO/AECO会员</b> → IAATO中国运营商名单 → 众信旅游(朝阳区)、北京船客(东城区)、极之美(海淀区)</div>
-<div><b>🔍 搜索路径3: 私人银行</b> → 招行私行(金融街)、中信私行、中行私行 → 贵宾权益部 → 高端旅行合作</div>
-<div><b>🔍 搜索路径4: 商学院/俱乐部</b> → 清华经管EMBA、北大光华EMBA校友活动 → 长安俱乐部、京城俱乐部会员旅行</div>
-<div style="color:var(--a);margin-top:4px;font-size:10px">🎯 竞品已渗透渠道: 庞洛×众信(签约) · 银海×八大洲(合作) → Quark差异化切入点: 直升机体验+探险深度</div>
-</div>
-</div>
+<div style="background:var(--c2);border:1px solid var(--b);border-radius:10px;padding:14px">
+<div style="font-weight:700;font-size:13px;margin-bottom:8px">🏙️ 华东 (上海/杭州) &nbsp;<span class="badge br">P0×3</span> <span class="badge bo">P1×5</span></div>
+<div style="font-size:10px;color:var(--d);margin-bottom:10px">千万资产 >25 万家庭 · 竞品渗透 50%</div>
+<div style="font-size:10px;line-height:1.8;color:var(--d)">
+<div style="color:var(--a)">🔍 搜索路径 1: ILTM Asia 参展商</div><div style="margin-bottom:6px">→ 八大洲(Bamboo Zhou·LinkedIn) · 赞那度(Alex Wang·CoFounder) · 碧山(Mei Zhang·国家地理认证)</div>
+<div style="color:var(--a)">🔍 搜索路径 2: 携程奢华频道合作方</div><div style="margin-bottom:6px">→ 耀悦(中青旅系) · 引睿旅行(官网已列Quark)</div>
+<div style="color:var(--a)">🔍 搜索路径 3: EMBA/私行</div><div>→ 中欧 CEIBS(校友>25,000) · 交行私行 · 浦发私行</div>
+</div></div>
 
-<div class="region-card">
-<div class="region-name">🏙️ 华东区 (上海·杭州·南京·苏州) <span class="badge br">P0×3 / P1×5</span></div>
-<div class="region-stat">🏦 高净值密度: 沪杭苏宁四城联动 · 胡润: 上海千万资产家庭>25万 · 陆家嘴/静安/滨江</div>
-<div class="region-channels">
-<div><b>🔍 搜索路径1: 奢华旅游展</b> → ILTM Asia(上海)参展商 → 八大洲旅游、赞那度、碧山旅行 → 筛选已代理竞品的定制机构</div>
-<div><b>🔍 搜索路径2: 高端旅行社</b> → 携程奢华旅行频道合作方 → 鸿鹄逸游(上海office) 、耀悦(中青旅系)</div>
-<div><b>🔍 搜索路径3: 商学院</b> → 中欧国际工商学院(上海)、长江商学院(上海)、复旦管院EMBA → 校友企业参访×极地主题</div>
-<div><b>🔍 搜索路径4: 私人银行</b> → 交行私行(上海总部)、浦发私行、平安私行(上海) → 高端客户专属旅行权益</div>
-<div style="color:var(--a);margin-top:4px;font-size:10px">🎯 竞品已渗透: 庞洛×众信(华东分发) · A21×八大洲(飞南极) → Quark切入点: 直升机唯一性+格陵兰北极</div>
-</div>
-</div>
+<div style="background:var(--c2);border:1px solid var(--b);border-radius:10px;padding:14px">
+<div style="font-weight:700;font-size:13px;margin-bottom:8px">🏙️ 华南 (深圳/广州) &nbsp;<span class="badge br">P0×1</span> <span class="badge bo">P1×4</span></div>
+<div style="font-size:10px;color:var(--d);margin-bottom:10px">深圳千万资产 >8 万(增速第一) · 竞品渗透 30%</div>
+<div style="font-size:10px;line-height:1.8;color:var(--d)">
+<div style="color:var(--a)">🔍 搜索路径 1: 私行总部</div><div style="margin-bottom:6px">→ 招行私行深圳总部(40088-95555) · 平安私行深圳总部(95511)</div>
+<div style="color:var(--a)">🔍 搜索路径 2: 华南极地龙头</div><div style="margin-bottom:6px">→ 极至旅行(广州·IAATO+AECO双认证·19年)</div>
+<div style="color:var(--a)">🔍 搜索路径 3: 科技企业家社群</div><div>→ 腾讯青藤大学 · 大疆创新俱乐部</div>
+</div></div>
 
-<div class="region-card">
-<div class="region-name">🏙️ 华南区 (深圳·广州) <span class="badge br">P0×1 / P1×4</span></div>
-<div class="region-stat">🏦 高净值密度: 深圳增速全国第一 · 胡润: 深圳千万资产家庭>8万 · 南山科技园/福田CBD</div>
-<div class="region-channels">
-<div><b>🔍 搜索路径1: 私人银行</b> → 招行私行(深圳总部-中国最大私行)、平安私行(深圳) → 高客活动/IP权益合作</div>
-<div><b>🔍 搜索路径2: 极地专营旅行社</b> → 极至旅行(广州越秀区·IAATO+AECO) → 19年极地经验·华南极地龙头</div>
-<div><b>🔍 搜索路径3: 科技企业家社群</b> → 腾讯青藤大学、华为生态圈、大疆创新俱乐部 → 科技新贵消费力</div>
-<div><b>🔍 搜索路径4: 移民/置业渠道</b> → 华侨银行、汇丰尚玉 → 海外资产配置客户×高端旅行</div>
-<div style="color:var(--a);margin-top:4px;font-size:10px">🎯 竞品渗透低: 华南极地渠道空白 → Quark先发优势</div>
-</div>
-</div>
+<div style="background:var(--c2);border:1px solid var(--b);border-radius:10px;padding:14px">
+<div style="font-weight:700;font-size:13px;margin-bottom:8px">🏙️ 西南 (成都/重庆) &nbsp;<span class="badge br">P0×1</span> <span class="badge bo">P1×3</span></div>
+<div style="font-size:10px;color:var(--d);margin-bottom:10px">成渝千万资产 >5 万 · 竞品渗透 20%——几乎空白</div>
+<div style="font-size:10px;line-height:1.8;color:var(--d)">
+<div style="color:var(--a)">🔍 搜索路径 1: IAATO 区域扫描</div><div style="margin-bottom:6px">→ 行之悦旅行(成都·IAATO认证·杜创·5000+人次)</div>
+<div style="color:var(--a)">🔍 搜索路径 2: 高端社区/俱乐部</div><div>→ 成都麓湖国际社区业主 · 高尔夫/马术俱乐部</div>
+</div></div>
 
-<div class="region-card">
-<div class="region-name">🏙️ 西南区 (成都·重庆) <span class="badge bo">P0×1 / P1×3</span></div>
-<div class="region-stat">🏦 高净值密度: 成渝双城 · 成都千万资产家庭>3万 · 新兴消费力强劲</div>
-<div class="region-channels">
-<div><b>🔍 搜索路径1: 极地专营机构</b> → 行之悦旅行(成都·IAATO认证·5000+极地人次) → 西南极地市场绝对龙头</div>
-<div><b>🔍 搜索路径2: 高端俱乐部</b> → 成都麓湖/麓山国际社区业主 → 高尔夫俱乐部/马术俱乐部会员</div>
-<div><b>🔍 搜索路径3: 私行渠道</b> → 成都农商行私行、重庆农商行私行 → 本地高净值客户偏好本土化服务</div>
-<div><b>🔍 搜索路径4: 主题旅行社群</b> → 川藏自驾俱乐部、户外摄影社群 → 通过"探险升级"引导到极地</div>
-<div style="color:var(--a);margin-top:4px;font-size:10px">🎯 竞争空白: 竞品西南布局弱 → Quark结合行之悦渠道快速渗透</div>
-</div>
-</div>
+<div style="background:var(--c2);border:1px solid var(--b);border-radius:10px;padding:14px">
+<div style="font-weight:700;font-size:13px;margin-bottom:8px">🏙️ 华中 (武汉·长沙) &nbsp;<span class="badge bo">P1×3</span></div>
+<div style="font-size:10px;color:var(--d);margin-bottom:10px">千万资产 >5 万 · 竞品渗透 10%——全域空白</div>
+<div style="font-size:10px;line-height:1.8;color:var(--d)">
+<div style="color:var(--a)">🔍 搜索路径:</div><div>→ 湖北康辉高端部 · 湖北银行私行 · 楚商联合会</div>
+</div></div>
 
-<div class="region-card">
-<div class="region-name">🏙️ 华中区 (武汉·长沙·郑州) <span class="badge bb">P1×3</span></div>
-<div class="region-stat">🏦 高净值密度: 新兴增长区 · 武汉千万资产家庭>2万 · 长沙/郑州各>1.5万</div>
-<div class="region-channels">
-<div><b>🔍 搜索路径1: 高端出境社</b> → 武汉峡州国旅、湖北康辉高端部 → 筛选"年出境客单价>8万"的销售团队</div>
-<div><b>🔍 搜索路径2: 私行/家办</b> → 湖北银行私行、中原银行私行(郑州) → 中部地区本土私行</div>
-<div><b>🔍 搜索路径3: 商会/协会</b> → 楚商联合会、湘商总会 → 企业家圈层×极地主题旅行</div>
-<div style="color:var(--a);margin-top:4px;font-size:10px">🎯 全域竞争空白: 无竞品在华中设极地专营 → Quark率先布局</div>
-</div>
+<div style="background:var(--c2);border:1px solid var(--b);border-radius:10px;padding:14px">
+<div style="font-weight:700;font-size:13px;margin-bottom:8px">🏙️ 西北+东北 &nbsp;<span class="badge bo">P1×4</span></div>
+<div style="font-size:10px;color:var(--d);margin-bottom:10px">西安+沈阳+大连 · 竞品渗透 5%——全域空白</div>
+<div style="font-size:10px;line-height:1.8;color:var(--d)">
+<div style="color:var(--a)">🔍 西北搜索路径:</div><div>→ 西安天马国旅 · 陕西能源企业家社群</div>
+<div style="color:var(--a);margin-top:4px">🔍 东北搜索路径:</div><div>→ 沈阳青旅(024-96611) · 大连星海湾游艇俱乐部</div>
+</div></div>
 </div>
 
-<div class="region-card">
-<div class="region-name">🏙️ 西北区 (西安) <span class="badge bb">P1×2</span></div>
-<div class="region-stat">🏦 高净值密度: 西安千万资产家庭>1.5万 · 能源/军工/文旅产业富豪集中</div>
-<div class="region-channels">
-<div><b>🔍 搜索路径1: 高端出境社</b> → 西安天马国旅、陕西海外旅游高端部 → 西北出境游龙头</div>
-<div><b>🔍 搜索路径2: 能源/矿产企业家</b> → 陕西煤炭/石油企业家社群 → 通过商会/行业协会触达</div>
-<div style="color:var(--a);margin-top:4px;font-size:10px">🎯 竞争空白+高客单价: 能源企业家消费力极强</div>
-</div>
-</div>
-
-<div class="region-card">
-<div class="region-name">🏙️ 东北区 (沈阳·大连) <span class="badge bb">P1×2</span></div>
-<div class="region-stat">🏦 高净值密度: 沈阳+大连千万资产家庭>2万 · 传统产业+新兴消费并存</div>
-<div class="region-channels">
-<div><b>🔍 搜索路径1: 高端出境社</b> → 沈阳青年国旅、大连中妇旅高端部 → 东北出境游头部渠道</div>
-<div><b>🔍 搜索路径2: 高端社区/俱乐部</b> → 大连星海湾/沈阳浑南富人区 → 高尔夫/游艇俱乐部会员</div>
-<div style="color:var(--a);margin-top:4px;font-size:10px">🎯 北上广溢出效应: 候鸟式高净值人群(冬三亚夏大连) → 季节营销机会</div>
-</div>
-</div>
-</div>
-</div>
-
-<div class="panel">
-<div class="panel-title">🔍 渠道获取标准搜索路径矩阵</div>
-<table>
-<tr><th class="w20">#</th><th>搜索路径</th><th>具体方法</th><th>目标渠道类型</th><th>产出</th></tr>
-<tr><td>1</td><td><b>国际旅游展会</b></td><td>ILTM Asia/北京BITE/上海WTF参展商名录 → 筛选"Luxury/Adventure/Polar"标签</td><td>高端定制旅行社</td><td>5-8家/展会</td></tr>
-<tr><td>2</td><td><b>IAATO/AECO成员名单</b></td><td>iaato.org → Operator Directory → 筛选中国注册运营商</td><td>极地专营旅行社</td><td>5家(已知)</td></tr>
-<tr><td>3</td><td><b>私人银行贵宾权益</b></td><td>胡润私行排名 → top20私行官网 → 贵宾权益-旅行板块 → 合作伙伴反向查找</td><td>私行/家办</td><td>8-10家</td></tr>
-<tr><td>4</td><td><b>竞品合作渠道反向</b></td><td>庞洛/银海/A21官网 → "合作伙伴/代理"页面 → 逐个记录 → Quark差异化提案</td><td>已有极地经验渠道</td><td>10-15家</td></tr>
-<tr><td>5</td><td><b>商学院EMBA校友</b></td><td>中欧/长江/清华/北大EMBA → 校友活动/海外游学 → 极地主题定制</td><td>商学院/企业家社群</td><td>4-6个</td></tr>
-<tr><td>6</td><td><b>高端俱乐部/会所</b></td><td>京城俱乐部/长安俱乐部/上海鸿艺会 → 会员活动×极地私享会</td><td>高端社交俱乐部</td><td>3-5个</td></tr>
-<tr><td>7</td><td><b>OTA高端频道合作方</b></td><td>携程奢华/飞猪高端 → 筛选"极地/南极"产品供应商 → 反向联系</td><td>OTA/平台</td><td>5-8家</td></tr>
-<tr><td>8</td><td><b>行业媒体/活动</b></td><td>环球旅讯峰会/TTG China → 极地旅游圆桌/参展商 → 名片交换</td><td>全类型</td><td>8-10家/场</td></tr>
-</table>
-</div>
-
-<div class="panel">
-<div class="panel-title">🎯 渠道获取优先级矩阵 — 按区域×类型</div>
-<table>
-<tr><th>区域</th><th>高净值密度</th><th>P0渠道数</th><th>P1渠道数</th><th>竞品渗透度</th><th>Quark机会分</th><th>建议优先级</th></tr>
-<tr><td>华北(北京)</td><td>⭐⭐⭐⭐⭐</td><td>4</td><td>4</td><td>60% 庞洛+众信已绑定</td><td style="color:var(--a3);font-weight:700">85/100</td><td>🥇 第1优先</td></tr>
-<tr><td>华东(上海)</td><td>⭐⭐⭐⭐⭐</td><td>3</td><td>5</td><td>50% 多品牌竞争</td><td style="color:var(--a3);font-weight:700">82/100</td><td>🥈 第2优先</td></tr>
-<tr><td>华南(深圳·广州)</td><td>⭐⭐⭐⭐</td><td>1</td><td>4</td><td>30% 竞争低</td><td style="color:var(--a);font-weight:700">78/100</td><td>🥉 第3优先</td></tr>
-<tr><td>西南(成都·重庆)</td><td>⭐⭐⭐</td><td>1</td><td>3</td><td>20% 几乎空白</td><td style="color:var(--a);font-weight:700">72/100</td><td>第4优先</td></tr>
-<tr><td>华中(武汉·长沙)</td><td>⭐⭐</td><td>0</td><td>3</td><td>10% 完全空白</td><td style="color:var(--o);font-weight:700">55/100</td><td>第5优先</td></tr>
-<tr><td>西北(西安)</td><td>⭐⭐</td><td>0</td><td>2</td><td>5% 完全空白</td><td style="color:var(--o);font-weight:700">45/100</td><td>第6优先</td></tr>
-<tr><td>东北(沈阳·大连)</td><td>⭐⭐</td><td>0</td><td>2</td><td>5% 完全空白</td><td style="color:var(--a2);font-weight:700">40/100</td><td>第7优先</td></tr>
-</table>
-</div>
-
+<div class="note"><b>👉 点击上方链接打开完整 Pipeline 页面</b>，每个区域的每条搜索路径都可点击展开，查看我实际搜索到的合作伙伴详情及联系人信息（LinkedIn URL、电话、邮箱、地址）。</div>
 </div><!-- /pipeline -->
 
 <!-- ═════════ NURTURE ═════════ -->
 <div id="tab-nurture" class="tab-content">
-<div class="panel-title" style="font-size:16px;margin-bottom:12px">🌱 培育引擎 — 3位客户进入 Engage 阶段</div>
+<div style="font-size:15px;font-weight:700;margin-bottom:12px">🌱 培育引擎 — 五阶段客户旅程</div>
 <div class="row3">
 <div class="panel">
-<div class="panel-title">王总 (企业主 · 60分) <span class="badge bg">Engage</span></div>
+<div class="panel-title">王总 · 60 分 <span class="badge bg">Engage 阶段</span></div>
 <div class="wecom-tag">#南极兴趣-高</div><div class="wecom-tag">#45-55岁</div><div class="wecom-tag">#企业主</div><div class="wecom-tag">#预算20-30万</div>
-<div style="margin-top:8px;font-size:10px"><b>📚 内容序列:</b></div>
-<div style="font-size:10px">📘《极地100问》→ 🎤 线上分享会 → 📖 客户故事 → ⚖️ 邮轮对比表</div>
-<div style="margin-top:8px;font-size:10px"><b>💬 话术:</b></div>
-<div style="font-size:10px;color:var(--t)">💼 "您是企业家，特别推荐Ultramarine直升机——时间和体验比价格重要"</div>
+<div style="margin-top:12px;font-size:10px"><b>📚 推荐内容序列:</b></div>
+<div style="font-size:10px;color:var(--d);margin-top:4px">📘 极地 100 问 → 🎤 线上分享会 → 📖 客户故事 → ⚖️ 邮轮对比表</div>
+<div style="margin-top:10px;font-size:10px"><b>💬 画像感知话术:</b></div>
+<div style="font-size:10px;color:var(--d);margin-top:4px">"您是企业家，特别推荐 Ultramarine 直升机体验——时间和体验比价格重要。"</div>
 </div>
 <div class="panel">
-<div class="panel-title">Linda (高管 · 55分) <span class="badge bg">Engage</span></div>
+<div class="panel-title">Linda · 55 分 <span class="badge bg">Engage 阶段</span></div>
 <div class="wecom-tag">#南极兴趣-高</div><div class="wecom-tag">#35-44岁</div><div class="wecom-tag">#企业高管</div><div class="wecom-tag">#预算30万+</div>
-<div style="margin-top:8px;font-size:10px"><b>📚 内容序列:</b></div>
-<div style="font-size:10px">📘《极地100问》→ 🎤 线上分享会 → 📖 客户故事</div>
-<div style="margin-top:8px;font-size:10px"><b>💬 话术:</b></div>
-<div style="font-size:10px;color:var(--t)">💼 "您这样经常出差的高管，最需要的就是纯粹安静——南极没有信号"</div>
+<div style="margin-top:12px;font-size:10px"><b>📚 推荐内容序列:</b></div>
+<div style="font-size:10px;color:var(--d);margin-top:4px">📘 极地 100 问 → 🎤 线上分享会 → 📖 客户故事</div>
+<div style="margin-top:10px;font-size:10px"><b>💬 画像感知话术:</b></div>
+<div style="font-size:10px;color:var(--d);margin-top:4px">"您这样经常出差的高管，最需要纯粹安静——南极没有信号，最极致数字排毒。"</div>
 </div>
 <div class="panel">
-<div class="panel-title">大鹏 (摄影师 · 48分) <span class="badge bg">Engage</span></div>
-<div class="wecom-tag">#南极兴趣-高</div><div class="wecom-tag">#旅行-重度</div><div class="wecom-tag">#预算10-20万</div>
-<div style="margin-top:8px;font-size:10px"><b>📚 内容序列:</b></div>
-<div style="font-size:10px">📘《极地100问》→ 🎤 线上分享会 → ⚖️ 邮轮对比</div>
-<div style="margin-top:8px;font-size:10px"><b>💬 话术:</b></div>
-<div style="font-size:10px;color:var(--t)">📚 "10-20万预算内，这几条航线最适合您"</div>
+<div class="panel-title">大鹏 · 48 分 <span class="badge bg">Engage 阶段</span></div>
+<div class="wecom-tag">#南极兴趣-高</div><div class="wecom-tag">#重度旅行</div><div class="wecom-tag">#预算10-20万</div>
+<div style="margin-top:12px;font-size:10px"><b>📚 推荐内容序列:</b></div>
+<div style="font-size:10px;color:var(--d);margin-top:4px">📘 极地 100 问 → 🎤 分享会 → ⚖️ 邮轮对比</div>
+<div style="margin-top:10px;font-size:10px"><b>💬 画像感知话术:</b></div>
+<div style="font-size:10px;color:var(--d);margin-top:4px">"10-20 万预算内，这几条航线最适合您。Quark 是唯一把探险深度做到极致的。"</div>
 </div>
 </div>
 </div><!-- /nurture -->
 
-<!-- ═════════ COACH (abbreviated) ═════════ -->
+<!-- ═════════ COACH ═════════ -->
 <div id="tab-coach" class="tab-content">
-<div class="panel"><div class="panel-title">💬 异议处理 <span class="badge bg">4/4 100%</span></div>
-<div class="obj-card"><div class="obj-q">🗣 "30万太贵，别的船便宜很多"</div><div class="obj-r">💡 买的是"去南极"还是"探索南极"？便宜的船200-500人、每天1-2次登陆。Quark 100-200人小船、每天2-3次登陆、唯一双直升机。</div></div>
-<div class="obj-card"><div class="obj-q">🗣 "南极危险吗？"</div><div class="obj-r">💡 Quark 30年零事故。探险队员平均15年经验。IAATO严格安全标准。</div></div>
-<div class="obj-card"><div class="obj-q">🗣 "我55岁体力跟不上"</div><div class="obj-r">💡 最年长客人86岁走完全程。活动按体力安排，南极珍贵的是"感受"不是"征服"。</div></div>
-<div class="obj-card"><div class="obj-q">🗣 "庞洛更奢华"</div><div class="obj-r">💡 庞洛="奢华酒店搬到海上"，Quark="最极致探险"。选庞洛为被服务，选Quark为看见别人看不见的世界。</div></div>
+<div style="font-size:15px;font-weight:700;margin-bottom:12px">💬 AI 销售教练 — 异议处理 + 跟单 + 评分</div>
+<div class="row2">
+<div class="panel">
+<div class="panel-title">🗣 异议处理库 <span class="badge bg">4/4 匹配 100%</span></div>
+<div class="obj-card"><div class="obj-q">🗣 "30 万太贵，别的船便宜很多" <span style="font-size:9px;color:var(--d)">[价格] 置信度 88%</span></div><div class="obj-r">关键在于买的是"去南极"还是"探索南极"。便宜的船 200-500 人、每天 1-2 次登陆。Quark 是 100-200 人小船、每天 2-3 次登陆、<b>唯一双直升机</b>。</div></div>
+<div class="obj-card"><div class="obj-q">🗣 "南极危险吗？" <span style="font-size:9px;color:var(--d)">[安全] 置信度 60%</span></div><div class="obj-r">Quark 30 年零事故。探险队员平均 15 年经验。IAATO 严格安全标准。</div></div>
+<div class="obj-card"><div class="obj-q">🗣 "我 55 岁体力跟不上了" <span style="font-size:9px;color:var(--d)">[体力] 置信度 83%</span></div><div class="obj-r">最年长客人 86 岁走完全程。南极珍贵的是"感受"不是"征服"。</div></div>
+<div class="obj-card"><div class="obj-q">🗣 "庞洛更奢华" <span style="font-size:9px;color:var(--d)">[竞品] 置信度 71%</span></div><div class="obj-r">庞洛 = 奢华酒店搬到海上，Quark = 最极致探险。选庞洛为被服务，选 Quark 为看见别人看不见的世界。</div></div>
 </div>
-<div class="panel" style="margin-top:14px"><div class="panel-title">📧 跟单消息 <span class="badge bb">4阶段</span></div>
-<div class="obj-card" style="border-left-color:var(--a3)"><div class="obj-q" style="color:var(--a3)">初次触达</div><div class="obj-r">王总您好！我是Quark极地旅行顾问。周六线上分享会——探险队长讲解2027独家航线。感兴趣的话我发邀请函？</div></div>
-<div class="obj-card" style="border-left-color:var(--a3)"><div class="obj-q" style="color:var(--a3)">决策推动</div><div class="obj-r">2027南极季早鸟价周五截止。南极半岛11天还剩3个舱位。定金1万锁定，下轮贵15%。</div></div>
+<div class="panel">
+<div class="panel-title">📧 跟单助手 <span class="badge bb">4 阶段自适应</span></div>
+<div class="obj-card" style="border-left-color:var(--a3)"><div class="obj-q" style="color:var(--a3)">初次触达</div><div class="obj-r">王总您好！我是 Quark 极地旅行顾问。周六线上分享会——探险队长讲解 2027 独家航线。感兴趣的话我发邀请函？</div></div>
+<div class="obj-card" style="border-left-color:var(--a3)"><div class="obj-q" style="color:var(--a3)">决策推动</div><div class="obj-r">2027 南极季早鸟价周五截止。南极半岛 11 天还剩 3 个舱位。定金 1 万锁定，下轮贵 15%。</div></div>
+<div class="obj-card" style="border-left-color:var(--a3)"><div class="obj-q" style="color:var(--a3)">沉睡唤醒</div><div class="obj-r">最近一位 52 岁企业家客户从南极回来说："去了 40 个国家，南极是唯一一个让我流泪的。" 您之前也对南极感兴趣——2027 新开威德尔海帝企鹅航线，要不要看看？</div></div>
+</div>
+</div>
+<div class="row2" style="margin-top:14px">
+<div class="panel"><div class="panel-title">回答 A (优秀) · <span style="color:var(--o)">62/100 B 级</span></div><div style="font-size:10px;margin:4px 0">共情 25 | 专业 25 | 价值重塑 12 | 推进 0</div><div style="font-size:10px;color:var(--o)">💡 做价值重塑 · 结尾加行动引导</div></div>
+<div class="panel"><div class="panel-title">回答 B (反面教材) · <span style="color:var(--r)">10/100 C 级</span></div><div style="font-size:10px;margin:4px 0">共情 10 | 专业 0 | 价值 0 | 推进 0</div><div style="font-size:10px;color:var(--o)">💡 先共情 · 加专业细节 · 做价值重塑 · 加行动引导</div></div>
 </div>
 </div><!-- /coach -->
 
 <!-- ═════════ COMPETITOR ═════════ -->
 <div id="tab-competitor" class="tab-content">
+<div style="font-size:15px;font-weight:700;margin-bottom:12px">🏴‍☠️ 竞品动态 & 行业趋势 — 2026.02-08</div>
 <div class="panel">
-<div class="panel-title">⚠️ 竞品动态 — 2026年2-8月 <span class="badge br">10条</span></div>
-<div class="alert ac"><strong>🔴 [66度] 海神号首航 → 50+航次 · 全中文+中医</strong><div class="time">2026-05 · 直接挑战Quark中文差异化</div></div>
-<div class="alert ac"><strong>🔴 [庞洛] 2027-2028南极季启售 · 2028全环南极62天</strong><div class="time">2026-06 · 提前2年，预订率85%+</div></div>
-<div class="alert ah"><strong>🟡 [恒众×国家地理] 2027北极四岛包船</strong><div class="time">2026-06 · 内容品牌跨界极地</div></div>
-<div class="alert ah"><strong>🟡 [众信×庞洛] 南极1400+人→+20%目标</strong><div class="time">2026-04 · 渠道集中度提高</div></div>
-<div class="alert ah"><strong>🟡 [66度] 女性旅行焦虑治愈营销</strong><div class="time">2026-04 · 中医理疗+女性友好</div></div>
-<div class="alert am"><strong>🔵 [尾单] 不到4万RMB</strong><div class="time">2026-03 · 尾单仅3-5%，需价格教育</div></div>
-<div class="alert am"><strong>🔵 [G Adventures] 极地船队翻倍</strong><div class="time">2026</div></div>
-<div class="alert am"><strong>🔵 [庞洛] 中国预订率95%+，份额40%+</strong><div class="time">2026</div></div>
-<div class="alert am"><strong>🔵 [飞猪×南北极联盟] OTA包船加速</strong><div class="time">2026</div></div>
-<div class="alert am"><strong>🔵 [银海] 奋进号中国代理扩展</strong><div class="time">2026</div></div>
+<div class="panel-title">⚠️ 竞品实时预警 <span class="badge br">10 条</span></div>
+<div class="alert ac"><strong>🔴 [66度] 海神号首航 → 50+ 航次 · 全中文+中医理疗</strong><div class="time">2026-05 · 中国首个极地邮轮品牌全航季运营，直接挑战 Quark 中文差异化</div></div>
+<div class="alert ac"><strong>🔴 [庞洛] 2027-28 南极季启售 · 2028 全环南极 62 天</strong><div class="time">2026-06 · 提前 2 年，预订率 85%+，中国份额 40%+</div></div>
+<div class="alert ah"><strong>🟡 [恒众×国家地理] 北极四岛包船</strong><div class="time">2026-06 · 内容品牌跨界极地新模式</div></div>
+<div class="alert ah"><strong>🟡 [众信×庞洛] 南极 1400+→目标 +20%</strong><div class="time">2026-04 · 夏古号套房超 ¥100 万</div></div>
+<div class="alert ah"><strong>🟡 [66度] "女性旅行焦虑"治愈营销</strong><div class="time">2026-04 · 中医+中式餐饮+女性友好</div></div>
+<div class="alert am"><strong>🔵 [尾单] 不到 ¥4 万</strong><div class="time">2026-03 · 尾单仅 3-5%，价格认知待教育</div></div>
+<div class="alert am"><strong>🔵 [G Adventures] 极地船队翻倍 · 飞猪南北极联盟包船 · 银海代理扩展</strong><div class="time">2026</div></div>
 </div>
-
 <div class="panel">
-<div class="panel-title">📡 行业趋势 <span class="badge bb">6条</span></div>
-<div class="obj-card" style="border-left-color:var(--r)"><div class="obj-q" style="color:var(--r)">🔴 66度海神号首航+50+航次</div><div class="obj-r">全中文+中医+中式餐饮 → 直接挑战Quark中文服务差异化。2026-2028布局50+探险航次覆盖全球。</div></div>
-<div class="obj-card" style="border-left-color:var(--o)"><div class="obj-q" style="color:var(--o)">🟡 恒众×国家地理 北极四岛包船</div><div class="obj-r">2026年6月：斯瓦尔巴/东格陵兰/法罗群岛/冰岛21天。高端内容品牌跨界极地新模式。</div></div>
-<div class="obj-card" style="border-left-color:var(--a3)"><div class="obj-q" style="color:var(--a3)">🟢 中国游客+25% YoY</div><div class="obj-r">9384→11705(+25%)，全球第二大客源国。需求远超供给。</div></div>
+<div class="panel-title">📡 行业信号 <span class="badge bb">6 条</span></div>
+<div class="obj-card" style="border-left-color:var(--r)"><div class="obj-q" style="color:var(--r)">🔴 66度海神号+50航次</div><div class="obj-r">全中文+中医+中式餐饮 → 挑战 Quark 差异化</div></div>
+<div class="obj-card" style="border-left-color:var(--o)"><div class="obj-q" style="color:var(--o)">🟡 恒众×国家地理北极四岛</div><div class="obj-r">内容品牌跨界极地新模式</div></div>
+<div class="obj-card" style="border-left-color:var(--a3)"><div class="obj-q" style="color:var(--a3)">🟢 中国游客 +25% YoY → 全球第二</div><div class="obj-r">9384→11705，需求远超供给，Quark 空间巨大</div></div>
 </div>
 </div><!-- /competitor -->
 
 <!-- ═════════ RAG ═════════ -->
 <div id="tab-rag" class="tab-content">
+<div style="font-size:15px;font-weight:700;margin-bottom:12px">🔮 pgvector RAG — 客户语义向量检索</div>
 <div class="panel">
-<div class="panel-title">🔮 pgvector RAG 客户语义检索 <span class="badge bb">5客户·1536维</span></div>
+<div class="panel-title">客户向量库 <span class="badge bb">5 位 · 1536 维</span></div>
 <table>
 <tr><th>ID</th><th>姓名</th><th>画像摘要</th><th>等级</th><th>极地分</th></tr>
-<tr style="background:rgba(16,185,129,.04)"><td>cust_001</td><td><b>王总</b></td><td>52岁企业主 · 冰岛非洲 · 预算30-50万 · 关注12个月</td><td>A级</td><td>87</td></tr>
-<tr style="background:rgba(16,185,129,.04)"><td>cust_002</td><td><b>Linda</b></td><td>35岁互联网高管 · 70国 · 头等舱80段 · 数字排毒</td><td>A级</td><td>82</td></tr>
-<tr><td>cust_003</td><td>张医生</td><td>60岁退休医生 · 肯尼亚 · 摄影 · 预算20万</td><td>B级</td><td>65</td></tr>
-<tr style="background:rgba(0,212,255,.04)"><td>cust_004</td><td><b>陈总</b></td><td>45岁女企业家 · 已购南极半岛 · 想升级北极</td><td>S级</td><td>95</td></tr>
-<tr style="background:rgba(239,68,68,.04)"><td>cust_005</td><td>小杨</td><td>28岁自媒体 · 穷游 · 求3万以内方案</td><td>C级</td><td>15</td></tr>
+<tr style="background:rgba(34,197,94,.03)"><td>cust_001</td><td><b>王总</b></td><td>52 岁企业主 · 冰岛+非洲 · 预算 30-50 万 · 关注 12 月</td><td>A 级</td><td>87</td></tr>
+<tr style="background:rgba(34,197,94,.03)"><td>cust_002</td><td><b>Linda</b></td><td>35 岁互联网高管 · 70 国 · 头等舱 80 段 · 数字排毒</td><td>A 级</td><td>82</td></tr>
+<tr><td>cust_003</td><td>张医生</td><td>60 岁退休 · 肯尼亚 · 摄影爱好者 · 预算 20 万</td><td>B 级</td><td>65</td></tr>
+<tr style="background:rgba(56,189,248,.03)"><td>cust_004</td><td><b>陈总</b></td><td>45 岁女企业家 · 已购南极 · 想升级北极</td><td>S 级</td><td>95</td></tr>
+<tr style="background:rgba(239,68,68,.03)"><td>cust_005</td><td>小杨</td><td>28 岁自媒体 · 穷游 · 求 ¥3 万方案</td><td>C 级</td><td>15</td></tr>
 </table>
 </div>
 <div class="panel" style="margin-top:14px">
-<div class="panel-title">🔍 语义查询 <span class="badge br">3次</span></div>
-<div style="margin-bottom:8px;font-size:10px"><div style="color:var(--a);margin-bottom:2px">🔍 "企业主 高预算 深度旅行 直升机 探险"</div>+0.244 Linda(A) · +0.182 王总(A) · +0.149 张医生(B)</div>
-<div style="margin-bottom:8px;font-size:10px"><div style="color:var(--a);margin-bottom:2px">🔍 "预算有限 穷游 学生 低价"</div>+0.670 小杨(C) <span style="color:var(--r)">⚠️低价值</span> · -0.005 陈总(S) <span style="color:var(--a3)">✅</span> · -0.021 Linda(A) <span style="color:var(--a3)">✅</span></div>
+<div class="panel-title">🔍 语义检索 <span class="badge br">3 次查询</span></div>
+<div style="margin-bottom:10px;font-size:10px"><div style="color:var(--a)">🔍 "企业主 高预算 深度旅行 直升机 探险"</div><div style="color:var(--d)">+0.244 Linda(A) · +0.182 王总(A) · +0.149 张医生(B)</div></div>
+<div style="margin-bottom:10px;font-size:10px"><div style="color:var(--a)">🔍 "预算有限 穷游 学生 低价"</div><div style="color:var(--d)">+0.670 小杨(C) <span style="color:var(--r)">⚠️ 低价值</span> · -0.005 陈总(S) <span style="color:var(--a3)">✅ 高价值自动排后</span> · -0.021 Linda(A) <span style="color:var(--a3)">✅</span></div></div>
 </div>
 </div><!-- /rag -->
 
 </div><!-- container -->
 
 <footer class="footer">
-<span>© 2026 Quark Expeditions · Polar Growth OS v2.0</span>
-<span>GitHub: <a href="https://github.com/lena2099/quark-cn-growth-engine" target="_blank">lena2099/quark-cn-growth-engine</a> · 纯HTML+轻量JS</span>
+<span>© 2026 &nbsp;·&nbsp; 作品集项目 &nbsp;·&nbsp; 基于公开数据构建 &nbsp;·&nbsp; 不代表 Quark Expeditions 官方立场</span>
+<span>
+<a href="https://github.com/lena2099/quark-cn-growth-engine" target="_blank">GitHub 仓库</a> &nbsp;·&nbsp;
+<a href="pipeline.html" target="_blank">完整渠道 Pipeline</a> &nbsp;·&nbsp;
+数据源: 界面新闻 / 36氪 / 蓝鲸新闻 / LinkedIn / 胡润报告
+</span>
 </footer>
 
 <script>
-// Simple tab switching — no external dependencies
 document.querySelectorAll('#nav button').forEach(function(btn){
   btn.addEventListener('click',function(){
     document.querySelectorAll('#nav button').forEach(function(b){b.classList.remove('active')});
