@@ -1,24 +1,11 @@
-# Python
 __pycache__/
-*.py[cod]
-*.egg-info/
-dist/
-*.egg
+*.pyc
 .env
-*.log
-
-# IDE
+data/raw/*
+data/processed/*
+data/reports/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+!data/reports/.gitkeep
+.venv/
 .idea/
-.vscode/
-*.swp
-
-# OS
-.DS_Store
-Thumbs.db
-
-# Docker
-docker-compose.override.yml
-
-# Data
-data/
-logs/

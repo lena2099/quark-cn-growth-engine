@@ -1,0 +1,82 @@
+# 极地市场智能情报系统 — 每日自动工作流
+# 北京时间每天早上 8:00 运行 (UTC 00:00)
+name: Polar Market Intelligence Daily Report
+
+on:
+  schedule:
+    # 北京时间 8:00 = UTC 0:00
+    - cron: '0 0 * * *'
+  # 手动触发
+  workflow_dispatch:
+    inputs:
+      date_override:
+        description: '手动指定分析日期 (YYYY-MM-DD, 默认昨天)'
+        required: false
+        default: ''
+      report_type:
+        description: '报告类型'
+        required: true
+        type: choice
+        options:
+          - full
+          - keyword-only
+          - brand-only
+        default: 'full'
+
+env:
+  PYTHON_VERSION: '3.12'
+  UV_SYSTEM_PYTHON: '1'
+
+jobs:
+  market-intelligence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Setup Python ${{ env.PYTHON_VERSION }}
+        run: uv python install ${{ env.PYTHON_VERSION }}
+
+      - name: Install dependencies
+        run: |
+          uv pip install -r requirements.txt
+
+      - name: Run Polar Intelligence Pipeline
+        env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          REPORT_DATE: ${{ github.event.inputs.date_override || '' }}
+          REPORT_TYPE: ${{ github.event.inputs.report_type || 'full' }}
+          # 数据库 (可选, MVP 阶段使用文件存储)
+          DB_URL: ${{ secrets.DB_URL || '' }}
+          # 企微/邮件 Webhook (可选)
+          WECHAT_WEBHOOK: ${{ secrets.WECHAT_WEBHOOK || '' }}
+          EMAIL_SMTP_HOST: ${{ secrets.EMAIL_SMTP_HOST || '' }}
+          EMAIL_SMTP_PORT: ${{ secrets.EMAIL_SMTP_PORT || '' }}
+          EMAIL_FROM: ${{ secrets.EMAIL_FROM || '' }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO || '' }}
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD || '' }}
+        run: python main.py
+
+      - name: Upload daily report
+        uses: actions/upload-artifact@v4
+        with:
+          name: polar-market-report-${{ github.run_id }}
+          path: |
+            data/reports/*.md
+            data/reports/*.json
+            data/reports/*.html
+          retention-days: 90
+
+      - name: Commit and push report
+        if: success()
+        run: |
+          git config user.name "Polar Intelligence Bot"
+          git config user.email "bot@polar-intelligence.local"
+          git add data/reports/ data/processed/
+          git diff --staged --quiet || git commit -m "📊 Daily report $(date +%Y-%m-%d)"
+          git push
