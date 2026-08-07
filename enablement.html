@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>渠道赋能中心 — Quark Expeditions 合作伙伴支持体系</title>
+<style>
+:root{--bg:#080c14;--c1:#0f1420;--c2:#171e2c;--b:#1c2536;--t:#e4e8ee;--d:#8892a4;--a:#38bdf8;--a2:#f59e0b;--a3:#22c55e;--r:#ef4444;--o:#f97316;--p:#8b5cf6}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--t);font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC",sans-serif;line-height:1.6}
+.h{background:linear-gradient(135deg,#0c111d,#111827,#0d1525);border-bottom:1px solid var(--b);padding:16px 32px;position:sticky;top:0;z-index:100;display:flex;justify-content:space-between;align-items:center}
+.hl{display:flex;align-items:center;gap:14px}.logo{width:40px;height:40px;background:linear-gradient(135deg,#6366f1,#8b5cf6,#a78bfa);border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:17px;color:#fff}
+.brand{font-weight:700;font-size:15px}.brand span{background:linear-gradient(135deg,var(--a),var(--p));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.container{max-width:1300px;margin:0 auto;padding:20px 24px}
+
+.nav{display:flex;gap:4px;flex-wrap:wrap;border-bottom:1px solid var(--b);padding-bottom:10px;margin-bottom:20px}
+.nav button{padding:8px 16px;border-radius:8px 8px 0 0;font-size:12px;cursor:pointer;border:1px solid transparent;background:transparent;color:var(--d);transition:all .2s;font-family:inherit;font-weight:500}
+.nav button:hover{color:var(--t);background:var(--c1)}
+.nav button.active{color:var(--a);background:var(--c1);border-color:var(--b);border-bottom:2px solid var(--a);font-weight:700}
+.tab-content{display:none}.tab-content.active{display:block}
+
+.panel{background:var(--c1);border:1px solid var(--b);border-radius:12px;padding:20px;margin-bottom:16px}
+.panel-title{font-weight:700;font-size:14px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center}
+.badge{font-size:9px;padding:2px 8px;border-radius:12px;font-weight:600}
+.br{background:rgba(239,68,68,.12);color:var(--r)}.bb{background:rgba(56,189,248,.12);color:var(--a)}.bg{background:rgba(34,197,94,.12);color:var(--a3)}.bo{background:rgba(245,158,11,.12);color:var(--o)}.bp{background:rgba(139,92,246,.12);color:var(--p)}
+
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:16px}
+
+.hero{text-align:center;padding:32px 20px 24px;border-bottom:1px solid var(--b);margin-bottom:20px}
+.hero h1{font-size:24px;font-weight:800;margin-bottom:6px;background:linear-gradient(135deg,#e4e8ee,#38bdf8,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--d);font-size:13px;max-width:700px;margin:0 auto}
+
+/* ── Product Cards ── */
+.pdf-preview{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.pdf-card{background:var(--c2);border:1px solid var(--b);border-radius:10px;padding:20px;position:relative;overflow:hidden}
+.pdf-card:hover{border-color:var(--a)}
+.pdf-num{position:absolute;top:-10px;right:12px;font-size:48px;font-weight:900;opacity:.06;color:var(--a)}
+.pdf-title{font-weight:700;font-size:14px;margin-bottom:10px;color:var(--a)}
+.pdf-content{font-size:11px;line-height:1.8;color:var(--d)}
+.pdf-content b{color:var(--t)}
+.pdf-tag{display:inline-block;margin-top:10px;padding:4px 10px;border-radius:4px;font-size:9px;background:rgba(56,189,248,.1);color:var(--a);border:1px solid rgba(56,189,248,.2)}
+.pitch-box{background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.2);border-radius:8px;padding:14px;margin-bottom:12px;font-size:11px}
+.pitch-box strong{color:var(--a3)}
+
+/* ── Activity Cards ── */
+.activity-type{margin-bottom:20px}
+.activity-title{font-weight:700;font-size:13px;margin-bottom:10px;padding:6px 0;border-bottom:1px solid var(--b);display:flex;align-items:center;gap:8px}
+.activity-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.activity-card{background:var(--c2);border:1px solid var(--b);border-radius:8px;padding:14px;font-size:11px}
+.activity-card:hover{border-color:var(--a)}
+.activity-name{font-weight:700;font-size:12px;margin-bottom:6px}
+.activity-channels{font-size:10px;color:var(--d);margin-bottom:4px}
+.activity-desc{font-size:10px;color:var(--d);line-height:1.6}
+.activity-cost{font-size:10px;color:var(--a2);margin-top:6px}
+
+/* ── Reward Cards ── */
+.reward-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.reward-card{background:var(--c2);border:1px solid var(--b);border-radius:10px;padding:16px;text-align:center}
+.reward-card:hover{border-color:var(--a2)}
+.reward-icon{font-size:32px;margin-bottom:6px}
+.reward-title{font-weight:700;font-size:12px;margin-bottom:8px}
+.reward-desc{font-size:10px;color:var(--d);line-height:1.7}
+
+/* ── Service Cards ── */
+.service-row{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid var(--b)}
+.service-row:last-child{border-bottom:none}
+.service-icon{font-size:28px;flex-shrink:0;width:50px;text-align:center}
+.service-info{flex:1}.service-name{font-weight:700;font-size:12px;margin-bottom:4px}.service-desc{font-size:10px;color:var(--d);line-height:1.7}.service-ops{font-size:10px;color:var(--a);margin-top:4px}
+
+.bar-row{display:flex;align-items:center;gap:10px;margin:8px 0}
+.bar-label{width:100px;font-size:10px;text-align:right;color:var(--d)}
+.bar-track{flex:1;height:16px;background:var(--b);border-radius:8px;overflow:hidden}
+.bar-fill{height:100%;border-radius:8px;display:flex;align-items:center;padding-left:8px;font-size:9px;font-weight:700;color:#fff}
+
+.note{padding:8px 14px;background:rgba(56,189,248,.05);border-left:3px solid var(--a);border-radius:0 8px 8px 0;font-size:10px;color:var(--d);margin:8px 0}
+
+.footer{border-top:1px solid var(--b);padding:16px 24px;color:var(--d);font-size:10px;text-align:center;margin-top:20px}.footer a{color:var(--a)}
+
+@media(max-width:900px){.pdf-preview,.reward-grid,.activity-grid{grid-template-columns:1fr}.row2,.row3{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="h">
+<div class="hl"><div class="logo">⚡</div><div class="brand"><span>渠道赋能中心</span> &nbsp;·&nbsp; Quark Expeditions 合作伙伴支持体系</div></div>
+<div style="font-size:11px;color:var(--d)">产品赋能 · 营销赋能 · 培训赋能 · 激励赋能 · 服务赋能</div>
+</header>
+
+<div class="hero">
+<h1>让每一个合作伙伴都能自信地卖出 Quark</h1>
+<p>不靠 PPT，靠可执行的工具。五维赋能体系，覆盖从「了解产品」到「客户复购」的完整链路。</p>
+</div>
+
+<div class="container">
+
+<div class="nav" id="nav">
+<button data-tab="product" class="active">📦 产品赋能</button>
+<button data-tab="marketing">📣 营销赋能</button>
+<button data-tab="training">🎓 培训赋能</button>
+<button data-tab="incentive">🏆 激励赋能</button>
+<button data-tab="service">🛎️ 服务赋能</button>
+</div>
+
+<!-- ═══════════ PRODUCT ═══════════ -->
+<div id="tab-product" class="tab-content active">
+<div class="panel">
+<div class="panel-title">📦 产品赋能 — 3 页 PDF 速查卡 <span class="badge bb">30 秒讲清 Quark</span></div>
+<div class="note">以下内容设计为 3 页可印刷/可转发的 PDF 速查卡。渠道销售人员可以存在手机里，任何时候打开就能用。</div>
+
+<div class="pdf-preview">
+<div class="pdf-card">
+<div class="pdf-num">P1</div>
+<div class="pdf-title">🛸 直升机登陆 vs 冲锋艇登陆</div>
+<div class="pdf-content">
+<b>Quark Ultramarine — 全球唯一双直升机</b><br>
+· 2 架空客 H145 直升机<br>
+· 直接降落冰原深处/冰川顶端<br>
+· 到达常规船无法抵达的区域<br>
+· 帝企鹅栖息地、冰架内部<br>
+· 每客至少 1 次免费直升机体验<br><br>
+<b>其他极地船 — 仅冲锋艇</b><br>
+· 只能在岸边 1-2 公里范围活动<br>
+· 天气差时无法出海<br>
+· 看到的永远只是"南极的边"<br>
+</div>
+<div class="pdf-tag">一句话: Quark = 别人看边，你看里面</div>
+</div>
+
+<div class="pdf-card">
+<div class="pdf-num">P2</div>
+<div class="pdf-title">🚢 4 艘船一图对比速查卡</div>
+<div class="pdf-content">
+<b>Ultramarine 海洋无极号</b> 199人 · 双直升机 · 2021年 · ⭐⭐⭐⭐⭐<br>
+<b>Ocean Explorer 极地探险家</b> 138人 · 最新下水 · 2024年 · ⭐⭐⭐⭐<br>
+<b>World Voyager 世界航海家</b> 172人 · 经典之选 · ⭐⭐⭐⭐<br>
+<b>World Explorer 世界探索号</b> 172人 · 稳定可靠 · ⭐⭐⭐⭐<br><br>
+所有船: IAATO/AECO认证<br>
+· 15-25人探险队 · 每天2-3次登陆<br>
+· 皮划艇/SUP/浮潜/冰泳可选<br>
+</div>
+<div class="pdf-tag">记住: 只有 Ultramarine 有直升机</div>
+</div>
+
+<div class="pdf-card">
+<div class="pdf-num">P3</div>
+<div class="pdf-title">💰 价格包含什么 — 透明清单</div>
+<div class="pdf-content">
+<b>✅ 包含在船票内:</b><br>
+· 船上住宿 + 全部餐饮<br>
+· 每天2-3次登陆活动<br>
+· 冲锋艇巡游<br>
+· 探险队员专业讲解<br>
+· 极地冲锋衣(赠送)<br>
+· 登陆靴(借用)<br>
+· 直升机体验(Ultramarine)<br><br>
+<b>❌ 不包含:</b><br>
+· 国际机票(约¥1.5-3万)<br>
+· 签证费(约¥1000-2000)<br>
+· 旅行保险(¥500-1000)<br>
+· 船上小费(约$15/天)<br>
+</div>
+<div class="pdf-tag">总预算≈船票×1.3，告诉客户这个数字</div>
+</div>
+</div>
+
+<div class="note" style="margin-top:14px">🎯 <b>渠道话术口诀:</b> "别人看边，你看里面。别人坐冲锋艇，你坐直升机。不是所有的南极都是一样的——Quark 的直升机，把'到达南极'变成'深入南极'。"</div>
+</div>
+</div>
+
+<!-- ═══════════ MARKETING ═══════════ -->
+<div id="tab-marketing" class="tab-content">
+<div class="panel">
+<div class="panel-title">📣 营销赋能 — 按渠道类型定制线下活动 <span class="badge bb">5 种活动类型</span></div>
+<div class="note">每种活动针对不同渠道类型定制。活动名称、形式、物料全部可复用——渠道只需提供场地和客户名单，Quark 提供内容和执行支持。</div>
+
+<div class="activity-type">
+<div class="activity-title">🍰 类型 1: 「极地下午茶」客户沙龙</div>
+<div class="activity-grid">
+<div class="activity-card">
+<div class="activity-name">私行/家办版: 「财富之上」极地私享会</div>
+<div class="activity-channels">适用: 招行私行 · 平安私行 · 中行私行 · 家办</div>
+<div class="activity-desc"><b>形式:</b> 下午茶(2小时) · 15-25人 · 私行提供场地+客户邀请 · Quark提供探险队长(远程连线)+茶歇物料<br><b>流程:</b> ① 15min 北极熊/企鹅纪录短片暖场 ② 30min 探险队长连线分享 ③ 30min Q&A+茶歇交流 ④ 15min 专属预订通道开放<br><b>关键转化点:</b> 现场预订享"私行客户专属95折"+"前5名赠直升机体验升级"</div>
+<div class="activity-cost">💰 成本: ¥3000-5000/场(物料+茶歇) · 渠道承担场地</div>
+</div>
+<div class="activity-card">
+<div class="activity-name">商学院版: 「冰原领导力」企业家专场</div>
+<div class="activity-channels">适用: 中欧EMBA · 长江商学院 · 清华经管EMBA</div>
+<div class="activity-desc"><b>形式:</b> 晚宴+主题演讲(3小时) · 20-30人 · 商学院提供校友邀请<br><b>流程:</b> ① 30min 破冰酒会 ② 45min 主题演讲"从极地探险看企业家决策"(Quark探险队长+往期客户双嘉宾) ③ 45min 晚宴+自由交流 ④ 15min 2027南极季航线预览<br><b>独特卖点:</b> 打"企业家圈层身份认同"而非"旅游产品"</div>
+<div class="activity-cost">💰 成本: ¥8000-15000/场(晚宴+嘉宾) · 渠道+Quark各半</div>
+</div>
+</div>
+</div>
+
+<div class="activity-type">
+<div class="activity-title">🏢 类型 2: 「把Quark带进企业会议室」</div>
+<div class="activity-grid">
+<div class="activity-card">
+<div class="activity-name">企业奖励旅游定制说明会</div>
+<div class="activity-channels">适用: 腾讯/华为/大疆 · 大型企业HR/行政 · 商会</div>
+<div class="activity-desc"><b>形式:</b> 午餐会(1.5小时) · 10-15人(企业决策层) · 企业提供会议室<br><b>核心话术:</b> "你们今年的高管海外团建预算花在哪？去日本韩国是'消费'，去南极是'投资'——投资在团队凝聚力、投资在雇主品牌、投资在员工终身难忘的体验。"<br><b>配套物料:</b> 企业定制版Quark航线手册(加企业LOGO) · 3个企业包船成功案例</div>
+<div class="activity-cost">💰 成本: ¥2000-4000/场(定制手册+午餐)</div>
+</div>
+<div class="activity-card">
+<div class="activity-name">私行客户权益联名方案发布会</div>
+<div class="activity-channels">适用: 各私行贵宾权益部门</div>
+<div class="activity-desc"><b>形式:</b> 私行内部宣讲(1小时) · 面向私行RM/客户经理<br><b>核心话术:</b> "你们私行客户最缺什么？不是收益率多0.5%，是'别人没有的体验'。把Quark极地旅行放入你们的贵宾权益体系——不是卖产品，是给客户一个选择你们私行的理由。"<br><b>配套:</b> 私行专属权益方案(含客户推荐奖励)</div>
+<div class="activity-cost">💰 成本: ¥1000-2000/场(方案制作+现场茶歇)</div>
+</div>
+</div>
+</div>
+
+<div class="activity-type">
+<div class="activity-title">🎬 类型 3: 客户故事 × 城市路演</div>
+<div class="activity-grid">
+<div class="activity-card">
+<div class="activity-name">「真实极地故事」视频分享季</div>
+<div class="activity-channels">适用: 所有签约渠道 · 每季度1次</div>
+<div class="activity-desc"><b>5 个真实客户故事(匿名) — 每季度更新:</b><br>
+① <b>退休教师 · 68岁· 上海</b> — "教了一辈子地理，终于亲眼看到了南极。" 在南极半岛登陆后哭了。配图: 她在冰川前张开双臂的背影。<br>
+② <b>企业家夫妻 · 52岁+50岁 · 深圳</b> — "公司卖了之后不知道该干什么，是南极让我们重新找到了共同话题。" 配图: 两人在直升机前的合影。<br>
+③ <b>摄影师 · 38岁 · 北京</b> — "拍了20年风光，南极是我拍过的最不真实的地方。" 配图: 他拍的帝企鹅群。<br>
+④ <b>二次南极客 · 55岁 · 杭州</b> — "第一次坐大船，第二次坐Quark——差别太大了。直升机到的地方，和冲锋艇看到的，是两个南极。" 配图: 直升机视角的冰川全景。<br>
+⑤ <b>带孩子的家庭 · 爸爸42岁+女儿11岁 · 成都</b> — "女儿回来后在学校做了一个南极演讲，全校都记住了她。" 配图: 孩子在冲锋艇上兴奋地指着远处的鲸鱼。<br><b>使用方式:</b> 渠道在朋友圈/社群转发视频(2-3分钟/个) → 评论区引导"了解更多"→ 私信触达。</div>
+<div class="activity-cost">💰 成本: ¥5000/季(视频制作) · 客户授权后使用</div>
+</div>
+<div class="activity-card">
+<div class="activity-name">中国领队分享 + 城市签约路演</div>
+<div class="activity-channels">适用: 七区潜在签约渠道 · 每区每年1次</div>
+<div class="activity-desc"><b>形式:</b> 半天(3小时) · 30-50人(区域渠道负责人+销售)<br><b>流程:</b> ① 30min 品牌宣讲(Quark 30年历史+直升机独家) ② 30min 领队分享(刚从南极回来的中国领队讲真实体验) ③ 30min 航线发布+合作政策 ④ 60min 现场签约+意向登记<br><b>产出:</b> 每场5-8家意向签约 · 后续1对1跟进<br><b>已规划场次:</b> 华北(北京) · 华东(上海) · 华南(深圳) · 西南(成都) — 其余区域根据渠道密度决定</div>
+<div class="activity-cost">💰 成本: ¥15000-25000/场(场地+领队差旅+物料)</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ═══════════ TRAINING ═══════════ -->
+<div id="tab-training" class="tab-content">
+<div class="panel">
+<div class="panel-title">🎓 培训赋能 — 让销售敢卖、会卖 <span class="badge bb">关联极地顾问体系</span></div>
+<div class="note">以下为培训体系框架。完整内容请查看 👉 <a href="advisor.html" target="_blank" style="color:var(--a);font-weight:700">夸克探险极地顾问培训页面</a></div>
+
+<div class="row3">
+<div class="panel" style="text-align:center">
+<div style="font-size:32px">🔰</div><div style="font-weight:700;font-size:13px;margin:8px 0">L1 · 极地探索者</div>
+<div style="font-size:10px;color:var(--d)">注册 → 极地100问在线学习 → 基础知识测验(30题/80分) → 佣金5%</div>
+</div>
+<div class="panel" style="text-align:center">
+<div style="font-size:32px">⭐</div><div style="font-weight:700;font-size:13px;margin:8px 0">L2 · 极地航海家</div>
+<div style="font-size:10px;color:var(--d)">产品认证考试(50题/85分) → 4条核心航线 → AI模拟销售对练 → 佣金7%</div>
+</div>
+<div class="panel" style="text-align:center">
+<div style="font-size:32px">🌟</div><div style="font-weight:700;font-size:13px;margin:8px 0">L3 · 极地专家</div>
+<div style="font-size:10px;color:var(--d)">3笔成交 → 满意度≥4.5 → 异议处理进阶 → 佣金9%</div>
+</div>
+</div>
+
+<div class="panel" style="margin-top:14px">
+<div class="panel-title">🎯 渠道培训执行计划</div>
+<table style="font-size:11px">
+<tr><th>时间</th><th>形式</th><th>内容</th><th>目标</th></tr>
+<tr><td>签约后第1周</td><td>线上(1h)</td><td>Quark品牌+产品速览+3页速查卡分发</td><td>渠道全员了解基础信息</td></tr>
+<tr><td>签约后第2周</td><td>线上(2h)</td><td>极地100问核心50题精讲+异议处理实战</td><td>渠道销售能独立回答客户80%问题</td></tr>
+<tr><td>签约后第3周</td><td>线下(半天)</td><td>角色扮演对练+AI模拟销售+考试</td><td>L1认证通过, 佣金启动</td></tr>
+<tr><td>签约后第6周</td><td>线上(1h)</td><td>航线更新+竞品动态+客户故事分享</td><td>L1→L2升级路径启动</td></tr>
+<tr><td>每季度</td><td>线上(1h)</td><td>新航线/新政策/新物料更新</td><td>持续信息同步</td></tr>
+</table>
+</div>
+
+<div style="margin-top:14px"><a href="advisor.html" target="_blank" class="note" style="display:block;text-align:center;padding:12px;font-size:12px;color:var(--a);font-weight:700;cursor:pointer">📖 打开完整「夸克探险极地顾问」培训页面 → 极地100问 + 邮轮对比 + 产品手册 + 奖励机制</a></div>
+</div>
+</div>
+
+<!-- ═══════════ INCENTIVE ═══════════ -->
+<div id="tab-incentive" class="tab-content">
+<div class="panel">
+<div class="panel-title">🏆 激励赋能 — 让渠道愿意推 <span class="badge bo">5 维激励</span></div>
+
+<div class="row3" style="margin-bottom:16px">
+<div class="panel">
+<div class="panel-title" style="font-size:12px">🛡️ 首单保护期</div>
+<div style="font-size:10px;line-height:1.8;color:var(--d)">
+<b>签约后前6个月</b>，该渠道所有出单按<b style="color:var(--a3)">最高佣金档(L3·9%)</b>结算——不管实际卖了几个。<br><br>
+<b>为什么这样做:</b> 新渠道最难的永远是第一单。给6个月的保护期，用高佣金激励渠道尽快跑通第一单。跑通之后，他们自己就会发现这个品类能赚钱——后面的动力是内生的。
+</div>
+</div>
+<div class="panel">
+<div class="panel-title" style="font-size:12px">📊 季度排名</div>
+<div style="font-size:10px;line-height:1.8;color:var(--d)">
+每季度按区域发布排行榜:<br>
+<b>"华东区 Quark 销售 TOP5"</b><br>
+<b>"全国新签渠道首单最快 TOP3"</b><br>
+<b>"客户满意度最高渠道 TOP3"</b><br><br>
+<b>不发钱，发体验:</b><br>
+· TOP1: <b style="color:var(--a)">免费北极考察名额</b>(内部价成本)<br>
+· TOP2-3: <b style="color:var(--a)">Quark 定制极地装备礼包</b><br>
+体验比奖金记得更久。
+</div>
+</div>
+<div class="panel">
+<div class="panel-title" style="font-size:12px">🎯 阶梯佣金</div>
+<div style="font-size:10px;line-height:1.8;color:var(--d)">
+<div class="bar-row"><div class="bar-label">L1 探索者</div><div class="bar-track"><div class="bar-fill" style="width:38%;background:var(--a)">5%</div></div></div>
+<div class="bar-row"><div class="bar-label">L2 航海家</div><div class="bar-track"><div class="bar-fill" style="width:54%;background:var(--a)">7%</div></div></div>
+<div class="bar-row"><div class="bar-label">L3 专家</div><div class="bar-track"><div class="bar-fill" style="width:69%;background:var(--a3)">9%</div></div></div>
+<div class="bar-row"><div class="bar-label">L4 大师</div><div class="bar-track"><div class="bar-fill" style="width:85%;background:var(--a3)">11%</div></div></div>
+<div class="bar-row"><div class="bar-label">L5 传奇</div><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--a2)">13%</div></div></div>
+</div>
+</div>
+</div>
+
+<div class="panel">
+<div class="panel-title">🎁 额外激励包</div>
+<div class="reward-grid">
+<div class="reward-card">
+<div class="reward-icon">👥</div>
+<div class="reward-title">推荐渠道奖</div>
+<div class="reward-desc">推荐另一家渠道成功签约<br>推荐方获 ¥3000 或 等值舱位抵扣<br>被推荐方享首单保护期</div>
+</div>
+<div class="reward-card">
+<div class="reward-icon">🐧</div>
+<div class="reward-title">包船/半包船专项</div>
+<div class="reward-desc">成功组织包船(≥80人)<br>佣金在原有基础上 +1%<br>额外送 2 个免费舱位</div>
+</div>
+<div class="reward-card">
+<div class="reward-icon">📸</div>
+<div class="reward-title">内容共创奖励</div>
+<div class="reward-desc">渠道产出优质客户视频/图文<br>被 Quark 官方采用<br>每篇奖励 ¥1000</div>
+</div>
+<div class="reward-card">
+<div class="reward-icon">🎖️</div>
+<div class="reward-title">年度盛典</div>
+<div class="reward-desc">每年举办"Quark 中国合作伙伴大会"<br>颁发年度最佳渠道/最佳销售/最佳故事<br>年度TOP3渠道受邀参加全球顾问峰会</div>
+</div>
+<div class="reward-card">
+<div class="reward-icon">🚁</div>
+<div class="reward-title">早鸟冲刺奖</div>
+<div class="reward-desc">每年4-6月(南极季早鸟窗口)<br>出单量排名前3的渠道<br>额外奖励 ¥5000 + 直升机体验名额×2</div>
+</div>
+<div class="reward-card">
+<div class="reward-icon">🏆</div>
+<div class="reward-title">跨区联动奖</div>
+<div class="reward-desc">跨区域合作完成客户转化<br>(如: A区渠道推荐客户给B区渠道)<br>双方各获额外 1% 佣金</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ═══════════ SERVICE ═══════════ -->
+<div id="tab-service" class="tab-content">
+<div class="panel">
+<div class="panel-title">🛎️ 服务赋能 — 让渠道省心、让客户感动 <span class="badge bg">4 项服务</span></div>
+
+<div class="service-row">
+<div class="service-icon">💬</div>
+<div class="service-info">
+<div class="service-name">专属客服直通车</div>
+<div class="service-desc">给每家签约渠道配专属企业微信对接人。渠道销售遇到任何客户问题——舱位查询/签证流程/特殊需求/竞品对比——直接在企业微信上问。<b>承诺工作时间 30 分钟内回复。</b>渠道最怕的不是问题多，是问了没人回。</div>
+<div class="service-ops">📱 企业微信: QuarkCN_Channel_[区域代码] · 🕐 工作日 9:00-18:00 · SLA: 30分钟首响</div>
+</div>
+</div>
+
+<div class="service-row">
+<div class="service-icon">🎁</div>
+<div class="service-info">
+<div class="service-name">出团客户关怀包</div>
+<div class="service-desc">每位从渠道出团的客户，登船前收到一份实体欢迎包：<br>① <b>船长亲笔欢迎信</b>(模板预先设计好，船长签名印刷) ② <b>防水手机袋</b>(极地登陆必备) ③ <b>Quark 限定徽章</b>(收藏价值)<br>成本 ¥50/人，但客户 <b>100% 会拍照发朋友圈</b>——等于免费广告。客户回国后向朋友推荐的概率翻倍。</div>
+<div class="service-ops">📦 渠道提前 2 周提交出团名单 → Quark 统一制作并寄送到登船港口酒店</div>
+</div>
+</div>
+
+<div class="service-row">
+<div class="service-icon">📸</div>
+<div class="service-info">
+<div class="service-title">售后回访素材包</div>
+<div class="service-desc">客户回国后第 3 天，Quark 发给渠道一套回访物料：<br>① <b>回访话术模板</b>:"XX总，南极回来了，感觉怎么样？我们船长说您是我们船上最喜欢提问的客人 😄 这里有一份船上摄影师抓拍的您的照片，看看有没有喜欢的？"<br>② <b>Google 相册链接</b>: 船上摄影师拍的客户精选照片(10-20张)，已经按客户姓名分好文件夹<br>③ <b>转介绍话术</b>:"如果您有朋友也对南极感兴趣，我们有一个好友推荐计划——您和朋友都可以享受 ¥3000 抵扣。"<br>客户感动 → 转介绍概率翻倍 → 渠道复购率提升。</div>
+<div class="service-ops">📸 回团后 3-5 个工作日发送 · 渠道只需转发 · 0 额外工作量</div>
+</div>
+</div>
+
+<div class="service-row">
+<div class="service-icon">📋</div>
+<div class="service-info">
+<div class="service-title">渠道专属月报</div>
+<div class="service-desc">每月 5 日自动生成，发给渠道负责人：<br>① 本月新航线/新政策速览 ② 行业动态(竞品动向+市场数据) ③ 本月最佳销售案例(来自其他渠道，匿名) ④ 下月营销活动日历<br>渠道不需要自己去搜集行业信息——让 Quark 成为他们的"极地智库"。</div>
+<div class="service-ops">📧 每月 5 日邮件自动发送 · 同时推送至企业微信</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- container -->
+
+<footer class="footer">
+<span>© 2026 Quark Expeditions · 渠道赋能中心 v1.0 · 合作伙伴支持体系</span>
+<span><a href="index.html">返回 Dashboard</a> · <a href="advisor.html">极地顾问培训</a> · <a href="pipeline.html">渠道Pipeline</a></span>
+</footer>
+
+<script>
+document.querySelectorAll('#nav button').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('#nav button').forEach(function(b){b.classList.remove('active')});
+    this.classList.add('active');
+    document.querySelectorAll('.tab-content').forEach(function(t){t.classList.remove('active')});
+    document.getElementById('tab-'+this.dataset.tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
