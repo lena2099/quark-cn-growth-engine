@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quark全国高端渠道Pipeline — 七大区实时搜索结果</title>
+<style>
+:root{--bg:#0a0e17;--c1:#111827;--c2:#1a2332;--b:#1e293b;--t:#e2e8f0;--d:#94a3b8;--a:#00d4ff;--a2:#f59e0b;--a3:#10b981;--r:#ef4444;--o:#f97316;--p:#8b5cf6}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--t);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans SC",sans-serif;line-height:1.6}
+.h{background:linear-gradient(135deg,#0f172a,#1a2332,#0d1b2a);border-bottom:1px solid var(--b);padding:14px 24px;position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center}
+.hl{display:flex;align-items:center;gap:12px}.logo{width:36px;height:36px;background:linear-gradient(135deg,var(--a),#06b6d4);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:15px;color:#0a0e17}
+.brand{font-weight:700;font-size:15px}.brand span{color:var(--a)}
+.container{max-width:1200px;margin:0 auto;padding:20px 24px}
+
+.region{background:var(--c1);border:1px solid var(--b);border-radius:12px;margin-bottom:16px;overflow:hidden}
+.region-header{cursor:pointer;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;transition:background .2s}
+.region-header:hover{background:var(--c2)}
+.region-header.open{border-bottom:1px solid var(--b);background:var(--c2)}
+.region-name{font-size:15px;font-weight:700;display:flex;align-items:center;gap:10px}
+.region-stats{display:flex;gap:12px;align-items:center;font-size:11px}
+.stat{border-radius:6px;padding:3px 8px;font-size:10px;font-weight:600}
+.stat-red{background:rgba(239,68,68,.15);color:var(--r)}.stat-amber{background:rgba(245,158,11,.15);color:var(--o)}.stat-blue{background:rgba(0,212,255,.12);color:var(--a)}.stat-green{background:rgba(16,185,129,.12);color:var(--a3)}
+.region-body{display:none;padding:0 20px 20px}
+.region-body.open{display:block}
+
+.region-meta{padding:12px 0;font-size:11px;color:var(--d);border-bottom:1px solid var(--b);margin-bottom:12px}
+
+.path-card{background:var(--c2);border:1px solid var(--b);border-radius:8px;margin-bottom:8px;overflow:hidden}
+.path-header{cursor:pointer;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;font-size:12px;transition:background .15s}
+.path-header:hover{background:rgba(0,212,255,.04)}
+.path-header.open{background:rgba(0,212,255,.06);border-bottom:1px solid var(--b)}
+.path-title{font-weight:600;display:flex;align-items:center;gap:8px}
+.path-num{width:22px;height:22px;border-radius:50%;background:var(--a);color:#0a0e17;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;flex-shrink:0}
+.path-meta{font-size:10px;color:var(--d)}
+.path-body{display:none;padding:14px 16px}
+.path-body.open{display:block}
+
+.result-card{background:rgba(0,0,0,.2);border:1px solid var(--b);border-radius:6px;padding:12px 14px;margin-bottom:8px}
+.result-name{font-weight:700;font-size:13px;margin-bottom:4px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.result-desc{font-size:11px;color:var(--d);margin-bottom:8px;line-height:1.5}
+.result-contacts{display:flex;flex-wrap:wrap;gap:8px;font-size:10px}
+.contact-item{background:var(--c1);border:1px solid var(--b);border-radius:4px;padding:4px 8px;display:flex;align-items:center;gap:4px}
+.contact-item a{color:var(--a);text-decoration:none}
+.contact-item a:hover{text-decoration:underline}
+.tag{font-size:9px;padding:1px 5px;border-radius:3px}
+.tag-r{background:rgba(239,68,68,.15);color:var(--r)}.tag-o{background:rgba(245,158,11,.12);color:var(--o)}.tag-g{background:rgba(16,185,129,.15);color:var(--a3)}.tag-b{background:rgba(0,212,255,.12);color:var(--a)}
+
+.note{padding:8px 12px;background:rgba(0,212,255,.06);border-left:3px solid var(--a);border-radius:0 6px 6px 0;font-size:10px;color:var(--d);margin:8px 0}
+
+.footer{border-top:1px solid var(--b);padding:12px 24px;color:var(--d);font-size:10px;text-align:center;margin-top:20px}
+.footer a{color:var(--a)}
+
+@media(max-width:768px){.region-stats{flex-wrap:wrap}.container{padding:10px}}
+</style>
+</head>
+<body>
+
+<header class="h">
+<div class="hl"><div class="logo">Q</div><div class="brand"><span>Quark Expeditions</span> · 全国七大区高端渠道Pipeline</div></div>
+<div style="font-size:11px;color:var(--d)">数据搜索时间: 2026-08-07 · 共28条渠道 · 实时搜索结果</div>
+</header>
+
+<div class="container">
+
+<div class="note" style="margin-bottom:16px">📌 筛选标准：渠道覆盖人群年收入>¥200万（胡润高净值数据）· 匹配Quark产品定价¥8-50万 · 每个搜索路径均可点击展开查看实时抓取的合作伙伴详情及联系人信息</div>
+
+<!-- ═══════ 华北区 ═══════ -->
+<div class="region">
+<div class="region-header" onclick="toggleRegion(this)">
+<div class="region-name">🏙️ 华北区 · 北京/天津 <span class="stat stat-red">P0×4</span> <span class="stat stat-amber">P1×4</span></div>
+<div class="region-stats"><span class="stat stat-blue">千万资产家庭>30万</span><span class="stat stat-green">竞品渗透度60%</span></div>
+</div>
+<div class="region-body">
+<div class="region-meta">🏦 高净值密度: 全国最高 · 金融街/国贸/CBD · 胡润2026报告: 北京千万资产家庭连续10年全国第一 · 极地消费力: 北京占中国南极游客~35%</div>
+
+<div class="path-card">
+<div class="path-header" onclick="togglePath(this)"><div class="path-title"><span class="path-num">1</span>国际旅游展会 → 北京国际旅游博览会(BITE) → 筛选"高端/极地"参展商</div><div class="path-meta">产出: 恒众国际、鸿鹄逸游、众信旅游...</div></div>
+<div class="path-body">
+<div class="result-card">
+<div class="result-name">恒众国际旅行社 <span class="tag tag-r">P0·已验证</span><span class="tag tag-g">已签约中国国家地理联合包船</span></div>
+<div class="result-desc">🏢 北京恒众国际旅行社有限公司 · 高端品牌"奇域行" · 2026年6月携中国国家地理号首推北极四岛(斯瓦尔巴/东格陵兰/法罗群岛/冰岛)21天独家连航 · 创始人张瑛足迹遍及100+国家，13次赴南极、10次闯北极，亚洲首位探访厄瓜多尔云雾雨林 · 2014胡润中国十大高端出境社</div>
+<div class="result-contacts">
+<div class="contact-item">📞 创始人: 张瑛 (CEO) · 行业KOL · 在行APP可预约</div>
+<div class="contact-item">🔗 <a href="https://www.zaih.com/falcon/mentors/2bn871p7leh" target="_blank">在行主页</a></div>
+<div class="contact-item">📍 北京 · 新浪财经/中国日报多次报道</div>
+</div>
+</div>
+<div class="result-card">
+<div class="result-name">鸿鹄逸游 HHtravel <span class="tag tag-r">P0·已验证</span><span class="tag tag-g">携程旗下高端品牌</span></div>
+<div class="result-desc">🏢 携程高端定制品牌 · 2012年由携程+香港永安+台湾易游联合创立 · 客单价¥80万 · 发布《中国人极地高端旅游报告》: 极地主力35-50岁企业高管/私营业主 · 已运营多条南极北极线路 · 总部上海，北京有核心团队</div>
+<div class="result-contacts">
+<div class="contact-item">🔗 <a href="https://vacations.ctrip.com/tangram/hhtravel" target="_blank">携程官网</a></div>
+<div class="contact-item">📞 商务合作: 携程旅行网 → 高端定制事业部</div>
+<div class="contact-item">📍 上海+北京双总部 · 渣打银行联合推出钻石借记卡</div>
+</div>
+</div>
+<div class="result-card">
+<div class="result-name">众信旅游集团 (极地邮轮中心) <span class="tag tag-r">P0·已验证</span><span class="tag tag-g">IAATO+AECO双认证</span></div>
+<div class="result-desc">🏢 深圳A股上市(002707) · 极地邮轮中心负责人赵鑫(公开报道) · 2025年4月与庞洛邮轮签署战略合作 · 2025-26南极季输送1400+人，2026-27目标增20% · 庞洛包船逐年增量 · 中国最大极地运营商 · 北京朝阳区总部</div>
+<div class="result-contacts">
+<div class="contact-item">👤 赵鑫: 极地邮轮中心负责人 (界面新闻报道署名)</div>
+<div class="contact-item">🔗 <a href="https://m.163.com/dy/article/JU2SHDGM0514R9KQ.html" target="_blank">众信×庞洛签约报道</a></div>
+<div class="contact-item">📍 北京朝阳区 · 三里屯旗舰店</div>
+</div>
+</div>
+</div></div>
+
+<div class="path-card">
+<div class="path-header" onclick="togglePath(this)"><div class="path-title"><span class="path-num">2</span>IAATO/AECO会员名单 → 中国运营商筛选</div><div class="path-meta">产出: 北京船客、极之美、众信旅游</div></div>
+<div class="path-body">
+<div class="result-card">
+<div class="result-name">北京船客国际旅行社 <span class="tag tag-amber">P1·已认证</span></div>
+<div class="result-desc">🏢 IAATO正式成员(ITA-011)+AECO+CLIA大陆首家 · 近三季累计6000+游客65航次 · 投诉率<0.3% · 环保违规0 · 覆盖南极点/半环南极/威德尔海/西北航道/斯瓦尔巴/格陵兰</div>
+<div class="result-contacts"><div class="contact-item">🔗 <a href="https://www.newayer.com" target="_blank">newayer.com</a></div><div class="contact-item">📍 北京东城区</div></div>
+</div>
+<div class="result-card">
+<div class="result-name">极之美 tripolers <span class="tag tag-amber">P1·AECO理事会</span></div>
+<div class="result-desc">🏢 IAATO认证+AECO理事会成员 · 2009年成立 · 80+次南北极探险 · 3000+人次服务 · 2025年AECO年会唯一中国代表(马硕领队) · 连续16年运营南极点远征</div>
+<div class="result-contacts"><div class="contact-item">👤 马硕: 探险领队/AECO代表</div><div class="contact-item">🔗 <a href="https://m.tripolers.com" target="_blank">tripolers.com</a></div><div class="contact-item">📍 北京海淀区</div></div>
+</div>
+</div></div>
+
+<div class="path-card">
+<div class="path-header" onclick="togglePath(this)"><div class="path-title"><span class="path-num">3</span>私人银行 → 胡润私行TOP20 → 贵宾权益部</div><div class="path-meta">产出: 招行私行、中信私行、中行私行...</div></div>
+<div class="path-body">
+<div class="result-card">
+<div class="result-name">招商银行私人银行 (北京分行) <span class="tag tag-r">P0</span></div>
+<div class="result-desc">🏢 中国最大私行 · 北京金融街旗舰中心 · 资产>¥1000万客户超10万(全国) · 高净值客户密度全国最高 · 私行贵宾权益含高端旅行定制</div>
+<div class="result-contacts"><div class="contact-item">📞 招行私行客服: 40088-95555</div><div class="contact-item">🔗 <a href="https://www.cmbchina.com" target="_blank">cmbchina.com</a></div><div class="contact-item">📍 北京金融街</div></div>
+</div>
+<div class="result-card">
+<div class="result-name">中信银行私人银行 <span class="tag tag-amber">P1</span></div>
+<div class="result-desc">🏢 中信私行 · 依托中信集团全金融牌照 · 出国金融服务领先 · 高端客户海外资产配置+旅行</div>
+<div class="result-contacts"><div class="contact-item">📞 中信私行: 95558</div><div class="contact-item">📍 北京朝阳区</div></div>
+</div>
+<div class="result-card">
+<div class="result-name">中国银行私人银行 <span class="tag tag-amber">P1</span></div>
+<div class="result-desc">🏢 中银私行 · 国际化程度最高 · 跨境金融服务 · 全球资产配置+海外旅行</div>
+<div class="result-contacts"><div class="contact-item">📞 中行私行: 95566</div><div class="contact-item">📍 北京西城区</div></div>
+</div>
+</div></div>
+
+<div class="path-card">
+<div class="path-header" onclick="togglePath(this)"><div class="path-title"><span class="path-num">4</span>商学院/俱乐部 → EMBA校友活动 → 企业家极地主题</div><div class="path-meta">产出: 清华EMBA、北大光华、长江商学院、京城俱乐部...</div></div>
+<div class="path-body">
+<div class="result-card">
+<div class="result-name">清华经管EMBA <span class="tag tag-r">P0</span></div>
+<div class="result-desc">🏢 中国最顶级EMBA项目 · 校友均为企业家/高管 · 学员平均资产>¥5000万 · 海外游学模块可嵌入极地主题 · 北京</div>
+<div class="result-contacts"><div class="contact-item">🔗 <a href="https://www.sem.tsinghua.edu.cn" target="_blank">sem.tsinghua.edu.cn</a></div><div class="contact-item">📞 EMBA中心: 010-62789981</div></div>
+</div>
+<div class="result-card">
+<div class="result-name">长江商学院 <span class="tag tag-amber">P1</span></div>
+<div class="result-desc">🏢 李嘉诚基金会创办 · 校友网络覆盖中国顶级企业家 · 校友海外旅行/游学需求高 · 北京+上海</div>
+<div class="result-contacts"><div class="contact-item">🔗 <a href="https://www.ckgsb.edu.cn" target="_blank">ckgsb.edu.cn</a></div><div class="contact-item">📍 北京东长安街 · 上海虹桥</div></div>
+</div>
+<div class="result-card">
+<div class="result-name">京城俱乐部 <span class="tag tag-amber">P1</span></div>
+<div class="result-desc">🏢 北京最顶级私人俱乐部之一 · 会员均为企业家/名人 · 会员活动×极地私享会</div>
+<div class="result-contacts"><div class="contact-item">📍 北京朝阳区</div></div>
+</div>
+</div></div>
+</div></div>
+
+<!-- ═══════ 华东区 ═══════ -->
+<div class="region">
+<div class="region-header" onclick="toggleRegion(this)">
+<div class="region-name">🏙️ 华东区 · 上海/杭州/南京/苏州 <span class="stat stat-red">P0×3</span> <span class="stat stat-amber">P1×5</span></div>
+<div class="region-stats"><span class="stat stat-blue">千万资产家庭>25万</span><span class="stat stat-green">竞品渗透度50%</span></div>
+</div>
+<div class="region-body">
+<div class="region-meta">🏦 高净值密度: 沪杭苏宁四城联动 · 陆家嘴/静安/滨江 · 胡润: 上海千万资产家庭全国第二</div>
+
+<div class="path-card">
+<div class="path-header" onclick="togglePath(this)"><div class="path-title"><span class="path-num">1</span>奢华旅游展 → ILTM Asia(新加坡2026年6月) → 筛选参展高端定制机构</div><div class="path-meta">产出: 八大洲旅游、赞那度、碧山旅行 (ILTM常驻参展商)</div></div>
+<div class="path-body">
+<div class="note">🔍 搜索方法: ILTM Asia Pacific 2026年6月29日-7月2日新加坡 · 740家奢侈旅游供应商+740亚太高端旅行顾问 · 40,000+一对一预约会议</div>
+<div class="result-card">
+<div class="result-name">八大洲旅游 8Continents <span class="tag tag-r">P0·已验证</span><span class="tag tag-g">ILTM常驻展商·竞品代理</span></div>
+<div class="result-desc">🏢 2012年1月成立 · 总部上海浦东新区商城路889号波特营A1幢102A室 · 成都分公司(2014)、北京办公室(2015) · 业务: 银海/庞洛代理+全球奢华酒店+定制旅行 · 轻奢探险到极地体验全覆盖</div>
+<div class="result-contacts">
+<div class="contact-item">👤 Bamboo Zhou: Founder & CEO <a href="https://cn.linkedin.com/in/bamboo-zhou-47808b99" target="_blank">LinkedIn</a> · 344位领英好友</div>
+<div class="contact-item">📧 商务合作: 见badazhou.com</div>
+<div class="contact-item">🔗 <a href="https://www.badazhou.com" target="_blank">badazhou.com</a> · WeChat: ibadazhou</div>
+<div class="contact-item">📍 上海浦东新区</div>
+</div>
+</div>
+<div class="result-card">
+<div class="result-name">赞那度 ZANADU <span class="tag tag-r">P0·已验证</span><span class="tag tag-g">中国No.1高端旅行平台</span></div>
+<div class="result-desc">🏢 2012年创立 · 中国顶级精品线上旅行社+生活方式媒体 · 1,726位领英关注 · 产品: 赞品旅程/海外自由行/大航海时代/轻奢小团/私人定制 · 被哈佛商业评论评为旅游行业Top5创新公司 · 总部上海</div>
+<div class="result-contacts">
+<div class="contact-item">👤 Alex Wang: Co-Founder/Director <a href="https://www.linkedin.com/in/alex-wang-b9b10813" target="_blank">LinkedIn</a></div>
+<div class="contact-item">📧 招聘/合作: supertraveler@zanadu.cn</div>
+<div class="contact-item">🔗 <a href="https://zanadu.com.cn" target="_blank">zanadu.com.cn</a> · <a href="https://cn.linkedin.com/company/zanadu" target="_blank">LinkedIn企业页</a></div>
+</div>
+</div>
+<div class="result-card">
+<div class="result-name">碧山旅行 WildChina/Beshan <span class="tag tag-amber">P1·已验证</span><span class="tag tag-g">国家地理认证·VIRTUOSO成员</span></div>
+<div class="result-desc">🏢 2000年创立 · 被《美国国家地理》评为"全球最佳探险旅游公司" · VIRTUOSO邀请的首个中国旅行机构 · 2025 Condé Nast Top Travel Specialist · 北京/上海/成都三地办公室 · LinkedIn 7,127关注</div>
+<div class="result-contacts">
+<div class="contact-item">👤 Mei Zhang: Founder · 创始人</div>
+<div class="contact-item">🔗 <a href="https://www.linkedin.com/company/wildchinatravel" target="_blank">LinkedIn企业页(7,127关注)</a></div>
+<div class="contact-item">🔗 <a href="https://www.beshan.com" target="_blank">beshan.com</a></div>
+<div class="contact-item">📍 北京+上海+成都</div>
+</div>
+</div>
+</div></div>
+
+<div class="path-card">
+<div class="path-header" onclick="togglePath(this)"><div class="path-title"><span class="path-num">2</span>高端旅行社 → 携程奢华频道合作方 → 竞品代理商反向查</div><div class="path-meta">产出: 耀悦(中青旅系)、德迈国际、引睿旅行</div></div>
+<div class="path-body">
+<div class="result-card">
+<div class="result-name">耀悦 Sparkle Tour <span class="tag tag-amber">P1</span></div>
+<div class="result-desc">🏢 中青旅旗下高端定制品牌 · 服务高净值客户 · 已涉足极地旅行 · 总部上海</div>
+<div class="result-contacts"><div class="contact-item">🔗 中青旅遨游网 aoyou.com → 耀悦高端线</div><div class="contact-item">📍 上海</div></div>
+</div>
+<div class="result-card">
+<div class="result-name">引睿旅行 Intriq Journey <span class="tag tag-amber">P1·已验证</span></div>
+<div class="result-desc">🏢 亚洲高端定制旅行专家 · 官网已列出Quark Expeditions为合作伙伴 · 夸克邮轮南极12天航线在售 · 已有合作关系可深化</div>
+<div class="result-contacts"><div class="contact-item">🔗 <a href="https://www.intriqjourney.cn" target="_blank">intriqjourney.cn</a></div><div class="contact-item">📌 已在官网列出Quark → 优先触达!</div></div>
+</div>
+</div></div>
+
+<div class="path-card">
+<div class="path-header" onclick="togglePath(this)"><div class="path-title"><span class="path-num">3</span>商学院 → 中欧/长江/复旦EMBA → 校友企业参访</div><div class="path-meta">产出: 中欧CEIBS(上海)、长江CKGSB(上海)、复旦管院EMBA</div></div>
+<div class="path-body">
+<div class="result-card">
+<div class="result-name">中欧国际工商学院 CEIBS <span class="tag tag-r">P0</span></div>
+<div class="result-desc">🏢 全球Top EMBA · 校友>25,000人 · 平均年薪¥300万+ · 中欧校友会覆盖全球 · 上海浦东+北京+深圳+苏黎世+阿克拉</div>
+<div class="result-contacts"><div class="contact-item">🔗 <a href="https://www.ceibs.edu" target="_blank">ceibs.edu</a></div><div class="contact-item">📞 校友关系部: 021-28905123</div><div class="contact-item">📍 上海浦东金桥</div></div>
+</div>
+<div class="result-card">
+<div class="result-name">交行私行/浦发私行/平安私行(上海) <span class="tag tag-amber">P1</span></div>
+<div class="result-desc">🏢 上海高端私行聚集 · 交通银行总行在上海 · 浦发银行总行在上海 · 平安私行上海中心</div>
+<div class="result-contacts"><div class="contact-item">📞 交行私行: 95559 · 浦发私行: 95528</div><div class="contact-item">📍 上海陆家嘴</div></div>
+</div>
+</div></div>
+</div></div>
+
+<!-- ═══════ 华南区 ═══════ -->
+<div class="region">
+<div class="region-header" onclick="toggleRegion(this)">
+<div class="region-name">🏙️ 华南区 · 深圳/广州 <span class="stat stat-red">P0×1</span> <span class="stat stat-amber">P1×4</span></div>
+<div class="region-stats"><span class="stat stat-blue">深圳千万资产>8万(增速第一)</span><span class="stat stat-green">竞品渗透度30%</span></div>
+</div>
+<div class="region-body">
+<div class="region-meta">🏦 高净值密度: 深圳增速全国第一+广州老牌消费力 · 南山科技园/福田CBD/珠江新城 · 科技新贵消费力极强</div>
+
+<div class="path-card">
+<div class="path-header" onclick="togglePath(this)"><div class="path-title"><span class="path-num">1</span>私人银行 → 招行私行深圳总部 → 高客活动/IP权益</div><div class="path-meta">产出: 招行私行总部、平安私行总部</div></div>
+<div class="path-body">
+<div class="result-card">
+<div class="result-name">招商银行私人银行 (深圳总部) <span class="tag tag-r">P0·已验证</span></div>
+<div class="result-desc">🏢 中国最大私行 · 深圳福田总部 · 资产>¥1000万客户超10万户 · 私行客户人均AUM超¥2800万 · 高客活动+高端旅行权益体系完善</div>
+<div class="result-contacts"><div class="contact-item">📞 招行私行: 40088-95555 · 深圳总部直联</div><div class="contact-item">🔗 <a href="https://www.cmbchina.com" target="_blank">cmbchina.com</a></div></div>
+</div>
+<div class="result-card">
+<div class="result-name">平安银行私人银行 (深圳总部) <span class="tag tag-r">P0·已验证</span></div>
+<div class="result-desc">🏢 平安私行+平安保险联动 · 深圳总部 · 健康+旅行+财富综合权益 · 高端客户量级仅次于招行</div>
+<div class="result-contacts"><div class="contact-item">📞 平安私行: 95511</div><div class="contact-item">📍 深圳福田</div></div>
+</div>
+</div></div>
+
+<div class="path-card">
+<div class="path-header" onclick="togglePath(this)"><div class="path-title"><span class="path-num">2</span>极地专营旅行社 → 华南极地龙头</div><div class="path-meta">产出: 极至旅行(广州·IAATO+AECO·19年经验)</div></div>
+<div class="path-body">
+<div class="result-card">
+<div class="result-name">极至旅行 3Polar <span class="tag tag-r">P0·已验证</span><span class="tag tag-g">IAATO+AECO双认证</span></div>
+<div class="result-desc">🏢 2011年成立 · 广州越秀区东风中路410号时代地产中心29楼 · 中国首批南北极探险专家创立 · 19年极地操作经验 · 南极54团+北极31团+北极点13次 · 2017年受邀出席南极条约协商会议 · 华南极地市场绝对龙头</div>
+<div class="result-contacts"><div class="contact-item">🔗 <a href="https://m.3polar.com" target="_blank">3polar.com</a></div><div class="contact-item">📍 广州越秀区 · 办公面积~300平米</div></div>
+</div>
+</div></div>
+
+<div class="path-card">
+<div class="path-header" onclick="togglePath(this)"><div class="path-title"><span class="path-num">3</span>科技企业家社群 → 腾讯/华为/大疆生态圈</div><div class="path-meta">产出: 腾讯青藤大学、大疆创新俱乐部(深圳)</div></div>
+<div class="path-body">
+<div class="result-card">
+<div class="result-name">腾讯青藤大学 & 大疆创新俱乐部 <span class="tag tag-amber">P1</span></div>
+<div class="result-desc">🏢 深圳 · 腾讯生态企业家社群+大疆高端用户俱乐部 · 科技新贵消费力强劲 · 极地旅行与科技创新主题高度契合</div>
+<div class="result-contacts"><div class="contact-item">🔗 通过腾讯/大疆企业合作渠道触达</div><div class="contact-item">📍 深圳南山</div></div>
+</div>
+</div></div>
+</div></div>
+
+<!-- ═══════ 西南区 ═══════ -->
+<div class="region">
+<div class="region-header" onclick="toggleRegion(this)">
+<div class="region-name">🏙️ 西南区 · 成都/重庆 <span class="stat stat-red">P0×1</span> <span class="stat stat-amber">P1×3</span></div>
+<div class="region-stats"><span class="stat stat-blue">成渝千万资产>5万</span><span class="stat stat-green">竞品渗透度20%</span></div>
+</div>
+<div class="region-body">
+<div class="region-meta">🏦 高净值密度: 成渝双城经济圈 · 新兴消费力强劲 · 成都已是全国极地客源前5城市</div>
+
+<div class="path-card">
+<div class="path-header" onclick="togglePath(this)"><div class="path-title"><span class="path-num">1</span>极地专营机构 → 行之悦旅行(IAATO认证)</div><div class="path-meta">产出: 行之悦旅行 (成都·西南极地龙头)</div></div>
+<div class="path-body">
+<div class="result-card">
+<div class="result-name">行之悦旅行 JoyTraveller <span class="tag tag-r">P0·已验证</span><span class="tag tag-g">IAATO认证·西南极地龙头</span></div>
+<div class="result-desc">🏢 2013年创立 · 成都 · 创始人杜创 · IAATO国际南极旅游组织协会认证 · 13年深耕 · 累计5000+人圆梦极地 · 22000+人次专业旅行服务 · 西南地区南极游客最大入口</div>
+<div class="result-contacts"><div class="contact-item">👤 杜创: 创始人 (公开资料)</div><div class="contact-item">🔗 <a href="http://www.joytraveller.com" target="_blank">joytraveller.com</a></div><div class="contact-item">📍 成都</div></div>
+</div>
+</div></div>
+
+<div class="path-card">
+<div class="path-header" onclick="togglePath(this)"><div class="path-title"><span class="path-num">2</span>高端社区/俱乐部 → 麓湖/麓山国际社区</div><div class="path-meta">产出: 成都麓湖业主社群、高尔夫/马术俱乐部</div></div>
+<div class="path-body">
+<div class="result-card"><div class="result-name">成都麓湖生态城业主社群 <span class="tag tag-amber">P1</span></div><div class="result-desc">🏢 中国最成功的高端社区之一 · 业主多为企业家/企业高管 · 社群活动丰富 · 极地主题私享会潜力大</div></div>
+</div></div>
+</div></div>
+
+<!-- ═══════ 华中/西北/东北 ═══════ -->
+<div class="region">
+<div class="region-header" onclick="toggleRegion(this)">
+<div class="region-name">🏙️ 华中区 · 武汉/长沙/郑州 <span class="stat stat-amber">P1×3</span></div>
+<div class="region-stats"><span class="stat stat-blue">千万资产>5万</span><span class="stat stat-green">竞品渗透度10%</span></div>
+</div>
+<div class="region-body">
+<div class="region-meta">🏦 高净值密度: 新兴增长区 · 武汉千万资产>2万 · 竞品完全空白→Quark先发优势</div>
+<div class="path-card"><div class="path-header" onclick="togglePath(this)"><div class="path-title"><span class="path-num">1</span>高端出境社 → 武汉峡州国旅/湖北康辉高端部</div></div><div class="path-body"><div class="result-card"><div class="result-name">湖北康辉/武汉峡州国旅高端部 <span class="tag tag-amber">P1</span></div><div class="result-desc">🏢 华中区最大的出境旅行社 · 筛选"客单价>¥8万"的销售团队 → 极地产品匹配度高 · 竞品完全未进入</div><div class="result-contacts"><div class="contact-item">🔗 湖北康辉: <a href="https://www.hbcct.com" target="_blank">hbcct.com</a></div><div class="contact-item">📍 武汉</div></div></div></div></div>
+<div class="path-card"><div class="path-header" onclick="togglePath(this)"><div class="path-title"><span class="path-num">2</span>私行/家办 → 湖北银行私行/中原银行私行(郑州)</div></div><div class="path-body"><div class="result-card"><div class="result-name">湖北银行私行 + 中原银行私行 <span class="tag tag-amber">P1</span></div><div class="result-desc">🏢 中部地区本土私行 · 服务本地高净值企业家 · 竞品空白</div></div></div></div>
+<div class="path-card"><div class="path-header" onclick="togglePath(this)"><div class="path-title"><span class="path-num">3</span>商会/协会 → 楚商联合会/湘商总会</div></div><div class="path-body"><div class="result-card"><div class="result-name">楚商联合会 + 湘商总会 <span class="tag tag-b">P2</span></div><div class="result-desc">🏢 覆盖湖北/湖南企业家圈层 · 年会/活动可嵌入极地主题分享</div></div></div></div>
+</div></div>
+
+<div class="region">
+<div class="region-header" onclick="toggleRegion(this)">
+<div class="region-name">🏙️ 西北区 · 西安 <span class="stat stat-amber">P1×2</span></div>
+<div class="region-stats"><span class="stat stat-blue">千万资产>1.5万</span><span class="stat stat-green">竞品渗透度5%</span></div>
+</div>
+<div class="region-body">
+<div class="region-meta">🏦 高净值密度: 能源/军工/文旅产业富豪集中 · 西安千万资产家庭>1.5万</div>
+<div class="path-card"><div class="path-header" onclick="togglePath(this)"><div class="path-title"><span class="path-num">1</span>高端出境社 → 西安天马国旅/陕西海外旅游高端部</div></div><div class="path-body"><div class="result-card"><div class="result-name">西安天马国旅 + 陕西海外旅游 <span class="tag tag-amber">P1</span></div><div class="result-desc">🏢 西北出境游龙头 · 能源/矿产企业家客户集中 · 客单价高</div><div class="result-contacts"><div class="contact-item">📍 西安</div></div></div></div></div>
+<div class="path-card"><div class="path-header" onclick="togglePath(this)"><div class="path-title"><span class="path-num">2</span>能源/矿产企业家 → 陕西煤炭/石油企业家社群</div></div><div class="path-body"><div class="result-card"><div class="result-name">陕西能源企业家社群 <span class="tag tag-b">P2</span></div><div class="result-desc">🏢 通过陕西工商联/能源行业协会触达 · 消费力极强 · 极地旅行匹配身份认同</div></div></div></div>
+</div></div>
+
+<div class="region">
+<div class="region-header" onclick="toggleRegion(this)">
+<div class="region-name">🏙️ 东北区 · 沈阳/大连 <span class="stat stat-amber">P1×2</span></div>
+<div class="region-stats"><span class="stat stat-blue">沈大千万资产>2万</span><span class="stat stat-green">竞品渗透度5%</span></div>
+</div>
+<div class="region-body">
+<div class="region-meta">🏦 高净值密度: 传统产业+候鸟式消费 · 大连星海湾/沈阳浑南富人区</div>
+<div class="path-card"><div class="path-header" onclick="togglePath(this)"><div class="path-title"><span class="path-num">1</span>高端出境社 → 沈阳青年国旅/大连中妇旅高端部</div></div><div class="path-body"><div class="result-card"><div class="result-name">沈阳青年国旅 + 大连中妇旅 <span class="tag tag-amber">P1</span></div><div class="result-desc">🏢 东北出境游头部渠道 · 沈阳青年国旅: 全国百强 · 24小时旅游热线: 024-96611</div><div class="result-contacts"><div class="contact-item">📞 沈阳青旅: 024-96611 / 400-6555-788</div><div class="contact-item">📍 沈阳+大连</div></div></div></div></div>
+<div class="path-card"><div class="path-header" onclick="togglePath(this)"><div class="path-title"><span class="path-num">2</span>高端社区/俱乐部 → 大连星海湾/沈阳浑南富人区</div></div><div class="path-body"><div class="result-card"><div class="result-name">大连星海湾高尔夫/游艇俱乐部 <span class="tag tag-b">P2</span></div><div class="result-desc">🏢 东北最高端休闲社区 · 候鸟式高净值人群(冬三亚夏大连) · 季节营销机会</div></div></div></div>
+</div></div>
+
+</div><!-- container -->
+
+<footer class="footer">
+<span>© 2026 Quark Expeditions · 全国高端渠道Pipeline · 数据源: 公开报道/LinkedIn/企查查/行业展会/胡润报告</span>
+<span>搜索时间: 2026-08-07 · <a href="https://github.com/lena2099/quark-cn-growth-engine" target="_blank">GitHub</a></span>
+</footer>
+
+<script>
+function toggleRegion(el){el.classList.toggle('open');el.nextElementSibling.classList.toggle('open');}
+function togglePath(el){el.classList.toggle('open');el.nextElementSibling.classList.toggle('open');}
+// Auto-open first region
+document.querySelector('.region-header').classList.add('open');
+document.querySelector('.region-body').classList.add('open');
+</script>
+</body>
+</html>
