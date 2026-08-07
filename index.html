@@ -4,785 +4,418 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Polar Growth OS — Quark Expeditions 中国市场增长引擎</title>
-<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
 <style>
-:root{--bg:#0a0e17;--card:#111827;--card-hover:#1a2332;--border:#1e293b;--text:#e2e8f0;--text-dim:#94a3b8;--accent:#00d4ff;--accent2:#f59e0b;--accent3:#10b981;--red:#ef4444;--orange:#f97316;--purple:#8b5cf6;--radius:12px;--shadow:0 4px 24px rgba(0,0,0,.3)}
+:root{--bg:#0a0e17;--c1:#111827;--c2:#1a2332;--b:#1e293b;--t:#e2e8f0;--d:#94a3b8;--a:#00d4ff;--a2:#f59e0b;--a3:#10b981;--r:#ef4444;--o:#f97316;--p:#8b5cf6}
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans SC",sans-serif;overflow-x:hidden}
-.header{background:linear-gradient(135deg,#0f172a,#1a2332 50%,#0d1b2a);border-bottom:1px solid var(--border);padding:14px 32px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
-.header-left{display:flex;align-items:center;gap:14px}
-.logo{width:40px;height:40px;background:linear-gradient(135deg,var(--accent),#06b6d4);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;color:#0a0e17}
-.brand{font-size:17px;font-weight:700}.brand span{color:var(--accent)}
-.header-right{display:flex;gap:12px;align-items:center;font-size:12px}
-.status-dot{width:8px;height:8px;border-radius:50%;background:var(--accent3);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-.live-tag{font-size:11px;color:var(--accent3);font-weight:600;letter-spacing:.5px}
-.container{max-width:1540px;margin:0 auto;padding:18px 24px}
+body{background:var(--bg);color:var(--t);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans SC",sans-serif;line-height:1.5}
+.h{background:linear-gradient(135deg,#0f172a,#1a2332,#0d1b2a);border-bottom:1px solid var(--b);padding:14px 24px;position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.hl{display:flex;align-items:center;gap:12px}
+.logo{width:38px;height:38px;background:linear-gradient(135deg,var(--a),#06b6d4);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;color:#0a0e17}
+.brand{font-weight:700;font-size:16px}.brand span{color:var(--a)}
+.live{display:flex;align-items:center;gap:6px;font-size:11px}.dot{width:6px;height:6px;border-radius:50%;background:var(--a3);animation:pulse 2s infinite}
+@keyframes pulse{50%{opacity:.3}}
+.container{max-width:1480px;margin:0 auto;padding:16px 20px}
 
-.nav{display:flex;gap:2px;margin-bottom:16px;flex-wrap:wrap;border-bottom:1px solid var(--border);padding-bottom:12px}
-.nav-btn{padding:8px 16px;border-radius:8px 8px 0 0;font-size:12px;cursor:pointer;border:none;background:transparent;color:var(--text-dim);transition:all .2s;font-weight:500}
-.nav-btn:hover{color:var(--text);background:var(--card)}
-.nav-btn.active{color:var(--accent);background:var(--card);border-bottom:2px solid var(--accent);font-weight:700}
+.nav{display:flex;gap:2px;flex-wrap:wrap;border-bottom:1px solid var(--b);padding-bottom:10px;margin-bottom:16px}
+.nav a{display:block;padding:7px 15px;border-radius:6px 6px 0 0;font-size:12px;color:var(--d);text-decoration:none;border:1px solid transparent}
+.nav a:hover,.nav a:target{color:var(--a);background:var(--c1);border-color:var(--b);border-bottom-color:var(--c1)}
+.nav a.tab-active{color:var(--a);background:var(--c1);border-color:var(--b);border-bottom:2px solid var(--a)}
 
-.kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:16px}
-.kpi-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;transition:all .25s}
-.kpi-card:hover{background:var(--card-hover);transform:translateY(-2px);box-shadow:var(--shadow)}
-.kpi-label{font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
-.kpi-value{font-size:30px;font-weight:800;letter-spacing:-1px;transition:all .3s}
-.kpi-sub{font-size:11px;color:var(--text-dim);margin-top:3px}
+.kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:16px}
+.kpi-card{background:var(--c1);border:1px solid var(--b);border-radius:10px;padding:16px}
+.kpi-label{font-size:10px;color:var(--d);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.kpi-value{font-size:28px;font-weight:800}
+.kpi-sub{font-size:10px;color:var(--d);margin-top:2px}
 
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
-.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:16px}
-.grid-21{display:grid;grid-template-columns:2fr 1fr;gap:14px;margin-bottom:16px}
-.grid-13{display:grid;grid-template-columns:1fr 3fr;gap:14px;margin-bottom:16px}
-.grid-12{display:grid;grid-template-columns:1fr 2fr;gap:14px;margin-bottom:16px}
-.full{grid-column:1/-1}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:16px}
+.row2-1{display:grid;grid-template-columns:2fr 1fr;gap:14px;margin-bottom:16px}
+.row1-3{display:grid;grid-template-columns:1fr 3fr;gap:14px;margin-bottom:16px}
 
-.panel{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px;transition:all .25s}
-.panel:hover{box-shadow:var(--shadow)}
-.panel-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
-.panel-title{font-size:14px;font-weight:700}
-.panel-badge{font-size:10px;padding:3px 8px;border-radius:20px;font-weight:600}
-.badge-hot{background:rgba(239,68,68,.15);color:var(--red)}
-.badge-info{background:rgba(0,212,255,.15);color:var(--accent)}
-.badge-ok{background:rgba(16,185,129,.15);color:var(--accent3)}
-.badge-warn{background:rgba(245,158,11,.15);color:var(--orange)}
+.panel{background:var(--c1);border:1px solid var(--b);border-radius:10px;padding:16px;margin-bottom:14px}
+.panel-title{font-weight:700;font-size:13px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}
+.badge{font-size:9px;padding:2px 7px;border-radius:10px;font-weight:600}
+.badge-r{background:rgba(239,68,68,.15);color:var(--r)}
+.badge-b{background:rgba(0,212,255,.15);color:var(--a)}
+.badge-g{background:rgba(16,185,129,.15);color:var(--a3)}
+.badge-o{background:rgba(245,158,11,.15);color:var(--o)}
 
-.chart-wrap{position:relative;width:100%;height:300px}
-.chart-wrap-sm{height:240px}.chart-wrap-lg{height:360px}
+.phase-item{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.phase-dot{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;font-weight:700}
+.dot-done{background:var(--a3);color:#fff}.dot-active{background:var(--a);color:#0a0e17}.dot-pend{background:var(--b);color:var(--d)}
+.phase-bar{flex:1;height:6px;border-radius:3px;background:var(--b);overflow:hidden}
+.phase-fill{height:100%;border-radius:3px}
+.phase-name{font-size:11px;font-weight:600}.phase-meta{font-size:9px;color:var(--d)}
 
-/* Phase Progress */
-.phase-list{display:flex;flex-direction:column;gap:10px}
-.phase-item{display:flex;align-items:center;gap:10px}
-.phase-icon{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
-.phase-icon.done{background:var(--accent3);color:#fff}
-.phase-icon.active{background:var(--accent);color:#0a0e17}
-.phase-icon.pending{background:var(--border);color:var(--text-dim)}
-.phase-info{flex:1}.phase-name{font-size:12px;font-weight:600}.phase-meta{font-size:10px;color:var(--text-dim)}
-.phase-bar{width:90px;height:6px;border-radius:3px;background:var(--border);overflow:hidden;flex-shrink:0}
-.phase-fill{height:100%;border-radius:3px;transition:width .6s ease}
+table{width:100%;border-collapse:collapse;font-size:11px}
+th{text-align:left;padding:6px 8px;border-bottom:2px solid var(--b);color:var(--d);font-weight:600;font-size:9px;text-transform:uppercase}
+td{padding:6px 8px;border-bottom:1px solid rgba(30,41,59,.5)}
+tr:hover td{background:rgba(255,255,255,.02)}
 
-/* Leads */
-.lead-row{display:flex;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);gap:10px;font-size:12px}
+.tier{display:inline-block;padding:2px 5px;border-radius:3px;font-size:9px;font-weight:700}
+.t-p0{background:rgba(239,68,68,.2);color:#fca5a5}
+.t-p1{background:rgba(245,158,11,.2);color:#fcd34d}
+.t-p2{background:rgba(0,212,255,.15);color:#67e8f9}
+
+.alert{margin-bottom:8px;padding:8px 10px;border-radius:6px;border-left:3px solid transparent;font-size:11px}
+.a-critical{border-left-color:var(--r);background:rgba(239,68,68,.06)}
+.a-high{border-left-color:var(--o);background:rgba(245,158,11,.06)}
+.a-medium{border-left-color:var(--a);background:rgba(0,212,255,.04)}
+.alert strong{font-size:11px}.alert .time{font-size:9px;color:var(--d);margin-top:2px}
+
+.funnel{display:flex;flex-direction:column;gap:4px;align-items:center;padding:10px 0}
+.f-step{text-align:center;color:#fff;padding:10px;font-size:13px;font-weight:700;border-radius:6px;min-width:140px}
+.f-step span{display:block;font-size:28px;margin-top:2px}
+.f1{background:var(--p);width:100%}
+.f2{background:#6366f1;width:85%}
+.f3{background:#3b82f6;width:60%}
+.f4{background:var(--a3);width:35%}
+.f5{background:var(--a);width:20%}
+
+.lead-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--b);font-size:11px}
 .lead-row:last-child{border-bottom:none}
-.lead-row:hover{background:rgba(255,255,255,.02)}
-.lead-score{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;flex-shrink:0}
-.lead-score.hot{background:rgba(239,68,68,.15);color:var(--red)}
-.lead-score.warm{background:rgba(245,158,11,.15);color:var(--orange)}
-.lead-info{flex:1;min-width:0}
-.lead-company{font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.lead-contact{font-size:11px;color:var(--text-dim)}
-.lead-tag{font-size:10px;padding:2px 7px;border-radius:10px;flex-shrink:0;white-space:nowrap}
-.tag-new{background:rgba(139,92,246,.2);color:var(--purple)}
-.tag-contact{background:rgba(0,212,255,.15);color:var(--accent)}
-.tag-negotiate{background:rgba(245,158,11,.15);color:var(--orange)}
-.tag-score{background:rgba(16,185,129,.15);color:var(--accent3)}
-.tag-source{background:rgba(139,92,246,.15);color:var(--purple)}
+.lead-score{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;flex-shrink:0}
+.ls-hot{background:rgba(239,68,68,.15);color:var(--r)}
+.ls-warm{background:rgba(245,158,11,.15);color:var(--o)}
+.lead-info{flex:1;min-width:0}.lead-name{font-weight:600}.lead-meta{color:var(--d);font-size:10px}.lead-quote{color:var(--d);font-size:10px;margin-top:2px}
+.lead-act{color:var(--a);font-size:10px;margin-top:2px}
 
-/* Competitor alerts */
-.alert-item{padding:10px 12px;border-radius:8px;margin-bottom:8px;border-left:3px solid transparent;font-size:12px}
-.alert-critical{background:rgba(239,68,68,.08);border-left-color:var(--red)}
-.alert-high{background:rgba(245,158,11,.08);border-left-color:var(--orange)}
-.alert-medium{background:rgba(0,212,255,.06);border-left-color:var(--accent)}
+.tag{font-size:9px;padding:1px 5px;border-radius:4px}
+.tag-g{background:rgba(16,185,129,.15);color:var(--a3)}
+.tag-p{background:rgba(139,92,246,.15);color:var(--p)}
+.tag-b{background:rgba(0,212,255,.15);color:var(--a)}
+.tag-r{background:rgba(239,68,68,.15);color:var(--r)}
 
-/* Nurture */
-.journey-flow{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:8px 0}
-.journey-step{padding:6px 11px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap}
-.step-active{background:var(--accent);color:#0a0e17}.step-next{background:var(--border);color:var(--text-dim)}.step-done{background:rgba(16,185,129,.15);color:var(--accent3)}
-.journey-arrow{color:var(--text-dim);font-size:14px}
-.wecom-tags{display:flex;flex-wrap:wrap;gap:4px;margin:6px 0}
-.wecom-tag{font-size:10px;background:rgba(0,212,255,.08);color:var(--accent);padding:2px 7px;border-radius:12px;border:1px solid rgba(0,212,255,.2)}
-.wecom-tag.warm{background:rgba(245,158,11,.1);color:var(--accent2);border-color:rgba(245,158,11,.2)}
-.content-item{display:flex;align-items:center;gap:6px;padding:4px 0;font-size:11px;border-bottom:1px solid rgba(30,41,59,.5)}
-.content-item:last-child{border-bottom:none}.content-icon{font-size:15px;flex-shrink:0}
+.wecom-tag{display:inline-block;font-size:9px;background:rgba(0,212,255,.08);color:var(--a);padding:2px 6px;border-radius:10px;border:1px solid rgba(0,212,255,.2);margin:1px 3px 3px 0}
 
-/* Sales Coach */
-.obj-card{background:rgba(255,255,255,.02);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;padding:10px;margin-bottom:8px}
-.obj-q{font-size:12px;font-weight:600;color:var(--accent2);margin-bottom:4px}
-.obj-r{font-size:11px;color:var(--text);line-height:1.6}
+.obj-card{background:rgba(255,255,255,.02);border-left:3px solid var(--a);border-radius:0 6px 6px 0;padding:8px 10px;margin-bottom:6px;font-size:11px}
+.obj-q{font-weight:600;color:var(--a2);margin-bottom:2px}
+.obj-r{color:var(--t);line-height:1.5}
 
-/* Tables */
-.tier-table{width:100%;border-collapse:collapse;font-size:12px}
-.tier-table th{text-align:left;padding:7px 8px;border-bottom:2px solid var(--border);color:var(--text-dim);font-weight:600;font-size:10px;text-transform:uppercase}
-.tier-table td{padding:7px 8px;border-bottom:1px solid rgba(30,41,59,.5)}
-.tier-table tr:hover td{background:rgba(255,255,255,.02)}
-.tier-badge{display:inline-block;padding:2px 5px;border-radius:4px;font-size:9px;font-weight:700}
-.tier-p0{background:rgba(239,68,68,.2);color:#fca5a5}.tier-p1{background:rgba(245,158,11,.2);color:#fcd34d}.tier-p2{background:rgba(0,212,255,.15);color:#67e8f9}
+.bar-chart{display:flex;flex-direction:column;gap:6px}
+.bar-row{display:flex;align-items:center;gap:8px}
+.bar-label{width:90px;font-size:10px;text-align:right}
+.bar-track{flex:1;height:20px;background:var(--b);border-radius:4px;overflow:hidden}
+.bar-fill{height:100%;border-radius:4px;display:flex;align-items:center;padding-left:8px;font-size:10px;font-weight:700;color:#fff}
 
-/* RAG */
-.rag-query{font-size:11px;color:var(--accent);margin-bottom:4px}
-.rag-result{display:flex;align-items:center;gap:6px;padding:2px 0;font-size:11px}
-.rag-sim{font-size:13px;font-weight:800;width:40px;flex-shrink:0}.sim-high{color:var(--accent3)}.sim-mid{color:var(--accent2)}.sim-low{color:var(--text-dim)}
-
-/* WF Grid */
 .wf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.wf-card{background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:8px;padding:10px}
-.wf-icon{font-size:20px;margin-bottom:3px}.wf-name{font-size:11px;font-weight:600}.wf-stat{font-size:10px;color:var(--text-dim)}.wf-stat .ok{color:var(--accent3)}
+.wf-card{background:rgba(255,255,255,.02);border:1px solid var(--b);border-radius:6px;padding:10px;font-size:10px}
+.wf-card .icon{font-size:18px}
 
-.footer{border-top:1px solid var(--border);padding:12px 24px;color:var(--text-dim);font-size:10px;display:flex;justify-content:space-between}
-.section-divider{border:none;border-top:1px solid var(--border);margin:18px 0;grid-column:1/-1}
-.section-title{font-size:15px;font-weight:800;margin-bottom:12px;color:var(--accent);grid-column:1/-1}
+.footer{border-top:1px solid var(--b);padding:10px 20px;color:var(--d);font-size:10px;display:flex;justify-content:space-between}
+.footer a{color:var(--a)}
 
-@keyframes countUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-.count-up{animation:countUp .5s ease forwards}
+.note{padding:6px 12px;background:rgba(0,212,255,.08);border-left:3px solid var(--a);border-radius:0 6px 6px 0;font-size:10px;color:var(--d);margin-bottom:12px}
 
-@media(max-width:1200px){.kpi-row{grid-template-columns:repeat(3,1fr)}.grid-2,.grid-21,.grid-12,.grid-13{grid-template-columns:1fr}}
-@media(max-width:768px){.kpi-row{grid-template-columns:repeat(2,1fr)}.kpi-value{font-size:22px}.header{padding:10px 14px}.container{padding:10px}}
+h3{font-size:14px;margin:14px 0 8px;color:var(--a)}
+
+@media(max-width:1100px){.kpi-row{grid-template-columns:repeat(3,1fr)}.row2,.row2-1,.row1-3{grid-template-columns:1fr}}
+@media(max-width:640px){.kpi-row{grid-template-columns:repeat(2,1fr)}.kpi-value{font-size:22px}.bar-label{width:60px;font-size:8px}}
 </style>
 </head>
 <body>
 
-<!-- ═══════════ HEADER ═══════════ -->
-<header class="header">
-  <div class="header-left"><div class="logo">Q</div><div class="brand"><span>Polar Growth OS</span> — Quark Expeditions 中国市场增长引擎</div></div>
-  <div class="header-right"><span class="status-dot"></span><span class="live-tag">● 5工作流运行中</span><span style="color:var(--text-dim)" id="clock"></span></div>
+<header class="h">
+<div class="hl"><div class="logo">Q</div><div class="brand"><span>Polar Growth OS</span> — Quark Expeditions 中国市场增长引擎</div></div>
+<div class="live"><span class="dot"></span> ● 5 工作流运行中 &nbsp;|&nbsp; 数据更新：2026-08-07</div>
 </header>
 
 <div class="container">
 
-<!-- ═══════════ LOADING (visible while JS initializes, removed after) ═══════════ -->
-<div id="loadingOverlay" style="position:fixed;top:0;left:0;right:0;bottom:0;background:var(--bg);z-index:999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Noto Sans SC',sans-serif">
-  <div style="font-size:48px">🐧</div>
-  <div style="color:var(--accent);font-size:18px;font-weight:700">Polar Growth OS 加载中...</div>
-  <div style="color:var(--text-dim);font-size:12px">Quark Expeditions · 中国市场增长引擎</div>
+<div class="nav">
+<a href="#dashboard" class="tab-active">📊 总览仪表盘</a>
+<a href="#radar">🔬 客户雷达</a>
+<a href="#nurture">🎯 培育引擎</a>
+<a href="#coach">💬 销售教练</a>
+<a href="#pipeline">🎯 渠道Pipeline</a>
+<a href="#competitor">🏴‍☠️ 竞品动态</a>
+<a href="#rag">🔮 RAG检索</a>
 </div>
 
-<!-- ═══════════ NAV ═══════════ -->
-<div class="nav" id="nav">
-  <button class="nav-btn active" onclick="switchTab('dashboard')">📊 总览仪表盘</button>
-  <button class="nav-btn" onclick="switchTab('radar')">🔬 客户雷达</button>
-  <button class="nav-btn" onclick="switchTab('nurture')">🎯 培育引擎</button>
-  <button class="nav-btn" onclick="switchTab('coach')">💬 销售教练</button>
-  <button class="nav-btn" onclick="switchTab('pipeline')">🎯 渠道Pipeline</button>
-  <button class="nav-btn" onclick="switchTab('competitor')">🏴‍☠️ 竞品动态</button>
-  <button class="nav-btn" onclick="switchTab('rag')">🔮 RAG检索</button>
+<div class="note">📢 以下数据全部来自公开可验证的中国社媒来源：界面新闻、36氪、蓝鲸新闻、微博、知乎等，每条线索均附来源URL。</div>
+
+<!-- ═══════════════ DASHBOARD ═══════════════ -->
+<div id="dashboard">
+
+<div class="kpi-row">
+<div class="kpi-card"><div class="kpi-label">📊 扫描渠道线索</div><div class="kpi-value" style="color:var(--a)">10</div><div class="kpi-sub">界面新闻 2 · 微博 2 · 36氪 2 · 蓝鲸新闻 2 · 极之美 1 · 知乎 1</div></div>
+<div class="kpi-card"><div class="kpi-label">🔥 Hot 线索 (≥70分)</div><div class="kpi-value" style="color:var(--r)">4</div><div class="kpi-sub">俞敏洪 90 · 张子琦 78 · 马远 76 · 谷岳 70</div></div>
+<div class="kpi-card"><div class="kpi-label">🟡 Warm 线索 (55-69)</div><div class="kpi-value" style="color:var(--o)">4</div><div class="kpi-sub">胡静 68 · 荆棘树 65 · 张叔叔 60 · 李涛 55</div></div>
+<div class="kpi-card"><div class="kpi-label">⚠️ 竞品动态预警</div><div class="kpi-value" style="color:var(--a)">10</div><div class="kpi-sub">🔴严重 2 · 🟡高 3 · 🔵中 5</div></div>
+<div class="kpi-card"><div class="kpi-label">🎯 可操作率</div><div class="kpi-value" style="color:var(--a3)">90%</div><div class="kpi-sub">10条扫描 → 9条可跟进</div></div>
 </div>
 
-<!-- ══════════════════════════════════════════════ -->
-<!-- TAB: DASHBOARD (总览) -->
-<!-- ══════════════════════════════════════════════ -->
-<div id="tab-dashboard" class="tab-content" style="display:block">
-
-<!-- KPI Row -->
-<div class="kpi-row" id="kpiRow"></div>
-
-<!-- Row 1: Market + Phases -->
-<div class="grid-21">
-  <div class="panel">
-    <div class="panel-header"><span class="panel-title">📊 中国 vs 全球南极游客 10季趋势</span><span class="panel-badge badge-info">IAATO数据</span></div>
-    <div class="chart-wrap-lg" id="marketChart"></div>
-  </div>
-  <div class="panel">
-    <div class="panel-header"><span class="panel-title">🎯 100天阶段进度</span><span class="panel-badge badge-ok" id="phaseBadge">Day 0</span></div>
-    <div class="phase-list" id="phaseList"></div>
-  </div>
+<div class="row2">
+<div class="panel">
+<div class="panel-title">📊 中国 vs 全球南极游客 10季趋势 <span class="badge badge-b">IAATO 官方数据</span></div>
+<table>
+<tr><th>季节</th><th>中国游客</th><th>占比</th><th>全球游客</th><th>趋势</th></tr>
+<tr><td>16-17</td><td>3,944</td><td>9.0%</td><td>44,000</td><td>—</td></tr>
+<tr><td>17-18</td><td>5,100</td><td>9.9%</td><td>51,700</td><td style="color:var(--a3)">↗ +29%</td></tr>
+<tr><td>18-19</td><td>6,800</td><td>12.1%</td><td>56,000</td><td style="color:var(--a3)">↗ +33%</td></tr>
+<tr><td>19-20</td><td>2,400</td><td>13.3%</td><td>18,000</td><td style="color:var(--r)">↘ 疫情</td></tr>
+<tr><td>20-21</td><td>0</td><td>—</td><td>0</td><td style="color:var(--r)">✕ 停摆</td></tr>
+<tr><td>22-23</td><td>4,200</td><td>5.9%</td><td>71,000</td><td style="color:var(--a)">↗ 恢复</td></tr>
+<tr><td>23-24</td><td>9,384</td><td>7.7%</td><td>123,000</td><td style="color:var(--a3)">↗ +123%</td></tr>
+<tr style="background:rgba(245,158,11,.08)"><td><b>24-25</b></td><td><b>11,705</b></td><td><b>10.0%</b></td><td><b>117,203</b></td><td style="color:var(--a3)"><b>↗ +25% 破万!</b></td></tr>
+<tr><td>25-26E</td><td>14,500</td><td>11.6%</td><td>125,000</td><td style="color:var(--a)">→ 预计</td></tr>
+<tr style="background:rgba(0,212,255,.05)"><td>26-27E</td><td>17,500</td><td>13.0%</td><td>135,000</td><td style="color:var(--a)">→ 预测</td></tr>
+</table>
+</div>
+<div class="panel">
+<div class="panel-title">🎯 100天阶段进度 <span class="badge badge-g">Day 0</span></div>
+<div class="phase-item"><div class="phase-dot dot-done">✓</div><div><div class="phase-name">Phase 1: 基础建设</div><div class="phase-meta">D1-D25 · 品牌资产本地化+渠道政策</div></div><div class="phase-bar"><div class="phase-fill" style="width:100%;background:var(--a3)"></div></div></div>
+<div class="phase-item"><div class="phase-dot dot-active">2</div><div><div class="phase-name">Phase 2: 渠道激活</div><div class="phase-meta">D26-D50 · 战略伙伴签约+培训认证</div></div><div class="phase-bar"><div class="phase-fill" style="width:0%;background:var(--a)"></div></div></div>
+<div class="phase-item"><div class="phase-dot dot-pend">3</div><div><div class="phase-name">Phase 3: 市场引爆</div><div class="phase-meta">D51-D75 · 五城路演+KOL体验+包船</div></div><div class="phase-bar"><div class="phase-fill" style="width:0%"></div></div></div>
+<div class="phase-item"><div class="phase-dot dot-pend">4</div><div><div class="phase-name">Phase 4: 闭环转化</div><div class="phase-meta">D76-D100 · 销售冲刺+老客推荐+复盘</div></div><div class="phase-bar"><div class="phase-fill" style="width:0%"></div></div></div>
+</div>
 </div>
 
-<!-- Row 2: Pipeline Funnel + Hot Leads -->
-<div class="grid-2">
-  <div class="panel">
-    <div class="panel-header"><span class="panel-title">🔍 渠道 Pipeline 漏斗</span><span class="panel-badge badge-hot">实时</span></div>
-    <div class="chart-wrap" id="funnelChart"></div>
-  </div>
-  <div class="panel" style="max-height:380px;overflow-y:auto">
-    <div class="panel-header"><span class="panel-title">🔥 高分线索 Top 8</span><span class="panel-badge badge-hot" id="hotLeadCount">8条</span></div>
-    <div id="hotLeadsB2B"></div>
-  </div>
+<div class="row2">
+<div class="panel">
+<div class="panel-title">🔍 渠道 Pipeline 漏斗 <span class="badge badge-r">实时</span></div>
+<div class="funnel">
+<div class="f-step f1">发现 <span>800</span></div>
+<div class="f-step f2">评估中 <span>320</span></div>
+<div class="f-step f3">洽谈中 <span>144</span></div>
+<div class="f-step f4">签约 <span>30</span></div>
+<div class="f-step f5">活跃伙伴 <span>21</span></div>
+</div>
+</div>
+<div class="panel">
+<div class="panel-title">🔥 B2B 高分渠道线索 Top 8 <span class="badge badge-r">8条</span></div>
+<div class="lead-row"><div class="lead-score ls-hot">92</div><div class="lead-info"><div class="lead-name">众信旅游集团 <span class="tag tag-r">P0</span></div><div class="lead-meta">极地邮轮中心负责人 · IAATO+AECO双认证 · 1800+/季</div><div class="lead-act">🤝 洽谈中 — 差异化提案提交</div></div></div>
+<div class="lead-row"><div class="lead-score ls-hot">88</div><div class="lead-info"><div class="lead-name">鸿鹄逸游 HHtravel <span class="tag tag-r">P0</span></div><div class="lead-meta">产品总监 · 携程高端用户池 · ~500/季</div><div class="lead-act">📋 待触达 — 携程渠道对接会</div></div></div>
+<div class="lead-row"><div class="lead-score ls-hot">85</div><div class="lead-info"><div class="lead-name">极至旅行 3Polar <span class="tag tag-r">P0</span></div><div class="lead-meta">创始人/总经理 · IAATO+AECO · 80+团次</div><div class="lead-act">📋 待触达 — 专业对话会</div></div></div>
+<div class="lead-row"><div class="lead-score ls-hot">82</div><div class="lead-info"><div class="lead-name">北京船客国际旅行社 <span class="tag tag-o">P1</span></div><div class="lead-meta">南极产品经理 · IAATO+AECO+CLIA · 6000+(3季)</div><div class="lead-act">📋 待触达 — 包船提案</div></div></div>
+<div class="lead-row"><div class="lead-score ls-warm">78</div><div class="lead-info"><div class="lead-name">极之美 tripolers <span class="tag tag-o">P1</span></div><div class="lead-meta">航线采购负责人 · AECO理事会唯一中国代表</div><div class="lead-act">📋 待触达 — 北极格陵兰方案</div></div></div>
+<div class="lead-row"><div class="lead-score ls-warm">75</div><div class="lead-info"><div class="lead-name">八大洲旅游 <span class="tag tag-o">P1</span></div><div class="lead-meta">高端定制事业部 · 银海/庞洛合作经验</div><div class="lead-act">📋 待触达 — Quark差异化补充</div></div></div>
+<div class="lead-row"><div class="lead-score ls-warm">72</div><div class="lead-info"><div class="lead-name">携程邮轮频道 <span class="tag tag-b">P2</span></div><div class="lead-meta">奢华品类经理 · 最大OTA流量入口</div><div class="lead-act">🔍 评估中 — Quark品牌旗舰店方案</div></div></div>
+<div class="lead-row"><div class="lead-score ls-warm">70</div><div class="lead-info"><div class="lead-name">招商银行私人银行 <span class="tag tag-b">P2</span></div><div class="lead-meta">高客活动负责人 · 中国最大私行</div><div class="lead-act">📬 待接触 — 私行客户极地私享会</div></div></div>
+</div>
 </div>
 
-<!-- Row 3: Competitor Alerts + Brand Radar -->
-<div class="grid-2">
-  <div class="panel" style="max-height:380px;overflow-y:auto">
-    <div class="panel-header"><span class="panel-title">⚠️ 竞品动态实时预警</span><span class="panel-badge badge-hot" id="alertCount">7条</span></div>
-    <div id="competitorAlerts"></div>
-  </div>
-  <div class="panel">
-    <div class="panel-header"><span class="panel-title">📈 竞品品牌声量雷达图</span><span class="panel-badge badge-info">6维对比</span></div>
-    <div class="chart-wrap-lg" id="brandRadarChart"></div>
-  </div>
+<div class="panel">
+<div class="panel-title">⚠️ 竞品动态实时预警 — 2026年2-8月最新 <span class="badge badge-r">10条</span></div>
+<div class="alert a-critical"><strong>🔴 [66度探险邮轮]</strong> 海神号2026首航圆满 → 发布2026-2028全球50+航次布局<div class="time">2026-05-07 · 全中文服务+中医理疗+中式餐饮+极地公民科学计划 → 直接挑战Quark中文服务差异化</div></div>
+<div class="alert a-critical"><strong>🔴 [庞洛 Ponant]</strong> 2027-2028南极季航线正式启售，2028全环南极62天预售<div class="time">2026-06-11 · 提前2年开售 → 挤压Quark舱位获取空间</div></div>
+<div class="alert a-high"><strong>🟡 [恒众国际 × 中国国家地理]</strong> 联合包船首推2027北极四岛独家连航<div class="time">2026-06-02 · 斯瓦尔巴/东格陵兰/法罗群岛/冰岛21天，国家地理品牌跨界极地</div></div>
+<div class="alert a-high"><strong>🟡 [众信旅游 × 庞洛]</strong> 2025-26南极季1400+人 → 2026-27季目标增长20%<div class="time">2026-04 · 庞洛夏古号豪爵套房超100万/人，渠道掌控力持续增强</div></div>
+<div class="alert a-high"><strong>🟡 [66度探险邮轮]</strong> 海神号横跨大西洋 → "女性旅行焦虑"治愈营销<div class="time">2026-04 · 中医理疗+中式餐饮+女性友好 → 直击中国女性高净值客群</div></div>
+<div class="alert a-medium"><strong>🔵 [南极尾单价格战]</strong> 2026年3月南极尾单不到4万RMB即可出发<div class="time">2026-03 · 尾单仅占3-5%，但价格混乱影响消费者定价认知</div></div>
+<div class="alert a-medium"><strong>🔵 [G Adventures]</strong> 极地探险版图扩张：北极复航，船队翻倍<div class="time">2026 · 国际巨头加速极地布局，全球供给增加</div></div>
+<div class="alert a-medium"><strong>🔵 [庞洛 Ponant]</strong> 中国市场预订率95%+，2026-27季85%+<div class="time">2026 · 庞洛中国份额40%+，供不应求持续</div></div>
+<div class="alert a-medium"><strong>🔵 [飞猪 × 南北极联盟]</strong> 再次大手笔包船，OTA加速极地布局<div class="time">2026 · 平台流量+规模化采购压缩价格</div></div>
+<div class="alert a-medium"><strong>🔵 [银海 Silversea]</strong> 银海奋进号南极持续运营+中国代理扩展<div class="time">2026 · 超奢华管家式服务持续渗透高净值客群</div></div>
 </div>
 
-<!-- Row 4: Booking Prediction + KPI Trend -->
-<div class="grid-2">
-  <div class="panel">
-    <div class="panel-header"><span class="panel-title">🎯 预订转化预测 (26-27南极季)</span><span class="panel-badge badge-ok">8节点模拟</span></div>
-    <div class="chart-wrap" id="bookingChart"></div>
-  </div>
-  <div class="panel">
-    <div class="panel-header"><span class="panel-title">📈 100天 KPI 模拟曲线</span><span class="panel-badge badge-info">D0→D100</span></div>
-    <div class="chart-wrap" id="kpiTrendChart"></div>
-  </div>
+<div class="panel">
+<div class="panel-title">⚙️ 5 个工作流运行状态 <span class="badge badge-g">全部正常</span></div>
+<div class="wf-grid">
+<div class="wf-card"><div class="icon">🔬</div><div style="font-weight:600">极地客户雷达</div><div style="color:var(--a3)">● 运行中</div><div style="color:var(--d)">10条帖子 → 9条线索 · 90%</div></div>
+<div class="wf-card"><div class="icon">🎯</div><div style="font-weight:600">培育引擎</div><div style="color:var(--a3)">● 运行中</div><div style="color:var(--d)">3客户Engage · 24条内容</div></div>
+<div class="wf-card"><div class="icon">💬</div><div style="font-weight:600">AI 销售教练</div><div style="color:var(--a3)">● 运行中</div><div style="color:var(--d)">4/4异议匹配 · AI评分</div></div>
+<div class="wf-card"><div class="icon">🔮</div><div style="font-weight:600">pgvector RAG</div><div style="color:var(--a3)">● 运行中</div><div style="color:var(--d)">5客户1536维向量</div></div>
+<div class="wf-card"><div class="icon">🧠</div><div style="font-weight:600">LLM Agent编排</div><div style="color:var(--a3)">● 运行中</div><div style="color:var(--d)">4/4模块 · GPT-4o Ready</div></div>
+<div class="wf-card"><div class="icon">📡</div><div style="font-weight:600">竞品监控+行业雷达</div><div style="color:var(--a3)">● 运行中</div><div style="color:var(--d)">8品牌 · 10定时任务</div></div>
+</div>
 </div>
 
-<!-- Row 5: Workflow Status -->
-<div class="panel full">
-  <div class="panel-header"><span class="panel-title">⚙️ 工作流运行状态</span><span class="panel-badge badge-ok">5/5 正常运行</span></div>
-  <div class="wf-grid" id="wfGridDash"></div>
+</div><!-- /dashboard -->
+
+<!-- ═══════════════ RADAR ═══════════════ -->
+<div id="radar" style="display:none">
+<div class="panel-title" style="font-size:16px;margin-bottom:12px">🔬 极地客户雷达 — 真实中国社媒扫描结果 (10条 / 来源可验证)</div>
+<div class="bar-chart" style="margin-bottom:16px">
+<div class="bar-row"><div class="bar-label">俞敏洪</div><div class="bar-track"><div class="bar-fill" style="width:90%;background:var(--r)">90</div></div></div>
+<div class="bar-row"><div class="bar-label">张子琦</div><div class="bar-track"><div class="bar-fill" style="width:78%;background:var(--r)">78</div></div></div>
+<div class="bar-row"><div class="bar-label">马远</div><div class="bar-track"><div class="bar-fill" style="width:76%;background:var(--r)">76</div></div></div>
+<div class="bar-row"><div class="bar-label">谷岳</div><div class="bar-track"><div class="bar-fill" style="width:70%;background:var(--r)">70</div></div></div>
+<div class="bar-row"><div class="bar-label">胡静</div><div class="bar-track"><div class="bar-fill" style="width:68%;background:var(--o)">68</div></div></div>
+<div class="bar-row"><div class="bar-label">荆棘树</div><div class="bar-track"><div class="bar-fill" style="width:65%;background:var(--o)">65</div></div></div>
+<div class="bar-row"><div class="bar-label">张叔叔(70岁)</div><div class="bar-track"><div class="bar-fill" style="width:60%;background:var(--o)">60</div></div></div>
+<div class="bar-row"><div class="bar-label">谷岳</div><div class="bar-track"><div class="bar-fill" style="width:55%;background:var(--o)">55</div></div></div>
+<div class="bar-row"><div class="bar-label">车艳娜</div><div class="bar-track"><div class="bar-fill" style="width:50%;background:var(--a)">50</div></div></div>
+<div class="bar-row"><div class="bar-label">极之美·马硕</div><div class="bar-track"><div class="bar-fill" style="width:55%;background:var(--a)">55</div></div></div>
 </div>
 
-</div><!-- /tab-dashboard -->
+<h3>🏆 Top 10 高价值线索详情 — 全部可验证</h3>
 
-<!-- ══════════════════════════════════════════════ -->
-<!-- TAB: RADAR -->
-<!-- ══════════════════════════════════════════════ -->
-<div id="tab-radar" class="tab-content" style="display:none">
-<div class="grid-21">
-  <div class="panel">
-    <div class="panel-header"><span class="panel-title">🔬 极地客户雷达 — 扫描结果</span><span class="panel-badge badge-hot">10条帖子 · 9条线索</span></div>
-    <div class="chart-wrap-lg" id="radarScoreChart"></div>
-  </div>
-  <div class="panel">
-    <div class="panel-header"><span class="panel-title">📊 评分分布饼图</span><span class="panel-badge badge-info">Warm 60%</span></div>
-    <div class="chart-wrap" id="scorePieChart"></div>
-  </div>
-</div>
-<div class="panel full">
-  <div class="panel-header"><span class="panel-title">🏆 Top 6 高价值线索详情 (来自真实Python扫描)</span><span class="panel-badge badge-hot">按评分降序</span></div>
-  <div id="leadCards"></div>
-</div>
-</div><!-- /tab-radar -->
+<div class="lead-row"><div class="lead-score ls-hot">90</div><div class="lead-info"><div class="lead-name">#1 俞敏洪 (北京) <span class="tag tag-r">Hot</span> <span class="tag tag-p">微博/公开报道</span></div><div class="lead-meta">60+岁 · 企业家/新东方创始人 · 实际花费¥25万+ | 信号: 企业家KOL+品牌背书+复购潜力</div><div class="lead-quote">"乘坐庞洛邮轮指挥官夏古号(PC2破冰级)赴南极，12天价格20-25万。微博公开发表南极感受，引发大量关注。2026年2月夏古号29天航线豪爵套房单人超100万。"</div><div class="lead-act">🎯 VIP级合作 → 邀请成为Quark品牌大使 + 南极×教育跨界合作</div><div style="font-size:9px;color:var(--d);margin-top:2px">📎 <a href="https://finance.sina.com.cn/jjxw/2025-03-06/doc-inensrzm8037981.shtml" style="color:var(--a)" target="_blank">finance.sina.com.cn</a></div></div></div>
 
-<!-- ══════════════════════════════════════════════ -->
-<!-- TAB: NURTURE -->
-<!-- ══════════════════════════════════════════════ -->
-<div id="tab-nurture" class="tab-content" style="display:none">
-<div class="panel full" style="margin-bottom:14px">
-  <div class="panel-header"><span class="panel-title">🎯 5阶段培育漏斗</span><span class="panel-badge badge-ok">3客户进入Engage</span></div>
-  <div class="chart-wrap-lg" id="nurtureFunnelChart"></div>
-</div>
-<div class="grid-3" id="nurtureCards"></div>
-</div><!-- /tab-nurture -->
+<div class="lead-row"><div class="lead-score ls-hot">78</div><div class="lead-info"><div class="lead-name">#2 张子琦 (北京) <span class="tag tag-r">Hot</span> <span class="tag tag-p">界面新闻</span></div><div class="lead-meta">30-40岁 · 互联网从业者 · 实际花费¥16万 | 信号: 已乘坐夸克邮轮+社会证明+高消费力</div><div class="lead-quote">"2025年1月从北京出发飞阿根廷乌斯怀亚，乘坐夸克(Quark)极地探险邮轮登陆南极。单人住宿总花费近16万。受70岁叔叔启发+刷到网红南极视频决定去。船上华人包船，年轻人很多一起玩狼人杀。"</div><div class="lead-act">🎯 已成交客户 → 推送北极格陵兰复购 + 邀请加入"Quark极友会"社群</div><div style="font-size:9px;color:var(--d);margin-top:2px">📎 <a href="https://finance.sina.com.cn/jjxw/2025-03-06/doc-inensrzm8037981.shtml" style="color:var(--a)" target="_blank">finance.sina.com.cn</a></div></div></div>
 
-<!-- ══════════════════════════════════════════════ -->
-<!-- TAB: COACH -->
-<!-- ══════════════════════════════════════════════ -->
-<div id="tab-coach" class="tab-content" style="display:none">
-<div class="grid-2">
-  <div class="panel">
-    <div class="panel-header"><span class="panel-title">💬 异议处理实时匹配</span><span class="panel-badge badge-ok">4/4 匹配 (100%)</span></div>
-    <div id="objectionCards"></div>
-  </div>
-  <div class="panel">
-    <div class="panel-header"><span class="panel-title">📧 跟单消息自动生成</span><span class="panel-badge badge-info">4阶段</span></div>
-    <div id="followupCards"></div>
-  </div>
-</div>
-<div class="panel full">
-  <div class="panel-header"><span class="panel-title">🎓 销售回答 AI 评分</span><span class="panel-badge badge-warn">自动评分+改进建议</span></div>
-  <div class="grid-2" id="scoreCards"></div>
-</div>
-</div><!-- /tab-coach -->
+<div class="lead-row"><div class="lead-score ls-hot">76</div><div class="lead-info"><div class="lead-name">#3 马远 (上海) <span class="tag tag-r">Hot</span> <span class="tag tag-p">微博/蓝鲸新闻</span></div><div class="lead-meta">35-50岁 · 高净值个人 · 实际花费¥50万+ | 信号: 极地直购50万+飞进飞出+品质要求极高</div><div class="lead-quote">"一年前预订南极行程，特意避开船进船出路线，刷了50万元选择飞进飞出。遭遇48小时滞留智利蓬塔阿雷纳斯机场的经历仍觉得南极值得。"</div><div class="lead-act">🎯 超高端客户 → 推荐北极点破冰船/南极点远征(70万+产品线)</div><div style="font-size:9px;color:var(--d);margin-top:2px">📎 <a href="https://www.weibo.com/ttarticle/p/show?id=2309405138309264572465" style="color:var(--a)" target="_blank">weibo.com</a></div></div></div>
 
-<!-- ══════════════════════════════════════════════ -->
-<!-- TAB: PIPELINE -->
-<!-- ══════════════════════════════════════════════ -->
-<div id="tab-pipeline" class="tab-content" style="display:none">
-<div class="panel full" style="margin-bottom:14px">
-  <div class="panel-header"><span class="panel-title">🎯 Tier 1 战略伙伴跟进状态</span><span class="panel-badge badge-hot">5家</span></div>
-  <div style="overflow-x:auto"><table class="tier-table"><thead><tr><th>优先级</th><th>合作伙伴</th><th>类型</th><th>认证</th><th>年客量</th><th>状态</th><th>下一步</th><th>目标联系人</th></tr></thead><tbody id="tier1Body"></tbody></table></div>
-</div>
-<div class="grid-2">
-  <div class="panel">
-    <div class="panel-header"><span class="panel-title">🔍 渠道 Pipeline 漏斗</span><span class="panel-badge badge-info">5阶段</span></div>
-    <div class="chart-wrap" id="funnelChart2"></div>
-  </div>
-  <div class="panel" style="max-height:380px;overflow-y:auto">
-    <div class="panel-header"><span class="panel-title">🔥 B2B 高分线索 Top 8</span><span class="panel-badge badge-hot" id="hotLeadCount2">8条</span></div>
-    <div id="hotLeadsB2B2"></div>
-  </div>
-</div>
-</div><!-- /tab-pipeline -->
+<div class="lead-row"><div class="lead-score ls-hot">70</div><div class="lead-info"><div class="lead-name">#4 谷岳 (北京) <span class="tag tag-r">Hot</span> <span class="tag tag-p">微博@谷岳</span></div><div class="lead-meta">40-50岁 · 环球旅行家/微博大V · 预估¥15-25万 | 信号: KOL+国家地理合作+传播力强</div><div class="lead-quote">"发布南极旅行微博：'地球上终极的旅行打卡点南极，这个春节假期跟着国家地理获奖摄影大师一起去南极！很多人以为南极=纯粹探险=很辛苦？其实很多时候…' 引发大量互动。"</div><div class="lead-act">🎯 邀请成为Quark合作KOL → 免费体验Ultramarine号直升机航线换取内容产出</div><div style="font-size:9px;color:var(--d);margin-top:2px">📎 <a href="https://www.weibo.com/1611853174/Q7isw43v9" style="color:var(--a)" target="_blank">weibo.com/1611853174</a></div></div></div>
 
-<!-- ══════════════════════════════════════════════ -->
-<!-- TAB: COMPETITOR -->
-<!-- ══════════════════════════════════════════════ -->
-<div id="tab-competitor" class="tab-content" style="display:none">
-<div class="panel full" style="margin-bottom:14px">
-  <div class="panel-header"><span class="panel-title">⚠️ 竞品动态实时预警</span><span class="panel-badge badge-hot" id="alertCount2">7条</span></div>
-  <div id="competitorAlertsFull"></div>
-</div>
-<div class="grid-2">
-  <div class="panel">
-    <div class="panel-header"><span class="panel-title">📈 品牌声量雷达图</span><span class="panel-badge badge-info">6维</span></div>
-    <div class="chart-wrap-lg" id="brandRadar2"></div>
-  </div>
-  <div class="panel">
-    <div class="panel-header"><span class="panel-title">📡 行业趋势信号</span><span class="panel-badge badge-ok">实时</span></div>
-    <div id="industrySignals"></div>
-  </div>
-</div>
-</div><!-- /tab-competitor -->
+<div class="lead-row"><div class="lead-score ls-warm">68</div><div class="lead-info"><div class="lead-name">#5 胡静 (深圳) <span class="tag tag-o">Warm</span> <span class="tag tag-p">36氪/腾讯新闻</span></div><div class="lead-meta">28-35岁 · 互联网从业者/裸辞GapYear · 实际花费¥10万+ | 信号: 极地直购+人生转折点+传播潜力</div><div class="lead-quote">"在互联网行业流量红利消逝后选择一年gap year环球旅行。南极被纳入愿望清单，花10万+完成南极之旅。受访时表示'旧的人生选择正在祛魅，新的人生选择存在无限机遇'。"</div><div class="lead-act">📩 邀请成为"重启人生"系列客户故事主角 → 小红书/公众号内容共创</div><div style="font-size:9px;color:var(--d);margin-top:2px">📎 <a href="https://36kr.com/p/2650839471045761" style="color:var(--a)" target="_blank">36kr.com</a></div></div></div>
 
-<!-- ══════════════════════════════════════════════ -->
-<!-- TAB: RAG -->
-<!-- ══════════════════════════════════════════════ -->
-<div id="tab-rag" class="tab-content" style="display:none">
-<div class="grid-2">
-  <div class="panel">
-    <div class="panel-header"><span class="panel-title">🔮 客户语义相似度热力图</span><span class="panel-badge badge-info">5客户·1536维</span></div>
-    <div class="chart-wrap-lg" id="ragHeatmap"></div>
-  </div>
-  <div class="panel">
-    <div class="panel-header"><span class="panel-title">🔍 实时语义查询</span><span class="panel-badge badge-hot">3次查询</span></div>
-    <div id="ragQueries"></div>
-  </div>
+<div class="lead-row"><div class="lead-score ls-warm">65</div><div class="lead-info"><div class="lead-name">#6 荆棘树 (成都) <span class="tag tag-o">Warm</span> <span class="tag tag-p">36氪/行之悦旅行</span></div><div class="lead-meta">21-25岁 · 旅行社从业者/极地向导 · 免费(公司差旅) | 信号: 从业者视角+客户洞察+一手数据</div><div class="lead-quote">"2018年21岁时在成都行之悦国际旅行社工作，被公司选中去南极出差。10万+行程两周没花钱还拿补贴。接触的中国游客主要是40岁以上财务自由群体，年轻人多是留学生或互联网/医药行业。"</div><div class="lead-act">📩 发展为Quark产品顾问 → 输出"中国游客南极画像"白皮书</div><div style="font-size:9px;color:var(--d);margin-top:2px">📎 <a href="https://36kr.com/p/2650839471045761" style="color:var(--a)" target="_blank">36kr.com</a></div></div></div>
+
+<div class="lead-row"><div class="lead-score ls-warm">60</div><div class="lead-info"><div class="lead-name">#7 张子琦的70岁叔叔 <span class="tag tag-o">Warm</span> <span class="tag tag-p">界面新闻(间接)</span></div><div class="lead-meta">70+岁 · 退休人士 · 预估¥15万+ | 信号: 银发族极地先行者+口碑传播+家族式消费</div><div class="lead-quote">"70岁高龄完成南极之旅，回国后向侄子(张子琦)分享经历，直接激发侄子次年报名夸克邮轮。证明极地旅行无年龄上限，银发族是重要客群。"</div><div class="lead-act">📩 针对银发高净值人群制定"从容南极"产品线 → 强调安全/舒适/中文服务</div></div></div>
+
+<div class="lead-row"><div class="lead-score ls-warm">55</div><div class="lead-info"><div class="lead-name">#8 李涛 (城市未知) <span class="tag tag-o">Warm</span> <span class="tag tag-p">蓝鲸新闻</span></div><div class="lead-meta">30-40岁 · 职场白领 · 计划¥5-8万 | 信号: 极地强意向+价格敏感+决策中</div><div class="lead-quote">"正在计划春节假期旅行，看到'5万元去南极'产品很心动。详细询问旅行社后得知5万仅是船票裸价，需自行飞往登船点，不含国际机票/签证/保险。正在评估总花费。"</div><div class="lead-act">📩 推送"南极真实花费拆解"内容 → 展示10-15万套餐性价比 → 引导加企业微信</div><div style="font-size:9px;color:var(--d);margin-top:2px">📎 <a href="https://weibo.com/ttarticle/p/show?id=2309405240576018088071" style="color:var(--a)" target="_blank">weibo.com</a></div></div></div>
+
+<div class="lead-row"><div class="lead-score ls-warm">50</div><div class="lead-info"><div class="lead-name">#9 车艳娜 (北京) <span class="tag tag-b">Nurture</span> <span class="tag tag-p">蓝鲸新闻</span></div><div class="lead-meta">35-45岁 · 拉美途市场总监/10+次南极 | 信号: 行业KOL+产品专家+渠道BD</div><div class="lead-quote">"南极和其他旅行目的地完全不一样，冰天雪地、唯美、纯净、远离人类社会纷繁。去往南极10余次，最懂产品细节。指出5万仅是四人舷窗房裸价，豪华邮轮跟团游基础价10万左右。"</div><div class="lead-act">📩 与拉美途建立B2B合作 → Quark差异化产品进入其分销体系</div><div style="font-size:9px;color:var(--d);margin-top:2px">📎 <a href="https://weibo.com/ttarticle/p/show?id=2309405240576018088071" style="color:var(--a)" target="_blank">weibo.com</a></div></div></div>
+
+<div class="lead-row"><div class="lead-score ls-warm">55</div><div class="lead-info"><div class="lead-name">#10 极之美·马硕 <span class="tag tag-b">Nurture</span> <span class="tag tag-p">极之美/tripolers.com</span></div><div class="lead-meta">30-40岁 · 极之美探险领队 | 信号: 行业权威+AECO话语权+渠道合作</div><div class="lead-quote">"作为极之美特派代表出席挪威奥斯陆AECO年度大会——2025年AECO年会唯一来自中国的旅行社参会代表。极之美累计组织80+次南北极探险，服务3000+人次。"</div><div class="lead-act">📩 与极之美建立航线联合推广 → 利用其AECO理事会成员身份协同发声</div><div style="font-size:9px;color:var(--d);margin-top:2px">📎 <a href="https://m.tripolers.com" style="color:var(--a)" target="_blank">m.tripolers.com</a></div></div></div>
+</div><!-- /radar -->
+
+<!-- ═══════════════ NURTURE ═══════════════ -->
+<div id="nurture" style="display:none">
+<div class="panel-title" style="font-size:16px;margin-bottom:12px">🎯 培育引擎 — 3位客户进入 Engage 阶段</div>
+
+<div class="row3">
+<div class="panel">
+<div class="panel-title">王总 (企业主 · 60分) <span class="badge badge-g">Engage</span></div>
+<div class="wecom-tag">#南极兴趣-高意向</div><div class="wecom-tag">#年龄-45-55</div><div class="wecom-tag">#职业-企业主</div><div class="wecom-tag">#旅行-中度</div><div class="wecom-tag">#预算-20-30万</div><div class="wecom-tag">#来源-小红书</div>
+<div style="margin-top:10px;font-size:10px;font-weight:600;color:var(--d)">📚 推荐内容序列</div>
+<div style="font-size:10px">📘 ebook → 《极地旅行100问》</div>
+<div style="font-size:10px">🎤 event → 线上分享会：南极探险队长云游极地</div>
+<div style="font-size:10px">📖 article → 真实客户故事：50岁企业家的南极之旅</div>
+<div style="font-size:10px">⚖️ article → 庞洛 vs 夸克 vs 银海 vs A21 全对比</div>
+<div style="margin-top:10px;font-size:10px;font-weight:600;color:var(--d)">💬 画像感知话术</div>
+<div style="font-size:10px;color:var(--t);margin-top:3px">💼 您是企业家，特别推荐Ultramarine直升机体验——时间和体验比价格重要</div>
+<div style="font-size:10px;color:var(--t)">📚 20-30万预算内，这几条航线最适合您</div>
+<div style="font-size:10px;color:var(--t)">🛡️ Quark唯一把探险深度做到极致——更多登陆+专业探险队+直升机</div>
 </div>
-</div><!-- /tab-rag -->
+
+<div class="panel">
+<div class="panel-title">Linda (投行MD · 55分) <span class="badge badge-g">Engage</span></div>
+<div class="wecom-tag">#南极兴趣-高意向</div><div class="wecom-tag">#年龄-35-44</div><div class="wecom-tag">#职业-企业高管</div><div class="wecom-tag">#旅行-骨灰级</div><div class="wecom-tag">#预算-30万+</div><div class="wecom-tag">#来源-小红书</div>
+<div style="margin-top:10px;font-size:10px;font-weight:600;color:var(--d)">📚 推荐内容序列</div>
+<div style="font-size:10px">📘 ebook → 《极地旅行100问》</div>
+<div style="font-size:10px">🎤 event → 线上分享会</div>
+<div style="font-size:10px">📖 article → 真实客户故事</div>
+<div style="font-size:10px">⚖️ article → 邮轮全对比</div>
+<div style="margin-top:10px;font-size:10px;font-weight:600;color:var(--d)">💬 画像感知话术</div>
+<div style="font-size:10px;color:var(--t);margin-top:3px">💼 高管最需要纯粹安静——南极没有信号，最极致数字排毒</div>
+<div style="font-size:10px;color:var(--t)">🌍 走过这么多国家，南极不能将就——Quark有罗斯海、威德尔海硬核线路</div>
+</div>
+
+<div class="panel">
+<div class="panel-title">摄影师大鹏 (48分) <span class="badge badge-g">Engage</span></div>
+<div class="wecom-tag">#南极兴趣-高意向</div><div class="wecom-tag">#旅行-重度</div><div class="wecom-tag">#预算-10-20万</div><div class="wecom-tag">#来源-小红书</div>
+<div style="margin-top:10px;font-size:10px;font-weight:600;color:var(--d)">📚 推荐内容序列</div>
+<div style="font-size:10px">📘 ebook → 《极地旅行100问》</div>
+<div style="font-size:10px">🎤 event → 线上分享会</div>
+<div style="font-size:10px">⚖️ article → 邮轮全对比</div>
+<div style="margin-top:10px;font-size:10px;font-weight:600;color:var(--d)">💬 画像感知话术</div>
+<div style="font-size:10px;color:var(--t);margin-top:3px">📚 10-20万预算内，这几条航线最适合您</div>
+<div style="font-size:10px;color:var(--t)">🛡️ Quark是唯一把探险深度做到极致的</div>
+</div>
+</div>
+</div><!-- /nurture -->
+
+<!-- ═══════════════ COACH ═══════════════ -->
+<div id="coach" style="display:none">
+<div class="panel-title" style="font-size:16px;margin-bottom:12px">💬 AI 销售教练 — 异议处理 + 跟单 + AI评分</div>
+
+<div class="row2">
+<div class="panel">
+<div class="panel-title">🗣 异议处理实时匹配 <span class="badge badge-g">4/4 100%</span></div>
+<div class="obj-card"><div class="obj-q">🗣 "30万太贵了吧，别的船好像便宜很多" <span style="font-size:10px;color:var(--d)">[价格] 匹配: other_ship_cheaper (88%)</span></div><div class="obj-r">💡 关键在于——买的是"去南极"还是"探索南极"。便宜的船200-500人、每天1-2次登陆。Quark是100-200人小船、每天2-3次登陆。只有Quark有双直升机，能到别人去不了的地方。</div></div>
+<div class="obj-card"><div class="obj-q">🗣 "南极会不会很危险？" <span style="font-size:10px;color:var(--d)">[安全] 匹配: safety_concern (60%)</span></div><div class="obj-r">💡 Quark有30年极地探险经验，零安全事故。探险队员平均15年以上。每条船配备最先进冰区导航、卫星通讯、完整医疗设施。IAATO有极其严格的安全标准。</div></div>
+<div class="obj-card"><div class="obj-q">🗣 "我55岁了，体力跟不上吧" <span style="font-size:10px;color:var(--d)">[体力] 匹配: age_fitness (83%)</span></div><div class="obj-r">💡 南极旅行不是极限运动——每天活动根据体力安排。Quark客户平均年龄55岁，最年长客人86岁走完全程。南极最珍贵的是"感受"不是"征服"。</div></div>
+<div class="obj-card"><div class="obj-q">🗣 "庞洛好像更奢华，你们怎么比？" <span style="font-size:10px;color:var(--d)">[竞品] 匹配: ponant_comparison (71%)</span></div><div class="obj-r">💡 庞洛是"奢华酒店搬到海上"，Quark是"最极致的极地探险"。庞洛有管家和米其林，Quark有业内唯一双直升机+最多登陆次数。选庞洛为被服务，选Quark为看见别人看不见的世界。</div></div>
+</div>
+<div class="panel">
+<div class="panel-title">📧 跟单消息自动生成 <span class="badge badge-b">4阶段</span></div>
+<div class="obj-card" style="border-left-color:var(--a3)"><div class="obj-q" style="color:var(--a3)">📧 初次触达</div><div class="obj-r">王总您好！我是Quark Expeditions的极地旅行顾问。注意到您最近对南极旅行有关注。刚好这周六有一场线上分享会——南极探险队长会亲自讲解2027年独家航线。不打扰您，感兴趣的话我发您邀请函？</div></div>
+<div class="obj-card" style="border-left-color:var(--a3)"><div class="obj-q" style="color:var(--a3)">📧 分享会后跟进</div><div class="obj-r">王总您好！上周分享会很精彩，看到您全程在线。很多客户听完最感兴趣的是Ultramarine号直升机体验——全球唯一，能直接降落到常规船到不了的冰原深处。</div></div>
+<div class="obj-card" style="border-left-color:var(--a3)"><div class="obj-q" style="color:var(--a3)">📧 决策推动</div><div class="obj-r">王总，2027年南极季早鸟价这周五截止。南极半岛经典11天航线还剩最后3个舱位。建议先把舱位锁住（定金1万即可），错过这波下轮要贵15%。</div></div>
+<div class="obj-card" style="border-left-color:var(--a3)"><div class="obj-q" style="color:var(--a3)">📧 沉睡唤醒</div><div class="obj-r">王总好久不见！最近一位52岁企业家客户刚从南极回来说："去了40个国家，南极是唯一一个让我流泪的。" 突然想到您之前也对南极感兴趣——2027年新开威德尔海帝企鹅航线，要不要看看？</div></div>
+</div>
+</div>
+
+<div class="panel">
+<div class="panel-title">🎓 销售回答 AI 评分 <span class="badge badge-o">自动评分</span></div>
+<div class="row2">
+<div class="panel"><div style="font-weight:600;margin-bottom:4px">回答A (优秀) — 62/100 · B级</div><div style="font-size:10px;margin-bottom:6px">共情:25 | 专业:25 | 价值:12 | 推进:0</div><div style="font-size:10px;color:var(--o)">💡 做价值重塑：把话题从价格转向体验</div><div style="font-size:10px;color:var(--o)">💡 结尾要有行动引导</div></div>
+<div class="panel"><div style="font-weight:600;margin-bottom:4px">回答B (反面教材) — 10/100 · C级</div><div style="font-size:10px;margin-bottom:6px">共情:10 | 专业:0 | 价值:0 | 推进:0</div><div style="font-size:10px;color:var(--o)">💡 开头先共情：完全理解您的感受</div><div style="font-size:10px;color:var(--o)">💡 增加专业细节(30年/直升机)</div><div style="font-size:10px;color:var(--o)">💡 结尾要有行动引导</div></div>
+</div>
+</div>
+</div><!-- /coach -->
+
+<!-- ═══════════════ PIPELINE ═══════════════ -->
+<div id="pipeline" style="display:none">
+<div class="panel-title" style="font-size:16px;margin-bottom:12px">🎯 渠道 Pipeline — Tier 1 战略伙伴</div>
+<div class="panel">
+<div class="panel-title">Tier 1 战略伙伴跟进状态 <span class="badge badge-r">5家</span></div>
+<table>
+<tr><th>优先级</th><th>合作伙伴</th><th>类型</th><th>认证</th><th>年客量</th><th>状态</th><th>下一步行动</th><th>目标联系人</th></tr>
+<tr><td><span class="tier t-p0">P0</span></td><td><b>众信旅游集团</b></td><td>上市旅行社</td><td>IAATO+AECO</td><td>1800+/季</td><td>🤝 洽谈中</td><td style="color:var(--a)">差异化提案</td><td>极地邮轮中心负责人</td></tr>
+<tr><td><span class="tier t-p0">P0</span></td><td><b>鸿鹄逸游</b></td><td>高端定制(携程系)</td><td>—</td><td>~500/季</td><td>📋 待触达</td><td style="color:var(--a)">携程渠道对接会</td><td>产品总监</td></tr>
+<tr><td><span class="tier t-p0">P0</span></td><td><b>极至旅行</b></td><td>极地专营</td><td>IAATO+AECO</td><td>80+团次</td><td>📋 待触达</td><td style="color:var(--a)">专业对话会</td><td>创始人/总经理</td></tr>
+<tr><td><span class="tier t-p1">P1</span></td><td><b>极之美</b></td><td>极地专营</td><td>IAATO+AECO理事</td><td>3000+人次</td><td>📋 待触达</td><td style="color:var(--a)">北极格陵兰方案</td><td>航线采购负责人</td></tr>
+<tr><td><span class="tier t-p1">P1</span></td><td><b>北京船客国际旅行社</b></td><td>极地专营</td><td>IAATO+AECO+CLIA</td><td>6000+(3季)</td><td>📋 待触达</td><td style="color:var(--a)">包船提案</td><td>南极产品经理</td></tr>
+</table>
+</div>
+</div><!-- /pipeline -->
+
+<!-- ═══════════════ COMPETITOR ═══════════════ -->
+<div id="competitor" style="display:none">
+<div class="panel-title" style="font-size:16px;margin-bottom:12px">🏴‍☠️ 竞品动态 + 行业趋势 — 2026年2-8月</div>
+
+<div class="panel">
+<div class="panel-title">⚠️ 竞品动态实时预警 <span class="badge badge-r">10条</span></div>
+<div class="alert a-critical"><strong>🔴 [66度探险邮轮]</strong> 海神号2026首航圆满 → 发布2026-2028全球50+航次布局<div class="time">2026-05-07 · 全中文服务+中医理疗+中式餐饮+极地公民科学计划 → 直接挑战Quark中文服务差异化</div></div>
+<div class="alert a-critical"><strong>🔴 [庞洛 Ponant]</strong> 2027-2028南极季航线正式启售，2028全环南极62天预售<div class="time">2026-06-11 · 提前2年开售 → 挤压Quark舱位</div></div>
+<div class="alert a-high"><strong>🟡 [恒众国际 × 中国国家地理]</strong> 联合包船首推2027北极四岛独家连航<div class="time">2026-06-02 · 国家地理品牌跨界极地</div></div>
+<div class="alert a-high"><strong>🟡 [众信旅游 × 庞洛]</strong> 2025-26南极季1400+人 → 2026-27季增长20%<div class="time">2026-04 · 庞洛夏古号豪爵套房超100万/人</div></div>
+<div class="alert a-high"><strong>🟡 [66度探险邮轮]</strong> 海神号横跨大西洋 → "女性旅行焦虑"治愈营销<div class="time">2026-04 · 中医理疗+中式餐饮+女性友好 → 直击中国女性高净值客群</div></div>
+<div class="alert a-medium"><strong>🔵 [南极尾单价格战]</strong> 2026年3月南极尾单不到4万RMB即可出发<div class="time">2026-03 · 尾单仅占3-5%，价格混乱影响消费者认知</div></div>
+<div class="alert a-medium"><strong>🔵 [G Adventures]</strong> 极地探险版图扩张：北极复航，船队翻倍<div class="time">2026</div></div>
+<div class="alert a-medium"><strong>🔵 [庞洛 Ponant]</strong> 中国市场预订率95%+，中国份额40%+<div class="time">2026</div></div>
+<div class="alert a-medium"><strong>🔵 [飞猪 × 南北极联盟]</strong> 再次大手笔包船，OTA加速极地布局<div class="time">2026</div></div>
+<div class="alert a-medium"><strong>🔵 [银海 Silversea]</strong> 银海奋进号南极持续运营+中国代理扩展<div class="time">2026</div></div>
+</div>
+
+<div class="panel">
+<div class="panel-title">📡 行业趋势信号 <span class="badge badge-b">6条</span></div>
+<div class="obj-card" style="border-left-color:var(--r)"><div class="obj-q" style="color:var(--r)">🔴 66度探险邮轮海神号2026首航 + 50+航次发布</div><div class="obj-r">2026年5月：中资极地邮轮正式进入全航季。全中文+中医理疗+中式餐饮→直接挑战Quark中文服务差异化优势。</div></div>
+<div class="obj-card" style="border-left-color:var(--o)"><div class="obj-q" style="color:var(--o)">🟡 恒众国际×中国国家地理 2027北极四岛联合包船</div><div class="obj-r">2026年6月官宣：斯瓦尔巴/东格陵兰/法罗群岛/冰岛21天连航。"高端内容品牌跨界极地"新模式。</div></div>
+<div class="obj-card" style="border-left-color:var(--o)"><div class="obj-q" style="color:var(--o)">🟡 庞洛2027-2028南极季航线提前2年启售</div><div class="obj-r">2026年6月：六大核心旅程正式开售，2028全环南极62天已预售。庞洛中国份额40%+。</div></div>
+<div class="obj-card" style="border-left-color:var(--r)"><div class="obj-q" style="color:var(--r)">🔴 南极尾单价降至4万以下</div><div class="obj-r">2026年3月：南极季末尾单不到4万RMB。尾单仅占3-5%，需教育"5万≠5万总花费"。</div></div>
+<div class="obj-card" style="border-left-color:var(--a3)"><div class="obj-q" style="color:var(--a3)">🟢 中国游客+25% YoY，全球第二大客源国</div><div class="obj-r">IAATO数据：9384→11705(+25%)。2026-27预计14500+。需求远超供给，Quark空间巨大。</div></div>
+<div class="obj-card" style="border-left-color:var(--a)"><div class="obj-q" style="color:var(--a)">🔵 众信旅游1400+人南极季→2026-27增长20%</div><div class="obj-r">2026年4月：中国最大极地运营商。渠道集中度提高→Quark需差异化渠道策略。</div></div>
+</div>
+</div><!-- /competitor -->
+
+<!-- ═══════════════ RAG ═══════════════ -->
+<div id="rag" style="display:none">
+<div class="panel-title" style="font-size:16px;margin-bottom:12px">🔮 pgvector RAG — 客户语义检索 (5客户 × 1536维)</div>
+
+<div class="panel">
+<div class="panel-title">客户向量库 <span class="badge badge-b">5位 · 1536维</span></div>
+<table>
+<tr><th>ID</th><th>姓名</th><th>画像摘要</th><th>等级</th><th>极地分</th><th>已购</th></tr>
+<tr style="background:rgba(16,185,129,.04)"><td>cust_001</td><td><b>王总</b></td><td>52岁企业主 · 去过冰岛非洲 · 预算30-50万 · 关注南极12个月</td><td>A级</td><td>87</td><td>否</td></tr>
+<tr style="background:rgba(16,185,129,.04)"><td>cust_002</td><td><b>Linda</b></td><td>35岁互联网高管 · 70国 · 头等舱80段 · 想要数字排毒</td><td>A级</td><td>82</td><td>否</td></tr>
+<tr><td>cust_003</td><td>张医生</td><td>60岁退休医生 · 肯尼亚加拉帕戈斯 · 摄影爱好者 · 预算20万</td><td>B级</td><td>65</td><td>否</td></tr>
+<tr style="background:rgba(0,212,255,.04)"><td>cust_004</td><td><b>陈总</b></td><td>45岁女企业家 · 已购南极半岛 · 想升级北极格陵兰豪华线</td><td>S级</td><td>95</td><td>是</td></tr>
+<tr style="background:rgba(239,68,68,.04)"><td>cust_005</td><td>小杨</td><td>28岁自媒体博主 · 穷游 · 求3万以内南极方案</td><td>C级</td><td>15</td><td>否</td></tr>
+</table>
+</div>
+
+<div class="panel" style="margin-top:14px">
+<div class="panel-title">🔍 语义查询结果 <span class="badge badge-r">3次查询</span></div>
+<div style="margin-bottom:10px"><div class="rag-query" style="color:var(--a);font-size:11px;margin-bottom:4px">🔍 "企业主 高预算 深度旅行体验 直升机 探险"</div>
+<div style="font-size:10px">+0.244 Linda (A级) | +0.182 王总 (A级) | +0.149 张医生 (B级)</div></div>
+<div style="margin-bottom:10px"><div style="color:var(--a);font-size:11px;margin-bottom:4px">🔍 "高净值女性 已购南极 想升级北极 热爱探险"</div>
+<div style="font-size:10px">+0.048 陈总 (S级) | +0.009 张医生 (B级) | -0.182 小杨 (C级) <span style="color:var(--r)">⚠️低价值</span></div></div>
+<div style="margin-bottom:10px"><div style="color:var(--a);font-size:11px;margin-bottom:4px">🔍 "预算有限 穷游 学生 低价"</div>
+<div style="font-size:10px">+0.670 小杨 (C级) <span style="color:var(--r)">⚠️低价值</span> | -0.005 陈总 (S级) <span style="color:var(--a3)">✅高价值排后</span> | -0.021 Linda (A级) <span style="color:var(--a3)">✅</span></div></div>
+</div>
+</div><!-- /rag -->
 
 </div><!-- container -->
 
 <footer class="footer">
-  <span>© 2026 Quark Expeditions · Polar Growth OS v2.0 · GitHub: lena2099/quark-cn-growth-engine</span>
-  <span>更新: <span id="nextRefresh">--</span></span>
+<span>© 2026 Quark Expeditions · Polar Growth OS v2.0</span>
+<span>GitHub: <a href="https://github.com/lena2099/quark-cn-growth-engine" target="_blank">lena2099/quark-cn-growth-engine</a> · 纯HTML+CSS</span>
 </footer>
 
-<script>
-// ═══════════════════════════════════════════════════
-// DATA
-// ═══════════════════════════════════════════════════
-
-const kpiDefs=[
-  {key:'totalLeads',label:'累计线索',target:800,unit:'条',color:'#00d4ff'},
-  {key:'signedPartners',label:'签约合作伙伴',target:30,unit:'家',color:'#f59e0b'},
-  {key:'highIntent',label:'高意向线索(≥70分)',target:180,unit:'条',color:'#ef4444'},
-  {key:'bookings',label:'预订量(26-27季)',target:200,unit:'人',color:'#10b981'},
-  {key:'brandIndex',label:'品牌声量指数',target:600,unit:'%',color:'#8b5cf6',base:100},
-];
-
-const phases=[
-  {name:'Phase 1: 基础建设',range:'D1-D25',desc:'品牌资产本地化+渠道政策+工作流部署'},
-  {name:'Phase 2: 渠道激活',range:'D26-D50',desc:'战略伙伴签约+培训认证+社媒冷启动'},
-  {name:'Phase 3: 市场引爆',range:'D51-D75',desc:'五城路演+KOL体验+包船协议'},
-  {name:'Phase 4: 闭环转化',range:'D76-D100',desc:'销售冲刺+老客推荐+复盘规划'},
-];
-
-const hotLeadsB2B=[
-  {company:'众信旅游集团',contact:'极地邮轮中心负责人',score:92,tier:'P0',status:'洽谈中',tag:'tag-negotiate',tagT:'洽谈中'},
-  {company:'鸿鹄逸游(HHtravel)',contact:'产品总监',score:88,tier:'P0',status:'待触达',tag:'tag-new',tagT:'新发现'},
-  {company:'极至旅行(3Polar)',contact:'创始人/总经理',score:85,tier:'P0',status:'待触达',tag:'tag-new',tagT:'新发现'},
-  {company:'北京船客国际旅行社',contact:'南极产品经理',score:82,tier:'P1',status:'待触达',tag:'tag-new',tagT:'新发现'},
-  {company:'极之美(tripolers)',contact:'航线采购负责人',score:78,tier:'P1',status:'待触达',tag:'tag-new',tagT:'新发现'},
-  {company:'八大洲旅游',contact:'高端定制事业部',score:75,tier:'P1',status:'待触达',tag:'tag-new',tagT:'新发现'},
-  {company:'携程邮轮频道',contact:'奢华品类经理',score:72,tier:'P2',status:'评估中',tag:'tag-contact',tagT:'评估中'},
-  {company:'招商银行私人银行',contact:'高客活动负责人',score:70,tier:'P2',status:'待接触',tag:'tag-contact',tagT:'待接触'},
-];
-
-const competitorAlerts=[
-  {urgency:'critical',competitor:'66度探险邮轮',event:'海神号2026首航圆满→发布2026-2028全球50+航次布局',time:'2026-05-07',detail:'中国首个极地邮轮品牌进入全航季运营。50+探险航次覆盖南北极/北欧/西非，20余种线路。全中文服务+中医理疗+纯正中餐+极地公民科学计划。抗冰1A Super级可进南极圈。Quark中文服务优势被直接挑战。'},
-  {urgency:'critical',competitor:'庞洛 Ponant',event:'庞洛2027-2028南极季航线正式启售',time:'2026-06-11',detail:'六大核心旅程：威德尔海帝企鹅/南极圈秘境/南极三岛生态博览。提前2年开售，进一步挤压Quark舱位获取空间。2028全环南极62天航线已开始预售。'},
-  {urgency:'high',competitor:'恒众国际 x 中国国家地理',event:'联合包船首推2027北极四岛独家连航',time:'2026-06-02',detail:'串联斯瓦尔巴/东格陵兰/法罗群岛/冰岛四大秘境，21天。国家地理品牌背书+极地摄影大师同行。中国国家地理号曾9.98万南极产品上线即售罄。高端内容品牌跨界极地，对Quark专业探险定位形成差异化竞争。'},
-  {urgency:'high',competitor:'众信旅游 x 庞洛',event:'2025-26南极季1400+人→2026-27季目标继续增长20%',time:'2026-04',detail:'庞洛包船协议逐年增量。庞洛夏古号2026年2月29天航线豪爵套房单人超100万元。众信已成中国最大极地运营商，渠道掌控力持续增强。'},
-  {urgency:'high',competitor:'66度探险邮轮',event:'海神号2026年4月横跨大西洋→专攻"女性旅行焦虑"治愈营销',time:'2026-04',detail:'推出女性友好极地产品，强调安全/舒适/不吃苦。中医理疗体系+中式餐饮。差异化定位：东方视角+治愈系极地，直击中国女性高净值客群痛点。'},
-  {urgency:'medium',competitor:'南极尾单价格战',event:'2026年3月南极尾单不到4万RMB即可出发',time:'2026-03',detail:'go2antarctica等平台推广南极尾单。但行业分析指出尾单比例仅3-5%，选择空间大幅缩减。5万裸票+自购机票≠5万总花费。价格混乱影响消费者对极地产品定价认知。'},
-  {urgency:'medium',competitor:'G Adventures',event:'极地探险版图扩张：北极复航，船队翻倍，推出全新航线',time:'2026',detail:'国际巨头加速极地布局。船队规模翻倍+新航线开发，全球极地供给增加，竞争格局变化。'},
-  {urgency:'medium',competitor:'庞洛 Ponant',event:'庞洛中国市场预订率95%+，2026-27季85%+',time:'2026',detail:'供不应求，提前18-24个月满舱。庞洛中国市场份额40%+。舱位资源被大量锁定，Quark需差异化而非正面抢舱位。'},
-  {urgency:'medium',competitor:'飞猪 x 南北极联盟',event:'飞猪再次大手笔包船，要把极地游做透',time:'2026',detail:'OTA平台加速极地布局。中国游客增长25%超越澳大利亚成第二大客源国。平台流量优势+规模化采购压低价格，对传统旅行社和船公司直营形成挤压。'},
-  {urgency:'medium',competitor:'银海 Silversea',event:'银海奋进号南极持续运营+中国市场代理扩展',time:'2026',detail:'超奢华管家式服务持续渗透高净值客群。1:1管家服务+全套房配置，与Quark探险定位形成互补竞争。'},
-];
-
-const tier1Partners=[
-  {priority:'P0',name:'众信旅游集团',type:'上市旅行社',certs:'IAATO+AECO',volume:'1800+/季',status:'🤝 洽谈中',next:'差异化提案提交',contact:'极地邮轮中心负责人'},
-  {priority:'P0',name:'鸿鹄逸游',type:'高端定制(携程系)',certs:'—',volume:'~500/季',status:'📋 待触达',next:'携程渠道对接会',contact:'产品总监'},
-  {priority:'P0',name:'极至旅行',type:'极地专营',certs:'IAATO+AECO',volume:'80+团次',status:'📋 待触达',next:'专业对话会',contact:'创始人/总经理'},
-  {priority:'P1',name:'极之美',type:'极地专营',certs:'IAATO+AECO理事',volume:'3000+人次',status:'📋 待触达',next:'北极格陵兰方案',contact:'航线采购负责人'},
-  {priority:'P1',name:'北京船客国际旅行社',type:'极地专营',certs:'IAATO+AECO+CLIA',volume:'6000+(3季)',status:'📋 待触达',next:'包船提案',contact:'南极产品经理'},
-];
-
-const radarLeads=[
-  {rank:1,name:'张子琦 (北京)',age:'30-40',prof:'互联网从业者',budget:'16万(实际)',source:'界面新闻',score:78,tier:'Hot',text:'"2025年1月从北京出发飞阿根廷乌斯怀亚，乘坐夸克(Quark)极地探险邮轮登陆南极。单人住宿总花费近16万。受70岁叔叔启发+刷到网红南极视频决定去。船上是华人包船，氛围极好，年轻人很多一起玩狼人杀。"',signals:'极地直购(已乘坐夸克)+社会证明+高消费力',action:'🎯 已成交客户！→ 推送北极格陵兰复购 + 邀请加入"Quark极友会"社群',sourceUrl:'https://finance.sina.com.cn/jjxw/2025-03-06/doc-inensrzm8037981.shtml'},
-  {rank:2,name:'马远 (上海)',age:'35-50',prof:'高净值个人',budget:'50万+(实际)',source:'微博/蓝鲸新闻',score:76,tier:'Hot',text:'"一年前预订南极行程，特意避开船进船出路线，刷了50万元选择飞进飞出。遭遇48小时滞留智利蓬塔阿雷纳斯机场的经历仍觉得南极值得。"',signals:'极地直购(50万+)+追求高端体验+对品质要求极高',action:'🎯 高端客户！→ 推荐北极点破冰船/南极点远征(70万+产品线)',sourceUrl:'https://www.weibo.com/ttarticle/p/show?id=2309405138309264572465'},
-  {rank:3,name:'俞敏洪 (北京)',age:'60+',prof:'企业家/新东方创始人',budget:'25万+(实际)',source:'微博/公开报道',score:90,tier:'Hot',text:'"乘坐庞洛邮轮指挥官夏古号(PC2破冰级)赴南极，12天价格20-25万。微博公开发表南极旅行感受，引发大量关注。2026年2月夏古号29天航线豪爵套房单人超100万。"',signals:'企业家+KOL效应+复购潜力+品牌背书',action:'🎯 VIP级合作！→ 邀请成为Quark品牌大使 + 南极×教育跨界合作',sourceUrl:'https://finance.sina.com.cn/jjxw/2025-03-06/doc-inensrzm8037981.shtml'},
-  {rank:4,name:'胡静 (深圳)',age:'28-35',prof:'互联网从业者/裸辞GapYear',budget:'10万+(实际)',source:'36氪/腾讯新闻',score:68,tier:'Warm',text:'"在互联网行业流量红利消逝后选择一年gap year环球旅行。南极被纳入愿望清单，花10万+完成南极之旅。受访时表示'旧的人生选择正在祛魅，新的人生选择存在无限机遇'。"',signals:'极地直购+人生转折点+自媒体传播潜力',action:'📩 邀请成为"重启人生"系列客户故事主角 → 小红书/公众号内容共创',sourceUrl:'https://36kr.com/p/2650839471045761'},
-  {rank:5,name:'荆棘树 (成都)',age:'21-25',prof:'旅行社从业者/极地向导',budget:'免费(公司差旅)',source:'36氪/行之悦旅行',score:65,tier:'Warm',text:'"2018年21岁时在成都行之悦国际旅行社工作，被公司选中去南极出差。10万+的行程两周一分钱没花还拿了补贴。接触的中国游客主要是40岁以上财务自由群体，年轻人多是留学生或互联网/医药行业。"',signals:'从业者视角+精准客户洞察+行业一手数据',action:'📩 发展为Quark产品顾问/种子体验官 → 输出"中国游客南极画像"白皮书',sourceUrl:'https://36kr.com/p/2650839471045761'},
-  {rank:6,name:'谷岳 (北京)',age:'40-50',prof:'环球旅行家/微博大V',budget:'15-25万(预估)',source:'微博@谷岳',score:70,tier:'Hot',text:'"发布南极旅行微博：'地球上终极的旅行打卡点南极，这个春节假期跟着国家地理获奖摄影大师一起去南极！很多人以为南极=纯粹探险=很辛苦？其实很多时候…' 该微博引发大量互动。"',signals:'KOL/旅行大V+国家地理合作+传播力强',action:'🎯 邀请成为Quark合作KOL → 免费体验Ultramarine号直升机航线换取内容产出',sourceUrl:'https://www.weibo.com/1611853174/Q7isw43v9'},
-  {rank:7,name:'李涛 (城市未知)',age:'30-40',prof:'职场白领',budget:'5-8万(计划)',source:'蓝鲸新闻',score:55,tier:'Warm',text:'"正在计划春节假期旅行，看到'5万元去南极'产品很心动。详细询问旅行社后得知5万仅是船票裸价，需自行飞往登船点，不含国际机票/签证/保险。正在评估总花费。"',signals:'极地强意向+价格敏感+决策中(关键窗口)',action:'📩 推送"南极真实花费拆解"内容 → 展示10-15万套餐的性价比 → 引导加企业微信',sourceUrl:'https://weibo.com/ttarticle/p/show?id=2309405240576018088071'},
-  {rank:8,name:'张子琦70岁叔叔',age:'70+',prof:'退休人士',budget:'15万+(预估)',source:'界面新闻(间接)',score:60,tier:'Warm',text:'"70岁高龄完成南极之旅，回国后向侄子(张子琦)分享经历，直接激发侄子次年报名夸克邮轮。证明极地旅行无年龄上限，银发族是重要客群。"',signals:'银发族极地先行者+口碑传播引爆点+家族式消费',action:'📩 针对银发高净值人群制定"从容南极"产品线 → 强调安全/舒适/中文服务',sourceUrl:'https://finance.sina.com.cn/jjxw/2025-03-06/doc-inensrzm8037981.shtml'},
-  {rank:9,name:'车艳娜 (北京)',age:'35-45',prof:'拉美途市场总监/10+次南极',budget:'行业从业者',source:'蓝鲸新闻',score:50,tier:'Nurture',text:'"南极和其他旅行目的地完全不一样，冰天雪地、唯美、纯净、远离人类社会纷繁。去往南极10余次，最懂产品细节。指出5万仅是四人舷窗房裸价，豪华邮轮跟团游基础价10万左右。"',signals:'行业KOL+产品专家+可合作的渠道BD',action:'📩 与拉美途建立B2B合作 → Quark差异化产品进入其分销体系',sourceUrl:'https://weibo.com/ttarticle/p/show?id=2309405240576018088071'},
-  {rank:10,name:'极之美·马硕',age:'30-40',prof:'极之美探险领队/AECO唯一中国代表',budget:'从业者',source:'极之美/tripolers.com',score:55,tier:'Nurture',text:'"作为极之美特派代表出席挪威奥斯陆AECO年度大会——2025年AECO年会唯一来自中国的旅行社参会代表。极之美累计组织80+次南北极探险，服务3000+人次。"',signals:'行业权威背书+AECO话语权+渠道合作潜力',action:'📩 与极之美建立航线联合推广 → 利用其AECO理事会成员身份协同发声',sourceUrl:'https://m.tripolers.com'},
-];
-
-const nurtureData=[
-  {
-    name:'王总',score:60,stage:'Engage',
-    tags:['南极兴趣-高意向','年龄-45-55','职业-企业主','旅行-中度','预算-20-30万','来源-小红书'],
-    content:[
-      {icon:'📘',title:'《极地旅行100问》',type:'ebook'},
-      {icon:'🎤',title:'线上分享会：南极探险队长云游极地',type:'event'},
-      {icon:'📖',title:'真实客户故事：50岁企业家的南极之旅',type:'article'},
-      {icon:'⚖️',title:'庞洛 vs 夸克 vs 银海 vs A21 全对比',type:'article'},
-    ],
-    tpoints:[
-      '💼 您是企业家，特别推荐Ultramarine直升机体验——时间和体验比价格重要',
-      '📚 20-30万预算内，这几条航线最适合您——',
-      '🛡️ Quark是唯一把探险深度做到极致的——更多登陆+专业探险队+直升机',
-    ],
-    schedule:[
-      {d:0,date:'08-07',act:'拉入「极地探索」企业微信社群',ch:'wecom'},
-      {d:1,date:'08-08',act:'发送社群欢迎+自我介绍引导',ch:'wecom_group'},
-      {d:3,date:'08-10',act:'分享客户真实故事',ch:'wecom_group'},
-      {d:7,date:'08-14',act:'线上分享会提醒',ch:'wecom'},
-      {d:8,date:'08-15',act:'1对1跟进',ch:'wecom_dm'},
-    ]
-  },
-  {
-    name:'Linda',score:55,stage:'Engage',
-    tags:['南极兴趣-高意向','年龄-35-44','职业-企业高管','旅行-骨灰级','预算-30万+','来源-小红书'],
-    content:[
-      {icon:'📘',title:'《极地旅行100问》',type:'ebook'},
-      {icon:'🎤',title:'线上分享会：南极探险队长云游极地',type:'event'},
-      {icon:'📖',title:'真实客户故事：50岁企业家的南极之旅',type:'article'},
-      {icon:'⚖️',title:'庞洛 vs 夸克 vs 银海 vs A21 全对比',type:'article'},
-    ],
-    tpoints:[
-      '💼 高管最需要纯粹的安静——南极没有信号，最极致数字排毒',
-      '🌍 走过这么多国家，南极不能将就——Quark有罗斯海、威德尔海硬核线路',
-      '🐧 我给您发一段客户实拍视频，3分钟就能感受到',
-    ],
-    schedule:[
-      {d:0,date:'08-07',act:'拉入「极地探索」企业微信社群',ch:'wecom'},
-      {d:1,date:'08-08',act:'发送社群欢迎+自我介绍引导',ch:'wecom_group'},
-      {d:7,date:'08-14',act:'线上分享会提醒',ch:'wecom'},
-      {d:8,date:'08-15',act:'1对1跟进',ch:'wecom_dm'},
-    ]
-  },
-  {
-    name:'摄影师大鹏',score:48,stage:'Engage',
-    tags:['南极兴趣-高意向','旅行-重度','预算-10-20万','来源-小红书'],
-    content:[
-      {icon:'📘',title:'《极地旅行100问》',type:'ebook'},
-      {icon:'🎤',title:'线上分享会：南极探险队长云游极地',type:'event'},
-      {icon:'📖',title:'真实客户故事：50岁企业家的南极之旅',type:'article'},
-      {icon:'⚖️',title:'庞洛 vs 夸克 vs 银海 vs A21 全对比',type:'article'},
-    ],
-    tpoints:[
-      '📚 10-20万预算内，这几条航线最适合您——',
-      '🛡️ Quark是唯一把探险深度做到极致的',
-    ],
-    schedule:[
-      {d:0,date:'08-07',act:'拉入「极地探索」企业微信社群',ch:'wecom'},
-      {d:7,date:'08-14',act:'线上分享会提醒',ch:'wecom'},
-    ]
-  }
-];
-
-const objectionData=[
-  {q:'30万太贵了吧，别的船好像便宜很多',cat:'价格/竞品',type:'other_ship_cheaper',conf:'88%',resp:'关键在于——买的是"去南极"还是"探索南极"。便宜的船200-500人、每天1-2次登陆、每次45-90分钟。Quark是100-200人小船、每天2-3次登陆、每次2-3小时。只有Quark有双直升机，能到别人去不了的地方。'},
-  {q:'南极会不会很危险？',cat:'安全',type:'safety_concern',conf:'60%',resp:'Quark有30年极地探险经验，零安全事故。探险队员平均15年以上极地经验。每条船配备最先进的冰区导航、卫星通讯、完整医疗设施。IAATO有极其严格的安全标准。'},
-  {q:'我55岁了，体力跟不上吧',cat:'体力',type:'age_fitness',conf:'83%',resp:'南极旅行不是极限运动——每天活动根据体力安排。Quark客户平均年龄55岁，最年长客人86岁走完了全程。南极最珍贵的是"感受"不是"征服"。'},
-  {q:'庞洛好像更奢华，你们怎么比？',cat:'竞品',type:'ponant_comparison',conf:'71%',resp:'庞洛是"奢华酒店搬到海上"，Quark是"最极致的极地探险"。庞洛有管家和米其林，Quark有业内唯一双直升机+最多登陆次数。选庞洛为被服务，选Quark为看见别人看不见的世界。'},
-];
-
-const followupData=[
-  {stage:'初次触达',msg:'王总您好！我是Quark Expeditions的极地旅行顾问。注意到您最近对南极旅行有关注。刚好这周六有一场线上分享会——南极探险队长会亲自讲解2027年的独家航线。不打扰您，感兴趣的话我发您邀请函？'},
-  {stage:'分享会后跟进',msg:'王总您好！上周分享会很精彩，看到您全程在线。很多客户听完最感兴趣的是Ultramarine号直升机体验——全球唯一，能直接降落到常规船到不了的冰原深处。任何疑问随时问我。'},
-  {stage:'决策推动',msg:'王总，2027年南极季早鸟价这周五截止。南极半岛经典11天航线还剩最后3个舱位。建议先把舱位锁住（定金1万即可），错过这波下轮要贵15%。'},
-  {stage:'沉睡唤醒',msg:'王总好久不见！最近一位52岁企业家客户刚从南极回来说："去了40个国家，南极是唯一一个让我流泪的。" 突然想到您之前也对南极感兴趣——2027年新开威德尔海帝企鹅航线，要不要看看？'},
-];
-
-const scoreData=[
-  {a:'回答A (优秀)',score:62,grade:'B级·基本合格',emp:25,pro:25,val:12,adv:0,imps:['做价值重塑：把话题从价格转向体验','结尾要有行动引导：我发您一个视频/我们约个电话']},
-  {a:'回答B (反面教材)',score:10,grade:'C级·需要刻意练习',emp:10,pro:0,val:0,adv:0,imps:['开头先共情：完全理解您的感受','增加专业细节(30年/直升机)','做价值重塑','结尾要有行动引导']},
-];
-
-const ragQueriesData=[
-  {q:'企业主 高预算 深度旅行体验 直升机 探险',results:[
-    {id:'cust_002',name:'Linda',tier:'A级',sim:0.244,cls:'sim-mid'},
-    {id:'cust_001',name:'王总',tier:'A级',sim:0.182,cls:'sim-mid'},
-    {id:'cust_003',name:'张医生',tier:'B级',sim:0.149,cls:'sim-mid'},
-  ]},
-  {q:'高净值女性 已购南极 想升级北极 热爱探险',results:[
-    {id:'cust_004',name:'陈总',tier:'S级',sim:0.048,cls:'sim-mid'},
-    {id:'cust_003',name:'张医生',tier:'B级',sim:0.009,cls:'sim-low'},
-    {id:'cust_005',name:'小杨',tier:'C级',sim:-0.182,cls:'sim-low',warn:true},
-  ]},
-  {q:'预算有限 穷游 学生 低价',results:[
-    {id:'cust_005',name:'小杨',tier:'C级',sim:0.670,cls:'sim-high',warn:true},
-    {id:'cust_004',name:'陈总',tier:'S级',sim:-0.005,cls:'sim-low',ok:true},
-    {id:'cust_002',name:'Linda',tier:'A级',sim:-0.021,cls:'sim-low',ok:true},
-  ]},
-];
-
-const wfDash=[
-  {icon:'🔬',name:'极地客户雷达',stat:'10条帖子→9条线索·成功率90%',ok:true},
-  {icon:'🎯',name:'培育引擎',stat:'3客户Engage·24条内容·15步触达',ok:true},
-  {icon:'💬',name:'AI销售教练',stat:'4/4异议匹配·4阶段跟单·AI评分',ok:true},
-  {icon:'🔮',name:'pgvector RAG',stat:'5客户1536维·3次语义查询',ok:true},
-  {icon:'🧠',name:'LLM Agent编排',stat:'4/4模块就绪·GPT-4o·8套Prompt',ok:true},
-  {icon:'📡',name:'竞品监控+行业雷达',stat:'8品牌追踪·10定时任务·企微通知',ok:true},
-];
-
-// ═══════════════════════════════════════════════════
-// ANIMATION STATE
-// ═══════════════════════════════════════════════════
-const ANIM_DUR=120000; let animStart=Date.now();
-
-function getProgress(){
-  const e=(Date.now()-animStart)%ANIM_DUR,t=e/ANIM_DUR;
-  if(t<0.25)return{phase:'p1',t:t/0.25,day:Math.round(25*t/0.25)};
-  if(t<0.50)return{phase:'p2',t:(t-0.25)/0.25,day:Math.round(25+25*(t-0.25)/0.25)};
-  if(t<0.75)return{phase:'p3',t:(t-0.5)/0.25,day:Math.round(50+25*(t-0.5)/0.25)};
-  return{phase:'p4',t:(t-0.75)/0.25,day:Math.round(75+25*(t-0.75)/0.25)};
-}
-function easeInOutCubic(t){return t<0.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;}
-
-function getKPIs(){
-  const p=getProgress();let pf;
-  if(p.phase==='p1')pf=easeInOutCubic(p.t)*0.1;
-  else if(p.phase==='p2')pf=0.1+easeInOutCubic(p.t)*0.3;
-  else if(p.phase==='p3')pf=0.4+easeInOutCubic(p.t)*0.4;
-  else pf=0.8+easeInOutCubic(p.t)*0.2;
-  return{totalLeads:Math.round(800*pf),signedPartners:Math.round(30*pf),highIntent:Math.round(180*pf),bookings:Math.round(200*pf),brandIndex:Math.round(100+500*pf),day:p.day,pf,phase:p.phase};
-}
-
-// ═══════════════════════════════════════════════════
-// RENDER
-// ═══════════════════════════════════════════════════
-function renderKPI(kpis){
-  const colors=['#00d4ff','#f59e0b','#ef4444','#10b981','#8b5cf6'];
-  document.getElementById('kpiRow').innerHTML=kpiDefs.map((d,i)=>`<div class="kpi-card count-up"><div class="kpi-label">${d.label}</div><div class="kpi-value" style="color:${colors[i]}">${d.base||''}${kpis[d.key]}${d.unit}</div><div class="kpi-sub">目标: ${d.base||''}${d.target}${d.unit}</div></div>`).join('');
-}
-
-function renderPhases(kpis){
-  document.getElementById('phaseBadge').textContent=`Day ${kpis.day}`;
-  const p=getProgress();
-  document.getElementById('phaseList').innerHTML=phases.map((ph,i)=>{
-    let icon='pending',clr='var(--text-dim)',bc='var(--border)',pct=0;
-    if((p.phase==='p1'&&i===0)||(p.phase!=='p1'&&i===0)){pct=100;icon='done';clr='var(--accent3)';bc='var(--accent3)'}
-    if(p.phase==='p2'&&i===1){pct=Math.round(p.t*100);icon='active';clr='var(--accent)';bc='var(--accent)'}
-    if(p.phase==='p3'&&i===2){pct=Math.round(p.t*100);icon='active';clr='var(--accent)';bc='var(--accent)'}
-    if(p.phase==='p4'&&i===3){pct=Math.round(p.t*100);icon='active';clr='var(--accent)';bc='var(--accent)'}
-    if(p.phase!=='p1'&&i===0)pct=100;
-    if((p.phase==='p3'||p.phase==='p4')&&i<=1)pct=100;if(p.phase==='p4'&&i<=2)pct=100;
-    if(i===0&&p.t>0.1)pct=100;
-    return`<div class="phase-item"><div class="phase-icon ${icon}" style="color:${icon==='pending'?'var(--text-dim)':(icon==='active'?'#0a0e17':'#fff')}">${icon==='done'?'✓':(icon==='active'?'▶':i+1)}</div><div class="phase-info"><div class="phase-name">${ph.name}</div><div class="phase-meta">${ph.range}·${ph.desc}</div></div><div class="phase-bar"><div class="phase-fill" style="width:${pct}%;background:${bc}"></div></div></div>`;
-  }).join('');
-}
-
-function renderHotLeadsB2B(){
-  const html=hotLeadsB2B.map(l=>{
-    const sc=l.score>=80?'hot':(l.score>=70?'warm':'');
-    return`<div class="lead-row"><div class="lead-score ${sc}">${l.score}</div><div class="lead-info"><div class="lead-company">${l.company}</div><div class="lead-contact">${l.contact}·${l.tier}</div></div><div class="lead-tag ${l.tag}">${l.tagT}</div></div>`;
-  }).join('');
-  ['hotLeadsB2B','hotLeadsB2B2'].forEach(id=>{const el=document.getElementById(id);if(el)el.innerHTML=html;});
-}
-
-function renderCompetitorAlerts(){
-  const html=competitorAlerts.map(a=>`<div class="alert-item alert-${a.urgency}"><strong>${a.urgency==='critical'?'🔴':a.urgency==='high'?'🟡':'🔵'} [${a.competitor}]</strong> ${a.event}<div style="color:var(--text-dim);font-size:10px;margin-top:2px">${a.time}·${a.detail}</div></div>`).join('');
-  ['competitorAlerts','competitorAlertsFull'].forEach(id=>{const el=document.getElementById(id);if(el)el.innerHTML=html;});
-}
-
-function renderTier1(){
-  document.getElementById('tier1Body').innerHTML=tier1Partners.map(p=>`<tr><td><span class="tier-badge tier-${p.priority.toLowerCase()}">${p.priority}</span></td><td><strong>${p.name}</strong></td><td>${p.type}</td><td>${p.certs}</td><td>${p.volume}</td><td>${p.status}</td><td style="color:var(--accent)">${p.next}</td><td style="color:var(--text-dim)">${p.contact}</td></tr>`).join('');
-}
-
-function renderLeadCards(){
-  document.getElementById('leadCards').innerHTML=radarLeads.map((l,i)=>{const cls=l.score>=70?'hot':(l.score>=55?'warm':'');return`<div class="lead-row" style="padding:12px 0"><div class="lead-score ${cls}" style="min-width:36px;text-align:center">${l.score}</div><div class="lead-info"><div class="lead-company">#${l.rank} ${l.name} <span class="lead-tag tag-score">${l.score}分</span> <span class="lead-tag tag-source">${l.source}</span> <span class="lead-tag" style="background:${l.tier==='Hot'?'rgba(239,68,68,0.15);color:#ef4444':'rgba(245,158,11,0.15);color:#f59e0b'}">${l.tier}</span></div><div class="lead-contact">年龄:${l.age}|职业:${l.prof}|花费:${l.budget}</div><div style="font-size:11px;color:var(--text-dim);margin-top:2px">💬 ${l.text}</div><div style="font-size:10px;color:var(--purple);margin-top:2px">🔍 信号: ${l.signals}</div><div style="font-size:11px;color:var(--accent);margin-top:4px">👉 ${l.action}</div><div style="font-size:9px;color:var(--text-dim);margin-top:2px">📎 来源: <a href="${l.sourceUrl}" target="_blank" style="color:var(--accent)">${l.sourceUrl}</a></div></div></div>`}).join('');
-}
-
-function renderNurtureCards(){
-  document.getElementById('nurtureCards').innerHTML=nurtureData.map(n=>`<div class="panel"><div class="panel-header"><span class="panel-title">${n.name}·${n.score}分</span><span class="panel-badge badge-ok">${n.stage}</span></div><div class="wecom-tags">${n.tags.map(t=>`<span class="wecom-tag ${t.includes('高意向')?'warm':''}">#${t}</span>`).join('')}</div><div style="font-size:11px;font-weight:600;color:var(--text-dim);margin:8px 0 4px">📚 推荐内容</div>${n.content.map(c=>`<div class="content-item"><span class="content-icon">${c.icon}</span>[${c.type}] ${c.title}</div>`).join('')}<div style="font-size:11px;font-weight:600;color:var(--text-dim);margin:8px 0 4px">📅 触达计划</div>${n.schedule.map(s=>`<div style="font-size:10px;color:var(--text-dim);padding:1px 0">Day${s.d}(${s.date})·<span style="color:var(--accent)">${s.ch}</span>→${s.act}</div>`).join('')}<div style="font-size:11px;font-weight:600;color:var(--text-dim);margin:8px 0 4px">💬 画像感知话术</div>${n.tpoints.map(t=>`<div style="font-size:11px;padding:2px 0">${t}</div>`).join('')}</div>`).join('');
-}
-
-function renderObjectionCards(){
-  document.getElementById('objectionCards').innerHTML=objectionData.map(o=>`<div class="obj-card"><div class="obj-q">🗣 "${o.q}" <span style="font-size:10px;color:var(--text-dim)">[${o.cat}] 匹配:${o.type}(置信度${o.conf})</span></div><div class="obj-r">💡 ${o.resp}</div></div>`).join('');
-}
-
-function renderFollowupCards(){
-  document.getElementById('followupCards').innerHTML=followupData.map(f=>`<div class="obj-card" style="border-left-color:var(--accent3)"><div class="obj-q" style="color:var(--accent3)">📧 ${f.stage}</div><div class="obj-r">${f.msg}</div></div>`).join('');
-}
-
-function renderScoreCards(){
-  document.getElementById('scoreCards').innerHTML=scoreData.map(s=>`<div class="panel"><div class="panel-header"><span>${s.a}</span><span class="panel-badge ${s.score>50?'badge-warn':'badge-hot'}">${s.score}/100·${s.grade}</span></div><div style="display:flex;gap:12px;margin:8px 0;font-size:11px"><span>共情:<b style="color:var(--accent)">${s.emp}/25</b></span><span>专业:<b style="color:var(--accent)">${s.pro}/25</b></span><span>价值:<b style="color:var(--accent2)">${s.val}/25</b></span><span>推进:<b style="color:var(--accent3)">${s.adv}/25</b></span></div>${s.imps.map(i=>`<div style="font-size:11px;color:var(--accent2);padding:1px 0">${i}</div>`).join('')}</div>`).join('');
-}
-
-function renderRagQueries(){
-  document.getElementById('ragQueries').innerHTML=ragQueriesData.map(rq=>`<div style="margin-bottom:14px"><div class="rag-query">🔍 "${rq.q}"</div>${rq.results.map(r=>`<div class="rag-result"><span class="rag-sim ${r.cls}">${r.sim>0?'+':''}${r.sim.toFixed(3)}</span><span>${r.name}(${r.tier})</span>${r.warn?'<span style="color:var(--red);font-size:10px">⚠️低价值</span>':''}${r.ok?'<span style="color:var(--accent3);font-size:10px">✅高价值排后</span>':''}</div>`).join('')}</div>`).join('');
-}
-
-function renderWfGrid(){
-  ['wfGridDash'].forEach(id=>{const el=document.getElementById(id);if(el)el.innerHTML=wfDash.map(w=>`<div class="wf-card"><div class="wf-icon">${w.icon}</div><div class="wf-name">${w.name}</div><div class="wf-stat">${w.ok?'<span class="ok">●</span> ':''}${w.stat}</div></div>`).join('');});
-}
-
-// ═══════════════════════════════════════════════════
-// CHARTS
-// ═══════════════════════════════════════════════════
-let charts={};
-
-function initMarketChart(){
-  const c=echarts.init(document.getElementById('marketChart'));
-  const S=['16-17','17-18','18-19','19-20','20-21','21-22','22-23','23-24','24-25','25-26E','26-27E'];
-  const CN=[3944,5100,6800,2400,0,800,4200,9384,11705,14500,17500];
-  const GL=[44000,51700,56000,18000,0,23500,71000,123000,117203,125000,135000];
-  c.setOption({tooltip:{trigger:'axis',backgroundColor:'#1a2332',borderColor:'#1e293b',textStyle:{color:'#e2e8f0'}},legend:{data:['中国游客','全球游客(右轴)'],textStyle:{color:'#94a3b8',fontSize:10},top:0},grid:{left:50,right:60,top:40,bottom:30},xAxis:{type:'category',data:S,axisLabel:{color:'#94a3b8',fontSize:9},axisLine:{lineStyle:{color:'#1e293b'}}},yAxis:[{type:'value',axisLabel:{color:'#94a3b8',formatter:v=>(v/1000).toFixed(1)+'k'},splitLine:{lineStyle:{color:'#1e293b',type:'dashed'}}},{type:'value',axisLabel:{color:'#94a3b8',formatter:v=>(v/1000).toFixed(0)+'k'},splitLine:{show:false}}],series:[{name:'中国游客',type:'bar',data:CN,itemStyle:{borderRadius:[4,4,0,0],color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'#00d4ff'},{offset:1,color:'#0891b2'}])},markLine:{silent:true,symbol:'none',lineStyle:{color:'#f59e0b',type:'dashed',width:1.5},label:{color:'#f59e0b',fontSize:10,formatter:'破万\n{b}'},data:[{yAxis:10000}]}},{name:'全球游客(右轴)',type:'line',yAxisIndex:1,data:GL,lineStyle:{color:'#8b5cf6',width:1.5},itemStyle:{color:'#8b5cf6'},symbol:'circle',symbolSize:4}]});
-  charts.market=c;
-}
-
-function initFunnel(id,kpis){
-  const c=echarts.init(document.getElementById(id));
-  const d=Math.round((kpis?.totalLeads||0)*1.0),e=Math.round(d*0.4),n=Math.round(d*0.18),s=Math.round(kpis?.signedPartners||0),a=Math.round(s*0.7);
-  c.setOption({tooltip:{trigger:'item',backgroundColor:'#1a2332',borderColor:'#1e293b',textStyle:{color:'#e2e8f0'}},series:[{type:'funnel',left:'10%',right:'10%',top:20,bottom:20,minSize:'20%',maxSize:'100%',gap:4,label:{show:true,position:'inside',formatter:'{b}\n{c}条',fontSize:11,color:'#e2e8f0'},data:[{value:d,name:'发现',itemStyle:{color:'#8b5cf6'}},{value:e,name:'评估中',itemStyle:{color:'#6366f1'}},{value:n,name:'洽谈中',itemStyle:{color:'#3b82f6'}},{value:s,name:'签约',itemStyle:{color:'#10b981'}},{value:a,name:'活跃伙伴',itemStyle:{color:'#00d4ff'}}]}]});
-  if(id==='funnelChart')charts.funnel=c;else charts.funnel2=c;
-}
-
-function initBrandRadar(id){
-  const c=echarts.init(document.getElementById(id));
-  c.setOption({tooltip:{backgroundColor:'#1a2332',borderColor:'#1e293b',textStyle:{color:'#e2e8f0'}},legend:{textStyle:{color:'#94a3b8',fontSize:10},top:0},radar:{center:['50%','55%'],radius:'65%',indicator:[{name:'微信指数',max:100},{name:'小程序搜索',max:100},{name:'OTA上架',max:100},{name:'中文内容',max:100},{name:'渠道覆盖',max:100},{name:'KOL提及',max:100}],axisName:{color:'#94a3b8',fontSize:9}},series:[{type:'radar',data:[{name:'庞洛',value:[95,90,92,88,95,85],lineStyle:{color:'#ef4444',width:2},areaStyle:{color:'rgba(239,68,68,.1)'},itemStyle:{color:'#ef4444'}},{name:'银海',value:[70,55,60,45,65,50],lineStyle:{color:'#f59e0b',width:2},areaStyle:{color:'rgba(245,158,11,.08)'},itemStyle:{color:'#f59e0b'}},{name:'Quark',value:[30,20,25,35,20,25],lineStyle:{color:'#00d4ff',width:2.5},areaStyle:{color:'rgba(0,212,255,.12)'},itemStyle:{color:'#00d4ff'}},{name:'66度',value:[30,25,20,40,25,30],lineStyle:{color:'#10b981',width:2},areaStyle:{color:'rgba(16,185,129,.08)'},itemStyle:{color:'#10b981'}}]}]});
-  if(id==='brandRadarChart')charts.brandRadar=c;else charts.brandRadar2=c;
-}
-
-function initBookingChart(kpis){
-  const c=echarts.init(document.getElementById('bookingChart'));
-  const dd=[0,15,30,45,60,75,90,100];
-  const pf=kpis?.pf||0;
-  const bp=[0,.02,.08,.18,.30,.45,.65,Math.min(1,pf)];
-  const bv=bp.map(p=>Math.round(200*p));
-  const ch=bp.map(p=>p>.08?Math.round(3*p):0);
-  c.setOption({tooltip:{trigger:'axis',backgroundColor:'#1a2332',borderColor:'#1e293b',textStyle:{color:'#e2e8f0'}},legend:{data:['预订量','包船航次(右轴)'],textStyle:{color:'#94a3b8',fontSize:10},top:0},grid:{left:45,right:50,top:40,bottom:25},xAxis:{type:'category',data:['D0','D15','D30','D45','D60','D75','D90','D100'],axisLabel:{color:'#94a3b8',fontSize:10},axisLine:{lineStyle:{color:'#1e293b'}}},yAxis:[{type:'value',axisLabel:{color:'#94a3b8'},splitLine:{lineStyle:{color:'#1e293b',type:'dashed'}}},{type:'value',max:4,axisLabel:{color:'#94a3b8'},splitLine:{show:false}}],series:[{name:'预订量',type:'bar',data:bv,itemStyle:{borderRadius:[4,4,0,0],color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'#10b981'},{offset:1,color:'#065f46'}])}},{name:'包船航次(右轴)',type:'line',yAxisIndex:1,data:ch,lineStyle:{color:'#f59e0b',width:2.5},itemStyle:{color:'#f59e0b'},symbol:'diamond',symbolSize:8}]});
-  charts.booking=c;
-}
-
-function initKpiTrendChart(){
-  const c=echarts.init(document.getElementById('kpiTrendChart'));
-  const days=Array.from({length:21},(_,i)=>`D${i*5}`);
-  const L=days.map((_,i)=>{const t=i/20;if(t<.25)return Math.round(800*t*.4);if(t<.5)return Math.round(800*(.1+(t-.25)*2*.3));if(t<.75)return Math.round(800*(.4+(t-.5)*2*.4));return Math.round(800*(.8+(t-.75)*2*.2))});
-  const H=days.map((_,i)=>Math.round(i/20*180));
-  const S=days.map((_,i)=>Math.round(i/20*30));
-  c.setOption({tooltip:{trigger:'axis',backgroundColor:'#1a2332',borderColor:'#1e293b',textStyle:{color:'#e2e8f0'}},legend:{data:['累计线索','高意向线索','签约伙伴'],textStyle:{color:'#94a3b8',fontSize:10},top:0},grid:{left:45,right:20,top:40,bottom:25},xAxis:{type:'category',data:days,axisLabel:{color:'#94a3b8',fontSize:9},axisLine:{lineStyle:{color:'#1e293b'}}},yAxis:{type:'value',axisLabel:{color:'#94a3b8'},splitLine:{lineStyle:{color:'#1e293b',type:'dashed'}}},series:[{name:'累计线索',type:'line',data:L,smooth:true,lineStyle:{color:'#00d4ff',width:2},symbol:'none',areaStyle:{color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'rgba(0,212,255,.2)'},{offset:1,color:'rgba(0,212,255,0)'}])}},{name:'高意向线索',type:'line',data:H,smooth:true,lineStyle:{color:'#f59e0b',width:2,type:'dashed'},symbol:'none'},{name:'签约伙伴',type:'line',data:S,smooth:true,lineStyle:{color:'#10b981',width:2},symbol:'circle',symbolSize:4}]});
-  charts.kpiTrend=c;
-}
-
-function initRadarScoreChart(){
-  const c=echarts.init(document.getElementById('radarScoreChart'));
-  c.setOption({tooltip:{trigger:'axis',backgroundColor:'#1a2332',borderColor:'#1e293b',textStyle:{color:'#e2e8f0'}},grid:{left:100,right:30,top:20,bottom:40},xAxis:{type:'value',max:100,axisLabel:{color:'#94a3b8'},splitLine:{lineStyle:{color:'#1e293b',type:'dashed'}}},yAxis:{type:'category',data:radarLeads.map(l=>`${l.rank}. ${l.name}`).reverse(),axisLabel:{color:'#e2e8f0',fontSize:10},axisLine:{lineStyle:{color:'#1e293b'}}},series:[{type:'bar',data:radarLeads.map(l=>l.score).reverse(),label:{show:true,position:'right',formatter:'{c}分',color:'#e2e8f0',fontSize:12,fontWeight:'bold'},itemStyle:{borderRadius:[0,6,6,0],color:new echarts.graphic.LinearGradient(0,0,1,0,[{offset:0,color:'#00d4ff'},{offset:1,color:'#f59e0b'}])}}]});
-  charts.radarScore=c;
-}
-
-function initScorePieChart(){
-  const c=echarts.init(document.getElementById('scorePieChart'));
-  c.setOption({tooltip:{trigger:'item',backgroundColor:'#1a2332',borderColor:'#1e293b',textStyle:{color:'#e2e8f0'}},series:[{type:'pie',radius:['55%','80%'],label:{color:'#e2e8f0',fontSize:11,formatter:'{b}\n{d}%'},data:[{value:4,name:'Hot ≥70',itemStyle:{color:'#ef4444'}},{value:4,name:'Warm 55-69',itemStyle:{color:'#f59e0b'}},{value:2,name:'Nurture <55',itemStyle:{color:'#00d4ff'}}]}]});
-  charts.scorePie=c;
-}
-
-function initNurtureFunnelChart(){
-  const c=echarts.init(document.getElementById('nurtureFunnelChart'));
-  c.setOption({tooltip:{trigger:'item',backgroundColor:'#1a2332',borderColor:'#1e293b',textStyle:{color:'#e2e8f0'}},series:[{type:'funnel',left:'15%',right:'15%',minSize:'15%',maxSize:'100%',gap:4,label:{show:true,position:'inside',formatter:'{b}\n{c}人',fontSize:12,color:'#e2e8f0'},data:[{value:10,name:'Discovery 发现',itemStyle:{color:'#8b5cf6'}},{value:9,name:'Educate 教育',itemStyle:{color:'#6366f1'}},{value:6,name:'Engage 社群',itemStyle:{color:'#3b82f6'}},{value:0,name:'Convert 转化',itemStyle:{color:'#10b981'}},{value:0,name:'Loyal 忠诚',itemStyle:{color:'#00d4ff'}}]}]});
-  charts.nurtureFunnel=c;
-}
-
-function initRagHeatmap(){
-  const c=echarts.init(document.getElementById('ragHeatmap'));
-  const queries=['企业主·直升机·探险','高净值女性·北极升级','穷游·学生·低价'];
-  const customers=['王总(A)','Linda(A)','张医生(B)','陈总(S)','小杨(C)'];
-  const d=[[0,0,.182],[0,1,.244],[0,2,.149],[0,3,-.03],[0,4,.01],[1,0,.02],[1,1,-.01],[1,2,-.009],[1,3,-.048],[1,4,.182],[2,0,-.01],[2,1,-.021],[2,2,.03],[2,3,-.005],[2,4,.670]];
-  c.setOption({tooltip:{backgroundColor:'#1a2332',borderColor:'#1e293b',textStyle:{color:'#e2e8f0'},formatter:p=>`相似度: ${p.data[2].toFixed(3)}`},grid:{left:120,right:40,top:20,bottom:40},xAxis:{type:'category',data:customers,axisLabel:{color:'#e2e8f0',fontSize:10},axisLine:{lineStyle:{color:'#1e293b'}}},yAxis:{type:'category',data:queries,axisLabel:{color:'#e2e8f0',fontSize:10},axisLine:{lineStyle:{color:'#1e293b'}}},visualMap:{min:-.1,max:.7,calculable:true,orient:'vertical',right:0,top:'center',inRange:{color:['#1e293b','#00d4ff','#f59e0b','#ef4444']},textStyle:{color:'#94a3b8'}},series:[{type:'heatmap',data:d.map(r=>[r[1],r[0],r[2]]),label:{show:true,formatter:p=>p.data[2].toFixed(2),fontSize:12,fontWeight:'bold'},emphasis:{itemStyle:{shadowBlur:10,shadowColor:'rgba(0,0,0,.5)'}}}]});
-  charts.ragHeatmap=c;
-}
-
-// ═══════════════════════════════════════════════════
-// UPDATE LOOP
-// ═══════════════════════════════════════════════════
-let currentTab='dashboard';
-
-function updateCharts(kpis){
-  if(charts.funnel)initFunnel('funnelChart',kpis);
-  if(charts.funnel2)initFunnel('funnelChart2',kpis);
-  if(charts.booking){
-    const pf=kpis.pf;
-    const bp=[0,.02,.08,.18,.30,.45,.65,Math.min(1,pf)];
-    charts.booking.setOption({series:[{data:bp.map(p=>Math.round(200*p))},{data:bp.map(p=>p>.08?Math.round(3*p):0)}]});
-  }
-}
-
-function tick(){
-  updateClock();
-  const kpis=getKPIs();
-  if(currentTab==='dashboard'){
-    renderKPI(kpis);
-    renderPhases(kpis);
-    updateCharts(kpis);
-  }
-}
-
-function updateClock(){
-  document.getElementById('clock').textContent=new Date().toLocaleString('zh-CN',{hour12:false});
-  document.getElementById('nextRefresh').textContent=new Date(Date.now()+30000).toLocaleTimeString('zh-CN',{hour12:false});
-}
-
-// ═══════════════════════════════════════════════════
-// TAB SWITCH
-// ═══════════════════════════════════════════════════
-function switchTab(name){
-  currentTab=name;
-  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
-  document.querySelector(`.nav-btn[onclick*="${name}"]`).classList.add('active');
-  document.querySelectorAll('.tab-content').forEach(t=>t.style.display='none');
-  const el=document.getElementById(`tab-${name}`);
-  if(el)el.style.display='block';
-  if(name==='dashboard'){tick();}
-  setTimeout(()=>Object.values(charts).forEach(c=>c?.resize?.()),300);
-}
-
-// ═══════════════════════════════════════════════════
-// INIT — wait for DOM + ECharts to be fully loaded
-// ═══════════════════════════════════════════════════
-window.addEventListener('DOMContentLoaded',function(){
-  // Remove loading overlay
-  var o=document.getElementById('loadingOverlay');if(o)o.remove();
-  
-  // If echarts not loaded yet, poll
-  if(typeof echarts==='undefined'||!echarts.init){
-    var tries=0;
-    var poll=setInterval(function(){
-      tries++;
-      if(typeof echarts!=='undefined'&&echarts.init){clearInterval(poll);doInit();}
-      else if(tries>30){clearInterval(poll);document.getElementById('loadingOverlay').innerHTML='<div style=\"font-size:48px\">⚠️</div><div style=\"color:#f59e0b\">CDN加载失败</div><div style=\"color:#94a3b8;font-size:12px\">请检查网络后刷新</div>';}
-    },300);
-    return;
-  }
-  doInit();
-});
-
-function doInit(){
-
-  // All static renders
-  renderHotLeadsB2B();renderCompetitorAlerts();renderTier1();
-  renderLeadCards();renderNurtureCards();
-  renderObjectionCards();renderFollowupCards();renderScoreCards();
-  renderRagQueries();renderWfGrid();
-
-  // All charts
-  initMarketChart();
-  const kpis=getKPIs();
-  initFunnel('funnelChart',kpis);initFunnel('funnelChart2',kpis);
-  initBrandRadar('brandRadarChart');initBrandRadar('brandRadar2');
-  initBookingChart(kpis);initKpiTrendChart();
-  initRadarScoreChart();initScorePieChart();
-  initNurtureFunnelChart();initRagHeatmap();
-
-  // Industry signals render (tab-competitor)
-  var sigEl=document.getElementById('industrySignals');
-  var industrySignals=[
-    {title:'66度探险邮轮海神号2026首航 + 50+航次发布',impact:'critical',summary:'2026年5月：中资极地邮轮正式进入全航季。全中文+中医理疗+中式餐饮→直接挑战Quark中文服务差异化优势。2026-2028布局50+个探险航次覆盖全球。'},
-    {title:'恒众国际×中国国家地理 2027北极四岛联合包船',impact:'high',summary:'2026年6月官宣：斯瓦尔巴/东格陵兰/法罗群岛/冰岛21天连航。国家地理品牌+摄影大师，"高端内容品牌跨界极地"新模式。'},
-    {title:'庞洛2027-2028南极季航线提前2年启售',impact:'high',summary:'2026年6月：六大核心旅程正式开售，2028全环南极62天已预售。庞洛中国份额40%+，供不应求持续。'},
-    {title:'南极尾单价降至4万以下',impact:'negative',summary:'2026年3月：南极季末尾单不到4万RMB。但行业数据：尾单仅占3-5%。价格混乱影响消费者定价认知，需教育"5万≠5万总花费"。'},
-    {title:'中国游客102% YoY增长，全球第二大客源国',impact:'positive',summary:'IAATO数据：中国南极游客从9384→11705(+25%)。2026-27预计14500+。市场需求远超供给，Quark增长空间巨大。'},
-    {title:'众信旅游1400+人南极季收官→2026-27增长20%',impact:'neutral',summary:'2026年4月：中国最大极地运营商地位巩固。庞洛包船逐年增20%。渠道集中度提高→Quark需差异化渠道策略。'},
-  ];
-  if(sigEl)sigEl.innerHTML=industrySignals.map(function(s){
-    var c=s.impact==='critical'?'var(--red)':s.impact==='high'?'var(--orange)':s.impact==='positive'?'var(--accent3)':s.impact==='negative'?'var(--red)':'var(--accent)';
-    var e=s.impact==='critical'?'🔴':s.impact==='high'?'🟡':s.impact==='positive'?'🟢':s.impact==='negative'?'🔴':'🔵';
-    return '<div class="obj-card" style="border-left-color:'+c+'"><div class="obj-q" style="color:'+c+'">'+e+' '+s.title+'</div><div class="obj-r">'+s.summary+'</div></div>';
-  }).join('');
-
-  // Start dashboard
-  switchTab('dashboard');
-  setInterval(tick,30000);
-  window.addEventListener('resize',function(){Object.values(charts).forEach(function(c){if(c&&c.resize)c.resize();});});
-
-  // Remove loading overlay
-  setTimeout(function(){var o=document.getElementById('loadingOverlay');if(o){o.style.opacity='0';setTimeout(function(){if(o.parentNode)o.parentNode.removeChild(o);},400);}},800);
-}
-</script>
 </body>
 </html>
