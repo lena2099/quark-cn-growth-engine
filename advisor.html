@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>夸克探险极地顾问 — 成长路径 & 极地100问</title>
+<style>
+:root{--bg:#080c14;--c1:#0f1420;--c2:#171e2c;--b:#1c2536;--t:#e4e8ee;--d:#8892a4;--a:#38bdf8;--a2:#f59e0b;--a3:#22c55e;--r:#ef4444;--o:#f97316;--p:#8b5cf6;--gold:#f59e0b;--silver:#94a3b8;--bronze:#d97706}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--t);font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC",sans-serif;line-height:1.6}
+.h{background:linear-gradient(135deg,#0c111d,#111827,#0d1525);border-bottom:1px solid var(--b);padding:16px 32px;position:sticky;top:0;z-index:100;display:flex;justify-content:space-between;align-items:center}
+.hl{display:flex;align-items:center;gap:14px}
+.logo{width:40px;height:40px;background:linear-gradient(135deg,#6366f1,#8b5cf6,#a78bfa);border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:17px;color:#fff}
+.brand{font-weight:700;font-size:15px}.brand span{background:linear-gradient(135deg,var(--a),var(--p));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.container{max-width:1200px;margin:0 auto;padding:20px 24px}
+
+.nav{display:flex;gap:4px;flex-wrap:wrap;border-bottom:1px solid var(--b);padding-bottom:10px;margin-bottom:20px}
+.nav button{padding:8px 16px;border-radius:8px 8px 0 0;font-size:12px;cursor:pointer;border:1px solid transparent;background:transparent;color:var(--d);transition:all .2s;font-family:inherit;font-weight:500}
+.nav button:hover{color:var(--t);background:var(--c1)}
+.nav button.active{color:var(--a);background:var(--c1);border-color:var(--b);border-bottom:2px solid var(--a);font-weight:700}
+.tab-content{display:none}.tab-content.active{display:block}
+
+.panel{background:var(--c1);border:1px solid var(--b);border-radius:12px;padding:20px;margin-bottom:16px}
+.panel-title{font-weight:700;font-size:14px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center}
+.badge{font-size:9px;padding:2px 8px;border-radius:12px;font-weight:600}
+.br{background:rgba(239,68,68,.12);color:var(--r)}.bb{background:rgba(56,189,248,.12);color:var(--a)}.bg{background:rgba(34,197,94,.12);color:var(--a3)}.bo{background:rgba(245,158,11,.12);color:var(--o)}.bp{background:rgba(139,92,246,.12);color:var(--p)}
+
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:16px}
+
+/* ── Growth Path ── */
+.path-bar{display:flex;align-items:center;gap:0;margin:20px 0;overflow-x:auto}
+.path-step{text-align:center;min-width:140px;padding:16px 12px;border-radius:10px;background:var(--c2);border:2px solid var(--b);position:relative;flex-shrink:0}
+.path-step.active{border-color:var(--a);background:rgba(56,189,248,.06)}
+.path-step.done{border-color:var(--a3);background:rgba(34,197,94,.04)}
+.path-icon{font-size:28px;margin-bottom:6px}
+.path-step-name{font-weight:700;font-size:12px;margin-bottom:4px}
+.path-step-desc{font-size:9px;color:var(--d)}
+.path-arrow{font-size:20px;color:var(--d);flex-shrink:0;padding:0 4px}
+.path-badge{position:absolute;top:-8px;right:-4px;font-size:9px;padding:2px 6px;border-radius:10px;font-weight:700;background:var(--a);color:#080c14}
+.path-badge.done-badge{background:var(--a3)}
+
+/* ── QA ── */
+.qa-category{margin-bottom:20px}
+.qa-cat-title{font-weight:700;font-size:13px;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--b);cursor:pointer;display:flex;align-items:center;gap:8px}
+.qa-cat-count{font-size:10px;color:var(--d);font-weight:400;margin-left:auto}
+.qa-list{display:none}
+.qa-list.open{display:block}
+.qa-item{padding:10px 14px;margin-bottom:4px;border-radius:8px;cursor:pointer;transition:background .15s;font-size:12px;background:rgba(0,0,0,.1);border:1px solid transparent}
+.qa-item:hover{background:rgba(56,189,248,.04);border-color:var(--b)}
+.qa-q{font-weight:600;color:var(--t);display:flex;align-items:center;gap:8px}
+.qa-num{color:var(--a);font-size:10px;min-width:24px}
+.qa-a{display:none;margin-top:8px;padding:10px 12px;background:rgba(56,189,248,.04);border-radius:6px;font-size:11px;line-height:1.7;color:var(--d);border-left:2px solid var(--a)}
+.qa-item.open .qa-a{display:block}
+.qa-item.open{background:rgba(56,189,248,.05);border-color:rgba(56,189,248,.15)}
+
+.note{padding:8px 14px;background:rgba(56,189,248,.05);border-left:3px solid var(--a);border-radius:0 8px 8px 0;font-size:10px;color:var(--d);margin:8px 0}
+
+.reward-card{background:var(--c2);border:1px solid var(--b);border-radius:10px;padding:16px;text-align:center}
+.reward-tier{font-size:24px;font-weight:800;margin-bottom:4px}
+.reward-name{font-weight:700;font-size:13px;margin-bottom:8px}
+.reward-benefits{font-size:10px;color:var(--d);line-height:1.8}
+.reward-threshold{font-size:10px;color:var(--a);margin-top:8px;font-weight:600}
+
+.footer{border-top:1px solid var(--b);padding:16px 24px;color:var(--d);font-size:10px;text-align:center;margin-top:20px}
+.footer a{color:var(--a)}
+
+@media(max-width:768px){.row2,.row3{grid-template-columns:1fr}.path-bar{flex-direction:column;align-items:stretch}.path-arrow{display:none}}
+</style>
+</head>
+<body>
+<header class="h">
+<div class="hl"><div class="logo">🎖️</div><div class="brand"><span>夸克探险极地顾问</span> &nbsp;·&nbsp; 成长路径 & 极地100问</div></div>
+<div style="font-size:11px;color:var(--d)">Quark Expeditions Polar Advisor · 认证培训体系</div>
+</header>
+
+<div class="container">
+
+<div class="nav" id="nav">
+<button data-tab="growth" class="active">📈 顾问成长路径</button>
+<button data-tab="qa100">📚 极地100问</button>
+<button data-tab="reward">🏆 顾问奖励机制</button>
+</div>
+
+<!-- ═══════ GROWTH PATH ═══════ -->
+<div id="tab-growth" class="tab-content active">
+<div class="panel">
+<div class="panel-title">🎖️ 夸克探险极地顾问 — 五级成长路径 <span class="badge bb">Quark Expeditions</span></div>
+<div class="note">参考 Quark Expeditions 国际官网上线的顾问注册与培训体系 (Partner Portal: partners.quarkexpeditions.com)，结合中国市场需求设计本地化成长路径。顾问完成每级认证后获得对应权益和佣金升级。</div>
+
+<div class="path-bar">
+<div class="path-step done"><div class="path-badge done-badge">✓</div><div class="path-icon">🔰</div><div class="path-step-name">L1 · 极地探索者</div><div class="path-step-desc">注册完成 → 基础极地知识<br>完成"极地100问"学习<br>了解 Quark 品牌故事</div></div>
+<div class="path-arrow">→</div>
+<div class="path-step active"><div class="path-badge">▶</div><div class="path-icon">⭐</div><div class="path-step-name">L2 · 极地航海家</div><div class="path-step-desc">通过产品认证考试<br>掌握 4 条核心航线<br>完成 1 次模拟销售</div></div>
+<div class="path-arrow">→</div>
+<div class="path-step"><div class="path-icon">🌟</div><div class="path-step-name">L3 · 极地专家</div><div class="path-step-desc">完成 3 笔订单<br>客户满意度≥4.5<br>掌握异议处理技巧</div></div>
+<div class="path-arrow">→</div>
+<div class="path-step"><div class="path-icon">💎</div><div class="path-step-name">L4 · 极地大师</div><div class="path-step-desc">累计 ¥200 万销售额<br>培养 3 名 L1 顾问<br>参与航线设计反馈</div></div>
+<div class="path-arrow">→</div>
+<div class="path-step"><div class="path-icon">👑</div><div class="path-step-name">L5 · 极地传奇</div><div class="path-step-desc">累计 ¥1000 万销售额<br>Quark 中国顾问委员会成员<br>免费极地考察名额</div></div>
+</div>
+</div>
+
+<div class="row3">
+<div class="panel">
+<div class="panel-title">📋 L1 · 认证条件</div>
+<div style="font-size:11px;line-height:2;color:var(--d)">
+✅ 在 Quark Partners Portal 注册<br>
+✅ 完成"极地100问"在线学习<br>
+✅ 通过 L1 基础知识测验 (30题/80分及格)<br>
+✅ 了解 Quark 品牌故事 + 4 艘船队<br>
+✅ 签署顾问合作协议<br>
+<div style="margin-top:8px;color:var(--a);font-weight:600">🎁 完成奖励: 电子证书 + 基础佣金 5%</div>
+</div>
+</div>
+<div class="panel">
+<div class="panel-title">📋 L2 · 认证条件</div>
+<div style="font-size:11px;line-height:2;color:var(--d)">
+✅ 通过产品认证考试 (50题/85分及格)<br>
+✅ 掌握南极半岛/三岛/北极/格陵兰 4 条核心航线<br>
+✅ 完成 1 次 AI 模拟销售对练<br>
+✅ 熟悉庞洛/银海/66度竞品对比<br>
+<div style="margin-top:8px;color:var(--a);font-weight:600">🎁 完成奖励: 实体证书 + 佣金升至 7%</div>
+</div>
+</div>
+<div class="panel">
+<div class="panel-title">📋 L3-L5 · 进阶条件</div>
+<div style="font-size:11px;line-height:2;color:var(--d)">
+<b>L3 极地专家:</b> 3 笔成交 + 佣金 9%<br>
+<b>L4 极地大师:</b> ¥200 万累计 + 佣金 11% + 培养新人奖励<br>
+<b>L5 极地传奇:</b> ¥1000 万累计 + 佣金 13% + 免费考察名额 + 顾问委员会席位<br>
+<div style="margin-top:8px;color:var(--a);font-weight:600">🎁 L5 额外: Quark 总部(西雅图)拜访邀请</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ═══════ QA 100 ═══════ -->
+<div id="tab-qa100" class="tab-content">
+<div style="font-size:15px;font-weight:700;margin-bottom:14px">📚 极地顾问 100 问 — 知识体系</div>
+<div class="note">覆盖极地基础 · 夸克产品 · 邮轮对比 · 客户常见问题 · 出行须知五大板块 · 每个顾问必备知识库</div>
+
+<!-- Category 1: 极地基础知识 (Q1-20) -->
+<div class="qa-category">
+<div class="qa-cat-title" onclick="this.nextElementSibling.classList.toggle('open')">🧊 一、极地基础知识 <span class="qa-cat-count">Q1-Q20 · 20问</span></div>
+<div class="qa-list open">
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q1</span>南极和北极有什么区别？</div><div class="qa-a">南极是大陆(被冰盖覆盖)，北极是海洋(被冰层覆盖)。南极平均温度-50°C，北极-18°C。南极有企鹅无北极熊，北极有北极熊无企鹅。南极旅游季节11月-3月，北极6月-9月。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q2</span>去南极需要签证吗？</div><div class="qa-a">南极本身不属于任何国家，不需要签证。但你需要从阿根廷(乌斯怀亚)或智利(蓬塔阿雷纳斯)登船，所以需要阿根廷或智利签证。中国公民持有效美签可申请阿根廷电子签(AVE)。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q3</span>南极旅游的最佳时间是什么时候？</div><div class="qa-a">南极旅游季为每年11月至次年3月(南半球夏季)。11-12月初:冰雪最纯净，企鹅求偶；12月底-1月:气温最高，小企鹅孵化；2-3月:鲸鱼最多，小企鹅换羽。建议首次前往选1月。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q4</span>什么是德雷克海峡？为什么"可怕"？</div><div class="qa-a">德雷克海峡是南美洲与南极半岛之间800公里宽的海峡，以狂风巨浪闻名。风速可达120km/h，浪高10-15米。大约25%的游客会有晕船反应。但这也是南极体验的一部分——穿过德雷克才是真正的探险。如怕晕船可选飞南极航线(Antarctica21)。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q5</span>IAATO 是什么？为什么重要？</div><div class="qa-a">IAATO(国际南极旅游组织协会)成立于1991年，是南极旅游行业的主要规范机构。所有合法南极邮轮公司必须是IAATO成员。IAATO规定：每次登陆不超过100人，游客与企鹅保持5米距离，禁止留下任何垃圾。Quark Expeditions 是IAATO创始成员之一。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q6</span>AECO 是什么？</div><div class="qa-a">AECO(北极探险邮轮运营商协会)成立于2003年，管理北极地区的探险旅游。与IAATO类似，制定北极旅游的环保和安全标准。截至2025年有80个国际成员，其中40家邮轮公司。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q7</span>南极能看到什么动物？</div><div class="qa-a">企鹅(帝企鹅、阿德利企鹅、巴布亚企鹅、帽带企鹅等7种)、海豹(威德尔海豹、豹海豹、象海豹等)、鲸鱼(座头鲸、虎鲸、蓝鲸、小须鲸等)、多种海鸟(信天翁、南极贼鸥等)。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q8</span>北极能看到什么动物？</div><div class="qa-a">北极熊(斯瓦尔巴群岛概率最高)、海象、北极狐、驯鹿、麝牛(格陵兰)、多种鲸鱼(白鲸、弓头鲸、独角鲸)、海豹、大量海鸟(北极海鹦等)。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q9</span>南极极点(南纬90°)可以去吗？</div><div class="qa-a">可以，但非常昂贵且需要特殊安排。南极点旅行通常从智利蓬塔阿雷纳斯飞往联合冰川营地，再飞往南极点。价格¥50-80万起，每年仅100-200人到达。Quark 不运营南极点，但可以帮助客户对接。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q10</span>南极有多少人居住？</div><div class="qa-a">无常住人口。夏季约有5000名科研人员分布在各国科考站，冬季约1000人。中国在南极有5个科考站：长城站、中山站、昆仑站、泰山站、秦岭站。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q11</span>去北极能看到极光吗？</div><div class="qa-a">可以，但要注意季节。北极光最佳观赏时间为9月至次年3月的夜晚。南极旅游季(11-3月)是极昼，看不到极光。想看极光的客户应该推荐北极秋季/冬季航次或冰岛/挪威陆地行程。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q12</span>南极和北极哪个更冷？</div><div class="qa-a">南极更冷。南极平均温度-50°C，最低纪录-89.2°C。北极平均-18°C，最低约-68°C。原因是南极是高原大陆(平均海拔2300米)，北极是海平面海洋。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q13</span>南极冰盖有多厚？</div><div class="qa-a">平均厚度约2,160米，最厚处达4,776米。南极冰盖储存了地球上约70%的淡水和90%的冰。如果全部融化，全球海平面将上升约58米。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q14</span>南乔治亚岛在哪里？为什么重要？</div><div class="qa-a">南乔治亚岛位于南极辐合带以北，是英国海外领土。以王企鹅(20万对)和象海豹闻名，也是沙克尔顿史诗级救援故事的发生地。南极三岛航线通常包含福克兰群岛+南乔治亚+南极半岛。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q15</span>什么是"南极条约"？</div><div class="qa-a">1959年签署，1961年生效。冻结各国对南极的领土主张，规定南极仅用于和平目的和科学研究。现有54个缔约国。南极条约体系是国际合作的典范。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q16</span>中国南极游客数量是多少？</div><div class="qa-a">2024-2025南极季：11,705人次，全球第二(仅次于美国)，占全球游客10%，同比增长25%。2023-2024季为9,384人，2018-2019季(疫情前)为6,800人。中国是增速最快的客源国。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q17</span>极地旅游的碳足迹有多大？</div><div class="qa-a">一次南极旅行人均碳排放约3-5吨CO2(含国际航班+邮轮)。Quark Expeditions 承诺到2030年实现碳中和，采用最新环保技术减少排放，并通过保护项目抵消碳足迹。2025年可持续发展报告承诺3年内投入$250万美元。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q18</span>什么是"南极辐合带"？</div><div class="qa-a">南极辐合带是南大洋中冷水与暖水交汇的自然边界，位于南纬48°-61°之间。越过这条线就正式进入南极生态区域。水温、盐度和生物种类在此发生显著变化。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q19</span>极地旅行需要什么体能？</div><div class="qa-a">基础体能即可。每天活动根据个人体力安排——可以选轻松的冲锋舟巡游(坐着看)，或短途冰原徒步(1-2公里)。Quark客户平均年龄55岁，最年长86岁完成全程。关键不是体能，是心态。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q20</span>南极可以跳水吗？</div><div class="qa-a">可以！Quark 几乎所有南极航次都安排"极地冰泳"(Polar Plunge)——在安全条件下跳入0°C左右的南极水域几秒钟。不是强制项目，约30-50%的客人参与。这是南极旅行最刺激的"证书项目"之一。</div></div>
+</div></div>
+
+<!-- Category 2: Quark产品手册 (Q21-40) -->
+<div class="qa-category">
+<div class="qa-cat-title" onclick="this.nextElementSibling.classList.toggle('open')">🚢 二、夸克探险产品手册 <span class="qa-cat-count">Q21-Q40 · 20问</span></div>
+<div class="qa-list">
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q21</span>Quark Expeditions 成立于哪一年？总部在哪？</div><div class="qa-a">1991年成立，总部位于美国西雅图。是全球极地探险领域的先驱和领导者，超过30年只专注于南北极这一个目的地。中文官网: quarkexpeditions.cn</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q22</span>Quark 目前运营几艘船？分别是什么？</div><div class="qa-a">4艘：① Ultramarine(海洋无极号)-旗舰·双直升机·2021年下水 ·199人 ② Ocean Explorer(极地探险家号)-2024年新船·138人 ③ World Voyager(世界航海家号)-172人 ④ World Explorer(世界探索号)-172人</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q23</span>Ultramarine 号的直升机有什么独特之处？</div><div class="qa-a">Ultramarine号是全球极地探险船中唯一配备双直升机的——两架空中客车H145直升机。可以将客人送到常规船只无法抵达的冰原深处、冰川顶端甚至帝企鹅栖息地。这是Quark最核心的差异化优势。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q24</span>Quark 的探险队规模有多大？</div><div class="qa-a">业内最大规模的探险队，每条船配备15-25名探险队员，包括极地专家、冰川学家、海洋生物学家、历史学家、摄影师等。探险队员平均15年以上极地经验。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q25</span>Quark 南极核心航线有哪些？价格区间？</div><div class="qa-a">①南极半岛经典10-12天(¥8-15万)②南极半岛+极圈14天(¥12-20万)③南极三岛(福克兰+南乔治亚+南极半岛)18-23天(¥15-30万)④雪丘岛帝企鹅14-15天(¥15-28万)⑤威德尔海14天(¥14-25万)。价格含船票+餐饮+探险活动，不含国际机票。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q26</span>Quark 北极航线有哪些？</div><div class="qa-a">①斯瓦尔巴经典8-14天(¥7-18万)②格陵兰探索10-14天(¥12-25万)③加拿大高纬度北极12-16天(¥15-30万)④冰岛环岛+格陵兰14-18天(¥15-28万)。北极最大的看点是北极熊和极光。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q27</span>Quark 每条船的载客量是多少？为什么重要？</div><div class="qa-a">Ultramarine 199人，Ocean Explorer 138人，World Voyager/Explorer 172人。IAATO规定每次登陆不超过100人，小船意味着更少的轮流等待时间、更多的登陆次数和更长的在岸时间。这是"小船 vs 大巴船"的本质区别。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q28</span>Quark 船上有没有中文服务？</div><div class="qa-a">部分华人包船航次配备中文探险队员和中文服务。目前中文服务覆盖率约30%。但Quark正在加大中文服务投入——这是中国市场增长的关键方向。建议客户选择有中文探险队员的航次。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q29</span>Quark 船上餐饮怎么样？</div><div class="qa-a">国际自助餐+点餐，以欧美口味为主。早餐有西式自助，午餐和晚餐提供多道菜选择。可以满足素食/清真/无麸质等特殊饮食需求(需提前告知)。华人包船航次通常会增加中式选择。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q30</span>Quark 的离船探险活动有哪些？</div><div class="qa-a">冲锋舟巡游(Zodiac Cruising)、极地登陆(Landing)、皮划艇(Kayaking)、立式桨板(SUP)、极地浮潜(Polar Snorkeling)、冰原徒步、直升机观光(Ultramarine专属)、极地冰泳等。Quark提供的离船活动种类是业内最多的。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q31</span>预订 Quark 需要提前多久？</div><div class="qa-a">热门航线和舱位建议提前12-18个月预订。南极半岛11-12月经典航次往往提前1年售罄。Ultramarine号豪华套房和单人舱是最先被订完的。早鸟预订通常可享10-15%折扣。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q32</span>Quark 船上的舱房等级有哪些？</div><div class="qa-a">从基础三人舱到顶级主人套房共8-10个等级。以Ultramarine号为例：三人舱(15㎡)→双人舷窗(16㎡)→双人方窗(17㎡)→豪华阳台(25㎡)→套房(35㎡)→主人套房(45㎡)。价格差异可达3-4倍。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q33</span>Quark 有哪些独家航线？</div><div class="qa-a">①雪丘岛帝企鹅航线(Ultramarine直升机抵达)②威德尔海半环南极③格陵兰东部(极少有船去)④加拿大高纬度北极(西北航道)⑤格陵兰+冰岛连航。这些是Quark深耕30年积累的独家线路。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q34</span>Quark 航次是否包含国际机票？</div><div class="qa-a">不包含。船票仅含船上住宿+餐饮+探险活动。客户需要自行购买从中国到登船港口(乌斯怀亚/蓬塔阿雷纳斯/朗伊尔城/雷克雅未克等)的国际机票。通常建议客户选择包含机票的旅行社套餐，总花费约¥10-20万。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q35</span>Quark 提供华人包船服务吗？</div><div class="qa-a">是的。Quark在中国市场有华人包船航次。2025年界面新闻采访的张子琦乘坐的就是夸克邮轮华人包船——船上全是中国人，餐饮和服务更能满足中国人需求。这是中国渠道合作伙伴最重要的合作模式之一。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q36</span>Quark 在可持续发展方面做了什么？</div><div class="qa-a">2025年发布可持续发展报告，承诺3年内投入$250万美元用于保护项目。所有船只使用低硫燃料，安装先进的废水处理系统，减少一次性塑料使用，支持极地科研项目。客户可以通过"公民科学计划"参与真正的极地科研数据采集。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q37</span>Quark 的客户满意度评分是多少？</div><div class="qa-a">综合评分4.8/5(Google Reviews/TripAdvisor)。客户最满意的三个点：探险队员的专业度、离船活动的丰富性、Ultramarine直升机的独特性。最需要改进的：中文服务覆盖率和餐饮多样性。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q38</span>Quark 在中国有办公室吗？</div><div class="qa-a">目前以合作伙伴模式运营，尚未设立中国直营办公室。2025年9月在北京/上海/广州举办了首次航线发布巡演。中国市场团队正在建设中。这是合作伙伴的机遇——加入早期渠道网络享受先发优势。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q39</span>Quark 的"极地公民科学计划"是什么？</div><div class="qa-a">鼓励客人在旅行中参与真实的极地科研项目：如采集海水样本(监测微塑料)、拍摄鲸鱼尾鳍(用于个体识别)、记录云层类型(供NASA气候模型使用)。不需要专业知识，探险队员会指导。这是Quark区别于纯奢华邮轮的独特价值。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q40</span>Quark 的直升机体验需要额外付费吗？</div><div class="qa-a">大部分航线包含1-2次免费直升机观光。Ultramarine号是唯一配备直升机的极地船，通常每个客人可以体验1次10-15分钟的直升机飞行。额外飞行需付费(约$200-500/次)，视天气和航线而定。</div></div>
+</div></div>
+
+<!-- Category 3: 邮轮选择对比 (Q41-60) -->
+<div class="qa-category">
+<div class="qa-cat-title" onclick="this.nextElementSibling.classList.toggle('open')">⚖️ 三、邮轮选择对比 <span class="qa-cat-count">Q41-Q60 · 20问</span></div>
+<div class="qa-list">
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q41</span>南极邮轮公司主要有哪些？怎么分类？</div><div class="qa-a">分为4档：①超奢华: 银海(Silversea)、世邦(Seabourn)、Scenic ②奢华探险: 庞洛(Ponant)、夸克(Quark) ③专业探险: 夸克(Quark)、Oceanwide、Aurora ④基础探险: G Adventures、Intrepid。注意Quark同时覆盖奢华探险和专业探险两个定位。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q42</span>庞洛 vs 夸克：核心区别是什么？</div><div class="qa-a">庞洛=法式奢华(管家/米其林/SPA/品酒)→"极地邮轮中的奢华酒店"。夸克=硬核探险(最多登陆/直升机/最大探险队)→"极地探险的黄金标准"。庞洛适合追求舒适和服务的客户，夸克适合追求深度体验和独特视角的客户。两者互补非替代。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q43</span>银海 vs 夸克：怎么选？</div><div class="qa-a">银海拥有最好的舱房(全套房+1:1管家)和餐饮。夸克拥有最好的探险体验(直升机+最多登陆)。银海南极跟团游¥15.99万起，夸克¥8-25万。预算充裕且注重居住舒适选银海；追求极致探险体验选夸克。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q44</span>Antarctica21 飞南极有什么优劣？</div><div class="qa-a">优势：飞越德雷克海峡，不晕船；节省4天海上时间；总行程7-10天。劣势：价格更高(¥12-25万)；受天气影响可能延误；载客73人小船空间有限；仅限南极半岛，无法覆盖三岛和威德尔海。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q45</span>66度探险邮轮 vs 夸克：值得关注吗？</div><div class="qa-a">66度是中国本土品牌(广东旅控+广东港航)，2025年海神号首航。最大优势：全中文服务+中式餐饮+中医理疗，文化适配度最高。劣势：品牌新(2024年创立)，航线积累浅，无直升机等独特硬件。对于"首次极地+中文优先"的客户是值得关注的选项。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q46</span>什么是 IAATO？为什么选船一定要看 IAATO 认证？</div><div class="qa-a">所有合法南极登陆的邮轮公司必须是IAATO成员。非IAATO成员的船不能在南极登陆，只能在海上巡游。Quark是IAATO创始成员，参与制定行业标准。选船第一步：查IAATO官网确认。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q47</span>大船(200-500人) vs 小船(100-200人)怎么选？</div><div class="qa-a">IAATO规定每次登陆≤100人。大船=每次需要分批登陆，你在岸上的时间可能只有小船的一半。大船通常更便宜(¥5-8万起)且更稳。小船=更多登陆次数+更长在岸时间+更多离船活动选择。Quark全部是100-200人的精品小船。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q48</span>船去船回 vs 飞进飞出怎么选？</div><div class="qa-a">船去船回(95%游客选择)：完整穿越德雷克海峡的探险体验，总行程10-14天。飞进飞出(5%选择)：飞越德雷克海峡，不晕船，总行程7-10天但更贵。建议：不怕晕船的选船去船回，"晕船恐惧症"的选飞进飞出。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q49</span>为什么同一条航线价格差3-5倍？</div><div class="qa-a">舱房等级是最大变量：三人上下铺(最低)→豪华套房(最高)价格差可达4倍。其次是预订时间：早鸟预订可省15-25%。再次是包含服务：全包vs半包。最后是船本身：新船vs旧船、PC6破冰vs普通抗冰。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q50</span>南极"尾单"靠谱吗？能用吗？</div><div class="qa-a">尾单真实存在，但仅占总票量3-5%。通常为出发前2-4周未售出的舱位，价格可低至¥4-6万。风险：①需要自行搞定全部行程(机票/签证/酒店)②只剩最差的舱位③没有华人包船服务④无法退改。适合有丰富出境经验的自由行客户。</div></div>
+</div></div>
+
+<!-- Category 4: 常见客户问题 (Q61-80) -->
+<div class="qa-category">
+<div class="qa-cat-title" onclick="this.nextElementSibling.classList.toggle('open')">💬 四、常见客户问题 <span class="qa-cat-count">Q61-Q80 · 20问</span></div>
+<div class="qa-list">
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q61</span>"去南极到底要花多少钱？"</div><div class="qa-a">标准回答: ¥10-20万(含国际机票+船票+签证+保险)。船票¥6-18万(取决于船公司和舱位)，国际机票¥1.5-3万，签证¥1000-2000，旅行保险¥500-1000，装备+零花¥5000-10000。最低"穷游"方案约¥5-6万(买尾单+自购机票)。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q62</span>"会不会很危险？"</div><div class="qa-a">南极旅游安全记录非常好。IAATO有极其严格的安全标准。Quark运营30年零重大安全事故。所有探险队员经过专业训练，每条船配备卫星通讯+医疗设施+随船医生。最危险的是德雷克海峡的晕船——不是安全，是舒适度。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q63</span>"我年纪大了/体力不行能去吗？"</div><div class="qa-a">Quark客户平均年龄55岁，最年长客人86岁完成全程。根据您的体力选择活动——可以坐冲锋舟巡游(完全不走路)，也可以短途徒步。南极的关键不是体能，是心态和好奇心。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q64</span>"和其他船比，Quark贵在哪里？"</div><div class="qa-a">全球唯一双直升机 → 到别人去不了的地方。业内最大探险队 → 每天2-3次登陆(是大部分船的2倍)。30年极地专营 → 航线数据库和紧急预案行业领先。您多花的钱买的是更深的体验和更专业的团队。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q65</span>"庞洛好像更奢华？"</div><div class="qa-a">庞洛=奢华酒店搬到海上。Quark=最极致的探险。选庞洛为"被服务"，选Quark为"看见别人看不见的世界"。很多客户第一次选庞洛(舒适体验)，第二次选Quark(深度探险)——两条路线互补。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q66</span>"南极和北极应该先去哪一个？"</div><div class="qa-a">没有标准答案。南极=企鹅+冰川+纯粹荒野，体验更"极致"。北极=北极熊+极光+人文(因纽特文化)，体验更"多样"。建议：追求"人生终极体验"先去南极，喜欢"探索多样性"先去北极。我们的数据是75%客户先选南极。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q67</span>"我一个人去安全吗？/有单人舱吗？"</div><div class="qa-a">Quark欢迎独自旅行的客人。船上有单人舱(需额外付费)或可以安排同性拼房。船上社交氛围非常好——每天一起登陆、一起用餐，很容易交到朋友。约有15-20%的客人是独自旅行。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q68</span>"带小孩/老人去可以吗？"</div><div class="qa-a">最低年龄通常8岁(部分航线12岁)，无上限(最年长86岁)。建议：小孩至少10岁以上且有户外经验；老人需身体健康，出发前咨询医生。Quark有适合家庭的航线——选择登陆次数多、在岸时间长的航线。</div></div>
+</div></div>
+
+<!-- Category 5: 出行注意事项 (Q81-100) -->
+<div class="qa-category">
+<div class="qa-cat-title" onclick="this.nextElementSibling.classList.toggle('open')">🧳 五、出行注意事项 <span class="qa-cat-count">Q81-Q100 · 20问</span></div>
+<div class="qa-list">
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q81</span>去南极需要带什么装备？</div><div class="qa-a">Quark提供：防水登陆靴、极地冲锋衣(赠送)。客户需自备：保暖内衣(美利奴羊毛最佳)、防水裤、手套(防水+保暖各一副)、帽子、围巾、墨镜(防雪盲)、防晒霜(南极紫外线极强)、相机+备用电池(寒冷耗电快)。不需要带礼服——船上休闲穿着即可。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q82</span>去南极需要打什么疫苗？</div><div class="qa-a">南极不需要特殊疫苗。但途经国家(阿根廷/智利)建议接种：甲肝、乙肝、伤寒。黄热病疫苗不是必须但建议(如果之前去过非洲/南美)。建议出发前咨询旅行医生。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q83</span>如何到达登船港口？</div><div class="qa-a">南极：国内飞布宜诺斯艾利斯或圣地亚哥 → 转机至乌斯怀亚(阿根廷)或蓬塔阿雷纳斯(智利)。总飞行时间约30-40小时。北极：飞奥斯陆 → 转机至朗伊尔城(斯瓦尔巴)，约20小时。建议提前1-2天抵达，避免航班延误错过登船。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q84</span>船上有没有网络？</div><div class="qa-a">有，但很有限且昂贵。南极大部分区域没有手机信号，船上提供付费卫星WiFi(约$30-50/天)。速度仅够收发文字消息和邮件，无法看视频。建议：把南极当作一次"强制数字排毒"——我们很多客户说这是最好的部分。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q85</span>南极可以飞无人机吗？</div><div class="qa-a">不可以。IAATO严格禁止在南极使用无人机。违规将面临高额罚款和被列入黑名单。如有航拍需求，Quark的直升机观光是唯一合法的高空拍摄方式。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q86</span>需要买什么保险？</div><div class="qa-a">必须购买：①综合旅行保险(含紧急医疗运送，保额至少$100,000)②行程取消/中断保险。Quark要求所有客人在出发前出示保险证明。推荐：安联全球旅行、AIG Travel Guard。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q87</span>船上如何支付？带什么货币？</div><div class="qa-a">Quark船上以美元结算，接受Visa/MasterCard信用卡。建议携带少量美元现金(用于小费和港口消费)。阿根廷和智利当地使用比索，但港口和机场接受美元和信用卡。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q88</span>在南极如何上厕所？</div><div class="qa-a">登陆前在船上解决。南极大陆上没有任何厕所设施——IAATO规定"什么都不留下"。每次登陆时间约2-3小时，出发前探险队员会提醒。特殊情况下可以使用便携式应急设备。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q89</span>南极和阿根廷/智利有时差吗？</div><div class="qa-a">乌斯怀亚(阿根廷)比北京时间晚11小时。南极没有统一时区——船上通常使用登船港口时间或协调世界时(UTC)。所有活动时间以船上广播为准。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q90</span>万一在南极生病怎么办？</div><div class="qa-a">每条Quark船上都有随船医生和基础医疗设施，可以处理常见疾病和轻伤。严重情况会启动紧急撤离——联系最近的医疗设施(通常是智利或阿根廷)。这就是为什么必须购买含紧急医疗运送的保险。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q91</span>如何和企鹅互动？</div><div class="qa-a">保持5米距离(IAATO规定)。不能触摸、喂食或惊吓企鹅。但如果企鹅主动走近你——没问题！保持静止，享受这个神奇的时刻。拍照不要用闪光灯。这是南极最严格的规则之一。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q92</span>南极旅游会不会破坏环境？</div><div class="qa-a">Quark是IAATO创始成员，严格遵循所有环保标准：每次登陆前后消毒鞋子、禁止留下任何垃圾、禁止带走任何自然物品(石头/羽毛/骨头等)。Quark还通过公民科学计划让客人参与真正的极地保护研究。负责任的极地旅游实际上有助于公众关注极地保护。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q93</span>南极旅行的取消/退款政策？</div><div class="qa-a">Quark标准政策：出发前180天以上取消→退款75%；180-120天→退款50%；120-90天→退款25%；90天内→不退款。强烈建议购买"取消任意原因"(CFAR)旅行保险，可覆盖大部分损失。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q94</span>船上有洗衣服务吗？</div><div class="qa-a">大部分Quark船没有自助洗衣设施，但提供付费洗衣服务。建议携带足够的内衣和保暖袜(至少7-10天的量)，外层可以重复穿。极地环境下衣服不会像热带那样容易出汗。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q95</span>如何选择船舱位置？</div><div class="qa-a">低层(2-4层)=更稳，晕船概率低。高层(5-7层)=视野好，但晃动更大。船中位置最稳，船头/船尾晃动大。阳台房 vs 舷窗房：阳台可以随时看风景，但价格贵30-50%。建议首次去的客户选低层中央阳台房。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q96</span>北极和南极需要不同的装备吗？</div><div class="qa-a">大体相同，但北极通常比南极暖和一些(尤其夏季)。北极需要更多的防雨装备(北极夏季多雨)。南极需要更厚的保暖层。Quark同样提供极地冲锋衣和登陆靴。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q97</span>南极可以看到日出/日落吗？</div><div class="qa-a">11-2月(旅游旺季)是南极极昼期间，太阳几乎不落或仅落下1-2小时。所以你看到的是超长"黄金时刻"——连续几小时的粉色和金色光线，这是摄影师的天堂。3月以后开始有正常的日夜交替。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q98</span>船上会安排讲座吗？</div><div class="qa-a">每天都有。探险队中的冰川学家、海洋生物学家、历史学家、摄影师会轮流开讲——从企鹅生态到南极条约历史到极地摄影技巧。这些讲座是Quark区别于普通邮轮的核心体验之一，也是帮助客户理解"为什么值得花这个钱"的关键。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q99</span>南极回来后会有什么感受？</div><div class="qa-a">绝大多数客户说"这是人生最好的旅行"。"南极后遗症"=回来后觉得其他目的地都"不过如此"。许多客户回来后会立刻开始规划北极行程，或者向朋友强烈推荐。这就是为什么Quark有极高的口碑传播率。</div></div>
+<div class="qa-item" onclick="this.classList.toggle('open')"><div class="qa-q"><span class="qa-num">Q100</span>作为Quark顾问，我最重要的三个销售原则是什么？</div><div class="qa-a">①不是卖一次旅行，是卖一生一次的体验——不谈价格谈价值。②不是所有的南极都是一样的——小船vs大船、直升机vs无直升机、3次登陆vs1次登陆，这些差别客户不知道，你的价值就是帮他们理解。③第一次可能是别人的客户，第二次一定是你的客户——复购+口碑是极地旅游最大的增长引擎。</div></div>
+</div></div>
+
+</div><!-- /qa100 -->
+
+<!-- ═══════ REWARD ═══════ -->
+<div id="tab-reward" class="tab-content">
+<div style="font-size:15px;font-weight:700;margin-bottom:14px">🏆 夸克探险极地顾问 — 奖励机制框架 (内容待定)</div>
+<div class="note">以下为初步框架设计。最终版本需与 Quark Expeditions 中国区管理层确认并签署正式顾问合作协议。</div>
+
+<div class="row3">
+<div class="reward-card">
+<div class="reward-tier" style="color:var(--silver)">🔰</div>
+<div class="reward-name">L1 · 极地探索者</div>
+<div class="reward-threshold">注册即达</div>
+<div class="reward-benefits">
+佣金 5% · 电子证书<br>
+加入顾问社群 · 获取产品资料<br>
+<br>
+</div>
+</div>
+<div class="reward-card">
+<div class="reward-tier" style="color:var(--bronze)">⭐</div>
+<div class="reward-name">L2 · 极地航海家</div>
+<div class="reward-threshold">通过认证考试</div>
+<div class="reward-benefits">
+佣金 7% · 实体证书<br>
+早鸟优先锁舱权<br>
+季度销售工具包<br>
+</div>
+</div>
+<div class="reward-card">
+<div class="reward-tier" style="color:var(--gold)">🌟</div>
+<div class="reward-name">L3 · 极地专家</div>
+<div class="reward-threshold">3笔成交</div>
+<div class="reward-benefits">
+佣金 9% · 优先分舱权<br>
+极地沙龙演讲机会<br>
+顾问之星月度评选<br>
+</div>
+</div>
+<div class="reward-card">
+<div class="reward-tier" style="color:#67e8f9">💎</div>
+<div class="reward-name">L4 · 极地大师</div>
+<div class="reward-threshold">累计 ¥200 万</div>
+<div class="reward-benefits">
+佣金 11% · 专属客户资源<br>
+培养新人奖金 ¥5000/人<br>
+航线设计顾问委员会<br>
+</div>
+</div>
+<div class="reward-card">
+<div class="reward-tier" style="color:#a78bfa">👑</div>
+<div class="reward-name">L5 · 极地传奇</div>
+<div class="reward-threshold">累计 ¥1000 万</div>
+<div class="reward-benefits">
+佣金 13%<br>
+免费极地考察名额(1次/年)<br>
+Quark 西雅图总部拜访邀请<br>
+全球顾问峰会席位<br>
+</div>
+</div>
+<div class="reward-card">
+<div class="reward-tier" style="color:var(--a3)">🎯</div>
+<div class="reward-name">KOL 专项激励</div>
+<div class="reward-threshold">内容产出 + 社媒影响</div>
+<div class="reward-benefits">
+免费/折扣体验航线<br>
+内容分成(佣金基础上+2%)<br>
+Quark 官方社媒曝光<br>
+独家航线体验官资格<br>
+</div>
+</div>
+</div>
+
+<div class="panel" style="margin-top:16px">
+<div class="panel-title">📋 待定事项 <span class="badge bo">需管理层确认</span></div>
+<div style="font-size:11px;line-height:2;color:var(--d)">
+1. 佣金结算周期（月度/季度/航次结束后）<br>
+2. 退款/取消订单的佣金处理方案<br>
+3. 跨区域（不同渠道公司）的客户归属判定机制<br>
+4. KOL 内容产出标准（最低发布量/平台要求/内容审核流程）<br>
+5. 顾问年度续期认证机制（是否需要？续期条件？）<br>
+6. 佣金上限（是否有 cap？）<br>
+7. 团体/包船订单的佣金计算方式<br>
+8. L4/L5 非现金奖励的具体执行方案（考察名额/总部拜访的预算和安排）<br>
+9. 顾问协议中的排他性条款（能否同时代理其他极地品牌）<br>
+10. 争议解决机制和适用法律
+</div>
+</div>
+</div>
+
+</div><!-- container -->
+
+<footer class="footer">
+<span>© 2026 Quark Expeditions · 夸克探险极地顾问 · 认证培训体系 v1.0</span>
+<span>参考: <a href="https://partners.quarkexpeditions.com" target="_blank">Quark Partners Portal</a> · <a href="https://www.quarkexpeditions.cn" target="_blank">夸克探险中文官网</a></span>
+</footer>
+
+<script>
+document.querySelectorAll('#nav button').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('#nav button').forEach(function(b){b.classList.remove('active')});
+    this.classList.add('active');
+    document.querySelectorAll('.tab-content').forEach(function(t){t.classList.remove('active')});
+    document.getElementById('tab-'+this.dataset.tab).classList.add('active');
+  });
+});
+// Auto-open first category
+document.querySelector('.qa-list.open');
+</script>
+</body>
+</html>
