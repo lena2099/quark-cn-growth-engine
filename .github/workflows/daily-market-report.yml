@@ -26,6 +26,9 @@ on:
 env:
   PYTHON_VERSION: '3.12'
 
+permissions:
+  contents: write
+
 jobs:
   market-intelligence:
     runs-on: ubuntu-latest
