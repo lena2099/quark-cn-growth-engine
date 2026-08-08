@@ -25,7 +25,6 @@ on:
 
 env:
   PYTHON_VERSION: '3.12'
-  UV_SYSTEM_PYTHON: '1'
 
 jobs:
   market-intelligence:
@@ -44,7 +43,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          uv pip install --break-system-packages -r requirements.txt
+          uv venv
+          uv pip install -r requirements.txt
 
       - name: Run Polar Intelligence Pipeline
         env:
@@ -60,7 +60,7 @@ jobs:
           EMAIL_FROM: ${{ secrets.EMAIL_FROM || '' }}
           EMAIL_TO: ${{ secrets.EMAIL_TO || '' }}
           EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD || '' }}
-        run: python main.py
+        run: uv run python main.py
 
       - name: Upload daily report
         uses: actions/upload-artifact@v4
